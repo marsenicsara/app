@@ -132,7 +132,7 @@ class FloatingActionButton extends React.Component {
                   }}
                   floatingIcon={
                     <Image
-                      source={require('../../../../assets/buttons/fab/fab-icon.png')}
+                      source={require('assets/buttons/fab/fab-icon.png')}
                     />
                   }
                   overlayColor="rgba(0,0,0,0.15)"
