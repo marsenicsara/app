@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...Platform.select({
       android: {
-        marginTop: 5,
+        marginTop: 17,
       },
       ios: {},
     }),
