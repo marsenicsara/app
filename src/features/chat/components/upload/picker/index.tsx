@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Consumer } from '../context';
 import { FlatList, View, Keyboard } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { colors } from '@hedviginsurance/brand';
 import { Data } from './data';
 import { Image } from './image';
 import { Video } from './video';
