@@ -3,6 +3,7 @@ import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import Hyperlink from 'react-native-hyperlink';
 import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
+import { isIphoneX } from 'react-native-iphone-x-helper';
 
 import {
   StyledDefaultMessageText,
@@ -12,6 +13,8 @@ import {
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
 import { RichMessage } from '../components/rich-message';
+
+import { InputHeightContainer } from './InputHeight';
 
 const styles = StyleSheet.create({
   scrollContent: {
@@ -136,17 +139,26 @@ class MessageList extends React.Component {
 
   render() {
     return (
-      <FlatList
-        inverted
-        contentContainerStyle={styles.flatListContentContainer}
-        style={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-        data={this.props.messages}
-        renderItem={this._renderItem}
-        keyExtractor={this._keyExtractor}
-        keyboardDismissMode="interactive"
-        ListHeaderComponent={<KeyboardSpacer />}
-      />
+      <InputHeightContainer>
+        {({ inputHeight }) => (
+          <FlatList
+            inverted
+            contentContainerStyle={styles.flatListContentContainer}
+            style={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+            data={this.props.messages}
+            renderItem={this._renderItem}
+            keyExtractor={this._keyExtractor}
+            keyboardDismissMode="interactive"
+            ListHeaderComponent={
+              <KeyboardSpacer
+                restSpacing={isIphoneX() ? 35 : 0}
+                topSpacing={inputHeight}
+              />
+            }
+          />
+        )}
+      </InputHeightContainer>
     );
   }
 }
