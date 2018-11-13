@@ -1,14 +1,15 @@
 import { AsyncStorage, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import gql from 'graphql-tag';
 
 import {
   SEEN_MARKETING_CAROUSEL_KEY,
   IS_VIEWING_OFFER,
   LAUNCH_DEBUG,
 } from '../constants';
-import { Store } from '../setupApp';
+import { client } from 'src/graphql/client';
+import { InsuranceStatus } from 'src/graphql/components';
 
-import { insuranceActions } from '../../hedvig-redux';
 import { colors, fonts } from '@hedviginsurance/brand';
 
 import { CHAT_SCREEN } from './screens/chat';
@@ -143,30 +144,30 @@ export const getInitialLayout = async () => {
     return getMarketingLayout();
   }
 
-  Store.dispatch(insuranceActions.getInsurance());
-
-  return new Promise((resolve) => {
-    const unsubscribe = Store.subscribe(async () => {
-      const { insurance } = Store.getState();
-
-      if (!insurance.status) return;
-
-      unsubscribe();
-
-      if (shouldShowDashboard(insurance.status)) {
-        return resolve(getMainLayout());
+  const { data } = await client.query<{
+    insurance: { status: InsuranceStatus };
+  }>({
+    query: gql`
+      query InsuranceStatus {
+        insurance {
+          status
+        }
       }
-
-      const isViewingOffer = await AsyncStorage.getItem(IS_VIEWING_OFFER);
-
-      if (isViewingOffer) {
-        const OFFER_LAYOUT = await getOfferLayout();
-        return resolve(OFFER_LAYOUT);
-      }
-
-      return resolve(getChatLayout());
-    });
+    `,
   });
+
+  if (shouldShowDashboard(data.insurance.status)) {
+    return getMainLayout();
+  }
+
+  const isViewingOffer = await AsyncStorage.getItem(IS_VIEWING_OFFER);
+
+  if (isViewingOffer) {
+    const OFFER_LAYOUT = await getOfferLayout();
+    return OFFER_LAYOUT;
+  }
+
+  return getChatLayout();
 };
 
 export const setLayout = ({

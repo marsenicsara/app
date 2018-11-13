@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Platform, InputAccessoryView } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { View, AppState, KeyboardAvoidingView } from 'react-native';
+import { View, AppState } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
 import { Container, EffectMap, EffectProps } from 'constate';
 
@@ -76,18 +74,6 @@ const effects: EffectMap<State, Effects> = {
     }
   },
 };
-
-const KeyboardAvoid = styled(KeyboardAvoidingView)({
-  flex: 1,
-  ...ifIphoneX(
-    {
-      marginBottom: 20,
-    },
-    {
-      marginBottom: 0,
-    },
-  ),
-});
 
 const Messages = styled(View)({
   flex: 1,
