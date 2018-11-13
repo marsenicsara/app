@@ -84,7 +84,13 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
                         }}
                       />
                     ) : (
-                      <Video uri={item.node.image.uri} />
+                      <Video
+                        uri={item.node.image.uri}
+                        onUpload={(key) => {
+                          sendMessage(key);
+                          setIsOpen(false);
+                        }}
+                      />
                     )
                   }
                   keyExtractor={(item) => String(item.node.image.uri)}

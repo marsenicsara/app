@@ -8478,10 +8478,10 @@ react-native-version@^2.6.3:
     resolve-from "^4.0.0"
     semver "^5.5.0"
 
-react-native-video@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-3.2.1.tgz#7ba3cbdfc5c747b5b00452811e98193824b16ce3"
-  integrity sha512-Xansfoo/to80FwhM1HKlf7pCxDZ5RtV+kG3piCVvsNAhPY4GGwiOGUH9y3Y+mFQIDEWcY8I9j16lsFYAbnue3g==
+react-native-video@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-3.0.0.tgz#7f2dcb0bb138665493a0ba2219ade464a825c911"
+  integrity sha512-c86Gne9/dA5Je1I07/cg5OHmKgf3vTZWISa0eRge4rCJHAe2NyTBNQODFqDdqS4LFio5AuWjV/+bP7/8FXLy1g==
   dependencies:
     keymirror "0.1.1"
     prop-types "^15.5.10"
