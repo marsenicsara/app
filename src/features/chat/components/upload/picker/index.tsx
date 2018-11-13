@@ -74,10 +74,11 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
                 <FlatList
                   ListHeaderComponent={ListHeaderComponent}
                   data={photos!.edges!}
-                  renderItem={({ item }) =>
+                  renderItem={({ item, index }) =>
                     item.node.type.includes('Photo') ? (
                       <Image
                         uri={item.node.image.uri}
+                        isLastInList={index === photos!.edges!.length - 1}
                         onUpload={(key) => {
                           sendMessage(key);
                           setIsOpen(false);
@@ -86,6 +87,7 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
                     ) : (
                       <Video
                         uri={item.node.image.uri}
+                        isLastInList={index === photos!.edges!.length - 1}
                         onUpload={(key) => {
                           sendMessage(key);
                           setIsOpen(false);

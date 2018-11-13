@@ -53,6 +53,7 @@ target 'hedvig' do
   pod 'ReactNativeAnalyticsSegmentIo', :path => '../node_modules/react-native-analytics-segment-io'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler/ios'
+  pod 'ReactNativeHeicConverter', :path => '../node_modules/react-native-heic-converter'
 
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 

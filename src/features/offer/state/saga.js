@@ -7,7 +7,7 @@ import { TRACK_OFFER_SIGNED } from '../../../features/analytics/actions';
 import { BANKID_SIGN, BANKID_SIGN_COMPLETE } from '../../bankid/actions';
 import { OFFER_CHECKOUT } from './actions';
 
-import { getChatLayout } from '../../../navigation/layout';
+import { getChatLayout } from 'src/navigation/layouts/chatLayout';
 
 const handleCheckout = function*() {
   yield put({ type: BANKID_SIGN });

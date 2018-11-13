@@ -57,10 +57,12 @@ const collectHandler = function*() {
         })
         .then(({ data }) => {
           const {
-            getMainLayout,
-            setLayout,
             shouldShowDashboard,
-          } = require('src/navigation/layout');
+          } = require('src/navigation/layouts/utils');
+          const { setLayout } = require('src/navigation/layouts/setLayout');
+          const {
+            getMainLayout,
+          } = require('src/navigation/layouts/mainLayout');
 
           if (shouldShowDashboard(data.insurance.status)) {
             setLayout(getMainLayout());
