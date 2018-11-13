@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, Platform } from 'react-native';
+import { DebugShortcut } from './DebugShortcut';
 
 const styles = StyleSheet.create({
   hedvigLogo: {
@@ -19,10 +20,12 @@ const styles = StyleSheet.create({
 export class HedvigLogoTitle extends React.Component {
   render() {
     return (
-      <Image
-        source={require('../../assets/identity/hedvig_wordmark/hedvig_wordmark.png')}
-        style={styles.hedvigLogo}
-      />
+      <DebugShortcut>
+        <Image
+          source={require('../../assets/identity/hedvig_wordmark/hedvig_wordmark.png')}
+          style={styles.hedvigLogo}
+        />
+      </DebugShortcut>
     );
   }
 }

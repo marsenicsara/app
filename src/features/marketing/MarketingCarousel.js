@@ -36,6 +36,7 @@ import * as analyticsSelectors from '../analytics/selectors';
 
 import { CHAT_SCREEN } from '../../navigation/screens/chat';
 import { colors } from '@hedviginsurance/brand';
+import { DebugShortcut } from 'src/components/DebugShortcut';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -164,7 +165,6 @@ const marketingCarouselStyles = StyleSheet.create({
     width: viewportWidth,
     height: viewportHeight,
     backgroundColor: colors.PURPLE,
-    // justifyContent: 'center',
     alignItems: 'center',
   },
   hedvigLogo: {
@@ -394,10 +394,12 @@ export default class MarketingCarousel extends React.Component {
                 resizeMode="cover"
                 source={require('../../../assets/offer/hero/intro-2.png')}
               >
-                <Image
-                  source={require('../../../assets/identity/hedvig_wordmark/hedvig_wordmark_white.png')}
-                  style={marketingCarouselStyles.hedvigLogo}
-                />
+                <DebugShortcut componentId={this.props.componentId}>
+                  <Image
+                    source={require('../../../assets/identity/hedvig_wordmark/hedvig_wordmark_white.png')}
+                    style={marketingCarouselStyles.hedvigLogo}
+                  />
+                </DebugShortcut>
                 <Text style={marketingCarouselStyles.introHeader}>
                   Hjälp när du behöver det
                 </Text>
