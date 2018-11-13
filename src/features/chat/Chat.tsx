@@ -13,7 +13,8 @@ import { chatActions, dialogActions } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
 import { NavigationEvents } from 'src/navigation/events';
-import { getMainLayout, setLayout } from '../../navigation/layout';
+import { getMainLayout } from 'src/navigation/layouts/mainLayout';
+import { setLayout } from 'src/navigation/layouts/setLayout';
 import {
   getOfferScreen,
   OFFER_GROUPS,

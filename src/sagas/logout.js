@@ -2,7 +2,9 @@ import { AsyncStorage } from 'react-native';
 import { types } from '../../hedvig-redux';
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { SEEN_MARKETING_CAROUSEL_KEY } from '../constants';
-import { getMarketingLayout, setLayout } from '../navigation/layout';
+
+import { setLayout } from 'src/navigation/layouts/setLayout';
+import { getMarketingLayout } from 'src/navigation/layouts/marketingLayout';
 
 const resetRoot = () => setLayout(getMarketingLayout());
 
