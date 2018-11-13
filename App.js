@@ -27,7 +27,7 @@ export const HOC = (options) => (Component) => {
           <ApolloProvider client={client}>
             <TranslationsProvider>
               <Provider store={Store}>
-                <ConstateProvider>
+                <ConstateProvider devtools={__DEV__}>
                   <PersistGate loading={<Loader />} persistor={Persistor}>
                     <NavigationContext.Provider value={{ componentId }}>
                       <Component {...this.props} />
