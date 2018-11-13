@@ -182,7 +182,6 @@ export const NewOffer: React.SFC = () => (
               />
             )}
           </TranslationsConsumer>
-          <PerilsDialog />
         </>
       )
     }

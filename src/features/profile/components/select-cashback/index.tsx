@@ -7,11 +7,10 @@ import { CircledExclamationMark } from 'src/components/icons/CircledExclamationM
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { DialogButton } from 'src/components/Button';
 import { Spacing } from 'src/components/Spacing';
-import { OpenState } from 'src/components/OpenState';
 import { NavigationEvents } from 'src/navigation/events';
 
-import { Picker } from './picker';
-import { Update } from 'react-lifecycle-components';
+import { Navigation } from 'react-native-navigation';
+import { CASHBACK_PICKER_COMPONENT } from 'src/navigation/components/cashback-picker';
 
 const MessageText = styled(Text)({
   color: colors.BLACK,
@@ -29,51 +28,42 @@ const ButtonContainer = styled(View)({
   maxHeight: 40,
 });
 
+
 export const SelectCashback = () => (
-  <OpenState initialOpenState={false}>
-    {({ isOpen, setIsOpen }) => (
-      <NavigationEvents>
-        {(triggerEvent: (event: { name: string }) => void) => (
-          <>
-            <Update
-              watched={isOpen}
-              was={() => {
-                if (isOpen) {
-                  triggerEvent({ name: 'showModal' });
-                }
-              }}
-            >
-              {null}
-            </Update>
-            <CircledExclamationMark width={30} height={30} />
-            <Spacing height={20} />
-            <MessageContainer>
-              <TranslationsConsumer textKey="CASHBACK_NEEDS_SETUP_MESSAGE">
-                {(text) => <MessageText>{text}</MessageText>}
-              </TranslationsConsumer>
-              <ButtonContainer>
-                <TranslationsConsumer textKey="CASHBACK_NEEDS_SETUP_ACTION">
-                  {(text) => (
-                    <DialogButton
-                      title={text}
-                      onPress={() => setIsOpen(true)}
-                    />
-                  )}
-                </TranslationsConsumer>
-              </ButtonContainer>
-            </MessageContainer>
-            {isOpen && (
-              <Picker
-                close={() => {
-                  setIsOpen(false);
-                  triggerEvent({ name: 'dismissModal' });
-                }}
-              />
-            )}
-            <Spacing height={20} />
-          </>
-        )}
-      </NavigationEvents>
-    )}
-  </OpenState>
+  <>
+    <CircledExclamationMark width={30} height={30} />
+    <Spacing height={20} />
+    <MessageContainer>
+      <TranslationsConsumer textKey="CASHBACK_NEEDS_SETUP_MESSAGE">
+        {(text) => <MessageText>{text}</MessageText>}
+      </TranslationsConsumer>
+      <ButtonContainer>
+        <TranslationsConsumer textKey="CASHBACK_NEEDS_SETUP_ACTION">
+          {(text) => (
+            <NavigationEvents>
+              {(triggerEvent: (event: { name: string }) => void) => (
+                <DialogButton
+                  title={text}
+                  onPress={() => {
+                    triggerEvent({ name: 'showModal' })
+                    Navigation.showOverlay({
+                      component: {
+                        name: CASHBACK_PICKER_COMPONENT.name,
+                        options: {
+                          layout: {
+                            backgroundColor: 'transparent',
+                          },
+                        }
+                      }
+                    })
+                  }}
+                />
+              )}
+            </NavigationEvents>
+          )}
+        </TranslationsConsumer>
+      </ButtonContainer>
+    </MessageContainer>
+    <Spacing height={20} />
+  </>
 );
