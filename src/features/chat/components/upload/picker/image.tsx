@@ -5,12 +5,13 @@ import styled from '@sampettersson/primitives';
 import { UploadMutation } from './upload-mutation';
 import { Presend } from './presend';
 
-const Padding = styled(View)({
+const Padding = styled(View)(({ isLastInList }: { isLastInList: boolean }) => ({
   padding: 10,
   paddingRight: 0,
+  marginRight: isLastInList ? 10 : 0,
   height: 250,
   width: 250,
-});
+}));
 
 const BorderRadius = styled(View)({
   borderRadius: 10,
@@ -25,12 +26,17 @@ const ImageContainer = styled(RNImage)({
 interface ImageProps {
   uri: string;
   onUpload: (key: string) => void;
+  isLastInList: boolean;
 }
 
-export const Image: React.SFC<ImageProps> = ({ uri, onUpload }) => (
+export const Image: React.SFC<ImageProps> = ({
+  uri,
+  onUpload,
+  isLastInList,
+}) => (
   <UploadMutation>
     {(uploadFile, isUploading) => (
-      <Padding>
+      <Padding isLastInList={isLastInList}>
         <BorderRadius>
           <Presend
             isUploading={isUploading}

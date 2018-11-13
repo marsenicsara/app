@@ -10,14 +10,16 @@ import { Presend } from './presend';
 interface VideoProps {
   uri: string;
   onUpload: (key: string) => void;
+  isLastInList: boolean;
 }
 
-const Padding = styled(View)({
+const Padding = styled(View)(({ isLastInList }: { isLastInList: boolean }) => ({
   padding: 10,
   paddingRight: 0,
+  marginRight: isLastInList ? 10 : 0,
   height: 250,
   width: 250,
-});
+}));
 
 const BorderRadius = styled(View)({
   borderRadius: 10,
@@ -30,10 +32,14 @@ const VideoContainer = styled(RNVideo)({
   backgroundColor: colors.WHITE,
 });
 
-export const Video: React.SFC<VideoProps> = ({ uri, onUpload }) => (
+export const Video: React.SFC<VideoProps> = ({
+  uri,
+  onUpload,
+  isLastInList,
+}) => (
   <UploadMutation>
     {(uploadFile, isUploading) => (
-      <Padding>
+      <Padding isLastInList={isLastInList}>
         <BorderRadius>
           <Presend
             isUploading={isUploading}
