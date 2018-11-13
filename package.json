@@ -10,7 +10,7 @@
     "test:watch": "yarn run test -- --watch",
     "lint": "eslint src hedvig-redux App.js index.js --max-warnings 0",
     "postinstall": "rndebugger-open;react-native-schemes-manager all && yarn run create-podspecs",
-    "create-podspecs": "podspec-generator node_modules/react-native-analytics-segment-io --ios=9.0 --source_files=ios/RNAnalyticsSegmentIO --dependencies=React,Analytics",
+    "create-podspecs": "podspec-generator node_modules/react-native-analytics-segment-io --ios=9.0 --source_files=ios/RNAnalyticsSegmentIO --dependencies=React,Analytics && podspec-generator node_modules/react-native-heic-converter --ios=9.0 --source_files=ios/RNHeicConverter --dependencies=React",
     "format": "prettier-eslint --write \"src/**/*.js\"",
     "postversion": "react-native-version",
     "generate-graphql-types": "ts-node scripts/generate-graphql-types.js",
