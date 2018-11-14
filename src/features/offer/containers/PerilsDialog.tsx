@@ -71,7 +71,13 @@ const getHeightPercentage = (length: number) => {
   return 50
 }
 
-export const PerilsDialog: React.SFC<{ peril: any, categoryTitle: string, componentId: string }> = ({ componentId, categoryTitle, peril }) => (
+export interface Peril {
+  description: string
+  title: string
+  id: keyof typeof PERIL_IMAGE_MAP
+}
+
+export const PerilsDialog: React.SFC<{ peril: Peril, categoryTitle: string, componentId: string }> = ({ componentId, categoryTitle, peril }) => (
   <DraggableOverlay
     onClose={() => {
       Navigation.dismissOverlay(componentId)
@@ -90,7 +96,6 @@ export const PerilsDialog: React.SFC<{ peril: any, categoryTitle: string, compon
               <Text style={styles.dialogSubHeading}>Försäkras mot</Text>
             </View>
             <PerilImage
-              // @ts-ignore
               source={PERIL_IMAGE_MAP[peril.id]}
               resizeMode="contain"
             />

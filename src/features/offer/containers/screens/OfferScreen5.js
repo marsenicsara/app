@@ -14,12 +14,8 @@ import gql from 'graphql-tag';
 import {
   verticalSizeClass,
   horizontalSizeClass,
-  V_SPACIOUS,
-  V_REGULAR,
-  V_COMPACT,
-  H_SPACIOUS,
-  H_REGULAR,
-  H_COMPACT,
+  HorizontalSizeClass,
+  VerticalSizeClass,
 } from '../../../../services/DimensionSizes';
 import { CheckedBullet } from '../../components/CheckedBullet';
 import { Hero } from '../../components/Hero';
@@ -56,9 +52,9 @@ const styles = StyleSheet.create({
   },
   bulletContainer: {
     width: {
-      [H_SPACIOUS]: 270,
-      [H_REGULAR]: 270,
-      [H_COMPACT]: '97%',
+      [HorizontalSizeClass.SPACIOUS]: 270,
+      [HorizontalSizeClass.REGULAR]: 270,
+      [HorizontalSizeClass.COMPACT]: '97%',
     }[horizontalSizeClass],
     alignSelf: 'center',
   },
@@ -88,9 +84,9 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     fontFamily: 'CircularStd-Book',
     fontSize: {
-      [V_SPACIOUS]: 15,
-      [V_REGULAR]: 15,
-      [V_COMPACT]: 14,
+      [VerticalSizeClass.SPACIOUS]: 15,
+      [VerticalSizeClass.REGULAR]: 15,
+      [VerticalSizeClass.COMPACT]: 14,
     }[verticalSizeClass],
     color: colors.DARK_GRAY,
     textAlign: 'center',
@@ -125,7 +121,7 @@ class OfferScreen extends React.Component {
     const spacious = require('../../../../../assets/offer/hero/legal-xl.png');
     const heroImage =
       {
-        [V_SPACIOUS]: spacious,
+        [VerticalSizeClass.SPACIOUS]: spacious,
       }[verticalSizeClass] || regular;
 
     const { disableScroll } = this.props;

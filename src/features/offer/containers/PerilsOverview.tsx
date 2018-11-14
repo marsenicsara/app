@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -11,12 +10,10 @@ import {
 
 import {
   verticalSizeClass,
-  V_SPACIOUS,
-  V_REGULAR,
-  V_COMPACT,
-} from '../../../services/DimensionSizes';
+  VerticalSizeClass,
+  HorizontalSizeClass,
+} from 'src/services/DimensionSizes';
 import { PERIL_IMAGE_MAP } from '../../../features/dashboard/components/Peril';
-import { PERILS_SET_ACTIVE } from '../state/actions';
 import { Description } from '../components/Description';
 import { Heading } from '../components/Heading';
 
@@ -24,6 +21,7 @@ import { colors } from '@hedviginsurance/brand';
 import { Navigation } from 'react-native-navigation';
 import { PERIL_COMPONENT } from 'src/navigation/components/peril';
 import styled from '@sampettersson/primitives';
+import { Peril } from './PerilsDialog';
 
 const styles = StyleSheet.create({
   scroll: {
@@ -67,11 +65,13 @@ const styles = StyleSheet.create({
     fontFamily: 'CircularStd-Book',
     fontSize: 17,
     textAlign: 'center',
-    // @ts-ignore
     marginTop: {
-      [V_SPACIOUS]: 50,
-      [V_REGULAR]: 35,
-      [V_COMPACT]: 20,
+      [VerticalSizeClass.SPACIOUS]: 50,
+      [VerticalSizeClass.REGULAR]: 35,
+      [VerticalSizeClass.COMPACT]: 20,
+      [HorizontalSizeClass.SPACIOUS]: 50,
+      [HorizontalSizeClass.REGULAR]: 35,
+      [HorizontalSizeClass.COMPACT]: 20
     }[verticalSizeClass],
   },
 });
@@ -96,7 +96,7 @@ interface PerilsOverviewProps {
   hero: React.ReactElement<any>
   title: React.ReactElement<any>
   description: React.ReactElement<any>
-  perils: any[]
+  perils: Peril[]
   categoryTitle: string
   explainer?: React.ReactElement<any>
 }
@@ -140,7 +140,6 @@ export const PerilsOverview: React.SFC<PerilsOverviewProps> = ({ disableScroll, 
                   accessibilityTraits="image"
                 >
                   <PerilIcon
-                    // @ts-ignore
                     source={PERIL_IMAGE_MAP[peril.id]}
                   />
                   <Text style={styles.perilTitle}>{peril.title}</Text>

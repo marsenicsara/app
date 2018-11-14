@@ -4,12 +4,14 @@ import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 import {
   verticalSizeClass,
-  V_SPACIOUS,
+  VerticalSizeClass,
+  HorizontalSizeClass,
 } from '../../../../services/DimensionSizes';
 import { PerilsOverview } from '../PerilsOverview';
 import { Hero } from '../../components/Hero';
 import { PerilsQuery } from './perils-query';
 import styled from '@sampettersson/primitives';
+import { Peril } from '../PerilsDialog';
 
 const styles = StyleSheet.create({
   heroBackground: {
@@ -26,10 +28,14 @@ const spacious = require('assets/offer/hero/you-xl.png');
 
 const OfferScreen: React.SFC = () => {
   const heroImage =
-    // @ts-ignore
     {
-      [V_SPACIOUS]: spacious,
-    }[verticalSizeClass] || regular;
+      [VerticalSizeClass.SPACIOUS]: spacious,
+      [HorizontalSizeClass.SPACIOUS]: spacious,
+      [VerticalSizeClass.REGULAR]: regular,
+      [VerticalSizeClass.COMPACT]: regular,
+      [HorizontalSizeClass.REGULAR]: regular,
+      [HorizontalSizeClass.COMPACT]: regular
+    }[verticalSizeClass]
 
   return (
     <PerilsQuery>
@@ -48,7 +54,7 @@ const OfferScreen: React.SFC = () => {
                   {(text) => text}
                 </TranslationsConsumer>
               }
-              perils={data.insurance.perilCategories![0].perils!}
+              perils={data.insurance.perilCategories![0].perils! as Peril[]}
               explainer={
                 <TranslationsConsumer textKey="OFFER_PERILS_EXPLAINER">
                   {(text) => text}
