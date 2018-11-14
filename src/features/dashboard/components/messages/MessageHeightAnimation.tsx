@@ -2,14 +2,8 @@ import * as React from 'react';
 import styled from '@sampettersson/primitives';
 import { View, LayoutAnimation } from 'react-native';
 import { Mount, Update } from 'react-lifecycle-components';
-
+import { AnimationVisibility } from '../AnimationVisibility';
 import { OpenState } from 'src/components/OpenState';
-
-const HeightConstraint = styled(View)(({ visible }: { visible: boolean }) => ({
-  marginBottom: visible ? 15 : 0,
-  maxHeight: visible ? Number.MAX_SAFE_INTEGER : 0,
-  overflow: 'hidden',
-}));
 
 interface MessageHeightAnimationProps {
   visible: boolean;
@@ -64,9 +58,9 @@ export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
         >
           {null}
         </Update>
-        <HeightConstraint visible={visible && isOpen}>
+        <AnimationVisibility visible={visible && isOpen} useMargin={true}>
           {children}
-        </HeightConstraint>
+        </AnimationVisibility>
       </>
     )}
   </OpenState>

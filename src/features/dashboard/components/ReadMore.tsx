@@ -5,6 +5,9 @@ import { View, Text, TouchableOpacity, LayoutAnimation } from 'react-native';
 import { ActionMap, Container } from 'constate';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { TranslationsPlaceholderConsumer } from 'src/components/translations/placeholder-consumer';
+import { format } from 'date-fns';
+import { AnimationVisibility } from './AnimationVisibility';
 
 const ExpandButton = styled(TouchableOpacity)(
   ({ visibleText }: { visibleText: boolean }) => ({
@@ -24,11 +27,6 @@ const ExpandButtonText = styled(Text)({
   color: colors.PURPLE,
   padding: 0,
 });
-
-const HeightConstraint = styled(View)(({ visible }: { visible: boolean }) => ({
-  maxHeight: visible ? Number.MAX_SAFE_INTEGER : 0,
-  overflow: 'hidden',
-}));
 
 const scheduleAnimation = () => {
   LayoutAnimation.configureNext({
@@ -76,21 +74,67 @@ interface Actions {
 
 interface Props {
   status: InsuranceStatus;
+  activeFrom: string;
 }
 
 const textKeyValueMap = (status: string) => {
   switch (status) {
-    case 'ACTIVE':
-      return 'DASHBOARD_READMORE_ACTIVE_TEXT';
     case 'INACTIVE_WITH_START_DATE':
       return 'DASHBOARD_READMORE_HAVE_START_DATE_TEXT';
-    case 'INACTIVE': //should use another PENDING status later
+    case 'INACTIVE': //TODO: should use another PENDING status later
       return 'DASHBOARD_READMORE_NOT_STARTED_TEXT';
   }
-  return 'No text found';
+  return '';
 };
 
-export const ReadMore: React.SFC<Props> = ({ status }) => (
+const swedishFormat = (date: string) => {
+  const day = format(date, 'D');
+  const month = format(date, 'M');
+  const year = format(date, 'YYYY');
+  let monthInSwedish = '';
+
+  switch (month) {
+    case '1':
+      monthInSwedish = ' Januari ';
+      break;
+    case '2':
+      monthInSwedish = ' Februari ';
+      break;
+    case '3':
+      monthInSwedish = ' Mars ';
+      break;
+    case '4':
+      monthInSwedish = ' April ';
+      break;
+    case '5':
+      monthInSwedish = ' Maj ';
+      break;
+    case '6':
+      monthInSwedish = ' Juni ';
+      break;
+    case '7':
+      monthInSwedish = ' Juli ';
+      break;
+    case '8':
+      monthInSwedish = ' Augusti ';
+      break;
+    case '9':
+      monthInSwedish = ' September ';
+      break;
+    case '10':
+      monthInSwedish = ' Oktober ';
+      break;
+    case '11':
+      monthInSwedish = ' November ';
+      break;
+    case '12':
+      monthInSwedish = ' December ';
+      break;
+  }
+  return day + monthInSwedish + year;
+};
+
+export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
   <Container<State, ActionMap<State, Actions>>
     initialState={{ showingInfo: false }}
     actions={{
@@ -102,13 +146,24 @@ export const ReadMore: React.SFC<Props> = ({ status }) => (
     {(state) => (
       <>
         <Row>
-          <HeightConstraint visible={state.showingInfo}>
+          <AnimationVisibility visible={state.showingInfo}>
             <InfoText>
-              <TranslationsConsumer textKey={textKeyValueMap(status)}>
-                {(text) => text}
-              </TranslationsConsumer>
+              {status === 'INACTIVE_WITH_START_DATE' ? (
+                <TranslationsPlaceholderConsumer
+                  textKey={textKeyValueMap(status)}
+                  replacements={{
+                    date: swedishFormat(activeFrom),
+                  }}
+                >
+                  {(text) => text}
+                </TranslationsPlaceholderConsumer>
+              ) : status === 'INACTIVE_WITH_START_DATE' ? (
+                <TranslationsConsumer textKey={textKeyValueMap(status)}>
+                  {(text) => text}
+                </TranslationsConsumer>
+              ) : null}
             </InfoText>
-          </HeightConstraint>
+          </AnimationVisibility>
         </Row>
         <Row>
           <ExpandButton
@@ -118,7 +173,11 @@ export const ReadMore: React.SFC<Props> = ({ status }) => (
               scheduleAnimation();
             }}
           >
-            <ExpandButtonText>Mer info</ExpandButtonText>
+            <ExpandButtonText>
+              <TranslationsConsumer textKey="DASHBOARD_MORE_INFO_BUTTON_TEXT">
+                {(text) => text}
+              </TranslationsConsumer>
+            </ExpandButtonText>
           </ExpandButton>
         </Row>
       </>

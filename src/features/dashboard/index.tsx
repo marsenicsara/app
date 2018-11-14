@@ -127,7 +127,7 @@ const Dashboard: React.SFC = () => (
             {getStartDate(status) === 1 ? (
               <DateBanner activeFrom={activeFrom} statusCode={status} />
             ) : getStartDate(status) === 2 ? (
-              <PendingBanner statusCode={status} />
+              <PendingBanner activeFrom={activeFrom} statusCode={status} />
             ) : null}
           </InsetPadding>
           <InsetPadding>

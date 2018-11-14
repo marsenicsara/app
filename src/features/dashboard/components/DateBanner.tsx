@@ -106,20 +106,36 @@ export const DateBanner: React.SFC<Props> = ({ activeFrom, statusCode }) => (
       <CountNumber textColor={colors.BLACK_PURPLE}>
         {getActivationMonths(activeFrom)}
       </CountNumber>
-      <CountText textColor={colors.BLACK_PURPLE}>M</CountText>
+      <CountText textColor={colors.BLACK_PURPLE}>
+        <TranslationsConsumer textKey="DASHBOARD_BANNER_MONTHS">
+          {(text) => text}
+        </TranslationsConsumer>
+      </CountText>
       <CountNumber textColor={colors.PINK}>
         {getActivationDays(activeFrom)}
       </CountNumber>
-      <CountText textColor={colors.PINK}>D</CountText>
+      <CountText textColor={colors.PINK}>
+        <TranslationsConsumer textKey="DASHBOARD_BANNER_DAYS">
+          {(text) => text}
+        </TranslationsConsumer>
+      </CountText>
       <CountNumber textColor={colors.PURPLE}>
         {getActivationHours()}
       </CountNumber>
-      <CountText textColor={colors.PURPLE}>T</CountText>
+      <CountText textColor={colors.PURPLE}>
+        <TranslationsConsumer textKey="DASHBOARD_BANNER_HOURS">
+          {(text) => text}
+        </TranslationsConsumer>
+      </CountText>
       <CountNumber textColor={colors.GREEN}>
         {getActivationMinutes()}
       </CountNumber>
-      <CountText textColor={colors.GREEN}>M</CountText>
+      <CountText textColor={colors.GREEN}>
+        <TranslationsConsumer textKey="DASHBOARD_BANNER_MINUTES">
+          {(text) => text}
+        </TranslationsConsumer>
+      </CountText>
     </TimeRow>
-    <ReadMore status={statusCode} />
+    <ReadMore status={statusCode} activeFrom={activeFrom} />
   </Wrapper>
 );

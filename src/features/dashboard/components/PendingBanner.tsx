@@ -7,8 +7,7 @@ import Lottie from 'lottie-react-native';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-
-const animationModule = require('assets/animations/loading.json');
+import * as animationModule from 'assets/animations/bannerLoadingIcons.json';
 
 const Wrapper = styled(View)({
   alignItems: 'center',
@@ -40,27 +39,21 @@ const LottieAnimation = styled(Lottie)({
 
 interface Props {
   statusCode: InsuranceStatus;
+  activeFrom: string;
 }
 
-export const PendingBanner: React.SFC<Props> = ({ statusCode }) => (
+export const PendingBanner: React.SFC<Props> = ({ statusCode, activeFrom }) => (
   <Wrapper>
     <Row>
       <ActivationText textColor={colors.BLACK}>
         <TranslationsConsumer textKey="DASHBOARD_NOT_STARTED_BANNER_TITLE">
           {(text) => text}
-        </TranslationsConsumer>{' '}
+        </TranslationsConsumer>
       </ActivationText>
     </Row>
     <Row>
-      <LottieAnimation
-        ref={(animation) => {
-          animation = animation;
-        }}
-        loop
-        autoPlay
-        source={animationModule}
-      />
+      <LottieAnimation loop autoPlay source={animationModule} />
     </Row>
-    <ReadMore status={statusCode} />
+    <ReadMore status={statusCode} activeFrom={activeFrom} />
   </Wrapper>
 );

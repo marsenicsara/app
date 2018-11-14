@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { Footnote, FootnoteIcon, FootnoteText } from 'src/features/dashboard/components/Footnote';
+import {
+  Footnote,
+  FootnoteIcon,
+  FootnoteText,
+} from 'src/features/dashboard/components/Footnote';
 import { isApartmentOwner } from 'src/utils';
 import { INSURANCE_TYPES } from 'src/constants';
 import { Spacing } from 'src/components/Spacing';
 
 interface OwnerFootnoteProps {
-  type: INSURANCE_TYPES
+  type: INSURANCE_TYPES;
 }
 
-const OwnerFootnote: React.SFC<OwnerFootnoteProps> = ({ type }) => (
+const OwnerFootnote: React.SFC<OwnerFootnoteProps> = ({ type }) =>
   isApartmentOwner({ insuranceType: type }) ? (
     <>
       <Spacing height={16} />
@@ -17,7 +21,6 @@ const OwnerFootnote: React.SFC<OwnerFootnoteProps> = ({ type }) => (
         <FootnoteText>Lägenheten försäkras till sitt fulla värde</FootnoteText>
       </Footnote>
     </>
-  ) : null
-)
+  ) : null;
 
 export { OwnerFootnote };
