@@ -2,12 +2,12 @@ import * as React from 'react';
 import { StyledIcon } from './styles/general';
 
 interface IconCoreProps {
-  size?: string;
+  size?: keyof typeof widths;
   source: any;
 }
 
 interface IconProps {
-  size?: string;
+  size?: keyof typeof widths;
 }
 
 const widths: {

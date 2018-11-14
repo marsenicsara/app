@@ -9,7 +9,7 @@ const LoaderView = styled(View)({
 });
 
 interface LoaderProps {
-  size?: number | 'small' | 'large' | undefined;
+  size?: 'small' | 'large' | number;
 }
 
 export const Loader: React.SFC<LoaderProps> = ({ size }) => (
