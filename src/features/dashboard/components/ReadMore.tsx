@@ -59,10 +59,9 @@ const Row = styled(View)({
 });
 
 const InfoText = styled(Text)({
-  marginLeft: 10,
-  marginRight: 10,
-  paddingLeft: 10,
-  paddingRight: 10,
+  textAlign: 'center',
+  paddingLeft: 25,
+  paddingRight: 25,
   marginBottom: 0,
   marginTop: 0,
 });
