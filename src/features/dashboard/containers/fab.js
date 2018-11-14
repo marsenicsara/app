@@ -20,14 +20,57 @@ const styles = StyleSheet.create({
   animatedView: {
     position: 'absolute',
     bottom: 0,
-    ...Platform.select({
-      android: {
-        width: '100%',
-        height: '100%',
-      },
-    }),
   },
 });
+
+const AnimationWrapper = ({ children }) => {
+  switch (Platform.OS) {
+    case 'ios': {
+      return (
+        <Delayed
+          mountChildren
+          mountChildrenAfter={500}
+          unmountChildrenAfter={0}
+        >
+          <NavigationEvents
+            onNavigationCommand={this.onNavigationCommand}
+            onGlobalEvent={this.onGlobalEvent}
+          />
+          <Parallel>
+            <Spring
+              initialValue={0}
+              toValue={this.state.show ? 1 : 0}
+              config={{ bounciness: 5 }}
+            >
+              {(animatedValue) => (
+                <AnimatedView
+                  style={[
+                    styles.animatedView,
+                    {
+                      transform: [
+                        {
+                          translateY: animatedValue.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [isIphoneX() ? 120 : 100, 0],
+                          }),
+                        },
+                      ],
+                    },
+                  ]}
+                >
+                  {children}
+                </AnimatedView>
+              )}
+            </Spring>
+          </Parallel>
+        </Delayed>
+      );
+    }
+    case 'android': {
+      return children;
+    }
+  }
+};
 
 class FloatingActionButton extends React.Component {
   static propTypes = {
@@ -96,67 +139,33 @@ class FloatingActionButton extends React.Component {
     const { fabActions } = this.props;
 
     return (
-      <Delayed mountChildren mountChildrenAfter={500} unmountChildrenAfter={0}>
-        {Platform.OS === 'ios' && (
-          <NavigationEvents
-            onNavigationCommand={this.onNavigationCommand}
-            onGlobalEvent={this.onGlobalEvent}
-          />
-        )}
-        <Parallel>
-          <Spring
-            initialValue={0}
-            toValue={this.state.show ? 1 : 0}
-            config={{ bounciness: 5 }}
-          >
-            {(animatedValue) => (
-              <AnimatedView
-                style={[
-                  styles.animatedView,
-                  {
-                    transform: [
-                      {
-                        translateY: animatedValue.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [isIphoneX() ? 120 : 100, 0],
-                        }),
-                      },
-                    ],
-                  },
-                ]}
-              >
-                <FloatingAction
-                  color="#651eff"
-                  distanceToEdge={isIphoneX() ? 55 : 20}
-                  position={Platform.OS === 'ios' ? 'center' : 'right'}
-                  customButtonStyles={{
-                    shadowColor: colors.PURPLE,
-                    shadowOffset: {
-                      width: 0,
-                      height: 0,
-                    },
-                  }}
-                  floatingIcon={
-                    <Image
-                      source={require('assets/buttons/fab/fab-icon.png')}
-                    />
-                  }
-                  overlayColor="rgba(0,0,0,0.15)"
-                  actions={fabActions.map((a) => ({
-                    name: a.triggerUrl,
-                    margin: 0,
-                    render: (props) => (
-                      <FabAction {...props} text={a.text} enabled={a.enabled} />
-                    ),
-                  }))}
-                  actionsPaddingTopBottom={0}
-                  onPressItem={this.handlePressItem}
-                />
-              </AnimatedView>
-            )}
-          </Spring>
-        </Parallel>
-      </Delayed>
+      <AnimationWrapper>
+        <FloatingAction
+          color="#651eff"
+          distanceToEdge={isIphoneX() ? 55 : 20}
+          position={Platform.OS === 'ios' ? 'center' : 'right'}
+          customButtonStyles={{
+            shadowColor: colors.PURPLE,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+          }}
+          floatingIcon={
+            <Image source={require('assets/buttons/fab/fab-icon.png')} />
+          }
+          overlayColor="rgba(0,0,0,0.15)"
+          actions={fabActions.map((a) => ({
+            name: a.triggerUrl,
+            margin: 0,
+            render: (props) => (
+              <FabAction {...props} text={a.text} enabled={a.enabled} />
+            ),
+          }))}
+          actionsPaddingTopBottom={0}
+          onPressItem={this.handlePressItem}
+        />
+      </AnimationWrapper>
     );
   }
 }
