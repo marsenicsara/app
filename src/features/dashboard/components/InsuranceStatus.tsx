@@ -3,7 +3,6 @@ import { View, Image, Text } from 'react-native';
 import styled from '@sampettersson/primitives';
 
 import { fonts, colors } from '@hedviginsurance/brand';
-import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const Icon = styled(Image)({
