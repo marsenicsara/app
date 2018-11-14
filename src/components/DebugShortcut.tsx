@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { getDebugLayout } from 'src/navigation/screens/debug/layout';
+import { getDebugLayout, openDebugLayout } from 'src/navigation/screens/debug/layout';
 
 interface DebugShortcutProps {
   componentId: string,
@@ -12,7 +12,17 @@ export const DebugShortcut: React.StatelessComponent<DebugShortcutProps> = ({ ch
   if (__DEV__) {
     return (
       <TouchableWithoutFeedback onLongPress={() => {
-        Navigation.push(componentId, getDebugLayout().root)
+        // Does not work on iOS. Needs fixin
+        switch (Platform.OS) {
+          case 'ios': {
+            openDebugLayout()
+            return
+          }
+          case 'android': {
+            Navigation.push(componentId, getDebugLayout().root)
+          }
+          default: return
+        }
       }}>
         {children}
       </TouchableWithoutFeedback>
