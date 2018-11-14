@@ -2,12 +2,12 @@ import * as React from 'react';
 import { StyledIcon } from './styles/general';
 
 interface IconCoreProps {
-  size: string;
+  size?: string;
   source: any;
 }
 
 interface IconProps {
-  size: string;
+  size?: string;
 }
 
 const widths: {
@@ -53,8 +53,5 @@ export const ProfileBankAccountIcon: React.SFC<IconProps> = ({ size }) => (
 );
 
 export const ProfileCertificateIcon = () => (
-  <Icon
-    size={'big'}
-    source={require('assets/icons/profil/insurance-certificate.png')}
-  />
+  <Icon source={require('assets/icons/profil/insurance-certificate.png')} />
 );
