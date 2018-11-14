@@ -10,9 +10,7 @@ interface IconProps {
   size?: keyof typeof widths;
 }
 
-const widths: {
-  [key: string]: number;
-} = {
+const widths = {
   small: 16,
   medium: 20,
   mediumBig: 24,
