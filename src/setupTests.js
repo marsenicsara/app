@@ -48,6 +48,11 @@ jest.mock('react-native-branch', () => ({
   BranchEvent: {},
 }));
 jest.mock('@hedviginsurance/react-native-floating-action', () => ({}));
+jest.mock(
+  '@hedviginsurance/react-native-keyboard-spacer',
+  () => require('react-native-mock-render').View,
+);
+
 jest.mock('react-native-audio', () => ({
   AudioRecorder: {},
   AudioUtils: {},

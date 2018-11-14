@@ -2,7 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import { YellowBox, UIManager } from 'react-native';
 
 import { HOC } from './App';
-import { setInitialLayout } from './src/navigation/layout';
+import { setInitialLayout } from './src/navigation/layouts/initialLayout';
 import { register } from './src/navigation/register';
 import { patchCustomConfig } from './src/features/debug/patch-custom-config';
 
@@ -13,7 +13,12 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 
 patchCustomConfig();
 
-YellowBox.ignoreWarnings(['constantsToExport', 'RNDocumentPicker']);
+YellowBox.ignoreWarnings([
+  'constantsToExport',
+  'RNDocumentPicker',
+  '<InputAccessory',
+  'Overriding',
+]);
 
 const registerHandler = (name, componentCreator) =>
   Navigation.registerComponent(name, () => {

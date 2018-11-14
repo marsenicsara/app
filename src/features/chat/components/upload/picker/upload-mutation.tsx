@@ -9,6 +9,7 @@ import path from 'path';
 import mime from 'mime-types';
 import url from 'url';
 import { Container, ActionMap } from 'constate';
+import RNHeicConverter from 'react-native-heic-converter';
 
 const UploadMutationContainer = styled(View)({
   position: 'relative',
@@ -16,7 +17,7 @@ const UploadMutationContainer = styled(View)({
 
 const UPLOAD_MUTATION = gql`
   mutation UploadMutation($file: Upload!) {
-    uploadFile(file: $file) @uploadLink {
+    uploadFile(file: $file) {
       key
     }
   }
@@ -50,6 +51,14 @@ interface UploadMutationProps {
 }
 
 const getRealURI = async (uri: string, filename: string) => {
+  if (filename.includes('HEIC')) {
+    const { path } = await RNHeicConverter.convert({
+      path: uri,
+    });
+
+    return path;
+  }
+
   if (!uri.includes('assets-library')) {
     return uri;
   }
@@ -73,11 +82,12 @@ const uploadHandler = (
 
   const filename = path.basename(url.parse(uri).pathname || '');
   const realURI = await getRealURI(uri, filename);
+  const realFileName = path.basename(url.parse(realURI).pathname || '');
 
   const file = new ReactNativeFile({
     uri: realURI,
-    name: filename.toLowerCase(),
-    type: mime.lookup(filename) || '',
+    name: realFileName.toLowerCase(),
+    type: mime.lookup(realFileName) || '',
   });
 
   const response = await mutate({
