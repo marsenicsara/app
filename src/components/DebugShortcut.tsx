@@ -12,7 +12,6 @@ export const DebugShortcut: React.StatelessComponent<DebugShortcutProps> = ({ ch
   if (__DEV__) {
     return (
       <TouchableWithoutFeedback onLongPress={() => {
-        // Does not work on iOS. Needs fixin
         switch (Platform.OS) {
           case 'ios': {
             openDebugLayout()
