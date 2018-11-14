@@ -26,7 +26,7 @@ const Container = styled(View)({
 const InsuranceStatusDisplay: React.SFC = ({}) => (
   <Container>
     <StatusText>
-      <TranslationsConsumer textKey="DASHBOARD_BANNER_ACTIVE_TITLE">
+      <TranslationsConsumer textKey="DASHBOARD_BANNER_ACTIVE_INFO">
         {(text) => text}
       </TranslationsConsumer>
     </StatusText>

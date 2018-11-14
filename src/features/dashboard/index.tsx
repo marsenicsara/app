@@ -18,7 +18,7 @@ import { Messages } from './components/messages';
 import { DateBanner } from './components/DateBanner';
 import { PendingBanner } from 'src/features/dashboard/components/PendingBanner';
 import { InsuranceStatus } from 'src/graphql/components';
-import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { TranslationsPlaceholderConsumer } from 'src/components/translations/placeholder-consumer';
 
 const DASHBOARD_QUERY = gql`
   query DashboardQuery {
@@ -39,6 +39,9 @@ const DASHBOARD_QUERY = gql`
           description
         }
       }
+    }
+    member {
+      firstName
     }
   }
 `;
@@ -97,17 +100,23 @@ const Dashboard: React.SFC = () => (
         );
       }
 
-      const { insurance } = data;
+      const { insurance, member } = data;
       const { status, activeFrom, type, perilCategories } = insurance;
+      const { firstName } = member;
 
       return (
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
           {getStartDate(status) === 0 && (
             <Header>
               <Heading>
-                <TranslationsConsumer textKey="replacementconsumerhere">
+                <TranslationsPlaceholderConsumer
+                  textKey="DASHBOARD_BANNER_ACTIVE_TITLE"
+                  replacements={{
+                    firstName: firstName,
+                  }}
+                >
                   {(text) => text}
-                </TranslationsConsumer>
+                </TranslationsPlaceholderConsumer>
               </Heading>
               <InsuranceStatusDisplay />
               <Spacing height={37} />
