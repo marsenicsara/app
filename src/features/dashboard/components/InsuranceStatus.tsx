@@ -1,67 +1,36 @@
 import * as React from 'react';
 import { View, Image, Text } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { format } from 'date-fns';
 
 import { fonts, colors } from '@hedviginsurance/brand';
 import { InsuranceStatus } from 'src/graphql/components';
-
-interface InsuranceStatusProps {
-  status: InsuranceStatus;
-  activeFrom: string;
-}
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const Icon = styled(Image)({
-  marginRight: 5,
+  marginLeft: 5,
   width: 16,
   height: 16,
 });
 
 const StatusText = styled(Text)({
   fontFamily: fonts.CIRCULAR,
-  color: colors.DARK_GRAY,
+  color: colors.BLACK,
   fontSize: 14,
 });
 
 const Container = styled(View)({
   flexDirection: 'row',
+  alignItems: 'center',
 });
 
-const icons = {
-  ACTIVE: require('assets/icons/my_insurance/aktiv.png'),
-  INACTIVE_WITH_START_DATE: require('assets/icons/my_insurance/startdatum_idle.png'),
-  INACTIVE: require('assets/icons/edit_perils/added_peril.png'),
-};
-
-const getIcon = (status: InsuranceStatus) => {
-  switch (status) {
-    case 'ACTIVE':
-      return icons.ACTIVE;
-    case 'INACTIVE_WITH_START_DATE':
-      return icons.INACTIVE_WITH_START_DATE;
-    case 'INACTIVE':
-      return icons.INACTIVE;
-  }
-};
-
-const getStatusText = (status: InsuranceStatus, activeFrom: string) => {
-  switch (status) {
-    case 'ACTIVE':
-      return 'Aktiv';
-    case 'INACTIVE_WITH_START_DATE':
-      return `Aktiveras ${format(activeFrom, 'YYYY-MM-DD')}`;
-    case 'INACTIVE':
-      return 'Inaktiv';
-  }
-};
-
-const InsuranceStatusDisplay: React.SFC<InsuranceStatusProps> = ({
-  status,
-  activeFrom,
-}) => (
+const InsuranceStatusDisplay: React.SFC = ({}) => (
   <Container>
-    <Icon source={getIcon(status)} />
-    <StatusText>{getStatusText(status, activeFrom)}</StatusText>
+    <StatusText>
+      <TranslationsConsumer textKey="DASHBOARD_BANNER_ACTIVE_TITLE">
+        {(text) => text}
+      </TranslationsConsumer>
+    </StatusText>
+    <Icon source={require('assets/icons/my_insurance/aktiv.png')} />
   </Container>
 );
 
