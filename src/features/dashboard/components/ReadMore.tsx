@@ -2,7 +2,7 @@ import * as React from 'react';
 import { colors } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { ActionMap, Container } from 'constate';
+import { Container } from 'constate';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { TranslationsPlaceholderConsumer } from 'src/components/translations/placeholder-consumer';
@@ -89,7 +89,7 @@ const swedishTranslate = (date: string) => {
 };
 
 export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
-  <Container<State, ActionMap<State, Actions>>
+  <Container<State, Actions>
     initialState={{ showingInfo: false }}
     actions={{
       showMore: (showingInfo) => () => ({
