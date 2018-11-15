@@ -104,7 +104,7 @@ export const Message: React.SFC<MessageProps> = ({
   onPressAction,
   visible,
 }) => (
-  <MessageHeightAnimation visible={visible}>
+  <MessageHeightAnimation visible={visible} useWidth={false}>
     <Background messageType={messageType}>
       <Sequence>
         <Delay config={{ delay: 400 }} />

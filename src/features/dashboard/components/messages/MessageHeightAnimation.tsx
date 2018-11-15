@@ -7,11 +7,13 @@ import { OpenState } from 'src/components/OpenState';
 
 interface MessageHeightAnimationProps {
   visible: boolean;
+  useWidth: boolean;
 }
 
 export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
   children,
   visible,
+  useWidth,
 }) => (
   <OpenState initialOpenState={false}>
     {({ isOpen, setIsOpen }) => (
@@ -21,7 +23,7 @@ export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
             if (!visible) return;
             setTimeout(() => {
               setIsOpen(true);
-              scheduleAnimation();
+              scheduleAnimation(600);
             }, 50);
           }}
         >
@@ -31,7 +33,7 @@ export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
         <Update
           was={() => {
             setIsOpen(true);
-            scheduleAnimation();
+            scheduleAnimation(600);
           }}
           watched={visible}
         >
@@ -40,6 +42,7 @@ export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
         <HeightConstraint
           visible={visible && isOpen}
           notificationMessage={true}
+          useWidth={useWidth}
         >
           {children}
         </HeightConstraint>

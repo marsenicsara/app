@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { colors } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import { Container } from 'constate';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
@@ -10,6 +10,8 @@ import { format } from 'date-fns';
 import { scheduleAnimation } from './ScheduleAnimation';
 import { HeightConstraint } from './HeightConstraint';
 import { Measure } from 'src/components/Measure';
+import { Delay, Timing, Sequence } from 'animated-react-native-components';
+import { AnimatedView } from 'src/components/AnimatedPrimitives';
 
 const ExpandButton = styled(TouchableOpacity)(
   ({ visibleText }: { visibleText: boolean }) => ({
@@ -25,6 +27,11 @@ const ExpandButton = styled(TouchableOpacity)(
   }),
 );
 
+const FadeIn = styled(AnimatedView)(
+  ({ animatedValue }: { animatedValue: Animated.Value }) => ({
+    opacity: animatedValue,
+  }),
+);
 const ExpandButtonText = styled(Text)({
   color: colors.PURPLE,
   padding: 0,
@@ -37,13 +44,14 @@ const Row = styled(View)({
   marginBottom: 0,
 });
 
-const InfoText = styled(Text)({
+const InfoText = styled(Text)(({ height }: { height: number }) => ({
   textAlign: 'center',
   paddingLeft: 10,
   paddingRight: 10,
   marginBottom: 0,
   marginTop: 0,
-});
+  height: height ? height : 'auto',
+}));
 
 interface State {
   showingInfo: boolean;
@@ -102,22 +110,41 @@ export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
       <>
         <Row>
           <HeightConstraint visible={state.showingInfo} useWidth={true}>
-            <InfoText>
-              {status === 'INACTIVE_WITH_START_DATE' ? (
-                <TranslationsPlaceholderConsumer
-                  textKey={textKeyValueMap(status)}
-                  replacements={{
-                    date: swedishTranslate(activeFrom),
-                  }}
-                >
-                  {(text) => text}
-                </TranslationsPlaceholderConsumer>
-              ) : status === 'INACTIVE' ? (
-                <TranslationsConsumer textKey={textKeyValueMap(status)}>
-                  {(text) => text}
-                </TranslationsConsumer>
-              ) : null}
-            </InfoText>
+            <Sequence>
+              <Delay config={{ delay: 400 }} />
+              <Timing
+                initialValue={state.showingInfo === false ? 1 : 0}
+                toValue={state.showingInfo === false ? 0 : 1}
+                config={{ duration: 500 }}
+              >
+                {(animatedValue) => (
+                  <FadeIn animatedValue={animatedValue}>
+                    <Measure>
+                      {(height) => (
+                        <InfoText height={height}>
+                          {status === 'INACTIVE_WITH_START_DATE' ? (
+                            <TranslationsPlaceholderConsumer
+                              textKey={textKeyValueMap(status)}
+                              replacements={{
+                                date: swedishTranslate(activeFrom),
+                              }}
+                            >
+                              {(text) => text}
+                            </TranslationsPlaceholderConsumer>
+                          ) : status === 'INACTIVE' ? (
+                            <TranslationsConsumer
+                              textKey={textKeyValueMap(status)}
+                            >
+                              {(text) => text}
+                            </TranslationsConsumer>
+                          ) : null}
+                        </InfoText>
+                      )}
+                    </Measure>
+                  </FadeIn>
+                )}
+              </Timing>
+            </Sequence>
           </HeightConstraint>
         </Row>
         <Row>
@@ -125,7 +152,7 @@ export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
             visibleText={state.showingInfo}
             onPress={() => {
               state.showMore(!state.showingInfo);
-              scheduleAnimation();
+              scheduleAnimation(1000);
             }}
           >
             <ExpandButtonText>

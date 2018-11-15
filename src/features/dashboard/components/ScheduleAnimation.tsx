@@ -1,8 +1,8 @@
 import { LayoutAnimation } from 'react-native';
 
-export const scheduleAnimation = () => {
+export const scheduleAnimation = (duration: number) => {
   LayoutAnimation.configureNext({
-    duration: 600,
+    duration: duration,
     create: {
       type: LayoutAnimation.Types.spring,
       springDamping: 1,
