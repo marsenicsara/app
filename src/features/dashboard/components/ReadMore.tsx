@@ -9,6 +9,7 @@ import { TranslationsPlaceholderConsumer } from 'src/components/translations/pla
 import { format } from 'date-fns';
 import { scheduleAnimation } from './ScheduleAnimation';
 import { HeightConstraint } from './HeightConstraint';
+import { Measure } from 'src/components/Measure';
 
 const ExpandButton = styled(TouchableOpacity)(
   ({ visibleText }: { visibleText: boolean }) => ({

@@ -15,7 +15,6 @@ export const Messages: React.SFC = () => (
         <Spacing height={15} />
       ) : (
         <>
-          <Spacing height={15} />
           <Message
             visible={data.directDebitStatus === DirectDebitStatus.NEEDS_SETUP}
             message={

@@ -5,7 +5,6 @@ import { StyleSheet, TextInput, Platform, View } from 'react-native';
 import firebase from 'react-native-firebase';
 import styled from '@sampettersson/primitives';
 import color from 'color';
-import { BlurView } from 'react-native-blur';
 import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
@@ -18,7 +17,7 @@ import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
 import { Provider as GiphyProvider } from '../components/giphy-picker/context';
 import { Buttons } from '../components/pickers/buttons';
 import { isIphoneX } from 'react-native-iphone-x-helper';
-
+import { BlurSwitchContainer } from '../components/BlurSwitchContainer';
 import { InputHeightContainer } from './InputHeight';
 
 const styles = StyleSheet.create({
@@ -36,12 +35,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     fontFamily: fonts.CIRCULAR,
   },
-});
-
-const BlurContainer = styled(BlurView)({
-  position: 'absolute',
-  bottom: 0,
-  width: '100%',
 });
 
 const BarContainer = styled(View)({
@@ -126,7 +119,7 @@ class ChatTextInput extends React.Component {
     return (
       <Provider>
         <GiphyProvider>
-          <BlurContainer blurType="xlight">
+          <BlurSwitchContainer>
             <BarContainer>
               <InputHeightContainer>
                 {({ setInputHeight }) => (
@@ -189,7 +182,7 @@ class ChatTextInput extends React.Component {
               </InputHeightContainer>
               <KeyboardSpacer restSpacing={isIphoneX() ? 35 : 0} />
             </BarContainer>
-          </BlurContainer>
+          </BlurSwitchContainer>
         </GiphyProvider>
       </Provider>
     );

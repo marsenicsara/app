@@ -122,7 +122,6 @@ const Dashboard: React.SFC = () => (
               <Spacing height={37} />
             </Header>
           )}
-          <Messages />
           <InsetPadding>
             {getStartDate(status) === 1 ? (
               <DateBanner activeFrom={activeFrom} statusCode={status} />
@@ -130,6 +129,7 @@ const Dashboard: React.SFC = () => (
               <PendingBanner activeFrom={activeFrom} statusCode={status} />
             ) : null}
           </InsetPadding>
+          <Messages />
           <InsetPadding>
             <PerilCategories perilCategories={perilCategories} />
           </InsetPadding>

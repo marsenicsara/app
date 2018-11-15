@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { LayoutAnimation } from 'react-native';
 import { Mount, Update } from 'react-lifecycle-components';
 import { HeightConstraint } from '../HeightConstraint';
 import { scheduleAnimation } from '../ScheduleAnimation';
@@ -36,7 +37,10 @@ export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
         >
           {null}
         </Update>
-        <HeightConstraint visible={visible && isOpen} useMargin={true}>
+        <HeightConstraint
+          visible={visible && isOpen}
+          notificationMessage={true}
+        >
           {children}
         </HeightConstraint>
       </>
