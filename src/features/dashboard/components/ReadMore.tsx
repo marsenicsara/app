@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { colors } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
-import { View, Text, TouchableOpacity, LayoutAnimation } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { ActionMap, Container } from 'constate';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { TranslationsPlaceholderConsumer } from 'src/components/translations/placeholder-consumer';
 import { format } from 'date-fns';
-import { AnimationVisibility } from './AnimationVisibility';
+import { scheduleAnimation } from './ScheduleAnimation';
+import { HeightConstraint } from './HeightConstraint';
 
 const ExpandButton = styled(TouchableOpacity)(
   ({ visibleText }: { visibleText: boolean }) => ({
@@ -27,27 +28,6 @@ const ExpandButtonText = styled(Text)({
   color: colors.PURPLE,
   padding: 0,
 });
-
-const scheduleAnimation = () => {
-  LayoutAnimation.configureNext({
-    duration: 600,
-    create: {
-      type: LayoutAnimation.Types.spring,
-      springDamping: 1,
-      property: LayoutAnimation.Properties.scaleXY,
-    },
-    update: {
-      type: LayoutAnimation.Types.spring,
-      springDamping: 1,
-      property: LayoutAnimation.Properties.scaleXY,
-    },
-    delete: {
-      type: LayoutAnimation.Types.spring,
-      springDamping: 1,
-      property: LayoutAnimation.Properties.scaleXY,
-    },
-  });
-};
 
 const Row = styled(View)({
   flexDirection: 'row',
@@ -87,51 +67,25 @@ const textKeyValueMap = (status: string) => {
   return '';
 };
 
-const swedishFormat = (date: string) => {
+const swedishTranslate = (date: string) => {
   const day = format(date, 'D');
   const month = format(date, 'M');
   const year = format(date, 'YYYY');
-  let monthInSwedish = '';
-
-  switch (month) {
-    case '1':
-      monthInSwedish = ' Januari ';
-      break;
-    case '2':
-      monthInSwedish = ' Februari ';
-      break;
-    case '3':
-      monthInSwedish = ' Mars ';
-      break;
-    case '4':
-      monthInSwedish = ' April ';
-      break;
-    case '5':
-      monthInSwedish = ' Maj ';
-      break;
-    case '6':
-      monthInSwedish = ' Juni ';
-      break;
-    case '7':
-      monthInSwedish = ' Juli ';
-      break;
-    case '8':
-      monthInSwedish = ' Augusti ';
-      break;
-    case '9':
-      monthInSwedish = ' September ';
-      break;
-    case '10':
-      monthInSwedish = ' Oktober ';
-      break;
-    case '11':
-      monthInSwedish = ' November ';
-      break;
-    case '12':
-      monthInSwedish = ' December ';
-      break;
-  }
-  return day + monthInSwedish + year;
+  const swedishMonths = [
+    ' Januari ',
+    ' Februari ',
+    ' Mars ',
+    ' April ',
+    ' Maj ',
+    ' Juni ',
+    ' Juli ',
+    ' Augusti ',
+    ' September ',
+    ' Oktober ',
+    ' November ',
+    ' December ',
+  ];
+  return day + swedishMonths[Number(month) - 1] + year;
 };
 
 export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
@@ -146,24 +100,24 @@ export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
     {(state) => (
       <>
         <Row>
-          <AnimationVisibility visible={state.showingInfo}>
+          <HeightConstraint visible={state.showingInfo}>
             <InfoText>
               {status === 'INACTIVE_WITH_START_DATE' ? (
                 <TranslationsPlaceholderConsumer
                   textKey={textKeyValueMap(status)}
                   replacements={{
-                    date: swedishFormat(activeFrom),
+                    date: swedishTranslate(activeFrom),
                   }}
                 >
                   {(text) => text}
                 </TranslationsPlaceholderConsumer>
-              ) : status === 'INACTIVE_WITH_START_DATE' ? (
+              ) : status === 'INACTIVE' ? (
                 <TranslationsConsumer textKey={textKeyValueMap(status)}>
                   {(text) => text}
                 </TranslationsConsumer>
               ) : null}
             </InfoText>
-          </AnimationVisibility>
+          </HeightConstraint>
         </Row>
         <Row>
           <ExpandButton
