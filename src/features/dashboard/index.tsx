@@ -82,7 +82,7 @@ const getStartDate = (statusCode: InsuranceStatus) => {
       return 0;
     case 'INACTIVE_WITH_START_DATE':
       return 1;
-    case 'INACTIVE': //should use another PENDING status later
+    case 'INACTIVE':
       return 2;
   }
 };

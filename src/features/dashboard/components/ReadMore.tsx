@@ -38,8 +38,8 @@ const Row = styled(View)({
 
 const InfoText = styled(Text)({
   textAlign: 'center',
-  paddingLeft: 25,
-  paddingRight: 25,
+  paddingLeft: 10,
+  paddingRight: 10,
   marginBottom: 0,
   marginTop: 0,
 });
@@ -61,7 +61,7 @@ const textKeyValueMap = (status: string) => {
   switch (status) {
     case 'INACTIVE_WITH_START_DATE':
       return 'DASHBOARD_READMORE_HAVE_START_DATE_TEXT';
-    case 'INACTIVE': //TODO: should use another PENDING status later
+    case 'INACTIVE':
       return 'DASHBOARD_READMORE_NOT_STARTED_TEXT';
   }
   return '';
@@ -100,7 +100,7 @@ export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
     {(state) => (
       <>
         <Row>
-          <HeightConstraint visible={state.showingInfo}>
+          <HeightConstraint visible={state.showingInfo} useWidth={true}>
             <InfoText>
               {status === 'INACTIVE_WITH_START_DATE' ? (
                 <TranslationsPlaceholderConsumer
