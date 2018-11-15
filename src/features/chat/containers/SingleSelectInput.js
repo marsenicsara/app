@@ -12,7 +12,8 @@ import {
 } from '../styles/chat';
 
 import { PAYMENT_SCREEN } from '../../../navigation/screens/payment';
-import { setLayout, getMainLayout } from '../../../navigation/layout';
+import { getMainLayout } from 'src/navigation/layouts/mainLayout';
+import { setLayout } from 'src/navigation/layouts/setLayout';
 
 const showTrustly = (id) =>
   Navigation.showModal({

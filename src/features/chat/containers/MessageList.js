@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import Hyperlink from 'react-native-hyperlink';
+import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
+import { isIphoneX } from 'react-native-iphone-x-helper';
 
 import {
   StyledDefaultMessageText,
@@ -12,11 +14,11 @@ import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
 import { RichMessage } from '../components/rich-message';
 
+import { InputHeightContainer } from './InputHeight';
+
 const styles = StyleSheet.create({
   scrollContent: {
     flex: 1,
-    paddingTop: 16,
-    paddingBottom: 16,
   },
   statusMessage: {
     fontFamily: 'CircularStd-Book',
@@ -32,6 +34,9 @@ const styles = StyleSheet.create({
   },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
+  flatListContentContainer: {
+    paddingBottom: 20,
+  },
 });
 
 class DefaultHedvigMessage extends React.Component {
@@ -132,21 +137,28 @@ class MessageList extends React.Component {
   _renderItem = ({ item, index }) => renderMessage(item, index);
   _keyExtractor = (item) => '' + item.globalId;
 
-  shouldComponentUpdate(nextProps) {
-    return nextProps.messages !== this.props.messages;
-  }
-
   render() {
     return (
-      <FlatList
-        inverted
-        style={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-        data={this.props.messages}
-        renderItem={this._renderItem}
-        keyExtractor={this._keyExtractor}
-        keyboardDismissMode="interactive"
-      />
+      <InputHeightContainer>
+        {({ inputHeight }) => (
+          <FlatList
+            inverted
+            contentContainerStyle={styles.flatListContentContainer}
+            style={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+            data={this.props.messages}
+            renderItem={this._renderItem}
+            keyExtractor={this._keyExtractor}
+            keyboardDismissMode="interactive"
+            ListHeaderComponent={
+              <KeyboardSpacer
+                restSpacing={isIphoneX() ? 35 : 0}
+                topSpacing={inputHeight}
+              />
+            }
+          />
+        )}
+      </InputHeightContainer>
     );
   }
 }

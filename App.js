@@ -1,6 +1,7 @@
 import React from 'react';
 import codePush from 'react-native-code-push';
 import { Provider } from 'react-redux';
+import { Provider as ConstateProvider } from 'constate';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { ApolloProvider } from 'react-apollo';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
@@ -26,12 +27,14 @@ export const HOC = (options) => (Component) => {
           <ApolloProvider client={client}>
             <TranslationsProvider>
               <Provider store={Store}>
-                <PersistGate loading={<Loader />} persistor={Persistor}>
-                  <NavigationContext.Provider value={{ componentId }}>
-                    <Component {...this.props} />
-                    <Dialog />
-                  </NavigationContext.Provider>
-                </PersistGate>
+                <ConstateProvider devtools={__DEV__}>
+                  <PersistGate loading={<Loader />} persistor={Persistor}>
+                    <NavigationContext.Provider value={{ componentId }}>
+                      <Component {...this.props} />
+                      <Dialog />
+                    </NavigationContext.Provider>
+                  </PersistGate>
+                </ConstateProvider>
               </Provider>
             </TranslationsProvider>
           </ApolloProvider>

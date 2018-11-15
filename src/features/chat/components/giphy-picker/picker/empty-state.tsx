@@ -21,8 +21,8 @@ const Emoji = styled(Text)({
 
 const EmptyText = styled(Text)({
   fontFamily: fonts.CIRCULAR,
-  fontSize: 13,
-  color: colors.BLACK,
+  fontSize: 14,
+  color: colors.DARK_GRAY,
 });
 
 interface EmptyStateProps {

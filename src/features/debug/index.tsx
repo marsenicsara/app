@@ -4,14 +4,13 @@ import { AsyncStorage } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { fonts } from '@hedviginsurance/brand';
 
-import {
-  getMarketingLayout,
-  getChatLayout,
-  getOldOfferLayout,
-  getNewOfferLayout,
-  getMainLayout,
-  setLayout,
-} from 'src/navigation/layout';
+import { getMarketingLayout } from 'src/navigation/layouts/marketingLayout';
+import { getChatLayout } from 'src/navigation/layouts/chatLayout';
+import { getOldOfferLayout } from 'src/navigation/layouts/oldOfferLayout';
+import { getNewOfferLayout } from 'src/navigation/layouts/newOfferLayout';
+import { getMainLayout } from 'src/navigation/layouts/mainLayout';
+import { setLayout } from 'src/navigation/layouts/setLayout';
+
 import { addMockData } from 'src/navigation/mock/new-offering-screens';
 import { PersistentDebug } from './persistent-debug';
 import { Config } from './config';
