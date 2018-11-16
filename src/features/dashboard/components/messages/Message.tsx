@@ -56,8 +56,7 @@ const MessageText = styled(Text)(
   ({ messageType }: { messageType: MessageType }) => ({
     color: messageTypeTextColors[messageType],
     fontFamily: fonts.CIRCULAR,
-    fontSize: 15,
-    lineHeight: 22,
+    fontSize: 14,
     maxWidth: 280,
     textAlign: 'center',
   }),

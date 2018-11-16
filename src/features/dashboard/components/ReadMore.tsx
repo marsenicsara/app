@@ -20,8 +20,8 @@ const ExpandButton = styled(TouchableOpacity)(
     borderRadius: 50,
     paddingLeft: 10,
     paddingRight: 10,
-    paddingTop: 6,
-    paddingBottom: 6,
+    paddingTop: 5,
+    paddingBottom: 5,
     marginTop: visibleText ? 24 : 0,
     marginBottom: 32,
     fontFamily: fonts.CIRCULAR,
@@ -49,8 +49,8 @@ const Row = styled(View)({
 
 const InfoText = styled(Text)(({ height }: { height: number }) => ({
   textAlign: 'center',
-  paddingLeft: 10,
-  paddingRight: 10,
+  paddingLeft: 16,
+  paddingRight: 16,
   marginBottom: 0,
   marginTop: 0,
   height: height ? height : 'auto',
