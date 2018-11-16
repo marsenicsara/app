@@ -10,7 +10,6 @@ import {
 import { colors, fonts } from '@hedviginsurance/brand';
 import Color from 'color';
 import { Delay, Timing, Sequence } from 'animated-react-native-components';
-
 import { ConsumerProps } from 'src/components/translations/consumer';
 import { Spacing } from 'src/components/Spacing';
 import { MessageHeightAnimation } from './MessageHeightAnimation';
@@ -104,7 +103,7 @@ export const Message: React.SFC<MessageProps> = ({
   onPressAction,
   visible,
 }) => (
-  <MessageHeightAnimation visible={visible} useWidth={false}>
+  <MessageHeightAnimation visible={visible} notificationMessage={true}>
     <Background messageType={messageType}>
       <Sequence>
         <Delay config={{ delay: 400 }} />

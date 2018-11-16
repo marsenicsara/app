@@ -7,7 +7,8 @@ import { OpenState } from 'src/components/OpenState';
 
 interface MessageHeightAnimationProps {
   visible: boolean;
-  useWidth: boolean;
+  useWidth?: boolean;
+  notificationMessage?: boolean;
 }
 
 export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({

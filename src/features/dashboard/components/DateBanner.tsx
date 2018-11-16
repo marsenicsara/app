@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { colors, fonts } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
 import { View, Text } from 'react-native';
@@ -16,7 +15,6 @@ interface Props {
 const Wrapper = styled(View)({
   alignItems: 'center',
   justifyContent: 'center',
-  marginTop: -getStatusBarHeight() - 15,
 });
 
 const Row = styled(View)({

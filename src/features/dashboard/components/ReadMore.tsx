@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
 import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import { Container } from 'constate';
@@ -18,12 +18,14 @@ const ExpandButton = styled(TouchableOpacity)(
     alignItems: 'center',
     backgroundColor: colors.LIGHT_GRAY,
     borderRadius: 50,
-    paddingLeft: 12,
-    paddingRight: 12,
+    paddingLeft: 10,
+    paddingRight: 10,
     paddingTop: 6,
     paddingBottom: 6,
     marginTop: visibleText ? 24 : 0,
     marginBottom: 32,
+    fontFamily: fonts.CIRCULAR,
+    minWidth: 100,
   }),
 );
 
@@ -35,6 +37,7 @@ const FadeIn = styled(AnimatedView)(
 const ExpandButtonText = styled(Text)({
   color: colors.PURPLE,
   padding: 0,
+  fontSize: 14,
 });
 
 const Row = styled(View)({
@@ -51,6 +54,7 @@ const InfoText = styled(Text)(({ height }: { height: number }) => ({
   marginBottom: 0,
   marginTop: 0,
   height: height ? height : 'auto',
+  fontFamily: fonts.CIRCULAR,
 }));
 
 interface State {
@@ -101,8 +105,8 @@ export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
   <Container<State, Actions>
     initialState={{ showingInfo: false }}
     actions={{
-      showMore: (showingInfo) => () => ({
-        showingInfo,
+      showMore: (showingInfo: boolean) => () => ({
+        showingInfo: showingInfo,
       }),
     }}
   >
@@ -111,11 +115,10 @@ export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
         <Row>
           <HeightConstraint visible={state.showingInfo} useWidth={true}>
             <Sequence>
-              <Delay config={{ delay: 400 }} />
               <Timing
                 initialValue={state.showingInfo === false ? 1 : 0}
                 toValue={state.showingInfo === false ? 0 : 1}
-                config={{ duration: 500 }}
+                config={{ duration: 300 }}
               >
                 {(animatedValue) => (
                   <FadeIn animatedValue={animatedValue}>
@@ -152,11 +155,17 @@ export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
             visibleText={state.showingInfo}
             onPress={() => {
               state.showMore(!state.showingInfo);
-              scheduleAnimation(1000);
+              scheduleAnimation(600);
             }}
           >
             <ExpandButtonText>
-              <TranslationsConsumer textKey="DASHBOARD_MORE_INFO_BUTTON_TEXT">
+              <TranslationsConsumer
+                textKey={
+                  state.showingInfo
+                    ? 'DASHBOARD_LESS_INFO_BUTTON_TEXT'
+                    : 'DASHBOARD_MORE_INFO_BUTTON_TEXT'
+                }
+              >
                 {(text) => text}
               </TranslationsConsumer>
             </ExpandButtonText>

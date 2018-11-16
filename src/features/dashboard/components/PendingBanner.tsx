@@ -6,13 +6,11 @@ import { ReadMore } from './ReadMore';
 import Lottie from 'lottie-react-native';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import * as animationModule from 'assets/animations/bannerLoadingIcons.json';
 
 const Wrapper = styled(View)({
   alignItems: 'center',
   justifyContent: 'center',
-  marginTop: -getStatusBarHeight() - 15,
 });
 
 const Row = styled(View)({

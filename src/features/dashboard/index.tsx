@@ -49,6 +49,7 @@ const DASHBOARD_QUERY = gql`
 const Container = styled(ScrollView)({
   flex: 1,
   backgroundColor: colors.OFF_WHITE,
+  top: -getStatusBarHeight(),
 });
 
 const InsetPadding = styled(View)({
@@ -60,7 +61,6 @@ const Header = styled(View)({
   flexDirection: 'column',
   justifyContent: 'space-between',
   backgroundColor: colors.WHITE,
-  top: -getStatusBarHeight(),
   paddingLeft: 24,
   shadowOpacity: 0.1,
   shadowRadius: 2,
