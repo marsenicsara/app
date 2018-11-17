@@ -23,7 +23,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const AnimationWrapper = ({ children }) => {
+const AnimationWrapper = ({
+  children,
+  show,
+  onNavigationCommand,
+  onGlobalEvent,
+}) => {
   switch (Platform.OS) {
     case 'ios': {
       return (
@@ -33,13 +38,13 @@ const AnimationWrapper = ({ children }) => {
           unmountChildrenAfter={0}
         >
           <NavigationEvents
-            onNavigationCommand={this.onNavigationCommand}
-            onGlobalEvent={this.onGlobalEvent}
+            onNavigationCommand={onNavigationCommand}
+            onGlobalEvent={onGlobalEvent}
           />
           <Parallel>
             <Spring
               initialValue={0}
-              toValue={this.state.show ? 1 : 0}
+              toValue={show ? 1 : 0}
               config={{ bounciness: 5 }}
             >
               {(animatedValue) => (
@@ -139,7 +144,11 @@ class FloatingActionButton extends React.Component {
     const { fabActions } = this.props;
 
     return (
-      <AnimationWrapper>
+      <AnimationWrapper
+        show={this.state.show}
+        onNavigationCommand={this.onNavigationCommand}
+        onGlobalEvent={this.onGlobalEvent}
+      >
         <FloatingAction
           color="#651eff"
           distanceToEdge={isIphoneX() ? 55 : 20}

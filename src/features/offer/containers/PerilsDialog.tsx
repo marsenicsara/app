@@ -78,38 +78,40 @@ export interface Peril {
 }
 
 export const PerilsDialog: React.SFC<{ peril: Peril, categoryTitle: string, componentId: string }> = ({ componentId, categoryTitle, peril }) => (
-  <DraggableOverlay
-    onClose={() => {
-      Navigation.dismissOverlay(componentId)
-    }}
-    heightPercentage={getHeightPercentage(peril.description.length)}
-  >
-    {(handleClose) => (
-      <>
-        <BackButton onPress={() => handleClose()} />
-        <View style={styles.dialogContent}>
-          <View style={styles.perilsHeader}>
-            <View>
-              <Text style={styles.dialogHeading}>
-                {categoryTitle}
-              </Text>
-              <Text style={styles.dialogSubHeading}>Försäkras mot</Text>
+  peril ? (
+    <DraggableOverlay
+      onClose={() => {
+        Navigation.dismissOverlay(componentId)
+      }}
+      heightPercentage={getHeightPercentage(peril.description.length)}
+    >
+      {(handleClose) => (
+        <>
+          <BackButton onPress={() => handleClose()} />
+          <View style={styles.dialogContent}>
+            <View style={styles.perilsHeader}>
+              <View>
+                <Text style={styles.dialogHeading}>
+                  {categoryTitle}
+                </Text>
+                <Text style={styles.dialogSubHeading}>Försäkras mot</Text>
+              </View>
+              <PerilImage
+                source={PERIL_IMAGE_MAP[peril.id]}
+                resizeMode="contain"
+              />
             </View>
-            <PerilImage
-              source={PERIL_IMAGE_MAP[peril.id]}
-              resizeMode="contain"
-            />
-          </View>
-          <View style={styles.contentWrapper}>
-            <View style={styles.perilsContent}>
-              <Heading>
-                {cleanTitle(peril.title)}
-              </Heading>
-              <Description>{peril.description}</Description>
+            <View style={styles.contentWrapper}>
+              <View style={styles.perilsContent}>
+                <Heading>
+                  {cleanTitle(peril.title)}
+                </Heading>
+                <Description>{peril.description}</Description>
+              </View>
             </View>
           </View>
-        </View>
-      </>
-    )}
-  </DraggableOverlay>
+        </>
+      )}
+    </DraggableOverlay>
+  ) : null
 )
