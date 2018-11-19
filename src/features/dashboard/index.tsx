@@ -138,7 +138,7 @@ const Dashboard: React.SFC = () => (
             ) : null}
           </InsetPadding>
           <Messages />
-          <Spacing height={24} />
+          <Spacing height={8} />
           <InsetPadding>
             <PerilCategories perilCategories={perilCategories} />
           </InsetPadding>
