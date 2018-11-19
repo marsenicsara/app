@@ -2,7 +2,15 @@ import * as React from 'react';
 import { colors, fonts } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
 import { View, Text } from 'react-native';
-import { format, differenceInMonths, differenceInDays } from 'date-fns';
+import {
+  format,
+  differenceInMonths,
+  differenceInCalendarMonths,
+  differenceInCalendarDays,
+  getDaysInMonth,
+  differenceInDays,
+  subDays,
+} from 'date-fns';
 import { ReadMore } from './ReadMore';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
@@ -74,9 +82,13 @@ const getActivationMonths = (activeFrom: string) => {
 
 const getActivationDays = (activeFrom: string) => {
   const now = new Date();
-  const nowFormat = format(now, 'YYYY-MM-DD');
+  const today = format(now, 'YYYY-MM-DD');
   const startDate = format(activeFrom, 'YYYY-MM-DD');
-  return differenceInDays(startDate, nowFormat) - 1;
+  let totalDays = differenceInDays(startDate, today);
+  for (let i = 1; i === differenceInMonths(startDate, today); i++) {
+    totalDays -= getDaysInMonth(new Date(i));
+  }
+  return totalDays - 1;
 };
 
 const getActivationHours = () => {

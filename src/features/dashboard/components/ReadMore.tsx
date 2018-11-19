@@ -10,7 +10,7 @@ import { format } from 'date-fns';
 import { scheduleAnimation } from './ScheduleAnimation';
 import { HeightConstraint } from './HeightConstraint';
 import { Measure } from 'src/components/Measure';
-import { Delay, Timing, Sequence } from 'animated-react-native-components';
+import { Timing, Sequence } from 'animated-react-native-components';
 import { AnimatedView } from 'src/components/AnimatedPrimitives';
 
 const ExpandButton = styled(TouchableOpacity)(
@@ -56,6 +56,10 @@ const InfoText = styled(Text)(({ height }: { height: number }) => ({
   height: height ? height : 'auto',
   fontFamily: fonts.CIRCULAR,
 }));
+
+const BoldText = styled(Text)({
+  fontWeight: 'bold',
+});
 
 interface State {
   showingInfo: boolean;
@@ -129,7 +133,11 @@ export const ReadMore: React.SFC<Props> = ({ status, activeFrom }) => (
                             <TranslationsPlaceholderConsumer
                               textKey={textKeyValueMap(status)}
                               replacements={{
-                                date: swedishTranslate(activeFrom),
+                                date: (
+                                  <BoldText>
+                                    {swedishTranslate(activeFrom)}
+                                  </BoldText>
+                                ),
                               }}
                             >
                               {(text) => text}

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { LayoutAnimation } from 'react-native';
 import { Mount, Update } from 'react-lifecycle-components';
 import { HeightConstraint } from '../HeightConstraint';
 import { scheduleAnimation } from '../ScheduleAnimation';
