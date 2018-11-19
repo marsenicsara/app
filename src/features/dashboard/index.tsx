@@ -4,7 +4,6 @@ import gql from 'graphql-tag';
 import styled from '@sampettersson/primitives';
 import { ScrollView, View, Text, Dimensions } from 'react-native';
 
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { Loader } from 'src/components/Loader';
 import { colors, fonts } from '@hedviginsurance/brand';
 import { Spacing } from 'src/components/Spacing';
@@ -114,13 +113,15 @@ const Dashboard: React.SFC = () => (
       return (
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
           {getStartDate(status) === 0 && (
-            <Header>
+            <InsuranceStatusDisplay />
+            /*<Header>
               <ExtendedWhiteTop />
               <Heading>
                 <TranslationsPlaceholderConsumer
                   textKey="DASHBOARD_BANNER_ACTIVE_TITLE"
                   replacements={{
-                    firstName: firstName,
+                    firstName:
+                      firstName.charAt(0).toUpperCase() + firstName.slice(1),
                   }}
                 >
                   {(text) => text}
@@ -128,7 +129,7 @@ const Dashboard: React.SFC = () => (
               </Heading>
               <InsuranceStatusDisplay />
               <Spacing height={37} />
-            </Header>
+            </Header>*/
           )}
           <InsetPadding>
             {getStartDate(status) === 1 ? (
@@ -138,7 +139,7 @@ const Dashboard: React.SFC = () => (
             ) : null}
           </InsetPadding>
           <Messages />
-          <Spacing height={8} />
+          <Spacing height={16} />
           <InsetPadding>
             <PerilCategories perilCategories={perilCategories} />
           </InsetPadding>

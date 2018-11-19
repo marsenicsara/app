@@ -32,7 +32,7 @@ const ActivationText = styled(Text)(({ textColor }: { textColor: string }) => ({
 
 const LottieAnimation = styled(Lottie)({
   height: 50,
-  marginBottom: 27,
+  marginBottom: 24,
 });
 
 interface Props {
