@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from '@sampettersson/primitives';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, Dimensions } from 'react-native';
 
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { Loader } from 'src/components/Loader';
@@ -49,12 +49,19 @@ const DASHBOARD_QUERY = gql`
 const Container = styled(ScrollView)({
   flex: 1,
   backgroundColor: colors.OFF_WHITE,
-  top: -getStatusBarHeight(),
 });
 
 const InsetPadding = styled(View)({
   paddingLeft: 24,
   paddingRight: 24,
+});
+
+const ExtendedWhiteTop = styled(View)({
+  height: Dimensions.get('window').height,
+  width: Dimensions.get('window').width,
+  backgroundColor: colors.WHITE,
+  position: 'absolute',
+  bottom: 0,
 });
 
 const Header = styled(View)({
@@ -72,7 +79,7 @@ const Heading = styled(Text)({
   fontFamily: fonts.SORAY,
   color: colors.OFF_BLACK,
   fontSize: 30,
-  marginTop: 83,
+  marginTop: 63,
   marginBottom: 5,
 });
 
@@ -108,6 +115,7 @@ const Dashboard: React.SFC = () => (
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
           {getStartDate(status) === 0 && (
             <Header>
+              <ExtendedWhiteTop />
               <Heading>
                 <TranslationsPlaceholderConsumer
                   textKey="DASHBOARD_BANNER_ACTIVE_TITLE"
@@ -130,6 +138,7 @@ const Dashboard: React.SFC = () => (
             ) : null}
           </InsetPadding>
           <Messages />
+          <Spacing height={24} />
           <InsetPadding>
             <PerilCategories perilCategories={perilCategories} />
           </InsetPadding>

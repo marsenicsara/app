@@ -47,7 +47,7 @@ const ActivationText = styled(Text)(({ textColor }: { textColor: string }) => ({
   fontFamily: fonts.CIRCULAR,
   fontWeight: '100',
   marginBottom: 8,
-  marginTop: 66,
+  marginTop: 36,
 }));
 
 const CountNumber = styled(Text)(({ textColor }: { textColor: string }) => ({

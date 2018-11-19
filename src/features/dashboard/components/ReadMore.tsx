@@ -23,7 +23,7 @@ const ExpandButton = styled(TouchableOpacity)(
     paddingTop: 5,
     paddingBottom: 5,
     marginTop: visibleText ? 24 : 0,
-    marginBottom: 32,
+    marginBottom: 8,
     fontFamily: fonts.CIRCULAR,
     minWidth: 100,
   }),
