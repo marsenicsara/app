@@ -55,14 +55,6 @@ const InsetPadding = styled(View)({
   paddingRight: 24,
 });
 
-const ExtendedWhiteTop = styled(View)({
-  height: Dimensions.get('window').height,
-  width: Dimensions.get('window').width,
-  backgroundColor: colors.WHITE,
-  position: 'absolute',
-  bottom: 0,
-});
-
 const Header = styled(View)({
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -112,25 +104,8 @@ const Dashboard: React.SFC = () => (
 
       return (
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
-          {getStartDate(status) === 0 && (
-            <InsuranceStatusDisplay />
-            /*<Header>
-              <ExtendedWhiteTop />
-              <Heading>
-                <TranslationsPlaceholderConsumer
-                  textKey="DASHBOARD_BANNER_ACTIVE_TITLE"
-                  replacements={{
-                    firstName:
-                      firstName.charAt(0).toUpperCase() + firstName.slice(1),
-                  }}
-                >
-                  {(text) => text}
-                </TranslationsPlaceholderConsumer>
-              </Heading>
-              <InsuranceStatusDisplay />
-              <Spacing height={37} />
-            </Header>*/
-          )}
+          <Messages />
+          {getStartDate(status) === 0 && <InsuranceStatusDisplay />}
           <InsetPadding>
             {getStartDate(status) === 1 ? (
               <DateBanner activeFrom={activeFrom} statusCode={status} />
@@ -138,7 +113,6 @@ const Dashboard: React.SFC = () => (
               <PendingBanner activeFrom={activeFrom} statusCode={status} />
             ) : null}
           </InsetPadding>
-          <Messages />
           <Spacing height={16} />
           <InsetPadding>
             <PerilCategories perilCategories={perilCategories} />

@@ -37,7 +37,7 @@ const TimeRow = styled(View)({
   flex: 1,
   alignItems: 'center',
   alignContent: 'center',
-  marginBottom: 24,
+  marginBottom: 16,
 });
 
 const ActivationText = styled(Text)(({ textColor }: { textColor: string }) => ({
@@ -47,7 +47,7 @@ const ActivationText = styled(Text)(({ textColor }: { textColor: string }) => ({
   fontFamily: fonts.CIRCULAR,
   fontWeight: '100',
   marginBottom: 8,
-  marginTop: 36,
+  marginTop: 24,
 }));
 
 const CountNumber = styled(Text)(({ textColor }: { textColor: string }) => ({

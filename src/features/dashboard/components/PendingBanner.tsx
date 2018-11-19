@@ -27,7 +27,7 @@ const ActivationText = styled(Text)(({ textColor }: { textColor: string }) => ({
   fontFamily: fonts.CIRCULAR,
   fontWeight: '100',
   marginBottom: 12,
-  marginTop: 36,
+  marginTop: 24,
 }));
 
 const LottieAnimation = styled(Lottie)({

@@ -43,7 +43,6 @@ const MessageContainer = styled(View)(({ height }: { height: number }) => ({
 const Background = styled(View)(
   ({ messageType }: { messageType: MessageType }) => ({
     backgroundColor: messageTypeColors[messageType],
-    borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: Color(messageTypeColors[messageType])
       .darken(0.3)
