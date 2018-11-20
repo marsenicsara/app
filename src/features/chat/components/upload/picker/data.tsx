@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { CameraRoll, GetPhotosReturnType, Platform } from 'react-native';
 import { Container, ActionMap } from 'constate';
-import { Mount, Update } from 'react-lifecycle-components';
+import { Mount } from 'react-lifecycle-components';
+import Permissions from 'react-native-permissions';
 
 interface State {
   photos?: Partial<GetPhotosReturnType>;
   error: boolean;
+  loading: boolean;
 }
 
 interface Actions {
   setPhotos: (photos: GetPhotosReturnType) => void;
   setError: (error: boolean) => void;
+  setLoading: (loading: boolean) => void;
 }
 
 const actions: ActionMap<State, Actions> = {
@@ -20,11 +23,15 @@ const actions: ActionMap<State, Actions> = {
   setError: (error) => () => ({
     error,
   }),
+  setLoading: (loading) => () => ({
+    loading,
+  }),
 };
 
 interface Children {
   photos?: Partial<GetPhotosReturnType>;
   shouldLoadMore: () => void;
+  loading: boolean;
   error: boolean;
 }
 
@@ -35,9 +42,9 @@ interface DataProps {
 
 import { PermissionsAndroid } from 'react-native';
 
-async function requestCameraPermission() {
+const requestCameraPermission = async () => {
   if (Platform.OS !== 'android') {
-    return true;
+    return await Permissions.check('photo');
   }
 
   try {
@@ -57,12 +64,19 @@ async function requestCameraPermission() {
   } catch (err) {
     return false;
   }
-}
+};
 
-const loadPhotos = async ({ photos, setPhotos, setError }: Actions & State) => {
+const loadPhotos = async ({
+  photos,
+  setPhotos,
+  setError,
+  setLoading,
+}: Actions & State) => {
+  setLoading(true);
   const approved = await requestCameraPermission();
 
   if (!approved) {
+    setLoading(false);
     return setError(true);
   }
 
@@ -72,6 +86,8 @@ const loadPhotos = async ({ photos, setPhotos, setError }: Actions & State) => {
     assetType: 'All',
   })
     .then((cameraRoll) => {
+      setLoading(false);
+
       if (photos!.page_info && !photos!.page_info!.has_next_page) {
         return;
       }
@@ -82,6 +98,7 @@ const loadPhotos = async ({ photos, setPhotos, setError }: Actions & State) => {
       });
     })
     .catch(() => {
+      setLoading(false);
       setError(true);
     });
 };
@@ -91,10 +108,21 @@ export const Data: React.SFC<DataProps> = ({ children, shouldLoad }) => (
     actions={actions}
     initialState={{ photos: { edges: [] }, error: false }}
   >
-    {({ photos, setPhotos, setError, error }) => (
+    {({ photos, setPhotos, setError, error, setLoading, loading }) => (
       <>
         {shouldLoad && (
-          <Mount on={() => loadPhotos({ photos, setPhotos, setError, error })}>
+          <Mount
+            on={() =>
+              loadPhotos({
+                photos,
+                setPhotos,
+                setError,
+                error,
+                setLoading,
+                loading,
+              })
+            }
+          >
             {null}
           </Mount>
         )}
@@ -102,8 +130,16 @@ export const Data: React.SFC<DataProps> = ({ children, shouldLoad }) => (
           photos,
           error,
           shouldLoadMore: () => {
-            loadPhotos({ photos, setPhotos, setError, error });
+            loadPhotos({
+              photos,
+              setPhotos,
+              setError,
+              error,
+              setLoading,
+              loading,
+            });
           },
+          loading,
         })}
       </>
     )}

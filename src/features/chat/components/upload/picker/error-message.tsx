@@ -42,11 +42,13 @@ const Message = styled(Text)({
 
 interface ErrorMessageProps {
   retry: () => void;
-  error: Boolean | undefined;
+  loading: boolean;
+  error: boolean | undefined;
 }
 
 export const ErrorMessage: React.SFC<ErrorMessageProps> = ({
   error,
+  loading,
   retry,
 }) => (
   <Sequence>
@@ -65,7 +67,15 @@ export const ErrorMessage: React.SFC<ErrorMessageProps> = ({
           </TranslationsConsumer>
           <Spacing height={15} />
           <ButtonContainer>
-            <PillButton text="Försök igen" onPress={() => retry()} />
+            <TranslationsConsumer textKey="FILE_UPLOAD_ERROR_RETRY_BUTTON">
+              {(text) => (
+                <PillButton
+                  loading={loading}
+                  text={text}
+                  onPress={() => retry()}
+                />
+              )}
+            </TranslationsConsumer>
           </ButtonContainer>
         </Container>
       )}
