@@ -16,16 +16,13 @@ import { Spacing } from 'src/components/Spacing';
 import { isImageMessage } from './utils';
 import { Props } from './types';
 import { ImageMessage } from './image';
+import { TextMessage } from './text';
 
 const Content = styled(View)({
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
 });
-
-interface FileData {
-  key: string;
-}
 
 const FileQuery = gql`
   query File($key: String!) {
@@ -46,18 +43,24 @@ export const FileMessage: React.SFC<Props> = ({
   withMargin,
   index,
 }) => {
-  const messageData = JSON.parse(message.body.text) as FileData;
-  const extension = path.extname(messageData.key);
+  const key = message.body.key;
+  const extension = path.extname(key || '');
 
   return (
     <Query<Data>
       query={FileQuery}
       variables={{
-        key: messageData.key,
+        key: key,
       }}
     >
       {({ data, loading, error }) =>
-        loading || error ? null : isImageMessage ? (
+        loading || error ? (
+          <TextMessage
+            message={{ ...message, body: { text: 'Laddar...' } }}
+            withMargin={withMargin}
+            index={index}
+          />
+        ) : isImageMessage ? (
           <ImageMessage
             message={{ ...message, body: { text: data!.file.signedUrl } }}
             withMargin={withMargin}
