@@ -3,7 +3,6 @@ import { Navigation } from 'react-native-navigation';
 
 import { Message, MessageType } from './Message';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
-import { Spacing } from 'src/components/Spacing';
 import { PAYMENT_SCREEN } from 'src/navigation/screens/payment';
 
 import { MessagesComponent, DirectDebitStatus } from 'src/graphql/components';

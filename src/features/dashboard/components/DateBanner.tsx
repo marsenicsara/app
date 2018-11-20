@@ -5,11 +5,8 @@ import { View, Text } from 'react-native';
 import {
   format,
   differenceInMonths,
-  differenceInCalendarMonths,
-  differenceInCalendarDays,
   getDaysInMonth,
   differenceInDays,
-  subDays,
 } from 'date-fns';
 import { ReadMore } from './ReadMore';
 import { InsuranceStatus } from 'src/graphql/components';
