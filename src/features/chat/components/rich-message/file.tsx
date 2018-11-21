@@ -53,20 +53,41 @@ export const FileMessage: React.SFC<Props> = ({
         key: key,
       }}
     >
-      {({ data, loading, error }) =>
-        loading || error ? (
-          <TextMessage
-            message={{ ...message, body: { text: 'Laddar...' } }}
-            withMargin={withMargin}
-            index={index}
-          />
-        ) : isImageMessage ? (
-          <ImageMessage
-            message={{ ...message, body: { text: data!.file.signedUrl } }}
-            withMargin={withMargin}
-            index={index}
-          />
-        ) : (
+      {({ data, loading, error }) => {
+        if (error) {
+          return (
+            <TextMessage
+              message={{
+                ...message,
+                body: { text: 'Kunde inte ladda fil...' },
+              }}
+              withMargin={withMargin}
+              index={index}
+            />
+          );
+        }
+
+        if (loading || !data) {
+          return (
+            <TextMessage
+              message={{ ...message, body: { text: 'Laddar...' } }}
+              withMargin={withMargin}
+              index={index}
+            />
+          );
+        }
+
+        if (isImageMessage) {
+          return (
+            <ImageMessage
+              message={{ ...message, body: { text: data!.file.signedUrl } }}
+              withMargin={withMargin}
+              index={index}
+            />
+          );
+        }
+
+        return (
           <TouchableOpacity
             accessibilityLabel="Ladda ner fil"
             accessibilityComponentType="button"
@@ -82,8 +103,8 @@ export const FileMessage: React.SFC<Props> = ({
               </Content>
             </StyledUserChatMessage>
           </TouchableOpacity>
-        )
-      }
+        );
+      }}
     </Query>
   );
 };
