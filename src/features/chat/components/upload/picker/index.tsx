@@ -40,13 +40,13 @@ const ListHeaderContext = React.createContext<ListHeaderContextProps>({
 interface ListFooterContext {
   error: boolean;
   loading: boolean;
-  shouldLoadMore: () => void;
+  loadMore: () => void;
 }
 
 const ListFooterContext = React.createContext<ListFooterContext>({
   error: false,
   loading: false,
-  shouldLoadMore: () => {},
+  loadMore: () => {},
 });
 
 const ListHeaderComponent = () => (
@@ -64,8 +64,8 @@ const ListHeaderComponent = () => (
 
 const ListFooterComponent = () => (
   <ListFooterContext.Consumer>
-    {({ error, loading, shouldLoadMore }) => (
-      <ErrorMessage loading={loading} error={error} retry={shouldLoadMore} />
+    {({ error, loading, loadMore }) => (
+      <ErrorMessage loading={loading} error={error} retry={loadMore} />
     )}
   </ListFooterContext.Consumer>
 );
@@ -91,9 +91,9 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
             mountChildrenAfter={0}
           >
             <Data shouldLoad={isOpen}>
-              {({ photos, shouldLoadMore, loading, error }) => (
+              {({ photos, loadMore, loading, error }) => (
                 <ListFooterContext.Provider
-                  value={{ loading, error, shouldLoadMore }}
+                  value={{ loading, error, loadMore }}
                 >
                   <FlatList
                     ListHeaderComponent={ListHeaderComponent}
@@ -121,7 +121,7 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
                       )
                     }
                     keyExtractor={(item) => String(item.node.image.uri)}
-                    onEndReached={() => shouldLoadMore()}
+                    onEndReached={() => loadMore()}
                     horizontal
                   />
                 </ListFooterContext.Provider>

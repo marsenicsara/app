@@ -30,7 +30,7 @@ const actions: ActionMap<State, Actions> = {
 
 interface Children {
   photos?: Partial<GetPhotosReturnType>;
-  shouldLoadMore: () => void;
+  loadMore: () => void;
   loading: boolean;
   error: boolean;
 }
@@ -129,7 +129,7 @@ export const Data: React.SFC<DataProps> = ({ children, shouldLoad }) => (
         {children({
           photos,
           error,
-          shouldLoadMore: () => {
+          loadMore: () => {
             loadPhotos({
               photos,
               setPhotos,
