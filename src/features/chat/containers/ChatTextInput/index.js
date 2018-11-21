@@ -7,19 +7,21 @@ import styled from '@sampettersson/primitives';
 import color from 'color';
 import { BlurView } from 'react-native-blur';
 import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
+import mime from 'mime-types';
 
-import { chatActions, dialogActions } from '../../../../hedvig-redux';
-import { SendButton } from '../components/Button';
+import { chatActions, dialogActions } from '../../../../../hedvig-redux';
+import { SendButton } from '../../components/Button';
+import { SendChatFileResponseComponent } from 'src/graphql/components';
 
 import { colors, fonts } from '@hedviginsurance/brand';
-import { Provider } from '../components/upload/context';
-import { Picker } from '../components/upload/picker';
-import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
-import { Provider as GiphyProvider } from '../components/giphy-picker/context';
-import { Buttons } from '../components/pickers/buttons';
+import { Provider } from '../../components/upload/context';
+import { Picker } from '../../components/upload/picker';
+import { Picker as GiphyPicker } from '../../components/giphy-picker/picker';
+import { Provider as GiphyProvider } from '../../components/giphy-picker/context';
+import { Buttons } from '../../components/pickers/buttons';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 
-import { InputHeightContainer } from './InputHeight';
+import { InputHeightContainer } from '../InputHeight';
 
 const styles = StyleSheet.create({
   textInput: {
@@ -104,17 +106,6 @@ class ChatTextInput extends React.Component {
     }
   };
 
-  sendFileMessage = (key) => {
-    this.requestPush();
-    this.props.send(
-      this.props.message,
-      JSON.stringify({
-        type: 'file',
-        key: key,
-      }),
-    );
-  };
-
   _onTextChange = (text) => {
     this.setState({ inputValue: text });
   };
@@ -182,7 +173,28 @@ class ChatTextInput extends React.Component {
                         />
                       </TextInputContainer>
                     </Bar>
-                    <Picker sendMessage={this.sendFileMessage} />
+                    <SendChatFileResponseComponent>
+                      {(mutate) => (
+                        <Picker
+                          sendMessage={(key) => {
+                            this.requestPush();
+                            mutate({
+                              variables: {
+                                input: {
+                                  globalId: this.props.message.globalId,
+                                  body: {
+                                    key,
+                                    mimeType: mime.lookup(key),
+                                  },
+                                },
+                              },
+                            }).then(() => {
+                              this.props.getMessages();
+                            });
+                          }}
+                        />
+                      )}
+                    </SendChatFileResponseComponent>
                     <GiphyPicker sendMessage={this._send} />
                   </View>
                 )}
@@ -206,8 +218,12 @@ const mapDispatchToProps = (dispatch) => {
           text,
         }),
       ),
-    sendFile: (message, bodyOverride) =>
-      dispatch(chatActions.sendChatResponse(message, bodyOverride)),
+    getMessages: () =>
+      dispatch(
+        chatActions.getMessages({
+          intent: '',
+        }),
+      ),
     requestPushNotifications: async () => {
       if (Platform.OS === 'android') {
         return dispatch({

@@ -7,6 +7,7 @@ import { GiphyMessage } from './giphy';
 import { ImageMessage } from './image';
 
 import { isGiphyMessage, isImageMessage } from './utils';
+import { FileMessage } from './file';
 
 export const RichMessage: React.SFC<Props> = ({
   message,
@@ -25,6 +26,12 @@ export const RichMessage: React.SFC<Props> = ({
         <ImageMessage message={message} withMargin={withMargin} index={index} />
       );
     }
+  }
+
+  if (message.body.key) {
+    return (
+      <FileMessage message={message} withMargin={withMargin} index={index} />
+    );
   }
 
   return (

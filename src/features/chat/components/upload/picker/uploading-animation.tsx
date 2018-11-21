@@ -22,19 +22,21 @@ const Spinner = styled(AnimatedView)({
   position: 'absolute',
 });
 
-const SpinnerText = styled(Text)({
+const SpinnerText = styled(Text)(({ darkMode }: { darkMode: boolean }) => ({
   fontFamily: fonts.CIRCULAR,
-  color: colors.WHITE,
+  color: darkMode ? colors.BLACK : colors.WHITE,
   fontSize: 12,
-});
+}));
 
 interface UploadingAnimationProps {
   isUploading: boolean;
+  darkMode?: boolean;
 }
 
 export const UploadingAnimation: React.SFC<UploadingAnimationProps> = ({
   isUploading,
   children,
+  darkMode,
 }) => (
   <AnimationContainer>
     <Parallel>
@@ -59,11 +61,11 @@ export const UploadingAnimation: React.SFC<UploadingAnimationProps> = ({
                 <View style={{ width: 40, height: 40 }}>
                   <Progress.CircleSnail
                     animating={isUploading}
-                    color={'white'}
+                    color={darkMode ? colors.BLACK : colors.WHITE}
                   />
                 </View>
                 <Spacing height={5} />
-                <SpinnerText>Laddar upp...</SpinnerText>
+                <SpinnerText darkMode={darkMode}>Laddar upp...</SpinnerText>
               </Spinner>
             )}
             <Content

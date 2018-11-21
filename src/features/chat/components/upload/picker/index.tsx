@@ -9,6 +9,7 @@ import { Header } from './header';
 import { Delayed } from 'src/components/Delayed';
 import { Update } from 'react-lifecycle-components';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import { ErrorMessage } from './error-message';
 
 const getTranslateY = () => (isIphoneX() ? 35 : 0);
 
@@ -36,6 +37,18 @@ const ListHeaderContext = React.createContext<ListHeaderContextProps>({
   setIsOpen: () => {},
 });
 
+interface ListFooterContext {
+  error: boolean;
+  loading: boolean;
+  loadMore: () => void;
+}
+
+const ListFooterContext = React.createContext<ListFooterContext>({
+  error: false,
+  loading: false,
+  loadMore: () => {},
+});
+
 const ListHeaderComponent = () => (
   <ListHeaderContext.Consumer>
     {({ sendMessage, setIsOpen }) => (
@@ -47,6 +60,14 @@ const ListHeaderComponent = () => (
       />
     )}
   </ListHeaderContext.Consumer>
+);
+
+const ListFooterComponent = () => (
+  <ListFooterContext.Consumer>
+    {({ error, loading, loadMore }) => (
+      <ErrorMessage loading={loading} error={error} retry={loadMore} />
+    )}
+  </ListFooterContext.Consumer>
 );
 
 export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
@@ -70,35 +91,40 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
             mountChildrenAfter={0}
           >
             <Data shouldLoad={isOpen}>
-              {({ photos, shouldLoadMore }) => (
-                <FlatList
-                  ListHeaderComponent={ListHeaderComponent}
-                  data={photos!.edges!}
-                  renderItem={({ item, index }) =>
-                    item.node.type.includes('Photo') ? (
-                      <Image
-                        uri={item.node.image.uri}
-                        isLastInList={index === photos!.edges!.length - 1}
-                        onUpload={(key) => {
-                          sendMessage(key);
-                          setIsOpen(false);
-                        }}
-                      />
-                    ) : (
-                      <Video
-                        uri={item.node.image.uri}
-                        isLastInList={index === photos!.edges!.length - 1}
-                        onUpload={(key) => {
-                          sendMessage(key);
-                          setIsOpen(false);
-                        }}
-                      />
-                    )
-                  }
-                  keyExtractor={(item) => String(item.node.image.uri)}
-                  onEndReached={() => shouldLoadMore()}
-                  horizontal
-                />
+              {({ photos, loadMore, loading, error }) => (
+                <ListFooterContext.Provider
+                  value={{ loading, error, loadMore }}
+                >
+                  <FlatList
+                    ListHeaderComponent={ListHeaderComponent}
+                    ListFooterComponent={ListFooterComponent}
+                    data={photos!.edges!}
+                    renderItem={({ item, index }) =>
+                      item.node.type.includes('Photo') ? (
+                        <Image
+                          uri={item.node.image.uri}
+                          isLastInList={index === photos!.edges!.length - 1}
+                          onUpload={(key) => {
+                            sendMessage(key);
+                            setIsOpen(false);
+                          }}
+                        />
+                      ) : (
+                        <Video
+                          uri={item.node.image.uri}
+                          isLastInList={index === photos!.edges!.length - 1}
+                          onUpload={(key) => {
+                            sendMessage(key);
+                            setIsOpen(false);
+                          }}
+                        />
+                      )
+                    }
+                    keyExtractor={(item) => String(item.node.image.uri)}
+                    onEndReached={() => loadMore()}
+                    horizontal
+                  />
+                </ListFooterContext.Provider>
               )}
             </Data>
           </Delayed>

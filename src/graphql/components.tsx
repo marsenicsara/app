@@ -12,6 +12,8 @@ export type DateTime = any;
 
 export type LocalDate = any;
 
+export type Uuid = any;
+
 /** The `Upload` scalar type represents a file upload promise that resolves an object containing `stream`, `filename`, `mimetype` and `encoding`. */
 export type Upload = any;
 
@@ -210,6 +212,8 @@ export interface Mutation {
 
   createSession: string;
 
+  createSessionV2?: SessionInformation | null;
+
   createOffer?: boolean | null;
 
   signOffer?: boolean | null;
@@ -221,6 +225,14 @@ export interface Mutation {
   offerClosed: boolean;
 
   startDirectDebitRegistration: Url;
+
+  sendChatFileResponse: boolean;
+}
+
+export interface SessionInformation {
+  token: string;
+
+  memberId: string;
 }
 
 export interface Subscription {
@@ -1212,6 +1224,18 @@ export interface PerilWhereInput {
   descriptionKey?: KeyWhereInput | null;
 }
 
+export interface CampaignInput {
+  source?: string | null;
+
+  medium?: string | null;
+
+  term?: string | null;
+
+  content?: string | null;
+
+  name?: string | null;
+}
+
 export interface OfferInput {
   firstName: string;
 
@@ -1238,6 +1262,18 @@ export interface SignInput {
   personalNumber: string;
 
   email: string;
+}
+
+export interface ChatResponseFileInput {
+  globalId: string;
+
+  body: ChatResponseBodyFileInput;
+}
+
+export interface ChatResponseBodyFileInput {
+  key: string;
+
+  mimeType: string;
 }
 
 export interface AssetWhereInput {
@@ -2730,6 +2766,11 @@ export interface PerilTitleKeyArgs {
 export interface PerilDescriptionKeyArgs {
   where?: PerilWhereInput | null;
 }
+export interface CreateSessionMutationArgs {
+  campaign?: CampaignInput | null;
+
+  trackingId?: Uuid | null;
+}
 export interface CreateOfferMutationArgs {
   details: OfferInput;
 }
@@ -2741,6 +2782,9 @@ export interface UploadFileMutationArgs {
 }
 export interface SelectCashbackOptionMutationArgs {
   id: string;
+}
+export interface SendChatFileResponseMutationArgs {
+  input: ChatResponseFileInput;
 }
 export interface UrlAssetArgs {
   transformation?: AssetTransformationInput | null;
@@ -2949,6 +2993,16 @@ export enum MutationType {
 // Documents
 // ====================================================
 
+export type SendChatFileResponseVariables = {
+  input: ChatResponseFileInput;
+};
+
+export type SendChatFileResponseMutation = {
+  __typename?: 'Mutation';
+
+  sendChatFileResponse: boolean;
+};
+
 export type MessagesVariables = {};
 
 export type MessagesQuery = {
@@ -3074,6 +3128,45 @@ import gql from 'graphql-tag';
 // Components
 // ====================================================
 
+export const SendChatFileResponseDocument = gql`
+  mutation SendChatFileResponse($input: ChatResponseFileInput!) {
+    sendChatFileResponse(input: $input)
+  }
+`;
+export class SendChatFileResponseComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<
+      SendChatFileResponseMutation,
+      SendChatFileResponseVariables
+    >
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<
+        SendChatFileResponseMutation,
+        SendChatFileResponseVariables
+      >
+        mutation={SendChatFileResponseDocument}
+        {...this['props'] as any}
+      />
+    );
+  }
+}
+export function SendChatFileResponseHOC<
+  TProps = any,
+  OperationOptions = ReactApollo.OperationOption<
+    TProps,
+    SendChatFileResponseMutation,
+    SendChatFileResponseVariables
+  >
+>(operationOptions: OperationOptions) {
+  return ReactApollo.graphql<
+    TProps,
+    SendChatFileResponseMutation,
+    SendChatFileResponseVariables
+  >(SendChatFileResponseDocument, operationOptions);
+}
 export const MessagesDocument = gql`
   query Messages {
     directDebitStatus
