@@ -7,12 +7,8 @@ import gql from 'graphql-tag';
 import {
   horizontalSizeClass,
   verticalSizeClass,
-  H_SPACIOUS,
-  H_REGULAR,
-  H_COMPACT,
-  V_SPACIOUS,
-  V_REGULAR,
-  V_COMPACT,
+  HorizontalSizeClass,
+  VerticalSizeClass,
 } from '../../../../services/DimensionSizes';
 import { Hero } from '../../components/Hero';
 
@@ -42,17 +38,17 @@ const styles = StyleSheet.create({
     lineHeight: 32,
     color: colors.OFF_BLACK,
     marginBottom: {
-      [V_SPACIOUS]: 15,
-      [V_REGULAR]: 15,
-      [V_COMPACT]: 0,
+      [VerticalSizeClass.SPACIOUS]: 15,
+      [VerticalSizeClass.REGULAR]: 15,
+      [VerticalSizeClass.COMPACT]: 0,
     }[verticalSizeClass],
     textAlign: 'center',
   },
   stepsContainer: {
     width: {
-      [H_SPACIOUS]: 350,
-      [H_REGULAR]: 320,
-      [H_COMPACT]: '100%',
+      [HorizontalSizeClass.SPACIOUS]: 350,
+      [HorizontalSizeClass.REGULAR]: 320,
+      [HorizontalSizeClass.COMPACT]: '100%',
     }[horizontalSizeClass],
     alignSelf: 'center',
   },
@@ -60,9 +56,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     marginBottom: {
-      [V_SPACIOUS]: 20,
-      [V_REGULAR]: 20,
-      [V_COMPACT]: 6,
+      [VerticalSizeClass.SPACIOUS]: 20,
+      [VerticalSizeClass.REGULAR]: 20,
+      [VerticalSizeClass.COMPACT]: 6,
     }[verticalSizeClass],
     position: 'relative',
     alignItems: 'center',
@@ -149,7 +145,7 @@ class OfferScreen extends React.Component {
     const spacious = require('../../../../../assets/offer/hero/switch-xl.png');
     const heroImage =
       {
-        [V_SPACIOUS]: spacious,
+        [VerticalSizeClass.SPACIOUS]: spacious,
       }[verticalSizeClass] || regular;
 
     const { disableScroll } = this.props;

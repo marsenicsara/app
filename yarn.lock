@@ -8221,10 +8221,10 @@ react-native-fs@^2.11.18:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
 
-react-native-gesture-handler@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.7.tgz#86677c709c42d04555210cad9759b09e2c657720"
-  integrity sha512-lu4RizR3iBJ6qq8UfcHQKbf+HaiQHMGaQPSMSy8i7ij6tsOxatKuzxuEZRMblQ2Ma7op4CpfssD29yo1AjI7PQ==
+react-native-gesture-handler@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.9.tgz#ddec4d19d51cb6fb54df6eca792ebd76aaef083f"
+  integrity sha512-TPaiS8cAGqQA9p1GwjDbgMyNVCO/7cWC05h1rWIX2ZLoB1oSxGEBi5Es211HpBUmsTAzrUGH7M+ASGkAQeYH/A==
   dependencies:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
@@ -8276,10 +8276,10 @@ react-native-mock-render@^0.1.2:
     react-timer-mixin "^0.13.3"
     warning "^2.1.0"
 
-react-native-navigation@2.0.2631:
-  version "2.0.2631"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2631.tgz#24fcf7bdaa8ef8223fc88e2b8f78630d21db71b4"
-  integrity sha512-4v4pmKi+yIJwxx2axR8H6ME4E3OGBw2jGmOBntfjNoKKEbHUzmDDVWVqVtkIRV5AEBp9KiAPM/eld94qytRusg==
+react-native-navigation@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.1.2.tgz#225698d7b39dd114a01ef0a301cca18af260316b"
+  integrity sha512-FmV0tekaWLN3m3TCsEnFVpuy/Zpng9KiFIVXFRgFcxidyvtWxrz2YgMQ/GidlJS17yF2eL7Al27mYLUJpDX6Ow==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.x.x"

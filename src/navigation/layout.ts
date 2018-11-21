@@ -1,5 +1,5 @@
 import { AsyncStorage, Platform } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { Navigation, LayoutBottomTabs, Layout } from 'react-native-navigation';
 
 import {
   SEEN_MARKETING_CAROUSEL_KEY,
@@ -25,7 +25,7 @@ import {
   OFFER_GROUPS,
 } from 'src/navigation/screens/offer/ab-test';
 
-export const getMarketingLayout = () => ({
+export const getMarketingLayout = (): SetLayoutOptions => ({
   root: {
     stack: {
       children: [MARKETING_SCREEN],
@@ -33,7 +33,7 @@ export const getMarketingLayout = () => ({
   },
 });
 
-export const getMainLayout = () => ({
+export const getMainLayout = (): SetLayoutOptions => ({
   root: {
     bottomTabs: {
       children: [
@@ -60,29 +60,29 @@ export const getMainLayout = () => ({
           },
         },
       ],
-    },
+    } as LayoutBottomTabs,
   },
   overlays:
     Platform.OS === 'ios'
       ? [
-          {
-            component: {
-              name: FAB_COMPONENT.name,
-              options: {
-                layout: {
-                  backgroundColor: 'transparent',
-                },
-                overlay: {
-                  interceptTouchOutside: false,
-                },
+        {
+          component: {
+            name: FAB_COMPONENT.name,
+            options: {
+              layout: {
+                backgroundColor: 'transparent',
+              },
+              overlay: {
+                interceptTouchOutside: false,
               },
             },
           },
-        ]
+        },
+      ]
       : [],
 });
 
-export const getChatLayout = () => ({
+export const getChatLayout = (): SetLayoutOptions => ({
   root: {
     stack: {
       children: [CHAT_SCREEN],
@@ -90,7 +90,7 @@ export const getChatLayout = () => ({
   },
 });
 
-export const getNewOfferLayout = () => ({
+export const getNewOfferLayout = (): SetLayoutOptions => ({
   root: {
     stack: {
       children: [NEW_OFFER_SCREEN],
@@ -98,7 +98,7 @@ export const getNewOfferLayout = () => ({
   },
 });
 
-export const getOldOfferLayout = () => ({
+export const getOldOfferLayout = (): SetLayoutOptions => ({
   modals: [
     {
       stack: {
@@ -117,7 +117,7 @@ export const getOfferLayout: () => Promise<any> = async () => {
   return getOfferLayout();
 };
 
-export const getDebugLayout = () => ({
+export const getDebugLayout = (): SetLayoutOptions => ({
   root: {
     stack: {
       children: [DEBUG_SCREEN],
@@ -130,7 +130,7 @@ export const shouldShowDashboard = (insuranceStatus: string) =>
     insuranceStatus,
   ) !== -1;
 
-export const getInitialLayout = async () => {
+export const getInitialLayout = async (): Promise<SetLayoutOptions> => {
   if (await AsyncStorage.getItem(LAUNCH_DEBUG)) {
     return getDebugLayout();
   }
@@ -145,7 +145,7 @@ export const getInitialLayout = async () => {
 
   Store.dispatch(insuranceActions.getInsurance());
 
-  return new Promise((resolve) => {
+  return new Promise<SetLayoutOptions>((resolve) => {
     const unsubscribe = Store.subscribe(async () => {
       const { insurance } = Store.getState();
 
@@ -169,15 +169,17 @@ export const getInitialLayout = async () => {
   });
 };
 
+interface SetLayoutOptions {
+  root: Layout;
+  modals?: any[];
+  overlays?: any[];
+}
+
 export const setLayout = ({
   root,
   modals = [],
   overlays = [],
-}: {
-  root: any;
-  modals?: any[];
-  overlays?: any[];
-}) => {
+}: SetLayoutOptions) => {
   Navigation.setDefaultOptions({
     topBar: {
       title: {
@@ -205,6 +207,7 @@ export const setLayout = ({
     },
     layout: {
       backgroundColor: 'white',
+      topMargin: 0,
     },
   });
 
@@ -222,6 +225,6 @@ export const setLayout = ({
 };
 
 export const setInitialLayout = async () => {
-  const layout: any = await getInitialLayout();
+  const layout = await getInitialLayout();
   setLayout(layout);
 };

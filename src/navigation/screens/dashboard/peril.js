@@ -1,6 +1,7 @@
 import React from 'react';
 import { HEDVIG_LOGO_TITLE_COMPONENT } from '../../components/hedvigLogoTitle';
 import { Perils } from '../../../components/Perils';
+import { navigationConstants } from '../../constants';
 
 import { CLOSE_BUTTON } from './buttons';
 
@@ -17,6 +18,10 @@ class PerilScreen extends React.Component {
       statusBar: {
         visible: true,
         style: 'dark',
+        drawBehind: false,
+      },
+      layout: {
+        topMargin: navigationConstants.statusBarHeight * 3,
       },
     };
   }

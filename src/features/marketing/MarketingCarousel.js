@@ -18,12 +18,8 @@ import { connect } from 'react-redux';
 import {
   verticalSizeClass,
   horizontalSizeClass,
-  V_SPACIOUS,
-  V_REGULAR,
-  V_COMPACT,
-  H_SPACIOUS,
-  H_REGULAR,
-  H_COMPACT,
+  VerticalSizeClass,
+  HorizontalSizeClass,
 } from '../../services/DimensionSizes';
 
 import {
@@ -36,6 +32,7 @@ import * as analyticsSelectors from '../analytics/selectors';
 
 import { CHAT_SCREEN } from '../../navigation/screens/chat';
 import { colors } from '@hedviginsurance/brand';
+import { DebugShortcut } from 'src/components/DebugShortcut';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -54,27 +51,27 @@ const slideStyles = StyleSheet.create({
   caption: {
     fontFamily: 'CircularStd-Bold',
     fontSize: {
-      [H_SPACIOUS]: 22,
-      [H_REGULAR]: 20,
-      [H_COMPACT]: 16,
+      [HorizontalSizeClass.SPACIOUS]: 22,
+      [HorizontalSizeClass.REGULAR]: 20,
+      [HorizontalSizeClass.COMPACT]: 16,
     }[horizontalSizeClass],
     lineHeight: {
-      [H_SPACIOUS]: 33,
-      [H_REGULAR]: 26,
-      [H_COMPACT]: 22,
+      [HorizontalSizeClass.SPACIOUS]: 33,
+      [HorizontalSizeClass.REGULAR]: 26,
+      [HorizontalSizeClass.COMPACT]: 22,
     }[horizontalSizeClass],
     textAlign: 'center',
     color: colors.OFF_BLACK,
     width: viewportWidth,
     paddingTop: {
-      [V_SPACIOUS]: 35,
-      [V_REGULAR]: 30,
-      [V_COMPACT]: 20,
+      [VerticalSizeClass.SPACIOUS]: 35,
+      [VerticalSizeClass.REGULAR]: 30,
+      [VerticalSizeClass.COMPACT]: 20,
     }[verticalSizeClass],
     paddingBottom: {
-      [V_SPACIOUS]: 180,
-      [V_REGULAR]: 165,
-      [V_COMPACT]: 160,
+      [VerticalSizeClass.SPACIOUS]: 180,
+      [VerticalSizeClass.REGULAR]: 165,
+      [VerticalSizeClass.COMPACT]: 160,
     }[verticalSizeClass],
     paddingLeft: 10,
     paddingRight: 10,
@@ -111,18 +108,18 @@ const slideImageStyles = StyleSheet.create({
     width: slideImageWidth,
     position: 'relative',
     top: {
-      [V_SPACIOUS]: 90,
-      [V_REGULAR]: 30,
-      [V_COMPACT]: 18,
+      [VerticalSizeClass.SPACIOUS]: 90,
+      [VerticalSizeClass.REGULAR]: 30,
+      [VerticalSizeClass.COMPACT]: 18,
     }[verticalSizeClass],
     overflow: 'hidden',
   },
   image: {
     position: 'absolute',
     top: {
-      [V_SPACIOUS]: 0,
-      [V_REGULAR]: 0,
-      [V_COMPACT]: -30,
+      [VerticalSizeClass.SPACIOUS]: 0,
+      [VerticalSizeClass.REGULAR]: 0,
+      [VerticalSizeClass.COMPACT]: -30,
     }[verticalSizeClass],
     left: 0,
     right: 0,
@@ -164,7 +161,6 @@ const marketingCarouselStyles = StyleSheet.create({
     width: viewportWidth,
     height: viewportHeight,
     backgroundColor: colors.PURPLE,
-    // justifyContent: 'center',
     alignItems: 'center',
   },
   hedvigLogo: {
@@ -172,9 +168,9 @@ const marketingCarouselStyles = StyleSheet.create({
     height: 30,
     position: 'absolute',
     top: {
-      [V_SPACIOUS]: 46,
-      [V_REGULAR]: 32,
-      [V_COMPACT]: 24,
+      [VerticalSizeClass.SPACIOUS]: 46,
+      [VerticalSizeClass.REGULAR]: 32,
+      [VerticalSizeClass.COMPACT]: 24,
     }[verticalSizeClass],
   },
   introHeader: {
@@ -184,9 +180,9 @@ const marketingCarouselStyles = StyleSheet.create({
     fontFamily: 'SoRay-ExtraBold',
     textAlign: 'center',
     top: {
-      [V_SPACIOUS]: 144,
-      [V_REGULAR]: 114,
-      [V_COMPACT]: 84,
+      [VerticalSizeClass.SPACIOUS]: 144,
+      [VerticalSizeClass.REGULAR]: 114,
+      [VerticalSizeClass.COMPACT]: 84,
     }[verticalSizeClass],
   },
   swiperDot: {
@@ -210,9 +206,9 @@ const marketingCarouselStyles = StyleSheet.create({
   },
   swiperPagination: {
     bottom: {
-      [V_SPACIOUS]: 25,
-      [V_REGULAR]: 18,
-      [V_COMPACT]: 18,
+      [VerticalSizeClass.SPACIOUS]: 25,
+      [VerticalSizeClass.REGULAR]: 18,
+      [VerticalSizeClass.COMPACT]: 18,
     }[verticalSizeClass],
   },
   slideOneContainer: {
@@ -246,9 +242,9 @@ const marketingCarouselStyles = StyleSheet.create({
     bottom: 0,
     width: viewportWidth,
     paddingBottom: {
-      [V_SPACIOUS]: 30,
-      [V_REGULAR]: 18,
-      [V_COMPACT]: 18,
+      [VerticalSizeClass.SPACIOUS]: 30,
+      [VerticalSizeClass.REGULAR]: 18,
+      [VerticalSizeClass.COMPACT]: 18,
     }[verticalSizeClass],
   },
   footerCtaButton: {
@@ -394,10 +390,12 @@ export default class MarketingCarousel extends React.Component {
                 resizeMode="cover"
                 source={require('../../../assets/offer/hero/intro-2.png')}
               >
-                <Image
-                  source={require('../../../assets/identity/hedvig_wordmark/hedvig_wordmark_white.png')}
-                  style={marketingCarouselStyles.hedvigLogo}
-                />
+                <DebugShortcut componentId={this.props.componentId}>
+                  <Image
+                    source={require('../../../assets/identity/hedvig_wordmark/hedvig_wordmark_white.png')}
+                    style={marketingCarouselStyles.hedvigLogo}
+                  />
+                </DebugShortcut>
                 <Text style={marketingCarouselStyles.introHeader}>
                   Hjälp när du behöver det
                 </Text>
