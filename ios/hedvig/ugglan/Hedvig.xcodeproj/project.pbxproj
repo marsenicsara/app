@@ -1,0 +1,974 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		57D07232D22F1372F2ABF923 /* Pods_Hedvig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEC312CE2CB0FAF35DC4885 /* Pods_Hedvig.framework */; };
+		635AFDC9FFEC447FED3E344A /* Pods_HedvigTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ECB8C55B64C4626A844526 /* Pods_HedvigTests.framework */; };
+		7D861438228D002C35A3D069 /* Pods_Hedvig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB75E1A221973638006B5CE4 /* Pods_Hedvig.framework */; };
+		EB06FE5C219EC9B8007DE1C9 /* SendChatTextResponse.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB06FE5B219EC9B8007DE1C9 /* SendChatTextResponse.graphql */; };
+		EB06FE5E219ECD6F007DE1C9 /* CurrentChatResponseSubscription.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB06FE5D219ECD6F007DE1C9 /* CurrentChatResponseSubscription.graphql */; };
+		EB06FE60219EE22E007DE1C9 /* SafeAreaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06FE5F219EE22E007DE1C9 /* SafeAreaContainer.swift */; };
+		EB06FE62219EEB84007DE1C9 /* SelectCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06FE61219EEB84007DE1C9 /* SelectCollectionView.swift */; };
+		EB06FE64219EED29007DE1C9 /* SelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06FE63219EED29007DE1C9 /* SelectCollectionViewCell.swift */; };
+		EB06FE67219EF150007DE1C9 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06FE66219EF150007DE1C9 /* SelectButton.swift */; };
+		EB06FE69219F1395007DE1C9 /* SendChatSingleSelectResponse.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB06FE68219F1395007DE1C9 /* SendChatSingleSelectResponse.graphql */; };
+		EB06FE6C21A03AE4007DE1C9 /* MarketingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06FE6B21A03AE4007DE1C9 /* MarketingViewController.swift */; };
+		EB06FE6E21A03B11007DE1C9 /* MarketingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06FE6D21A03B11007DE1C9 /* MarketingView.swift */; };
+		EB06FE7121A03DCA007DE1C9 /* OpenChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06FE7021A03DCA007DE1C9 /* OpenChatButton.swift */; };
+		EB328E6921988E9A00CF0624 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB328E6821988E9A00CF0624 /* SendButton.swift */; };
+		EB328E6B21989B7C00CF0624 /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB328E6A21989B7C00CF0624 /* CopyableLabel.swift */; };
+		EB5ED9CF21985D4B004CE441 /* HedvigColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5ED9CE21985D4B004CE441 /* HedvigColors.swift */; };
+		EB5ED9D5219860DF004CE441 /* SoRay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5ED9D1219860DE004CE441 /* SoRay-ExtraBold.ttf */; };
+		EB5ED9D6219860DF004CE441 /* SoRay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5ED9D1219860DE004CE441 /* SoRay-ExtraBold.ttf */; };
+		EB5ED9D7219860DF004CE441 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5ED9D2219860DE004CE441 /* CircularStd-Book.ttf */; };
+		EB5ED9D8219860DF004CE441 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5ED9D2219860DE004CE441 /* CircularStd-Book.ttf */; };
+		EB5ED9D9219860DF004CE441 /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5ED9D3219860DE004CE441 /* Merriweather-Light.ttf */; };
+		EB5ED9DA219860DF004CE441 /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5ED9D3219860DE004CE441 /* Merriweather-Light.ttf */; };
+		EB5ED9DB219860DF004CE441 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5ED9D4219860DF004CE441 /* CircularStd-Bold.ttf */; };
+		EB5ED9DC219860DF004CE441 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5ED9D4219860DF004CE441 /* CircularStd-Bold.ttf */; };
+		EB5ED9DE21986127004CE441 /* HedvigFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5ED9DD21986127004CE441 /* HedvigFonts.swift */; };
+		EB5ED9DF21986127004CE441 /* HedvigFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5ED9DD21986127004CE441 /* HedvigFonts.swift */; };
+		EB5ED9E421986A6C004CE441 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5ED9E321986A6C004CE441 /* Icon.swift */; };
+		EB75E15521930A94006B5CE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E15421930A94006B5CE4 /* AppDelegate.swift */; };
+		EB75E15C21930A95006B5CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB75E15B21930A95006B5CE4 /* Assets.xcassets */; };
+		EB75E15F21930A95006B5CE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB75E15D21930A95006B5CE4 /* LaunchScreen.storyboard */; };
+		EB75E16A21930A95006B5CE4 /* ChatViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E16921930A95006B5CE4 /* ChatViewTest.swift */; };
+		EB75E184219331B5006B5CE4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E183219331B5006B5CE4 /* AppState.swift */; };
+		EB75E188219332AE006B5CE4 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E187219332AE006B5CE4 /* ChatViewController.swift */; };
+		EB75E18C2193334F006B5CE4 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E18B2193334F006B5CE4 /* ChatView.swift */; };
+		EB75E191219337C2006B5CE4 /* DependenciesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E190219337C2006B5CE4 /* DependenciesContainer.swift */; };
+		EB75E19421933815006B5CE4 /* AppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E19321933815006B5CE4 /* AppNavigation.swift */; };
+		EB75E19821933BFD006B5CE4 /* InputFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E19721933BFD006B5CE4 /* InputFieldView.swift */; };
+		EB75E1A52197572E006B5CE4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E1A42197572E006B5CE4 /* Message.swift */; };
+		EB75E1A8219758E9006B5CE4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E1A7219758E9006B5CE4 /* MessageView.swift */; };
+		EB75E1AB21975CCC006B5CE4 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75E1AA21975CCC006B5CE4 /* ListView.swift */; };
+		EB88DB58219D5F9D00D5C8E1 /* InsertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB88DB57219D5F9D00D5C8E1 /* InsertMessage.swift */; };
+		EB88DB5A219D63DF00D5C8E1 /* SendingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB88DB59219D63DF00D5C8E1 /* SendingIndicator.swift */; };
+		EB88DB5C219DBD4E00D5C8E1 /* Messages.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB88DB5B219DBD4E00D5C8E1 /* Messages.graphql */; };
+		EB88DB5E219DC68700D5C8E1 /* SetMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB88DB5D219DC68700D5C8E1 /* SetMessages.swift */; };
+		EB88DB60219EB8C400D5C8E1 /* AuthorizationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB88DB5F219EB8C400D5C8E1 /* AuthorizationToken.swift */; };
+		EB88DB62219EBEE500D5C8E1 /* CreateSession.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB88DB61219EBEE500D5C8E1 /* CreateSession.graphql */; };
+		EBC049C3219B0F2F00AFC30F /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC049C2219B0F2F00AFC30F /* SendMessage.swift */; };
+		EBC049C5219B0F7E00AFC30F /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC049C4219B0F7E00AFC30F /* AppActions.swift */; };
+		EBC049CC219B58F900AFC30F /* UIView+RadiusMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC049CB219B58F900AFC30F /* UIView+RadiusMask.swift */; };
+		EBC049D4219C87DF00AFC30F /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = EBC049D1219C87DF00AFC30F /* schema.json */; };
+		EBC049D5219C87DF00AFC30F /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC049D2219C87DF00AFC30F /* API.swift */; };
+		EBC049D6219C87DF00AFC30F /* MessageSubscription.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EBC049D3219C87DF00AFC30F /* MessageSubscription.graphql */; };
+		EBC049D8219C88EB00AFC30F /* ApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC049D7219C88EB00AFC30F /* ApolloClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EB75E16621930A95006B5CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB75E14921930A94006B5CE4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB75E15021930A94006B5CE4;
+			remoteInfo = Hedvig;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		13FA3601F0B8BDBD7935F7CD /* Pods-HedvigTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HedvigTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HedvigTests/Pods-HedvigTests.release.xcconfig"; sourceTree = "<group>"; };
+		2DEC312CE2CB0FAF35DC4885 /* Pods_Hedvig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hedvig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F6B2B05E8EFE56C572BA222 /* Pods-Hedvig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hedvig.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hedvig/Pods-Hedvig.debug.xcconfig"; sourceTree = "<group>"; };
+		64746E2464ADFE0A14A3B61C /* Pods-Hedvig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hedvig.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hedvig/Pods-Hedvig.release.xcconfig"; sourceTree = "<group>"; };
+		9066419AE4DCAF8731CA72D7 /* Pods_HedvigUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HedvigUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0BD1F44A8B0A6F955342C51 /* Pods-HedvigUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HedvigUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HedvigUITests/Pods-HedvigUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D806B7D70CD966A5F5BE4DBC /* Pods-HedvigUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HedvigUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HedvigUITests/Pods-HedvigUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E1ECB8C55B64C4626A844526 /* Pods_HedvigTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HedvigTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB06FE5B219EC9B8007DE1C9 /* SendChatTextResponse.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SendChatTextResponse.graphql; sourceTree = "<group>"; };
+		EB06FE5D219ECD6F007DE1C9 /* CurrentChatResponseSubscription.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CurrentChatResponseSubscription.graphql; sourceTree = "<group>"; };
+		EB06FE5F219EE22E007DE1C9 /* SafeAreaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaContainer.swift; sourceTree = "<group>"; };
+		EB06FE61219EEB84007DE1C9 /* SelectCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionView.swift; sourceTree = "<group>"; };
+		EB06FE63219EED29007DE1C9 /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
+		EB06FE66219EF150007DE1C9 /* SelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
+		EB06FE68219F1395007DE1C9 /* SendChatSingleSelectResponse.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SendChatSingleSelectResponse.graphql; sourceTree = "<group>"; };
+		EB06FE6B21A03AE4007DE1C9 /* MarketingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingViewController.swift; sourceTree = "<group>"; };
+		EB06FE6D21A03B11007DE1C9 /* MarketingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingView.swift; sourceTree = "<group>"; };
+		EB06FE7021A03DCA007DE1C9 /* OpenChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChatButton.swift; sourceTree = "<group>"; };
+		EB328E6821988E9A00CF0624 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
+		EB328E6A21989B7C00CF0624 /* CopyableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
+		EB5ED9CE21985D4B004CE441 /* HedvigColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HedvigColors.swift; sourceTree = "<group>"; };
+		EB5ED9D1219860DE004CE441 /* SoRay-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SoRay-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EB5ED9D2219860DE004CE441 /* CircularStd-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Book.ttf"; sourceTree = "<group>"; };
+		EB5ED9D3219860DE004CE441 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Light.ttf"; sourceTree = "<group>"; };
+		EB5ED9D4219860DF004CE441 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.ttf"; sourceTree = "<group>"; };
+		EB5ED9DD21986127004CE441 /* HedvigFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HedvigFonts.swift; sourceTree = "<group>"; };
+		EB5ED9E321986A6C004CE441 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		EB75E15121930A94006B5CE4 /* Hedvig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hedvig.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB75E15421930A94006B5CE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB75E15B21930A95006B5CE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB75E15E21930A95006B5CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EB75E16021930A95006B5CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB75E16521930A95006B5CE4 /* HedvigTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HedvigTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB75E16921930A95006B5CE4 /* ChatViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewTest.swift; sourceTree = "<group>"; };
+		EB75E16B21930A95006B5CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB75E183219331B5006B5CE4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		EB75E187219332AE006B5CE4 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		EB75E18B2193334F006B5CE4 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		EB75E190219337C2006B5CE4 /* DependenciesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesContainer.swift; sourceTree = "<group>"; };
+		EB75E19321933815006B5CE4 /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
+		EB75E19721933BFD006B5CE4 /* InputFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldView.swift; sourceTree = "<group>"; };
+		EB75E1A221973638006B5CE4 /* Pods_Hedvig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Hedvig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB75E1A42197572E006B5CE4 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		EB75E1A7219758E9006B5CE4 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		EB75E1AA21975CCC006B5CE4 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		EB88DB57219D5F9D00D5C8E1 /* InsertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertMessage.swift; sourceTree = "<group>"; };
+		EB88DB59219D63DF00D5C8E1 /* SendingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingIndicator.swift; sourceTree = "<group>"; };
+		EB88DB5B219DBD4E00D5C8E1 /* Messages.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Messages.graphql; sourceTree = "<group>"; };
+		EB88DB5D219DC68700D5C8E1 /* SetMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMessages.swift; sourceTree = "<group>"; };
+		EB88DB5F219EB8C400D5C8E1 /* AuthorizationToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationToken.swift; sourceTree = "<group>"; };
+		EB88DB61219EBEE500D5C8E1 /* CreateSession.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateSession.graphql; sourceTree = "<group>"; };
+		EBC049C2219B0F2F00AFC30F /* SendMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
+		EBC049C4219B0F7E00AFC30F /* AppActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActions.swift; sourceTree = "<group>"; };
+		EBC049CB219B58F900AFC30F /* UIView+RadiusMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RadiusMask.swift"; sourceTree = "<group>"; };
+		EBC049D1219C87DF00AFC30F /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		EBC049D2219C87DF00AFC30F /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		EBC049D3219C87DF00AFC30F /* MessageSubscription.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MessageSubscription.graphql; sourceTree = "<group>"; };
+		EBC049D7219C88EB00AFC30F /* ApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloClient.swift; sourceTree = "<group>"; };
+		F3FFCEDFA7D852141148DF5A /* Pods-HedvigTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HedvigTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HedvigTests/Pods-HedvigTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB75E14E21930A94006B5CE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57D07232D22F1372F2ABF923 /* Pods_Hedvig.framework in Frameworks */,
+				7D861438228D002C35A3D069 /* Pods_Hedvig.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB75E16221930A95006B5CE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				635AFDC9FFEC447FED3E344A /* Pods_HedvigTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21EDD2C3550A9477D864A4FD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2F6B2B05E8EFE56C572BA222 /* Pods-Hedvig.debug.xcconfig */,
+				64746E2464ADFE0A14A3B61C /* Pods-Hedvig.release.xcconfig */,
+				F3FFCEDFA7D852141148DF5A /* Pods-HedvigTests.debug.xcconfig */,
+				13FA3601F0B8BDBD7935F7CD /* Pods-HedvigTests.release.xcconfig */,
+				D806B7D70CD966A5F5BE4DBC /* Pods-HedvigUITests.debug.xcconfig */,
+				D0BD1F44A8B0A6F955342C51 /* Pods-HedvigUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EB06FE65219EF131007DE1C9 /* SelectCollection */ = {
+			isa = PBXGroup;
+			children = (
+				EB06FE61219EEB84007DE1C9 /* SelectCollectionView.swift */,
+				EB06FE63219EED29007DE1C9 /* SelectCollectionViewCell.swift */,
+				EB06FE66219EF150007DE1C9 /* SelectButton.swift */,
+			);
+			path = SelectCollection;
+			sourceTree = "<group>";
+		};
+		EB06FE6A21A03AB2007DE1C9 /* MarketingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				EB06FE6F21A03DB8007DE1C9 /* Subviews */,
+				EB06FE6B21A03AE4007DE1C9 /* MarketingViewController.swift */,
+				EB06FE6D21A03B11007DE1C9 /* MarketingView.swift */,
+			);
+			path = MarketingScreen;
+			sourceTree = "<group>";
+		};
+		EB06FE6F21A03DB8007DE1C9 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				EB06FE7021A03DCA007DE1C9 /* OpenChatButton.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		EB1B4A9B21A44E8A00DA341C /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				EB06FE68219F1395007DE1C9 /* SendChatSingleSelectResponse.graphql */,
+				EB88DB61219EBEE500D5C8E1 /* CreateSession.graphql */,
+				EB06FE5D219ECD6F007DE1C9 /* CurrentChatResponseSubscription.graphql */,
+				EB06FE5B219EC9B8007DE1C9 /* SendChatTextResponse.graphql */,
+				EBC049D3219C87DF00AFC30F /* MessageSubscription.graphql */,
+				EB88DB5B219DBD4E00D5C8E1 /* Messages.graphql */,
+			);
+			path = GraphQL;
+			sourceTree = "<group>";
+		};
+		EB328E6C21989BCB00CF0624 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				EB328E6A21989B7C00CF0624 /* CopyableLabel.swift */,
+				EBC049CB219B58F900AFC30F /* UIView+RadiusMask.swift */,
+			);
+			path = Generic;
+			sourceTree = "<group>";
+		};
+		EB5ED9CD21985D37004CE441 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EB5ED9E021986666004CE441 /* Icons */,
+				EB5ED9D0219860A9004CE441 /* Fonts */,
+				EB75E15B21930A95006B5CE4 /* Assets.xcassets */,
+				EB5ED9CE21985D4B004CE441 /* HedvigColors.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		EB5ED9D0219860A9004CE441 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EB5ED9D4219860DF004CE441 /* CircularStd-Bold.ttf */,
+				EB5ED9D2219860DE004CE441 /* CircularStd-Book.ttf */,
+				EB5ED9D3219860DE004CE441 /* Merriweather-Light.ttf */,
+				EB5ED9D1219860DE004CE441 /* SoRay-ExtraBold.ttf */,
+				EB5ED9DD21986127004CE441 /* HedvigFonts.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		EB5ED9E021986666004CE441 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				EB5ED9E321986A6C004CE441 /* Icon.swift */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+		EB75E14821930A94006B5CE4 = {
+			isa = PBXGroup;
+			children = (
+				EB75E15321930A94006B5CE4 /* Hedvig */,
+				EB75E16821930A95006B5CE4 /* HedvigTests */,
+				EB75E15221930A94006B5CE4 /* Products */,
+				21EDD2C3550A9477D864A4FD /* Pods */,
+				F42E0389CDD3147AF74CFD44 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EB75E15221930A94006B5CE4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E15121930A94006B5CE4 /* Hedvig.app */,
+				EB75E16521930A95006B5CE4 /* HedvigTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB75E15321930A94006B5CE4 /* Hedvig */ = {
+			isa = PBXGroup;
+			children = (
+				EBC049D0219C87B300AFC30F /* Data */,
+				EBC049C1219B0F1B00AFC30F /* Actions */,
+				EB5ED9CD21985D37004CE441 /* Assets */,
+				EB75E19221933806006B5CE4 /* Navigation */,
+				EB75E18F219337B6006B5CE4 /* Dependencies */,
+				EB75E1852193328E006B5CE4 /* UI */,
+				EB75E182219331A8006B5CE4 /* State */,
+				EB75E15421930A94006B5CE4 /* AppDelegate.swift */,
+				EB75E15D21930A95006B5CE4 /* LaunchScreen.storyboard */,
+				EB75E16021930A95006B5CE4 /* Info.plist */,
+			);
+			path = Hedvig;
+			sourceTree = "<group>";
+		};
+		EB75E16821930A95006B5CE4 /* HedvigTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E16921930A95006B5CE4 /* ChatViewTest.swift */,
+				EB75E16B21930A95006B5CE4 /* Info.plist */,
+			);
+			path = HedvigTests;
+			sourceTree = "<group>";
+		};
+		EB75E182219331A8006B5CE4 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E183219331B5006B5CE4 /* AppState.swift */,
+				EB75E1A42197572E006B5CE4 /* Message.swift */,
+				EB88DB5F219EB8C400D5C8E1 /* AuthorizationToken.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		EB75E1852193328E006B5CE4 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EB06FE6A21A03AB2007DE1C9 /* MarketingScreen */,
+				EB328E6C21989BCB00CF0624 /* Generic */,
+				EB75E18621933298006B5CE4 /* ChatScreen */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		EB75E18621933298006B5CE4 /* ChatScreen */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E19521933BE3006B5CE4 /* Subviews */,
+				EB75E187219332AE006B5CE4 /* ChatViewController.swift */,
+				EB75E18B2193334F006B5CE4 /* ChatView.swift */,
+			);
+			path = ChatScreen;
+			sourceTree = "<group>";
+		};
+		EB75E18F219337B6006B5CE4 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E190219337C2006B5CE4 /* DependenciesContainer.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		EB75E19221933806006B5CE4 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E19321933815006B5CE4 /* AppNavigation.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		EB75E19521933BE3006B5CE4 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E1A921975CB9006B5CE4 /* ListView */,
+				EB75E1A6219758DC006B5CE4 /* Message */,
+				EB75E19621933BEB006B5CE4 /* InputField */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		EB75E19621933BEB006B5CE4 /* InputField */ = {
+			isa = PBXGroup;
+			children = (
+				EB06FE65219EF131007DE1C9 /* SelectCollection */,
+				EB75E19721933BFD006B5CE4 /* InputFieldView.swift */,
+				EB328E6821988E9A00CF0624 /* SendButton.swift */,
+				EB06FE5F219EE22E007DE1C9 /* SafeAreaContainer.swift */,
+			);
+			path = InputField;
+			sourceTree = "<group>";
+		};
+		EB75E1A6219758DC006B5CE4 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E1A7219758E9006B5CE4 /* MessageView.swift */,
+				EB88DB59219D63DF00D5C8E1 /* SendingIndicator.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		EB75E1A921975CB9006B5CE4 /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E1AA21975CCC006B5CE4 /* ListView.swift */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		EBC049C1219B0F1B00AFC30F /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				EBC049C2219B0F2F00AFC30F /* SendMessage.swift */,
+				EBC049C4219B0F7E00AFC30F /* AppActions.swift */,
+				EB88DB57219D5F9D00D5C8E1 /* InsertMessage.swift */,
+				EB88DB5D219DC68700D5C8E1 /* SetMessages.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		EBC049D0219C87B300AFC30F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EB1B4A9B21A44E8A00DA341C /* GraphQL */,
+				EBC049D2219C87DF00AFC30F /* API.swift */,
+				EBC049D1219C87DF00AFC30F /* schema.json */,
+				EBC049D7219C88EB00AFC30F /* ApolloClient.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F42E0389CDD3147AF74CFD44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB75E1A221973638006B5CE4 /* Pods_Hedvig.framework */,
+				2DEC312CE2CB0FAF35DC4885 /* Pods_Hedvig.framework */,
+				E1ECB8C55B64C4626A844526 /* Pods_HedvigTests.framework */,
+				9066419AE4DCAF8731CA72D7 /* Pods_HedvigUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB75E15021930A94006B5CE4 /* Hedvig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB75E17921930A95006B5CE4 /* Build configuration list for PBXNativeTarget "Hedvig" */;
+			buildPhases = (
+				660C5C5DFB5E6A4FFA6C9CD0 /* [CP] Check Pods Manifest.lock */,
+				EB75E14D21930A94006B5CE4 /* Sources */,
+				EB75E14E21930A94006B5CE4 /* Frameworks */,
+				EB75E14F21930A94006B5CE4 /* Resources */,
+				255C099E949733C48A4322D1 /* [CP] Embed Pods Frameworks */,
+				EBC049CA219B320400AFC30F /* Format Swift code */,
+				EB5ED9E5219874B3004CE441 /* Lint Swift code */,
+				EBC049CD219C833B00AFC30F /* Run Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hedvig;
+			productName = Hedvig;
+			productReference = EB75E15121930A94006B5CE4 /* Hedvig.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EB75E16421930A95006B5CE4 /* HedvigTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB75E17C21930A95006B5CE4 /* Build configuration list for PBXNativeTarget "HedvigTests" */;
+			buildPhases = (
+				A654EA2B414FD7D9E448E4DC /* [CP] Check Pods Manifest.lock */,
+				EB75E16121930A95006B5CE4 /* Sources */,
+				EB75E16221930A95006B5CE4 /* Frameworks */,
+				EB75E16321930A95006B5CE4 /* Resources */,
+				5B9E6CC4B380044A8158C4A4 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB75E16721930A95006B5CE4 /* PBXTargetDependency */,
+			);
+			name = HedvigTests;
+			productName = HedvigTests;
+			productReference = EB75E16521930A95006B5CE4 /* HedvigTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB75E14921930A94006B5CE4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Hedvig AB";
+				TargetAttributes = {
+					EB75E15021930A94006B5CE4 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					EB75E16421930A95006B5CE4 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = EB75E15021930A94006B5CE4;
+					};
+				};
+			};
+			buildConfigurationList = EB75E14C21930A94006B5CE4 /* Build configuration list for PBXProject "Hedvig" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB75E14821930A94006B5CE4;
+			productRefGroup = EB75E15221930A94006B5CE4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB75E15021930A94006B5CE4 /* Hedvig */,
+				EB75E16421930A95006B5CE4 /* HedvigTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB75E14F21930A94006B5CE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB88DB62219EBEE500D5C8E1 /* CreateSession.graphql in Resources */,
+				EB06FE5C219EC9B8007DE1C9 /* SendChatTextResponse.graphql in Resources */,
+				EBC049D4219C87DF00AFC30F /* schema.json in Resources */,
+				EBC049D6219C87DF00AFC30F /* MessageSubscription.graphql in Resources */,
+				EB5ED9D7219860DF004CE441 /* CircularStd-Book.ttf in Resources */,
+				EB5ED9D5219860DF004CE441 /* SoRay-ExtraBold.ttf in Resources */,
+				EB5ED9DB219860DF004CE441 /* CircularStd-Bold.ttf in Resources */,
+				EB06FE5E219ECD6F007DE1C9 /* CurrentChatResponseSubscription.graphql in Resources */,
+				EB75E15F21930A95006B5CE4 /* LaunchScreen.storyboard in Resources */,
+				EB75E15C21930A95006B5CE4 /* Assets.xcassets in Resources */,
+				EB88DB5C219DBD4E00D5C8E1 /* Messages.graphql in Resources */,
+				EB06FE69219F1395007DE1C9 /* SendChatSingleSelectResponse.graphql in Resources */,
+				EB5ED9D9219860DF004CE441 /* Merriweather-Light.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB75E16321930A95006B5CE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB5ED9DA219860DF004CE441 /* Merriweather-Light.ttf in Resources */,
+				EB5ED9D8219860DF004CE441 /* CircularStd-Book.ttf in Resources */,
+				EB5ED9DC219860DF004CE441 /* CircularStd-Bold.ttf in Resources */,
+				EB5ED9D6219860DF004CE441 /* SoRay-ExtraBold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		255C099E949733C48A4322D1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hedvig/Pods-Hedvig-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
+				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicColor/DynamicColor.framework",
+				"${BUILT_PRODUCTS_DIR}/FlowFramework/Flow.framework",
+				"${BUILT_PRODUCTS_DIR}/Katana/Katana.framework",
+				"${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/Tempura/Tempura.framework",
+				"${BUILT_PRODUCTS_DIR}/UIViewRoundedCorners/UIViewRoundedCorners.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apollo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicColor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Katana.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tempura.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIViewRoundedCorners.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hedvig/Pods-Hedvig-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B9E6CC4B380044A8158C4A4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HedvigTests/Pods-HedvigTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Katana/Katana.framework",
+				"${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/Tempura/Tempura.framework",
+				"${BUILT_PRODUCTS_DIR}/TempuraTesting/TempuraTesting.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Katana.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tempura.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TempuraTesting.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HedvigTests/Pods-HedvigTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		660C5C5DFB5E6A4FFA6C9CD0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hedvig-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A654EA2B414FD7D9E448E4DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HedvigTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB5ED9E5219874B3004CE441 /* Lint Swift code */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Lint Swift code";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+		EBC049CA219B320400AFC30F /* Format Swift code */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Format Swift code";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \"${SRCROOT}\" --disable trailingCommas --exclude Pods\n";
+		};
+		EBC049CD219C833B00AFC30F /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\"  --schema=Data/schema.json Data/API.swift\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB75E14D21930A94006B5CE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB88DB5E219DC68700D5C8E1 /* SetMessages.swift in Sources */,
+				EB06FE6C21A03AE4007DE1C9 /* MarketingViewController.swift in Sources */,
+				EB75E184219331B5006B5CE4 /* AppState.swift in Sources */,
+				EBC049D5219C87DF00AFC30F /* API.swift in Sources */,
+				EB5ED9CF21985D4B004CE441 /* HedvigColors.swift in Sources */,
+				EB06FE6E21A03B11007DE1C9 /* MarketingView.swift in Sources */,
+				EB06FE62219EEB84007DE1C9 /* SelectCollectionView.swift in Sources */,
+				EB06FE67219EF150007DE1C9 /* SelectButton.swift in Sources */,
+				EBC049D8219C88EB00AFC30F /* ApolloClient.swift in Sources */,
+				EB06FE60219EE22E007DE1C9 /* SafeAreaContainer.swift in Sources */,
+				EB5ED9E421986A6C004CE441 /* Icon.swift in Sources */,
+				EB75E188219332AE006B5CE4 /* ChatViewController.swift in Sources */,
+				EBC049CC219B58F900AFC30F /* UIView+RadiusMask.swift in Sources */,
+				EB75E1AB21975CCC006B5CE4 /* ListView.swift in Sources */,
+				EB328E6B21989B7C00CF0624 /* CopyableLabel.swift in Sources */,
+				EB75E19421933815006B5CE4 /* AppNavigation.swift in Sources */,
+				EB88DB58219D5F9D00D5C8E1 /* InsertMessage.swift in Sources */,
+				EB88DB60219EB8C400D5C8E1 /* AuthorizationToken.swift in Sources */,
+				EB5ED9DE21986127004CE441 /* HedvigFonts.swift in Sources */,
+				EB328E6921988E9A00CF0624 /* SendButton.swift in Sources */,
+				EBC049C5219B0F7E00AFC30F /* AppActions.swift in Sources */,
+				EB75E1A8219758E9006B5CE4 /* MessageView.swift in Sources */,
+				EB75E18C2193334F006B5CE4 /* ChatView.swift in Sources */,
+				EB88DB5A219D63DF00D5C8E1 /* SendingIndicator.swift in Sources */,
+				EBC049C3219B0F2F00AFC30F /* SendMessage.swift in Sources */,
+				EB06FE7121A03DCA007DE1C9 /* OpenChatButton.swift in Sources */,
+				EB75E191219337C2006B5CE4 /* DependenciesContainer.swift in Sources */,
+				EB06FE64219EED29007DE1C9 /* SelectCollectionViewCell.swift in Sources */,
+				EB75E1A52197572E006B5CE4 /* Message.swift in Sources */,
+				EB75E19821933BFD006B5CE4 /* InputFieldView.swift in Sources */,
+				EB75E15521930A94006B5CE4 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB75E16121930A95006B5CE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB75E16A21930A95006B5CE4 /* ChatViewTest.swift in Sources */,
+				EB5ED9DF21986127004CE441 /* HedvigFonts.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EB75E16721930A95006B5CE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB75E15021930A94006B5CE4 /* Hedvig */;
+			targetProxy = EB75E16621930A95006B5CE4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EB75E15D21930A95006B5CE4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB75E15E21930A95006B5CE4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EB75E17721930A95006B5CE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EB75E17821930A95006B5CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB75E17A21930A95006B5CE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F6B2B05E8EFE56C572BA222 /* Pods-Hedvig.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Hedvig/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.Hedvig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB75E17B21930A95006B5CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64746E2464ADFE0A14A3B61C /* Pods-Hedvig.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Hedvig/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.Hedvig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EB75E17D21930A95006B5CE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3FFCEDFA7D852141148DF5A /* Pods-HedvigTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				INFOPLIST_FILE = HedvigTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.HedvigTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hedvig.app/Hedvig";
+			};
+			name = Debug;
+		};
+		EB75E17E21930A95006B5CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13FA3601F0B8BDBD7935F7CD /* Pods-HedvigTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				INFOPLIST_FILE = HedvigTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.HedvigTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hedvig.app/Hedvig";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB75E14C21930A94006B5CE4 /* Build configuration list for PBXProject "Hedvig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB75E17721930A95006B5CE4 /* Debug */,
+				EB75E17821930A95006B5CE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB75E17921930A95006B5CE4 /* Build configuration list for PBXNativeTarget "Hedvig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB75E17A21930A95006B5CE4 /* Debug */,
+				EB75E17B21930A95006B5CE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB75E17C21930A95006B5CE4 /* Build configuration list for PBXNativeTarget "HedvigTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB75E17D21930A95006B5CE4 /* Debug */,
+				EB75E17E21930A95006B5CE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB75E14921930A94006B5CE4 /* Project object */;
+}
