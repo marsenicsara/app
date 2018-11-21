@@ -3,7 +3,7 @@
 //  hedvig
 //
 //  Created by Sam Pettersson on 2018-11-21.
-//  Copyright © 2018 650 Industries, Inc. All rights reserved.
+//  Copyright © 2018 Hedvig AB, All rights reserved.
 //
 
 import Foundation
