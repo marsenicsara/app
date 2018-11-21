@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { View, AppState } from 'react-native';
+import { View, AppState, Text, Alert } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
 import { Container, EffectMap, EffectProps } from 'constate';
@@ -27,6 +27,9 @@ import {
 } from '../../navigation/screens/chat/buttons';
 
 import { Message } from './types';
+
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -150,6 +153,138 @@ const handleAppStateChange = (
   }
 };
 
+const MESSAGE_SUBSCRIPTION = gql`
+  subscription onNewMessage {
+    message {
+      globalId
+    }
+  }
+`;
+
+const MESSAGE_QUERY = gql`
+  query Messages {
+    messages {
+      globalId
+      id
+      body {
+        ...SingleSelect
+        ...MultipleSelect
+        ...Text
+        ...Number
+        ...Audio
+        ...BankIdCollect
+        ...Paragraph
+        ...File
+        ...Undefined
+      }
+      header {
+        ...Header
+      }
+    }
+  }
+
+  fragment Header on MessageHeader {
+    messageId
+    fromMyself
+    timeStamp
+    richTextChatCompatible
+    editAllowed
+    shouldRequestPushNotifications
+  }
+
+  fragment SingleSelect on MessageBodySingleSelect {
+    type
+    id
+    text
+    choices {
+      ...ChoicesSelection
+      ...ChoicesLink
+      ...ChoicesUndefined
+    }
+  }
+
+  fragment MultipleSelect on MessageBodySingleSelect {
+    type
+    id
+    text
+    choices {
+      ...ChoicesSelection
+      ...ChoicesLink
+      ...ChoicesUndefined
+    }
+  }
+
+  fragment Text on MessageBodyText {
+    type
+    id
+    text
+  }
+
+  fragment Number on MessageBodyText {
+    type
+    id
+    text
+  }
+
+  fragment Audio on MessageBodyAudio {
+    type
+    id
+    text
+    url
+  }
+
+  fragment BankIdCollect on MessageBodyBankIdCollect {
+    type
+    id
+    text
+    referenceId
+  }
+
+  fragment File on MessageBodyFile {
+    type
+    id
+    text
+    key
+    mimeType
+  }
+
+  fragment Undefined on MessageBodyUndefined {
+    type
+    id
+    text
+  }
+
+  fragment ChoicesSelection on MessageBodyChoicesSelection {
+    type
+    value
+    text
+    selected
+  }
+
+  fragment ChoicesLink on MessageBodyChoicesLink {
+    type
+    value
+    text
+    selected
+    view
+    appUrl
+    webUrl
+  }
+
+  fragment ChoicesUndefined on MessageBodyChoicesUndefined {
+    type
+    value
+    text
+    selected
+  }
+
+  fragment Paragraph on MessageBodyParagraph {
+    type
+    id
+    text
+  }
+`;
+
 const Chat: React.SFC<ChatProps> = ({
   onboardingDone = false,
   isModal,
@@ -161,77 +296,105 @@ const Chat: React.SFC<ChatProps> = ({
   getMessages,
   resetConversation,
 }) => (
-  <Container effects={effects} initialState={initialState}>
-    {({ startPolling, stopPolling }) => (
-      <>
-        <NavigationEvents
-          onNavigationButtonPressed={(event: any) => {
-            if (event.buttonId === RESTART_BUTTON.id) {
-              resetConversation();
-            }
+  <Query query={MESSAGE_QUERY} variables={{ query: 's' }}>
+    {({ loading, error, data }) => {
+      if (loading || !data) {
+        return (
+          <>
+            <Text>laddar...</Text>
+            <Loader />
+          </>
+        );
+      }
 
-            if (event.buttonId === CLOSE_BUTTON.id) {
-              Navigation.dismissModal(componentId);
-            }
+      if (error) {
+        throw new Error(
+          `error when fetching data: ${JSON.stringify(error, null, 2)}`,
+        );
+      }
 
-            if (event.buttonId === GO_TO_DASHBOARD_BUTTON.id) {
-              setLayout(getMainLayout());
-            }
+      console.log('DATA HERERERE');
+      console.log(data);
 
-            if (event.buttonId === SHOW_OFFER_BUTTON.id) {
-              showOffer(componentId);
-            }
-          }}
-        />
-        <Mount
-          on={() => {
-            getMessages(intent);
-            getAvatars();
-            AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
-            });
-            startPolling(getMessages, intent);
-          }}
-        >
-          {null}
-        </Mount>
-        <Update
-          was={() => {
-            startPolling(getMessages, intent);
-          }}
-          watched={messages}
-        >
-          {null}
-        </Update>
-        <Unmount
-          on={() => {
-            AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
-            });
-            stopPolling();
-          }}
-        >
-          {null}
-        </Unmount>
+      return <Text>kalrt</Text>;
 
-        <NavigationOptions
-          options={getNavigationOptions(
-            onboardingDone,
-            isModal,
-            showReturnToOfferButton,
+      return (
+        <Container effects={effects} initialState={initialState}>
+          {({ startPolling, stopPolling }) => (
+            <>
+              <NavigationEvents
+                onNavigationButtonPressed={(event: any) => {
+                  if (event.buttonId === RESTART_BUTTON.id) {
+                    resetConversation();
+                  }
+
+                  if (event.buttonId === CLOSE_BUTTON.id) {
+                    Navigation.dismissModal(componentId);
+                  }
+
+                  if (event.buttonId === GO_TO_DASHBOARD_BUTTON.id) {
+                    setLayout(getMainLayout());
+                  }
+
+                  if (event.buttonId === SHOW_OFFER_BUTTON.id) {
+                    showOffer(componentId);
+                  }
+                }}
+              />
+              <Mount
+                on={() => {
+                  // getMessages(intent);
+                  getAvatars();
+                  AppState.addEventListener('change', (appState) => {
+                    handleAppStateChange(appState, getMessages, intent);
+                  });
+                  // startPolling(getMessages, intent);
+                }}
+              >
+                {null}
+              </Mount>
+              <Update
+                was={() => {
+                  // startPolling(getMessages, intent);
+                }}
+                watched={messages}
+              >
+                {null}
+              </Update>
+              <Unmount
+                on={() => {
+                  AppState.addEventListener('change', (appState) => {
+                    handleAppStateChange(appState, getMessages, intent);
+                  });
+                  stopPolling();
+                }}
+              >
+                {null}
+              </Unmount>
+
+              <NavigationOptions
+                options={getNavigationOptions(
+                  onboardingDone,
+                  isModal,
+                  showReturnToOfferButton,
+                )}
+              >
+                <Messages>
+                  {messages.length ? <MessageList /> : <Loader />}
+                </Messages>
+                <Response>
+                  <InputComponent
+                    showOffer={() => showOffer(componentId)}
+                    messages={messages}
+                  />
+                </Response>
+              </NavigationOptions>
+            </>
           )}
-        >
-          <Messages>{messages.length ? <MessageList /> : <Loader />}</Messages>
-          <Response>
-            <InputComponent
-              showOffer={() => showOffer(componentId)}
-              messages={messages}
-            />
-          </Response>
-        </NavigationOptions>
-      </>
-    )}
-  </Container>
+        </Container>
+      );
+    }}
+  </Query>
 );
 
 const mapStateToProps = (state: any) => {
