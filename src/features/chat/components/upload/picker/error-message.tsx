@@ -11,9 +11,15 @@ import { Sequence, Delay, Spring } from 'animated-react-native-components';
 import { AnimatedView } from 'src/components/AnimatedPrimitives';
 
 const Container = styled(AnimatedView)(
-  ({ animatedValue }: { animatedValue: Animated.Value }) => ({
+  ({
+    animatedValue,
+    error,
+  }: {
+    animatedValue: Animated.Value;
+    error: boolean;
+  }) => ({
     height: '100%',
-    width: Dimensions.get('window').width * 0.65,
+    width: error ? Dimensions.get('window').width * 0.65 : 0,
     padding: '10%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -59,7 +65,7 @@ export const ErrorMessage: React.SFC<ErrorMessageProps> = ({
       config={{ bounciness: 12 }}
     >
       {(animatedValue) => (
-        <Container animatedValue={animatedValue}>
+        <Container animatedValue={animatedValue} error={error}>
           <CircledExclamationMark width={30} height={30} />
           <Spacing height={15} />
           <TranslationsConsumer textKey="FILE_UPLOAD_ERROR">
