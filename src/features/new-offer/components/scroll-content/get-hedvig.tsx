@@ -1,12 +1,25 @@
 import * as React from 'react';
-import { Text, View, Animated, TextProps } from 'react-native';
+import {
+  Text,
+  View,
+  Animated,
+  TextProps,
+  TouchableOpacity,
+  AsyncStorage,
+} from 'react-native';
 import { colors, fonts } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Container, ActionMap } from 'constate';
-
+import { Store } from 'src/setupApp';
+import { Mutation } from 'react-apollo';
 import { Spacing } from 'src/components/Spacing';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { deleteToken } from 'src/graphql/context';
+import { setLayout } from 'src/navigation/layouts/setLayout';
+import gql from 'graphql-tag';
+import { getChatLayout } from 'src/navigation/layouts/chatLayout';
+import { chatActions } from 'hedvig-redux';
 
 const AnimatedText = Animated.createAnimatedComponent<TextProps>(Text);
 
@@ -84,6 +97,12 @@ const actions: ActionMap<State, Actions> = {
   }),
 };
 
+const LOGOUT_MUTATION = gql`
+  mutation LogoutMutation {
+    logout
+  }
+`;
+
 export const GetHedvig: React.SFC<GetHedvigProps> = ({
   scrollAnimatedValue,
 }) => (
@@ -93,6 +112,44 @@ export const GetHedvig: React.SFC<GetHedvigProps> = ({
         onLayout={(event) => setPositionFromTop(event.nativeEvent.layout.y)}
       >
         <Block>
+          <Body
+            scrollAnimatedValue={scrollAnimatedValue}
+            positionFromTop={positionFromTop}
+            style={{ color: colors.WHITE }}
+          >
+            Råkade du skriva fel?
+          </Body>
+          <Mutation mutation={LOGOUT_MUTATION}>
+            {(logout, { client }) => (
+              <TouchableOpacity
+                style={{
+                  padding: 10,
+                  marginTop: 10,
+                  marginBottom: 30,
+                  borderRadius: 20,
+                  backgroundColor: colors.WHITE,
+                }}
+                onPress={async () => {
+                  chatActions.resetConversation();
+                  await logout();
+                  deleteToken();
+                  Store.dispatch({ type: 'DELETE_TOKEN' });
+                  Store.dispatch({ type: 'DELETE_TRACKING_ID' });
+                  Store.dispatch({ type: 'AUTHENTICATE' });
+                  await AsyncStorage.removeItem(
+                    '@hedvig:alreadySeenMarketingCarousel',
+                  );
+                  await setLayout(getChatLayout());
+                  setTimeout(() => {
+                    client.resetStore();
+                  }, 200);
+                }}
+              >
+                <Text>Börja om</Text>
+              </TouchableOpacity>
+            )}
+          </Mutation>
+
           <TranslationsConsumer textKey="OFFER_GET_HEDVIG_TITLE">
             {(text) => (
               <Title

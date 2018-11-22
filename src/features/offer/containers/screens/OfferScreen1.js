@@ -1,4 +1,10 @@
 import { connect } from 'react-redux';
+import gql from 'graphql-tag';
+import { chatActions } from 'hedvig-redux';
+import { getMarketingLayout } from 'src/navigation/layouts/marketingLayout';
+import { deleteToken } from 'src/graphql/context';
+import { Store } from 'src/setupApp';
+import { setLayout } from 'src/navigation/layouts/setLayout';
 
 import React from 'react';
 import {
@@ -7,8 +13,11 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  TouchableOpacity,
+  AsyncStorage,
   ImageBackground,
 } from 'react-native';
+import { Mutation } from 'react-apollo';
 
 import {
   verticalSizeClass,
@@ -79,6 +88,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+const LOGOUT_MUTATION = gql`
+  mutation LogoutMutation {
+    logout
+  }
+`;
 
 class OfferScreen extends React.Component {
   render() {
@@ -99,6 +113,34 @@ class OfferScreen extends React.Component {
                 </Text>
               </View>
               <View style={styles.content}>
+                <Mutation mutation={LOGOUT_MUTATION}>
+                  {(logout, { client }) => (
+                    <TouchableOpacity
+                      style={{
+                        padding: 10,
+                        marginTop: 10,
+                        marginBottom: 30,
+                        borderRadius: 20,
+                        backgroundColor: colors.WHITE,
+                      }}
+                      onPress={async () => {
+                        chatActions.resetConversation();
+                        await logout();
+                        deleteToken();
+                        Store.dispatch({ type: 'DELETE_TOKEN' });
+                        Store.dispatch({ type: 'DELETE_TRACKING_ID' });
+                        Store.dispatch({ type: 'AUTHENTICATE' });
+                        await AsyncStorage.removeItem(
+                          '@hedvig:alreadySeenMarketingCarousel',
+                        );
+                        setLayout(getMarketingLayout());
+                        client.clearStore();
+                      }}
+                    >
+                      <Text>Börja om</Text>
+                    </TouchableOpacity>
+                  )}
+                </Mutation>
                 <Text style={styles.categoryHeader}>Personskydd</Text>
                 <Text style={styles.categoryHeader}>Prylskydd</Text>
                 <Text style={styles.categoryHeader}>Lägenhetsskydd</Text>
