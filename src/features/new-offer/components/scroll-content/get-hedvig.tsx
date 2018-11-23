@@ -79,6 +79,17 @@ const Block = styled(View)({
   backgroundColor: colors.BLACK_PURPLE,
 });
 
+const RestartButton = styled(TouchableOpacity)({
+  paddingTop: 10,
+  paddingBottom: 10,
+  paddingLeft: 20,
+  paddingRight: 20,
+  marginTop: 10,
+  marginBottom: 30,
+  borderRadius: 20,
+  backgroundColor: colors.WHITE,
+});
+
 interface State {
   positionFromTop: number;
 }
@@ -121,14 +132,7 @@ export const GetHedvig: React.SFC<GetHedvigProps> = ({
           </Body>
           <Mutation mutation={LOGOUT_MUTATION}>
             {(logout, { client }) => (
-              <TouchableOpacity
-                style={{
-                  padding: 10,
-                  marginTop: 10,
-                  marginBottom: 30,
-                  borderRadius: 20,
-                  backgroundColor: colors.WHITE,
-                }}
+              <RestartButton
                 onPress={async () => {
                   chatActions.resetConversation();
                   await logout();
@@ -146,7 +150,7 @@ export const GetHedvig: React.SFC<GetHedvigProps> = ({
                 }}
               >
                 <Text>Börja om</Text>
-              </TouchableOpacity>
+              </RestartButton>
             )}
           </Mutation>
 

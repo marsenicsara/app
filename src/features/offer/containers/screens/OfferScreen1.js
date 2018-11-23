@@ -5,7 +5,7 @@ import { getMarketingLayout } from 'src/navigation/layouts/marketingLayout';
 import { deleteToken } from 'src/graphql/context';
 import { Store } from 'src/setupApp';
 import { setLayout } from 'src/navigation/layouts/setLayout';
-
+import styled from '@sampettersson/primitives';
 import React from 'react';
 import {
   ScrollView,
@@ -18,14 +18,12 @@ import {
   ImageBackground,
 } from 'react-native';
 import { Mutation } from 'react-apollo';
-
 import {
   verticalSizeClass,
   V_SPACIOUS,
   V_REGULAR,
   V_COMPACT,
 } from '../../../../services/DimensionSizes';
-
 import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
@@ -88,11 +86,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
 const LOGOUT_MUTATION = gql`
   mutation LogoutMutation {
     logout
   }
 `;
+
+const RestartButton = styled(TouchableOpacity)({
+  paddingTop: 10,
+  paddingBottom: 10,
+  paddingLeft: 20,
+  paddingRight: 20,
+  marginTop: 10,
+  marginBottom: 30,
+  borderRadius: 20,
+  backgroundColor: colors.WHITE,
+});
 
 class OfferScreen extends React.Component {
   render() {
@@ -115,14 +125,7 @@ class OfferScreen extends React.Component {
               <View style={styles.content}>
                 <Mutation mutation={LOGOUT_MUTATION}>
                   {(logout, { client }) => (
-                    <TouchableOpacity
-                      style={{
-                        padding: 10,
-                        marginTop: 10,
-                        marginBottom: 30,
-                        borderRadius: 20,
-                        backgroundColor: colors.WHITE,
-                      }}
+                    <RestartButton
                       onPress={async () => {
                         chatActions.resetConversation();
                         await logout();
@@ -133,12 +136,14 @@ class OfferScreen extends React.Component {
                         await AsyncStorage.removeItem(
                           '@hedvig:alreadySeenMarketingCarousel',
                         );
-                        setLayout(getMarketingLayout());
-                        client.clearStore();
+                        await setLayout(getChatLayout());
+                        setTimeout(() => {
+                          client.resetStore();
+                        }, 200);
                       }}
                     >
                       <Text>Börja om</Text>
-                    </TouchableOpacity>
+                    </RestartButton>
                   )}
                 </Mutation>
                 <Text style={styles.categoryHeader}>Personskydd</Text>
