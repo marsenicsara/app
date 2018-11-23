@@ -5,6 +5,8 @@ interface Header {
 
 interface Body {
   text: string;
+  key?: string;
+  mimeType?: string;
 }
 
 interface Message {

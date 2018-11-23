@@ -25,11 +25,27 @@ const Container = styled(View)({
   alignItems: 'center',
 });
 
-const InsuranceStatusDisplay: React.SFC = ({}) => (
+interface Props {
+  active: boolean;
+}
+
+const InsuranceStatusDisplay: React.SFC<Props> = ({ active }) => (
   <Container>
-    <Icon source={require('assets/icons/my_insurance/aktiv.png')} />
+    <Icon
+      source={
+        active
+          ? require('assets/icons/my_insurance/aktiv.png')
+          : require('assets/icons/info/info_purple.png')
+      }
+    />
     <StatusText>
-      <TranslationsConsumer textKey="DASHBOARD_BANNER_ACTIVE_INFO">
+      <TranslationsConsumer
+        textKey={
+          active
+            ? 'DASHBOARD_BANNER_ACTIVE_INFO'
+            : 'DASHBOARD_BANNER_TERMINATED_INFO'
+        }
+      >
         {(text) => text}
       </TranslationsConsumer>
     </StatusText>

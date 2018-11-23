@@ -18,7 +18,7 @@ const InsuranceAmountFootnote: React.SFC<InsuranceAmountFootnoteProps> = ({
     <FootnoteIcon source={require('assets/icons/my_insurance/aktiv.png')} />
     <FootnoteText>
       Prylarna försäkras totalt till{' '}
-      {isStudentInsurance({ type }) ? '200 000' : '1 000 000'} kr
+      {isStudentInsurance(type) ? '200 000' : '1 000 000'} kr
     </FootnoteText>
   </Footnote>
 );

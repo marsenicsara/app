@@ -62,6 +62,8 @@ const getStartDate = (statusCode: InsuranceStatus) => {
       return 1;
     case 'INACTIVE':
       return 2;
+    case 'TERMINATED':
+      return 3;
   }
 };
 
@@ -84,7 +86,11 @@ const Dashboard: React.SFC = () => (
       return (
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
           <Messages />
-          {getStartDate(status) === 0 && <InsuranceStatusDisplay />}
+          {getStartDate(status) === 0 ? (
+            <InsuranceStatusDisplay active={true} />
+          ) : getStartDate(status) === 3 ? (
+            <InsuranceStatusDisplay active={false} />
+          ) : null}
           <InsetPadding>
             {getStartDate(status) === 1 ? (
               <DateBanner activeFrom={activeFrom} statusCode={status} />

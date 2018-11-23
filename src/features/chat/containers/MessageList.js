@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     fontFamily: 'CircularStd-Book',
     fontSize: 12,
     textAlign: 'right',
-    paddingRight: 34,
+    paddingRight: 4,
     color: '#8a8a99',
   },
   userMessageOuterContainer: { maxWidth: '88%' },
