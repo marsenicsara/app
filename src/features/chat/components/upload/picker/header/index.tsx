@@ -39,7 +39,7 @@ export const Header: React.SFC<HeaderProps> = ({ onUpload }) => (
             });
           }}
         >
-          <UploadingAnimation isUploading={isUploading}>
+          <UploadingAnimation darkMode isUploading={isUploading}>
             <Camera width={35} height={35} />
           </UploadingAnimation>
         </PickerButton>
