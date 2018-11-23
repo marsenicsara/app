@@ -13,28 +13,49 @@ export const RichMessage: React.SFC<Props> = ({
   message,
   withMargin,
   index,
+  fromUser,
 }) => {
-  if (isUrl(message.body.text)) {
+  if (isUrl(message.body.text.trim())) {
     if (isGiphyMessage(message.body.text)) {
       return (
-        <GiphyMessage message={message} withMargin={withMargin} index={index} />
+        <GiphyMessage
+          fromUser={fromUser}
+          message={message}
+          withMargin={withMargin}
+          index={index}
+        />
       );
     }
 
     if (isImageMessage(message.body.text)) {
       return (
-        <ImageMessage message={message} withMargin={withMargin} index={index} />
+        <ImageMessage
+          fromUser={fromUser}
+          message={message}
+          withMargin={withMargin}
+          index={index}
+        />
       );
     }
   }
 
   if (message.body.key) {
     return (
-      <FileMessage message={message} withMargin={withMargin} index={index} />
+      <FileMessage
+        fromUser={fromUser}
+        message={message}
+        withMargin={withMargin}
+        index={index}
+      />
     );
   }
 
   return (
-    <TextMessage message={message} withMargin={withMargin} index={index} />
+    <TextMessage
+      fromUser={fromUser}
+      message={message}
+      withMargin={withMargin}
+      index={index}
+    />
   );
 };

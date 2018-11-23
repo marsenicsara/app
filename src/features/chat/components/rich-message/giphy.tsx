@@ -47,7 +47,7 @@ export const GiphyMessage: React.SFC<Props> = ({ message, withMargin }) => (
   <MessageContainer withMargin={withMargin}>
     <SizedProgressImage
       source={{
-        uri: message.body.text,
+        uri: message.body.text.trim(),
       }}
       indicator={Progress.CircleSnail}
       indicatorProps={{

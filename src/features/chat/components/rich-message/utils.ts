@@ -1,4 +1,3 @@
-import isUrl from 'is-url';
 import path from 'path';
 
 export const isGiphyMessage = (url: string) => url.includes('giphy.com');
