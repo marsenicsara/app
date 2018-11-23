@@ -757,10 +757,10 @@
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.11.3.tgz#1f974e3a5ca73d05ae8575552137b55465a4602f"
   integrity sha512-jSqgHj4fJ0mQv/Wzxx6Cm0nbpolCJBAtIyDtItdJTjdyq5GEBIiTJJazZnWTitCSizj6ay+I2VONe2ctJFThMw==
 
-"@hedviginsurance/react-native-keyboard-spacer@0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.4.tgz#b3f71d4e0c9f792292de741f53d87d2e89aa4225"
-  integrity sha512-7qQ8wbaAzhn1c3NL+Oor1igdYJD+2i8JK7j+q+b1Rp7XBbgDg8pXPtjoHtiGImPitTQ8zwid0lYKYajpGDM+7g==
+"@hedviginsurance/react-native-keyboard-spacer@0.4.9":
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.9.tgz#82896c9405c81a29b66b454849ae9ca26a2ae959"
+  integrity sha512-21TCQ2717SQqf+kJ54psf7B60uusmI69wu0l56o5BeU3MVuM9tYTc5T10T8/pleZQNskdODpAcutKLcHca+pIA==
 
 "@hedviginsurance/react-native@^0.57.41":
   version "0.57.41"

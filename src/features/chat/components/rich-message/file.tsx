@@ -58,7 +58,7 @@ export const FileMessage: React.SFC<Props> = ({
         if (error) {
           return (
             <TextMessage
-              fromUser={fromUser}
+              fromUser
               message={{
                 ...message,
                 body: { text: 'Kunde inte ladda fil...' },
@@ -72,7 +72,7 @@ export const FileMessage: React.SFC<Props> = ({
         if (loading || !data) {
           return (
             <TextMessage
-              fromUser={fromUser}
+              fromUser
               message={{ ...message, body: { text: 'Laddar...' } }}
               withMargin={withMargin}
               index={index}
@@ -83,7 +83,7 @@ export const FileMessage: React.SFC<Props> = ({
         if (isImageMessage(data!.file.signedUrl)) {
           return (
             <ImageMessage
-              fromUser={fromUser}
+              fromUser
               message={{ ...message, body: { text: data!.file.signedUrl } }}
               withMargin={withMargin}
               index={index}

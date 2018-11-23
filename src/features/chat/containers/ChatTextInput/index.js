@@ -132,7 +132,6 @@ class ChatTextInput extends React.Component {
                         <TextInput
                           ref={(ref) => (this.ref = ref)}
                           style={[styles.textInput]}
-                          autoFocus
                           autoCapitalize="none"
                           placeholder={
                             this.props.keyboardType === 'numeric' ||

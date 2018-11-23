@@ -1,10 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
+import Hyperlink from 'react-native-hyperlink';
 import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 
-import { StyledAvatarContainer } from '../styles/chat';
+import {
+  StyledDefaultMessageText,
+  AnimatedStyledChatMessage,
+  StyledAvatarContainer,
+} from '../styles/chat';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
 import { RichMessage } from '../components/rich-message';
@@ -36,22 +41,18 @@ const styles = StyleSheet.create({
 
 class DefaultHedvigMessage extends React.Component {
   render() {
-    const { message, index } = this.props;
-
-    const withMargin =
-      !message.header.statusMessage ||
-      (message.header.statusMessage && index !== 1);
-
+    const { message } = this.props;
     if (message.body.text === '') {
       return null;
     } else {
       return (
-        <RichMessage
-          fromUser={false}
-          index={index}
-          message={message}
-          withMargin={withMargin}
-        />
+        <AnimatedStyledChatMessage>
+          <Hyperlink>
+            <StyledDefaultMessageText>
+              {message.body.text}
+            </StyledDefaultMessageText>
+          </Hyperlink>
+        </AnimatedStyledChatMessage>
       );
     }
   }
@@ -69,7 +70,6 @@ class DefaultUserMessage extends React.Component {
       <View style={styles.userMessageOuterContainer}>
         <View style={styles.userMessageInnerContainer}>
           <RichMessage
-            fromUser
             index={index}
             message={message}
             withMargin={withMargin}
@@ -152,7 +152,7 @@ class MessageList extends React.Component {
             keyboardDismissMode="interactive"
             ListHeaderComponent={
               <KeyboardSpacer
-                restSpacing={isIphoneX() ? inputHeight + 35 : inputHeight}
+                restSpacing={isIphoneX() ? 35 : 0}
                 topSpacing={inputHeight}
               />
             }
