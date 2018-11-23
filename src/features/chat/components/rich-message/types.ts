@@ -18,4 +18,5 @@ export interface Props {
   message: Message;
   index: number;
   withMargin: boolean;
+  fromUser: boolean;
 }

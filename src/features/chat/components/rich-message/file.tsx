@@ -42,6 +42,7 @@ export const FileMessage: React.SFC<Props> = ({
   message,
   withMargin,
   index,
+  fromUser,
 }) => {
   const key = message.body.key;
   const extension = path.extname(key || '');
@@ -57,6 +58,7 @@ export const FileMessage: React.SFC<Props> = ({
         if (error) {
           return (
             <TextMessage
+              fromUser={fromUser}
               message={{
                 ...message,
                 body: { text: 'Kunde inte ladda fil...' },
@@ -70,6 +72,7 @@ export const FileMessage: React.SFC<Props> = ({
         if (loading || !data) {
           return (
             <TextMessage
+              fromUser={fromUser}
               message={{ ...message, body: { text: 'Laddar...' } }}
               withMargin={withMargin}
               index={index}
@@ -77,9 +80,10 @@ export const FileMessage: React.SFC<Props> = ({
           );
         }
 
-        if (isImageMessage) {
+        if (isImageMessage(data!.file.signedUrl)) {
           return (
             <ImageMessage
+              fromUser={fromUser}
               message={{ ...message, body: { text: data!.file.signedUrl } }}
               withMargin={withMargin}
               index={index}
