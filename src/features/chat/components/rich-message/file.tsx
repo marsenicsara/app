@@ -101,7 +101,7 @@ export const FileMessage: React.SFC<Props> = ({
               <Content>
                 <File width={20} height={25} />
                 <Spacing width={5} />
-                <StyledDefaultUserMessageText>
+                <StyledDefaultUserMessageText fromUser={fromUser}>
                   {extension.replace('.', '')} fil uppladdad
                 </StyledDefaultUserMessageText>
               </Content>
