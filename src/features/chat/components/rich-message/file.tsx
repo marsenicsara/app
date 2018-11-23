@@ -77,7 +77,7 @@ export const FileMessage: React.SFC<Props> = ({
           );
         }
 
-        if (isImageMessage) {
+        if (isImageMessage(data!.file.signedUrl)) {
           return (
             <ImageMessage
               message={{ ...message, body: { text: data!.file.signedUrl } }}
