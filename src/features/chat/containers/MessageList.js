@@ -152,7 +152,7 @@ class MessageList extends React.Component {
             keyboardDismissMode="interactive"
             ListHeaderComponent={
               <KeyboardSpacer
-                restSpacing={isIphoneX() ? 35 : 0}
+                restSpacing={isIphoneX() ? inputHeight + 35 : inputHeight}
                 topSpacing={inputHeight}
               />
             }
