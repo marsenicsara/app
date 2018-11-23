@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import CommonCrypto
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
