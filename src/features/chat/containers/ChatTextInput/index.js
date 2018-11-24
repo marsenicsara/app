@@ -29,21 +29,27 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     minHeight: 40,
     maxHeight: 160,
-    paddingTop: 10,
+    paddingTop: 5,
     paddingRight: 16,
-    paddingBottom: 10,
+    paddingBottom: 5,
     paddingLeft: 16,
     marginRight: 8,
-    fontSize: 16,
+    fontSize: 15,
     overflow: 'hidden',
     fontFamily: fonts.CIRCULAR,
   },
 });
 
-const BlurContainer = styled(BlurView)({
+const BlurContainer = styled(Platform.OS === 'android' ? View : BlurView)({
   position: 'absolute',
   bottom: 0,
   width: '100%',
+  ...Platform.select({
+    ios: {},
+    android: {
+      backgroundColor: colors.WHITE,
+    },
+  }),
 });
 
 const BarContainer = styled(View)({
@@ -132,6 +138,7 @@ class ChatTextInput extends React.Component {
                         <TextInput
                           ref={(ref) => (this.ref = ref)}
                           style={[styles.textInput]}
+                          autoFocus
                           autoCapitalize="none"
                           placeholder={
                             this.props.keyboardType === 'numeric' ||
@@ -198,7 +205,9 @@ class ChatTextInput extends React.Component {
                   </View>
                 )}
               </InputHeightContainer>
-              <KeyboardSpacer restSpacing={isIphoneX() ? 35 : 0} />
+              {Platform.OS === 'ios' && (
+                <KeyboardSpacer restSpacing={isIphoneX() ? 35 : 0} />
+              )}
             </BarContainer>
           </BlurContainer>
         </GiphyProvider>
