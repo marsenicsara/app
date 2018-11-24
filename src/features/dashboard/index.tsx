@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from '@sampettersson/primitives';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
 
 import { Loader } from 'src/components/Loader';
 import { colors, fonts } from '@hedviginsurance/brand';
@@ -14,6 +14,7 @@ import { OwnerFootnote } from 'src/features/dashboard/components/OwnerFootnote';
 import { InsuranceAmountFootnote } from 'src/features/dashboard/components/InsuranceAmountFootnote';
 import { TravelFootnote } from 'src/features/dashboard/components/TravelFootnote';
 import { Messages } from 'src/features/dashboard/components/messages';
+import { DebugShortcut } from 'src/components/DebugShortcut';
 
 const DASHBOARD_QUERY = gql`
   query DashboardQuery {
@@ -59,7 +60,11 @@ const Heading = styled(Text)({
   fontSize: 16,
 });
 
-const Dashboard: React.SFC = () => (
+interface ScreenProps {
+  componentId: string
+}
+
+const Dashboard: React.SFC<ScreenProps> = ({ componentId }) => (
   <Query query={DASHBOARD_QUERY}>
     {({ loading, error, data }) => {
       if (loading || !data) {
@@ -80,7 +85,9 @@ const Dashboard: React.SFC = () => (
           <Spacing height={24} />
           <InsetPadding>
             <Header>
-              <Heading>Min hemförsäkring</Heading>
+              <DebugShortcut componentId={componentId}>
+                <Heading>Min hemförsäkring</Heading>
+              </DebugShortcut>
               <InsuranceStatusDisplay status={status} activeFrom={activeFrom} />
             </Header>
           </InsetPadding>

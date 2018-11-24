@@ -1,17 +1,5 @@
 import { Dimensions } from 'react-native';
 
-// Example
-// import { vSizeClass, hSizeClass, V_SPACIOUS, V_REGULAR, V_COMPACT } from './DimensionSizes';
-// const styles = StyleSheet.create({
-//   image: {
-//     height: {
-//       [V_SPACIOUS]: 200,
-//       [V_REGULAR]: 150,
-//       [V_COMPACT]: 100,
-//     }[vSizeClass]
-//   }
-// })
-
 // Common device sizes from
 // https://material.io/devices/
 // http://iosres.com/
@@ -37,66 +25,68 @@ const HORIZONTAL_SIZE_REGULAR = 375;
 const VERTICAL_SIZE_COMPACT = 639;
 const VERTICAL_SIZE_REGULAR = 719;
 
-const HORIZONTAL_SIZE_CLASS_COMPACT = 'horizontal:compact';
-const HORIZONTAL_SIZE_CLASS_REGULAR = 'horizontal:regular';
-const HORIZONTAL_SIZE_CLASS_SPACIOUS = 'horizontal:spacious';
+enum HorizontalSizeClass {
+  COMPACT = 'horizontal:compact',
+  REGULAR = 'horizontal:regular',
+  SPACIOUS = 'horizontal:spacious'
+}
 
-const VERTICAL_SIZE_CLASS_COMPACT = 'vertical:compact';
-const VERTICAL_SIZE_CLASS_REGULAR = 'vertical:regular';
-const VERTICAL_SIZE_CLASS_SPACIOUS = 'vertical:spacious';
+enum VerticalSizeClass {
+  COMPACT = 'vertical:compact',
+  REGULAR = 'vertical:regular',
+  SPACIOUS = 'vertical:spacious'
+}
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
 );
 
-const getHorizontalSizeClass = (sizeDpx) => {
+const getHorizontalSizeClass = (sizeDpx: number) => {
   let sizeClass;
   if (sizeDpx <= HORIZONTAL_SIZE_COMPACT) {
-    sizeClass = HORIZONTAL_SIZE_CLASS_COMPACT;
+    sizeClass = HorizontalSizeClass.COMPACT;
   } else if (
     sizeDpx > HORIZONTAL_SIZE_COMPACT &&
     sizeDpx <= HORIZONTAL_SIZE_REGULAR
   ) {
-    sizeClass = HORIZONTAL_SIZE_CLASS_REGULAR;
+    sizeClass = HorizontalSizeClass.REGULAR;
   } else {
-    sizeClass = HORIZONTAL_SIZE_CLASS_SPACIOUS;
+    sizeClass = HorizontalSizeClass.SPACIOUS;
   }
   return sizeClass;
 };
 
-const getVerticalSizeClass = (sizeDpx) => {
+const getVerticalSizeClass = (sizeDpx: number) => {
   let sizeClass;
   if (sizeDpx <= VERTICAL_SIZE_COMPACT) {
-    sizeClass = VERTICAL_SIZE_CLASS_COMPACT;
+    sizeClass = VerticalSizeClass.COMPACT;
   } else if (
     sizeDpx > VERTICAL_SIZE_COMPACT &&
     sizeDpx <= VERTICAL_SIZE_REGULAR
   ) {
-    sizeClass = VERTICAL_SIZE_CLASS_REGULAR;
+    sizeClass = VerticalSizeClass.REGULAR;
   } else {
-    sizeClass = VERTICAL_SIZE_CLASS_SPACIOUS;
+    sizeClass = VerticalSizeClass.SPACIOUS;
   }
   return sizeClass;
 };
 
-const isPortrait = (viewportWidth, viewportHeight) => {
+const isPortrait = (viewportWidth: number, viewportHeight: number) => {
   return viewportHeight > viewportWidth;
 };
 
-// ToDo tests
 export const getHorizontalSizeClassForDevice = (
-  viewportWidth,
-  viewportHeight,
+  viewportWidth: number,
+  viewportHeight: number,
 ) => {
   return isPortrait(viewportWidth, viewportHeight)
     ? getHorizontalSizeClass(viewportWidth)
     : getVerticalSizeClass(viewportWidth);
 };
 
-// ToDo tests
 export const getVerticalSizeClassForDevice = (
-  viewportWidth,
-  viewportHeight,
+  viewportWidth: number,
+  viewportHeight: number,
 ) => {
   return isPortrait(viewportWidth, viewportHeight)
     ? getVerticalSizeClass(viewportHeight)
@@ -113,9 +103,4 @@ export const verticalSizeClass = getVerticalSizeClassForDevice(
   viewportHeight,
 );
 
-export { HORIZONTAL_SIZE_CLASS_COMPACT as H_COMPACT };
-export { HORIZONTAL_SIZE_CLASS_REGULAR as H_REGULAR };
-export { HORIZONTAL_SIZE_CLASS_SPACIOUS as H_SPACIOUS };
-export { VERTICAL_SIZE_CLASS_COMPACT as V_COMPACT };
-export { VERTICAL_SIZE_CLASS_REGULAR as V_REGULAR };
-export { VERTICAL_SIZE_CLASS_SPACIOUS as V_SPACIOUS };
+export { VerticalSizeClass, HorizontalSizeClass }

@@ -92,8 +92,8 @@ const Profile: React.SFC = () => (
                 resizeMode="contain"
               />
             ) : (
-              <SelectCashback />
-            )}
+                <SelectCashback />
+              )}
             <Spacing height={16} />
           </Header>
           {cashback && <CashbackRow name={cashback.name} />}
