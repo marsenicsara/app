@@ -33,7 +33,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
-  messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
+  messageHedvigContainer: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    width: '88%',
+  },
   flatListContentContainer: {
     paddingBottom: 20,
   },
@@ -41,18 +45,15 @@ const styles = StyleSheet.create({
 
 class DefaultHedvigMessage extends React.Component {
   render() {
-    const { message } = this.props;
+    const { message, index } = this.props;
+
     if (message.body.text === '') {
       return null;
     } else {
       return (
-        <AnimatedStyledChatMessage>
-          <Hyperlink>
-            <StyledDefaultMessageText>
-              {message.body.text}
-            </StyledDefaultMessageText>
-          </Hyperlink>
-        </AnimatedStyledChatMessage>
+        <View style={styles.messageHedvigContainer}>
+          <RichMessage withMargin index={index} message={message} />
+        </View>
       );
     }
   }
@@ -70,6 +71,7 @@ class DefaultUserMessage extends React.Component {
       <View style={styles.userMessageOuterContainer}>
         <View style={styles.userMessageInnerContainer}>
           <RichMessage
+            fromUser
             index={index}
             message={message}
             withMargin={withMargin}

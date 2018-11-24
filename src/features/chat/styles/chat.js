@@ -141,9 +141,10 @@ export class StyledDefaultUserMessageText extends React.Component {
         {...this.props}
         selectable
         style={[
-          styles.userMessageText,
           this.props.style,
-          !this.props.fromUser && styles.defaultMessageText,
+          this.props.fromUser
+            ? styles.userMessageText
+            : styles.defaultMessageText,
         ]}
       />
     );
