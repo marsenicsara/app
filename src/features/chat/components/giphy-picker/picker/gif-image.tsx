@@ -7,6 +7,8 @@ import FastImage from 'react-native-fast-image';
 import { createImageProgress } from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 
+import { GiphyPoweredBy } from '../../GiphyPoweredBy';
+
 const Image = createImageProgress(FastImage);
 
 const Box = styled(View)({
@@ -20,10 +22,11 @@ const Box = styled(View)({
 const BorderRadius = styled(View)({
   borderRadius: 20,
   overflow: 'hidden',
+  backgroundColor: colors.WHITE,
 });
 
 const ImageContainer = styled(Image)({
-  height: '100%',
+  height: 140,
   width: '100%',
 });
 
@@ -45,6 +48,7 @@ export const GifImage: React.SFC<GifImageProps> = ({ url, onPress }) => (
           }}
           source={{ uri: url }}
         />
+        <GiphyPoweredBy />
       </BorderRadius>
     </Box>
   </TouchableOpacity>
