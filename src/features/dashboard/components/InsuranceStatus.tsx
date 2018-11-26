@@ -34,8 +34,8 @@ const InsuranceStatusDisplay: React.SFC<Props> = ({ active }) => (
     <Icon
       source={
         active
-          ? require('assets/icons/my_insurance/aktiv.png')
-          : require('assets/icons/info/info_purple.png')
+          ? require('assets/icons/my_insurance/aktiv_32px.png')
+          : require('assets/icons/info/info_blue_32px.png')
       }
     />
     <StatusText>
