@@ -11,7 +11,6 @@ class DashboardScreen extends React.Component {
         largeTitle: {
           visible: true,
         },
-        drawBehind: true,
         title: {
           text: 'Min hemförsäkring',
         },

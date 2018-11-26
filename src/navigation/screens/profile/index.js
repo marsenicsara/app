@@ -14,7 +14,6 @@ class ProfileScreen extends React.Component {
         title: {
           text: 'Min profil',
         },
-        drawBehind: true,
       },
       statusBar: {
         visible: true,
