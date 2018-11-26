@@ -17,12 +17,12 @@ const Box = styled(View)({
   width: 250,
   height: 190,
   overflow: 'hidden',
-  backgroundColor: colors.WHITE,
 });
 
 const BorderRadius = styled(View)({
   borderRadius: 20,
   overflow: 'hidden',
+  backgroundColor: colors.WHITE,
 });
 
 const ImageContainer = styled(Image)({
