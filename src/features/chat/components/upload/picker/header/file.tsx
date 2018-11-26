@@ -35,7 +35,7 @@ export const File: React.SFC<FileProps> = ({ onUpload }) => (
             });
           }}
         >
-          <UploadingAnimation isUploading={isUploading}>
+          <UploadingAnimation darkMode isUploading={isUploading}>
             <ImageLibrary width={18} height={18} />
           </UploadingAnimation>
         </PickerButton>
