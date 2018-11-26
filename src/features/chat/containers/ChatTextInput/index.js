@@ -116,7 +116,7 @@ class ChatTextInput extends React.Component {
   _send = (message) => {
     this.requestPush();
     if (!this.props.isSending) {
-      console.log(message);
+      this.ref.clear();
       const inputValue = String(message);
       this.props.send(this.props.message, inputValue);
     }
