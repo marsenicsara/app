@@ -752,6 +752,11 @@
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-config/-/react-native-config-0.11.6.tgz#edf8aa2cf2510bcdbb199114f2029664b7bb2aae"
   integrity sha512-LZz5RujYyUTCb2Q3hibKV5e8eTZCpESXDT8KquKCCPeOSAqKBR4TnNUKqeOxPug3HcZ4i4MHiNgaJasPV5Jqzw==
 
+"@hedviginsurance/react-native-document-picker@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-document-picker/-/react-native-document-picker-2.1.1.tgz#2423d6dabef6427e836808af616d593563715c77"
+  integrity sha512-W8UxlK3LaP3n6ttEjqgie23icvhf0tQUVb4GtDh9hd6bjVgEceoNQcWa4PD4rFSd4LTZEckqmkNNaOHODnRrdA==
+
 "@hedviginsurance/react-native-floating-action@^1.11.3":
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.11.3.tgz#1f974e3a5ca73d05ae8575552137b55465a4602f"
@@ -8269,11 +8274,6 @@ react-native-device-info@^0.22.5:
   version "0.22.6"
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.22.6.tgz#32a674b0484d31214fdcfbbb0e677621e83ba69d"
   integrity sha512-/w87PmHPvT5MY3HwzdVEWyFg/ib91lY6TlYJGNnNPaXNXY60ShB8HI+GXKyq4KAtbUc/WhRM1RQ8/WKJOal+UQ==
-
-react-native-document-picker@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-2.1.0.tgz#61bbe113435a9d7bf67ab77093a4092d76b52fe3"
-  integrity sha512-BFCBXwz8xuLvHLVFVeQM+RhaY8yZ38PEWt9WSbq5VIoZ/VssP6uu51XxOfdwaMALOrAHIojK0SiYnd155upZAg==
 
 react-native-fast-image@^5.0.11:
   version "5.0.11"
