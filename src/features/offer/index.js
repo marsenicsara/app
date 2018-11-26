@@ -40,9 +40,7 @@ import OfferScreen8 from './containers/screens/OfferScreen8';
 
 import {
   verticalSizeClass,
-  V_SPACIOUS,
-  V_REGULAR,
-  V_COMPACT,
+  VerticalSizeClass,
 } from '../../services/DimensionSizes';
 
 import { colors } from '@hedviginsurance/brand';
@@ -91,9 +89,9 @@ const styles = StyleSheet.create({
       bottom: 30,
     }),
     bottom: {
-      [V_SPACIOUS]: 18,
-      [V_REGULAR]: 15,
-      [V_COMPACT]: 15,
+      [VerticalSizeClass.COMPACT]: 18,
+      [VerticalSizeClass.REGULAR]: 15,
+      [VerticalSizeClass.COMPACT]: 15,
     }[verticalSizeClass],
   },
   button: {
@@ -112,9 +110,9 @@ const styles = StyleSheet.create({
       marginBottom: 40,
     }),
     marginBottom: {
-      [V_SPACIOUS]: 29,
-      [V_REGULAR]: 50,
-      [V_COMPACT]: 26,
+      [VerticalSizeClass.COMPACT]: 29,
+      [VerticalSizeClass.REGULAR]: 50,
+      [VerticalSizeClass.COMPACT]: 26,
     }[verticalSizeClass],
     ...Platform.select({
       android: {

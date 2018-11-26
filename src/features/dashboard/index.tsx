@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from '@sampettersson/primitives';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
 
 import { Loader } from 'src/components/Loader';
 import { colors } from '@hedviginsurance/brand';
@@ -67,7 +67,11 @@ const getStartDate = (statusCode: InsuranceStatus) => {
   }
 };
 
-const Dashboard: React.SFC = () => (
+interface ScreenProps {
+  componentId: string
+}
+
+const Dashboard: React.SFC<ScreenProps> = ({ componentId }) => (
   <Query query={DASHBOARD_QUERY}>
     {({ loading, error, data }) => {
       if (loading || !data) {

@@ -69,6 +69,18 @@ target 'hedvig' do
 
   pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
 
+  ## Pods from ugglan
+  pod 'Tempura'
+  pod 'PinLayout'
+  pod 'SwiftLint'
+  pod 'DynamicColor', '~> 4.0.2'
+  pod 'SwiftFormat/CLI'
+  pod 'UIViewRoundedCorners'
+  pod 'Apollo'
+  pod 'Apollo/WebSocket'
+  pod 'Disk', '~> 0.4.0'
+  pod 'FlowFramework', '~> 1.0'
+
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
       if config.name.start_with?("Debug")

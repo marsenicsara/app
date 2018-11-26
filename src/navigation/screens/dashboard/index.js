@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import React from 'react';
+import * as React from 'react';
 import { Dashboard } from 'src/features/dashboard';
 import Fab from '../../../features/dashboard/containers/fab';
 
@@ -11,6 +11,7 @@ class DashboardScreen extends React.Component {
         largeTitle: {
           visible: true,
         },
+        drawBehind: true,
         title: {
           text: 'Min hemförsäkring',
         },

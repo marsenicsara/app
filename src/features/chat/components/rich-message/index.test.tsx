@@ -7,6 +7,7 @@ import { RichMessage } from './';
 test('renders giphy messages correctly', () => {
   const component = mount(
     <RichMessage
+      fromUser
       withMargin={false}
       message={{
         body: { text: 'https://giphy.com/mock.gif' },
@@ -25,6 +26,7 @@ test('renders giphy messages correctly', () => {
 test('renders image messages correctly', () => {
   const component = mount(
     <RichMessage
+      fromUser
       withMargin={false}
       message={{
         body: { text: 'https://randomwebsite.com/image.jpg' },
@@ -43,6 +45,7 @@ test('renders image messages correctly', () => {
 test('renders text messages correctly', () => {
   const component = mount(
     <RichMessage
+      fromUser
       withMargin={false}
       message={{
         body: { text: 'mock message hello 123' },
@@ -61,6 +64,7 @@ test('renders text messages correctly', () => {
 test('renders text messages with hyperlinks correctly', () => {
   const component = mount(
     <RichMessage
+      fromUser
       withMargin={false}
       message={{
         body: { text: 'mock message hello 123 https://www.hedvig.com' },

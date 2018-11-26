@@ -3,6 +3,7 @@ import { YellowBox, UIManager } from 'react-native';
 
 import { HOC } from './App';
 import { setInitialLayout } from './src/navigation/layouts/initialLayout';
+import { getNavigationConstants } from './src/navigation/constants';
 import { register } from './src/navigation/register';
 import { patchCustomConfig } from './src/features/debug/patch-custom-config';
 
@@ -26,7 +27,9 @@ const registerHandler = (name, componentCreator) =>
     return HOC(innerComponent.options)(innerComponent);
   });
 
-register(registerHandler);
+getNavigationConstants().then(() => {
+  register(registerHandler);
+});
 
 Navigation.events().registerAppLaunchedListener(async () => {
   await setInitialLayout();

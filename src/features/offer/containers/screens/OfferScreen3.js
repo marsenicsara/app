@@ -5,7 +5,7 @@ import { TranslationsPlaceholderConsumer } from 'src/components/translations/pla
 
 import {
   verticalSizeClass,
-  V_SPACIOUS,
+  VerticalSizeClass,
 } from '../../../../services/DimensionSizes';
 import { PerilsOverview } from '../PerilsOverview';
 import { Hero } from '../../components/Hero';
@@ -25,7 +25,7 @@ class OfferScreen extends React.Component {
     const spacious = require('../../../../../assets/offer/hero/stuff-xl.png');
     const heroImage =
       {
-        [V_SPACIOUS]: spacious,
+        [VerticalSizeClass.SPACIOUS]: spacious,
       }[verticalSizeClass] || regular;
 
     return (

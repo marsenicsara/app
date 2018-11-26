@@ -12,14 +12,10 @@ import { Sequence, Delay, Timing } from 'animated-react-native-components';
 import { Navigation } from 'react-native-navigation';
 
 import { SpeechBubbles } from 'src/components/icons/SpeechBubbles';
-import { DraggableOverlay } from 'src/components/draggable-overlay';
-import { Header } from 'src/components/draggable-overlay/header';
-import OfferChat from 'src/features/chat/OfferChat';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
-import { TranslationsConsumer } from 'src/components/translations/consumer';
 
-import { CHAT_SCREEN } from 'src/navigation/screens/chat';
+import { OFFER_CHAT_COMPONENT } from 'src/navigation/components/offer-chat';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
@@ -55,58 +51,38 @@ const OFFER_CLOSED_MUTATION = gql`
 
 export const ChatButton: React.SFC = () => (
   <ChatButtonContainer>
-    <Container actions={actions} initialState={{ open: false }}>
-      {({ open, setOpen }) => (
-        <Mutation mutation={OFFER_CLOSED_MUTATION}>
-          {(mutate) => (
-            <>
-              <Sequence>
-                <Delay config={{ delay: 500 }} />
-                <Timing toValue={1} initialValue={0} config={{ duration: 250 }}>
-                  {(animatedValue) => (
-                    <AnimatedView style={{ opacity: animatedValue }}>
-                      <TouchableOpacity
-                        onPress={() => {
-                          mutate().then(() => {
-                            if (Platform.OS === 'android') {
-                              Navigation.showModal({
-                                stack: {
-                                  children: [CHAT_SCREEN],
-                                },
-                              });
-                            } else {
-                              setOpen(true);
+    <Mutation mutation={OFFER_CLOSED_MUTATION}>
+      {(mutate) => (
+        <>
+          <Sequence>
+            <Delay config={{ delay: 500 }} />
+            <Timing toValue={1} initialValue={0} config={{ duration: 250 }}>
+              {(animatedValue) => (
+                <AnimatedView style={{ opacity: animatedValue }}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      mutate().then(() => {
+                        Navigation.showOverlay({
+                          component: {
+                            name: OFFER_CHAT_COMPONENT.name,
+                            options: {
+                              layout: {
+                                backgroundColor: 'transparent',
+                              },
                             }
-                          });
-                        }}
-                      >
-                        <SpeechBubbles height={25} width={25} />
-                      </TouchableOpacity>
-                    </AnimatedView>
-                  )}
-                </Timing>
-              </Sequence>
-              {open && (
-                <DraggableOverlay
-                  heightPercentage={90}
-                  onClose={() => setOpen(false)}
-                >
-                  {(handleClose) => (
-                    <>
-                      <TranslationsConsumer textKey="OFFER_CHAT_HEADER">
-                        {(text) => (
-                          <Header title={text} onCloseClick={handleClose} />
-                        )}
-                      </TranslationsConsumer>
-                      <OfferChat onRequestClose={handleClose} />
-                    </>
-                  )}
-                </DraggableOverlay>
+                          }
+                        })
+                      });
+                    }}
+                  >
+                    <SpeechBubbles height={25} width={25} />
+                  </TouchableOpacity>
+                </AnimatedView>
               )}
-            </>
-          )}
-        </Mutation>
+            </Timing>
+          </Sequence>
+        </>
       )}
-    </Container>
+    </Mutation>
   </ChatButtonContainer>
 );
