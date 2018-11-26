@@ -14,12 +14,30 @@
 		55A1D9ED211DB2FA00547027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */; };
 		64ADFEB80E9B4CE188FF5E21 /* SoRay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446808BB14A544DA8419781D /* SoRay-ExtraBold.ttf */; };
 		AC5BB2AB4E954E429F91AB9E /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D398F87383C7495A9938B698 /* Merriweather-Light.ttf */; };
-		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
+		B56386491DB9693800A0598C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.swift */; };
 		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
-		B56386611DB96A5E00A0598C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
 		B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */; };
 		BBAFAB7DAC15463DAA2348E5 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */; };
+		EB3A235721A57EE5007F52B6 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A235621A57EE5007F52B6 /* Test.swift */; };
+		EB3A23B221A59FCE007F52B6 /* HedvigColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3A239621A59FB3007F52B6 /* HedvigColors.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EB3A23AE21A59FB3007F52B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB3A235B21A59FB3007F52B6 /* Hedvig.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB75E15121930A94006B5CE4;
+			remoteInfo = Hedvig;
+		};
+		EB3A23B021A59FB3007F52B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB3A235B21A59FB3007F52B6 /* Hedvig.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB75E16521930A95006B5CE4;
+			remoteInfo = HedvigTests;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		08E5427420879B64DB0FAC97 /* Pods-hedvig.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.staging.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.staging.xcconfig"; sourceTree = "<group>"; };
@@ -39,16 +57,71 @@
 		7CDE8491802332E881E48B7F /* Pods-hedvig.debug - production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug - production.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug - production.xcconfig"; sourceTree = "<group>"; };
 		ABC3DF484F2DAA91A9A81943 /* Pods-hedvig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug.xcconfig"; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* Hedvig Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hedvig Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B56386481DB9693800A0598C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B56386481DB9693800A0598C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B56386501DB9693800A0598C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B563865C1DB96A5E00A0598C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B563865E1DB96A5E00A0598C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		BA6B49A7D50CBF7527166E28 /* Pods-hedvig.release - dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release - dev.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release - dev.xcconfig"; sourceTree = "<group>"; };
 		C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hedvig.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D398F87383C7495A9938B698 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Light.ttf"; path = "../assets/fonts/Merriweather-Light.ttf"; sourceTree = "<group>"; };
 		D5671F6FBF53920F1E91F718 /* Pods-hedvig.release - production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release - production.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release - production.xcconfig"; sourceTree = "<group>"; };
+		EB3A235521A57EE4007F52B6 /* hedvig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hedvig-Bridging-Header.h"; sourceTree = "<group>"; };
+		EB3A235621A57EE5007F52B6 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		EB3A235A21A59FB3007F52B6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		EB3A235B21A59FB3007F52B6 /* Hedvig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Hedvig.xcodeproj; sourceTree = "<group>"; };
+		EB3A236121A59FB3007F52B6 /* MarketingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingView.swift; sourceTree = "<group>"; };
+		EB3A236321A59FB3007F52B6 /* OpenChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChatButton.swift; sourceTree = "<group>"; };
+		EB3A236421A59FB3007F52B6 /* MarketingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingViewController.swift; sourceTree = "<group>"; };
+		EB3A236621A59FB3007F52B6 /* CopyableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
+		EB3A236721A59FB3007F52B6 /* UIView+RadiusMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RadiusMask.swift"; sourceTree = "<group>"; };
+		EB3A236921A59FB3007F52B6 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		EB3A236C21A59FB3007F52B6 /* SendingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingIndicator.swift; sourceTree = "<group>"; };
+		EB3A236D21A59FB3007F52B6 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		EB3A236F21A59FB3007F52B6 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		EB3A237121A59FB3007F52B6 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
+		EB3A237321A59FB3007F52B6 /* SelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
+		EB3A237421A59FB3007F52B6 /* SelectCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionView.swift; sourceTree = "<group>"; };
+		EB3A237521A59FB3007F52B6 /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
+		EB3A237621A59FB3007F52B6 /* SafeAreaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaContainer.swift; sourceTree = "<group>"; };
+		EB3A237721A59FB3007F52B6 /* InputFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldView.swift; sourceTree = "<group>"; };
+		EB3A237821A59FB3007F52B6 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		EB3A237A21A59FB3007F52B6 /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
+		EB3A237C21A59FB3007F52B6 /* DependenciesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesContainer.swift; sourceTree = "<group>"; };
+		EB3A237E21A59FB3007F52B6 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		EB3A237F21A59FB3007F52B6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		EB3A238021A59FB3007F52B6 /* AuthorizationToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationToken.swift; sourceTree = "<group>"; };
+		EB3A238221A59FB3007F52B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EB3A238421A59FB3007F52B6 /* SetMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMessages.swift; sourceTree = "<group>"; };
+		EB3A238521A59FB3007F52B6 /* SendMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
+		EB3A238621A59FB3007F52B6 /* AppActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActions.swift; sourceTree = "<group>"; };
+		EB3A238721A59FB3007F52B6 /* InsertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertMessage.swift; sourceTree = "<group>"; };
+		EB3A238821A59FB3007F52B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB3A238B21A59FB3007F52B6 /* Messages.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Messages.graphql; sourceTree = "<group>"; };
+		EB3A238C21A59FB3007F52B6 /* SendChatTextResponse.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SendChatTextResponse.graphql; sourceTree = "<group>"; };
+		EB3A238D21A59FB3007F52B6 /* CurrentChatResponseSubscription.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CurrentChatResponseSubscription.graphql; sourceTree = "<group>"; };
+		EB3A238E21A59FB3007F52B6 /* CreateSession.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateSession.graphql; sourceTree = "<group>"; };
+		EB3A238F21A59FB3007F52B6 /* MessageSubscription.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = MessageSubscription.graphql; sourceTree = "<group>"; };
+		EB3A239021A59FB3007F52B6 /* SendChatSingleSelectResponse.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SendChatSingleSelectResponse.graphql; sourceTree = "<group>"; };
+		EB3A239121A59FB3007F52B6 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		EB3A239221A59FB3007F52B6 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		EB3A239321A59FB3007F52B6 /* ApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloClient.swift; sourceTree = "<group>"; };
+		EB3A239521A59FB3007F52B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB3A239621A59FB3007F52B6 /* HedvigColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HedvigColors.swift; sourceTree = "<group>"; };
+		EB3A239821A59FB3007F52B6 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		EB3A239A21A59FB3007F52B6 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Light.ttf"; sourceTree = "<group>"; };
+		EB3A239B21A59FB3007F52B6 /* SoRay-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SoRay-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EB3A239C21A59FB3007F52B6 /* HedvigFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HedvigFonts.swift; sourceTree = "<group>"; };
+		EB3A239D21A59FB3007F52B6 /* CircularStd-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Book.ttf"; sourceTree = "<group>"; };
+		EB3A239E21A59FB3007F52B6 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.ttf"; sourceTree = "<group>"; };
+		EB3A239F21A59FB3007F52B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB3A23A021A59FB3007F52B6 /* .swiftlint */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint; sourceTree = "<group>"; };
+		EB3A23A121A59FB3007F52B6 /* Hedvig.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Hedvig.xcworkspace; sourceTree = "<group>"; };
+		EB3A23A221A59FB3007F52B6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EB3A23A321A59FB3007F52B6 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		EB3A23A521A59FB3007F52B6 /* ChatViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewTest.swift; sourceTree = "<group>"; };
+		EB3A23A921A59FB3007F52B6 /* chatView001 (375.0, 812.0)@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatView001 (375.0, 812.0)@3x.png"; sourceTree = "<group>"; };
+		EB3A23AA21A59FB3007F52B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB3A23AB21A59FB3007F52B6 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE9E45FE503F4AA1B6290424 /* Pods-hedvig.release - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release - development.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release - development.xcconfig"; sourceTree = "<group>"; };
 		FE838C28F7895ED6D2053AD7 /* Pods-hedvig.debug - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug - development.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug - development.xcconfig"; sourceTree = "<group>"; };
@@ -117,11 +190,13 @@
 		B56386431DB9693800A0598C /* hedvig */ = {
 			isa = PBXGroup;
 			children = (
+				EB3A235921A59FB3007F52B6 /* ugglan */,
+				EB3A235621A57EE5007F52B6 /* Test.swift */,
+				EB3A235521A57EE4007F52B6 /* hedvig-Bridging-Header.h */,
 				559CCAEF2121B3530080C272 /* debug.xcconfig */,
 				559CCAD6211F1AC10080C272 /* hedvig.entitlements */,
 				55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */,
-				B56386471DB9693800A0598C /* AppDelegate.h */,
-				B56386481DB9693800A0598C /* AppDelegate.m */,
+				B56386481DB9693800A0598C /* AppDelegate.swift */,
 				B56386501DB9693800A0598C /* Assets.xcassets */,
 				B563865B1DB96A5E00A0598C /* Supporting */,
 				559CCAF12121B42C0080C272 /* staging.xcconfig */,
@@ -135,7 +210,6 @@
 			children = (
 				B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */,
 				B563865C1DB96A5E00A0598C /* Info.plist */,
-				B563865E1DB96A5E00A0598C /* main.m */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -151,6 +225,269 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		EB3A235921A59FB3007F52B6 /* ugglan */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A235A21A59FB3007F52B6 /* .swiftlint.yml */,
+				EB3A235B21A59FB3007F52B6 /* Hedvig.xcodeproj */,
+				EB3A235E21A59FB3007F52B6 /* Hedvig */,
+				EB3A23A021A59FB3007F52B6 /* .swiftlint */,
+				EB3A23A121A59FB3007F52B6 /* Hedvig.xcworkspace */,
+				EB3A23A221A59FB3007F52B6 /* .gitignore */,
+				EB3A23A321A59FB3007F52B6 /* Podfile */,
+				EB3A23A421A59FB3007F52B6 /* HedvigTests */,
+				EB3A23AB21A59FB3007F52B6 /* Podfile.lock */,
+			);
+			path = ugglan;
+			sourceTree = "<group>";
+		};
+		EB3A235C21A59FB3007F52B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A23AF21A59FB3007F52B6 /* Hedvig.app */,
+				EB3A23B121A59FB3007F52B6 /* HedvigTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB3A235E21A59FB3007F52B6 /* Hedvig */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A235F21A59FB3007F52B6 /* UI */,
+				EB3A237921A59FB3007F52B6 /* Navigation */,
+				EB3A237B21A59FB3007F52B6 /* Dependencies */,
+				EB3A237D21A59FB3007F52B6 /* State */,
+				EB3A238121A59FB3007F52B6 /* LaunchScreen.storyboard */,
+				EB3A238321A59FB3007F52B6 /* Actions */,
+				EB3A238821A59FB3007F52B6 /* AppDelegate.swift */,
+				EB3A238921A59FB3007F52B6 /* Data */,
+				EB3A239421A59FB3007F52B6 /* Assets */,
+				EB3A239F21A59FB3007F52B6 /* Info.plist */,
+			);
+			path = Hedvig;
+			sourceTree = "<group>";
+		};
+		EB3A235F21A59FB3007F52B6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A236021A59FB3007F52B6 /* MarketingScreen */,
+				EB3A236521A59FB3007F52B6 /* Generic */,
+				EB3A236821A59FB3007F52B6 /* ChatScreen */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		EB3A236021A59FB3007F52B6 /* MarketingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A236121A59FB3007F52B6 /* MarketingView.swift */,
+				EB3A236221A59FB3007F52B6 /* Subviews */,
+				EB3A236421A59FB3007F52B6 /* MarketingViewController.swift */,
+			);
+			path = MarketingScreen;
+			sourceTree = "<group>";
+		};
+		EB3A236221A59FB3007F52B6 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A236321A59FB3007F52B6 /* OpenChatButton.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		EB3A236521A59FB3007F52B6 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A236621A59FB3007F52B6 /* CopyableLabel.swift */,
+				EB3A236721A59FB3007F52B6 /* UIView+RadiusMask.swift */,
+			);
+			path = Generic;
+			sourceTree = "<group>";
+		};
+		EB3A236821A59FB3007F52B6 /* ChatScreen */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A236921A59FB3007F52B6 /* ChatViewController.swift */,
+				EB3A236A21A59FB3007F52B6 /* Subviews */,
+				EB3A237821A59FB3007F52B6 /* ChatView.swift */,
+			);
+			path = ChatScreen;
+			sourceTree = "<group>";
+		};
+		EB3A236A21A59FB3007F52B6 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A236B21A59FB3007F52B6 /* Message */,
+				EB3A236E21A59FB3007F52B6 /* ListView */,
+				EB3A237021A59FB3007F52B6 /* InputField */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		EB3A236B21A59FB3007F52B6 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A236C21A59FB3007F52B6 /* SendingIndicator.swift */,
+				EB3A236D21A59FB3007F52B6 /* MessageView.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		EB3A236E21A59FB3007F52B6 /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A236F21A59FB3007F52B6 /* ListView.swift */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		EB3A237021A59FB3007F52B6 /* InputField */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A237121A59FB3007F52B6 /* SendButton.swift */,
+				EB3A237221A59FB3007F52B6 /* SelectCollection */,
+				EB3A237621A59FB3007F52B6 /* SafeAreaContainer.swift */,
+				EB3A237721A59FB3007F52B6 /* InputFieldView.swift */,
+			);
+			path = InputField;
+			sourceTree = "<group>";
+		};
+		EB3A237221A59FB3007F52B6 /* SelectCollection */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A237321A59FB3007F52B6 /* SelectButton.swift */,
+				EB3A237421A59FB3007F52B6 /* SelectCollectionView.swift */,
+				EB3A237521A59FB3007F52B6 /* SelectCollectionViewCell.swift */,
+			);
+			path = SelectCollection;
+			sourceTree = "<group>";
+		};
+		EB3A237921A59FB3007F52B6 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A237A21A59FB3007F52B6 /* AppNavigation.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		EB3A237B21A59FB3007F52B6 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A237C21A59FB3007F52B6 /* DependenciesContainer.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		EB3A237D21A59FB3007F52B6 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A237E21A59FB3007F52B6 /* AppState.swift */,
+				EB3A237F21A59FB3007F52B6 /* Message.swift */,
+				EB3A238021A59FB3007F52B6 /* AuthorizationToken.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		EB3A238321A59FB3007F52B6 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A238421A59FB3007F52B6 /* SetMessages.swift */,
+				EB3A238521A59FB3007F52B6 /* SendMessage.swift */,
+				EB3A238621A59FB3007F52B6 /* AppActions.swift */,
+				EB3A238721A59FB3007F52B6 /* InsertMessage.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		EB3A238921A59FB3007F52B6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A238A21A59FB3007F52B6 /* GraphQL */,
+				EB3A239121A59FB3007F52B6 /* schema.json */,
+				EB3A239221A59FB3007F52B6 /* API.swift */,
+				EB3A239321A59FB3007F52B6 /* ApolloClient.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		EB3A238A21A59FB3007F52B6 /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A238B21A59FB3007F52B6 /* Messages.graphql */,
+				EB3A238C21A59FB3007F52B6 /* SendChatTextResponse.graphql */,
+				EB3A238D21A59FB3007F52B6 /* CurrentChatResponseSubscription.graphql */,
+				EB3A238E21A59FB3007F52B6 /* CreateSession.graphql */,
+				EB3A238F21A59FB3007F52B6 /* MessageSubscription.graphql */,
+				EB3A239021A59FB3007F52B6 /* SendChatSingleSelectResponse.graphql */,
+			);
+			path = GraphQL;
+			sourceTree = "<group>";
+		};
+		EB3A239421A59FB3007F52B6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A239521A59FB3007F52B6 /* Assets.xcassets */,
+				EB3A239621A59FB3007F52B6 /* HedvigColors.swift */,
+				EB3A239721A59FB3007F52B6 /* Icons */,
+				EB3A239921A59FB3007F52B6 /* Fonts */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		EB3A239721A59FB3007F52B6 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A239821A59FB3007F52B6 /* Icon.swift */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+		EB3A239921A59FB3007F52B6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A239A21A59FB3007F52B6 /* Merriweather-Light.ttf */,
+				EB3A239B21A59FB3007F52B6 /* SoRay-ExtraBold.ttf */,
+				EB3A239C21A59FB3007F52B6 /* HedvigFonts.swift */,
+				EB3A239D21A59FB3007F52B6 /* CircularStd-Book.ttf */,
+				EB3A239E21A59FB3007F52B6 /* CircularStd-Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		EB3A23A421A59FB3007F52B6 /* HedvigTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A23A521A59FB3007F52B6 /* ChatViewTest.swift */,
+				EB3A23A621A59FB3007F52B6 /* Snapshots */,
+				EB3A23AA21A59FB3007F52B6 /* Info.plist */,
+			);
+			path = HedvigTests;
+			sourceTree = "<group>";
+		};
+		EB3A23A621A59FB3007F52B6 /* Snapshots */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A23A721A59FB3007F52B6 /* en */,
+			);
+			path = Snapshots;
+			sourceTree = "<group>";
+		};
+		EB3A23A721A59FB3007F52B6 /* en */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A23A821A59FB3007F52B6 /* 375.0x812.0 */,
+			);
+			path = en;
+			sourceTree = "<group>";
+		};
+		EB3A23A821A59FB3007F52B6 /* 375.0x812.0 */ = {
+			isa = PBXGroup;
+			children = (
+				EB3A23A921A59FB3007F52B6 /* chatView001 (375.0, 812.0)@3x.png */,
+			);
+			path = 375.0x812.0;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,6 +501,7 @@
 				EBC15BE5212850D700D0E296 /* Bundle React Native code and images */,
 				B563863F1DB9693800A0598C /* Resources */,
 				1692B8F87AFA418B9266FEBB /* Upload Debug Symbols to Sentry */,
+				F46DC145B1EB001E5A3693E7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,11 +519,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 900;
-				ORGANIZATIONNAME = "650 Industries, Inc.";
+				ORGANIZATIONNAME = "Hedvig AB";
 				TargetAttributes = {
 					B56386401DB9693800A0598C = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = AW656G5PFM;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -215,12 +554,35 @@
 			mainGroup = B56386381DB9693800A0598C;
 			productRefGroup = B56386421DB9693800A0598C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EB3A235C21A59FB3007F52B6 /* Products */;
+					ProjectRef = EB3A235B21A59FB3007F52B6 /* Hedvig.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B56386401DB9693800A0598C /* hedvig */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		EB3A23AF21A59FB3007F52B6 /* Hedvig.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Hedvig.app;
+			remoteRef = EB3A23AE21A59FB3007F52B6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EB3A23B121A59FB3007F52B6 /* HedvigTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HedvigTests.xctest;
+			remoteRef = EB3A23B021A59FB3007F52B6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B563863F1DB9693800A0598C /* Resources */ = {
@@ -287,6 +649,26 @@
 			shellPath = /bin/sh;
 			shellScript = "export DEVELOPMENT_BUILD_CONFIGURATIONS=\"+(Debug - Development|Debug- Staging|Debug - Production|Debug)\"\nexport NODE_BINARY=node\n$NODE_BINARY ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native-schemes-manager/lib/react-native-xcode.sh";
 		};
+		F46DC145B1EB001E5A3693E7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hedvig/Pods-hedvig-resources.sh",
+				"${PODS_ROOT}/Apollo/scripts/check-and-run-apollo-cli.sh",
+				"${PODS_ROOT}/Apollo/scripts/check-and-run-apollo-codegen.sh",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/check-and-run-apollo-cli.sh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/check-and-run-apollo-codegen.sh",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hedvig/Pods-hedvig-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -294,12 +676,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B56386611DB96A5E00A0598C /* main.m in Sources */,
-				B56386491DB9693800A0598C /* AppDelegate.m in Sources */,
+				EB3A23B221A59FCE007F52B6 /* HedvigColors.swift in Sources */,
+				B56386491DB9693800A0598C /* AppDelegate.swift in Sources */,
+				EB3A235721A57EE5007F52B6 /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EB3A238121A59FB3007F52B6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB3A238221A59FB3007F52B6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B56386561DB9693800A0598C /* Debug - Production */ = {
@@ -332,6 +726,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -388,6 +783,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -415,6 +811,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
 				BUNDLE_IDENTIFIER = com.hedvig.app;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
 				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -472,10 +869,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(PRODUCT_NAME)\"",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Apollo/Apollo.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Disk/Disk.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/DynamicColor/DynamicColor.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/FlowFramework/Flow.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Katana/Katana.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/PinLayout/PinLayout.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Starscream/Starscream.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Tempura/Tempura.modulemap\" $(inherited) \"-D\" \"COCOAPODS\" -D \"DEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.app;
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE = "ec3e0828-e3fc-4165-afbc-b60504392532";
 				PROVISIONING_PROFILE_SPECIFIER = "Hedvig App Test";
+				SWIFT_OBJC_BRIDGING_HEADER = "hedvig/hedvig-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug - Production";
@@ -486,6 +887,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
 				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -508,6 +910,8 @@
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE = "ec3e0828-e3fc-4165-afbc-b60504392532";
 				PROVISIONING_PROFILE_SPECIFIER = "com.hedvig.test.app AppStore";
+				SWIFT_OBJC_BRIDGING_HEADER = "hedvig/hedvig-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release - Production";
@@ -542,6 +946,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -575,6 +980,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.test.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
 				BUNDLE_IDENTIFIER = com.hedvig.test.app;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
 				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -632,10 +1038,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(PRODUCT_NAME)\"",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Apollo/Apollo.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Disk/Disk.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/DynamicColor/DynamicColor.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/FlowFramework/Flow.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Katana/Katana.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/PinLayout/PinLayout.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Starscream/Starscream.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Tempura/Tempura.modulemap\" $(inherited) \"-D\" \"COCOAPODS\" -D \"DEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.test.app;
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE = "ec3e0828-e3fc-4165-afbc-b60504392532";
 				PROVISIONING_PROFILE_SPECIFIER = "Hedvig App Test";
+				SWIFT_OBJC_BRIDGING_HEADER = "hedvig/hedvig-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug - Staging";
@@ -670,6 +1080,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -703,6 +1114,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.dev.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
 				BUNDLE_IDENTIFIER = com.hedvig.dev.app;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
 				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -760,10 +1172,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(PRODUCT_NAME)\"",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Apollo/Apollo.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Disk/Disk.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/DynamicColor/DynamicColor.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/FlowFramework/Flow.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Katana/Katana.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/PinLayout/PinLayout.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Starscream/Starscream.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Tempura/Tempura.modulemap\" $(inherited) \"-D\" \"COCOAPODS\" -D \"DEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.dev.app;
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE = "ec3e0828-e3fc-4165-afbc-b60504392532";
 				PROVISIONING_PROFILE_SPECIFIER = "Hedvig App Dev";
+				SWIFT_OBJC_BRIDGING_HEADER = "hedvig/hedvig-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug - Development";
@@ -798,6 +1214,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -825,6 +1242,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.dev.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
 				BUNDLE_IDENTIFIER = com.hedvig.dev.app;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
 				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -847,6 +1265,8 @@
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE = "ec3e0828-e3fc-4165-afbc-b60504392532";
 				PROVISIONING_PROFILE_SPECIFIER = "com.hedvig.test.app AppStore";
+				SWIFT_OBJC_BRIDGING_HEADER = "hedvig/hedvig-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release - Development";
@@ -881,6 +1301,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -908,6 +1329,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.test.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
 				BUNDLE_IDENTIFIER = com.hedvig.test.app;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
 				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -930,6 +1352,8 @@
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				PROVISIONING_PROFILE = "ec3e0828-e3fc-4165-afbc-b60504392532";
 				PROVISIONING_PROFILE_SPECIFIER = "com.hedvig.test.app AppStore";
+				SWIFT_OBJC_BRIDGING_HEADER = "hedvig/hedvig-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release - Staging";

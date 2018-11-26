@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { View, AppState, KeyboardAvoidingView } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { isIphoneX, ifIphoneX } from 'react-native-iphone-x-helper';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
 import { Container, EffectMap, EffectProps } from 'constate';
 
@@ -144,27 +143,21 @@ const Chat: React.SFC<ChatProps> = ({
         >
           {null}
         </Unmount>
-        <KeyboardAvoid
-          keyboardVerticalOffset={isIphoneX() ? 95 : 75}
-          behavior="padding"
-          enabled={Platform.OS === 'ios'}
-        >
-          <Messages>
-            {messages.length ? (
-              <MessageList
-                showOffer={() => showOffer(stopPolling, onRequestClose)}
-              />
-            ) : (
-              <Loader />
-            )}
-          </Messages>
-          <Response>
-            <InputComponent
-              messages={messages}
+        <Messages>
+          {messages.length ? (
+            <MessageList
               showOffer={() => showOffer(stopPolling, onRequestClose)}
             />
-          </Response>
-        </KeyboardAvoid>
+          ) : (
+            <Loader />
+          )}
+        </Messages>
+        <Response>
+          <InputComponent
+            messages={messages}
+            showOffer={() => showOffer(stopPolling, onRequestClose)}
+          />
+        </Response>
         <Dialog />
       </>
     )}

@@ -140,7 +140,12 @@ export class StyledDefaultUserMessageText extends React.Component {
       <Text
         {...this.props}
         selectable
-        style={[styles.userMessageText, this.props.style]}
+        style={[
+          this.props.style,
+          this.props.fromUser
+            ? styles.userMessageText
+            : styles.defaultMessageText,
+        ]}
       />
     );
   }
@@ -182,6 +187,22 @@ export class StyledUserChatMessage extends React.Component {
         {...rest}
         style={[
           styles.userMessage,
+          withMargin ? styles.userMessageWithMargin : undefined,
+        ]}
+      />
+    );
+  }
+}
+
+export class StyledHedvigMessage extends React.Component {
+  static propTypes = { withMargin: PropTypes.bool.isRequired };
+  render() {
+    const { withMargin, ...rest } = this.props;
+    return (
+      <View
+        {...rest}
+        style={[
+          styles.messageContainer,
           withMargin ? styles.userMessageWithMargin : undefined,
         ]}
       />

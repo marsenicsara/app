@@ -1,5 +1,11 @@
 PODS:
-  - Analytics (3.6.9)
+  - Analytics (3.6.10)
+  - Apollo (0.9.4):
+    - Apollo/Core (= 0.9.4)
+  - Apollo/Core (0.9.4)
+  - Apollo/WebSocket (0.9.4):
+    - Apollo/Core
+    - Starscream (~> 3.0.2)
   - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
   - Branch-SDK (0.25.1):
@@ -12,14 +18,16 @@ PODS:
     - SSZipArchive (~> 2.1)
   - Crashlytics (3.10.9):
     - Fabric (~> 1.7.13)
+  - Disk (0.4.0)
   - DoubleConversion (1.1.6)
+  - DynamicColor (4.0.2)
   - Fabric (1.7.13)
-  - Firebase/Core (5.11.0):
+  - Firebase/Core (5.13.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.3.0)
-  - Firebase/CoreOnly (5.11.0):
-    - FirebaseCore (= 5.1.6)
-  - Firebase/Messaging (5.11.0):
+  - Firebase/CoreOnly (5.13.0):
+    - FirebaseCore (= 5.1.8)
+  - Firebase/Messaging (5.13.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (= 3.2.1)
   - FirebaseAnalytics (5.3.0):
@@ -32,7 +40,7 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
   - FirebaseAnalyticsInterop (1.1.0)
-  - FirebaseCore (5.1.6):
+  - FirebaseCore (5.1.8):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseInstanceID (3.3.0):
     - FirebaseCore (~> 5.1)
@@ -46,6 +54,7 @@ PODS:
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
   - FLAnimatedImage (1.0.12)
+  - FlowFramework (1.4.1)
   - Folly (2016.10.31.00):
     - boost-for-react-native
     - DoubleConversion
@@ -57,26 +66,27 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (5.3.4):
+  - GoogleUtilities/AppDelegateSwizzler (5.3.6):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.3.4)
-  - GoogleUtilities/Logger (5.3.4):
+  - GoogleUtilities/Environment (5.3.6)
+  - GoogleUtilities/Logger (5.3.6):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.3.4):
+  - GoogleUtilities/MethodSwizzler (5.3.6):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.3.4):
+  - GoogleUtilities/Network (5.3.6):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.3.4)"
-  - GoogleUtilities/Reachability (5.3.4):
+  - "GoogleUtilities/NSData+zlib (5.3.6)"
+  - GoogleUtilities/Reachability (5.3.6):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.3.4):
+  - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
   - JWT (3.0.0-beta.11):
     - Base64 (~> 1.1.2)
+  - Katana (2.0.0)
   - lottie-ios (2.5.2)
   - lottie-react-native (2.5.8):
     - lottie-ios
@@ -86,9 +96,10 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - PinLayout (1.8.6)
   - Protobuf (3.6.1)
-  - React (0.57.4):
-    - React/Core (= 0.57.4)
+  - React (0.57.41):
+    - React/Core (= 0.57.41)
   - react-native-blur (0.8.0):
     - React
   - react-native-branch (2.3.3):
@@ -96,7 +107,7 @@ PODS:
     - React
   - react-native-config (0.11.6):
     - React
-  - react-native-document-picker (2.1.0):
+  - react-native-document-picker (2.1.1):
     - React
   - react-native-fast-image (5.0.11):
     - FLAnimatedImage
@@ -105,58 +116,60 @@ PODS:
     - SDWebImage/GIF
   - react-native-image-picker (0.27.1):
     - React
-  - react-native-video (3.2.1):
+  - react-native-video (3.0.0):
     - React
-  - React/ART (0.57.4):
+  - React/ART (0.57.41):
     - React/Core
-  - React/Core (0.57.4):
-    - yoga (= 0.57.4.React)
-  - React/CxxBridge (0.57.4):
+  - React/Core (0.57.41):
+    - yoga (= 0.57.41.React)
+  - React/CxxBridge (0.57.41):
     - Folly (= 2016.10.31.00)
     - React/Core
     - React/cxxreact
-  - React/cxxreact (0.57.4):
+  - React/cxxreact (0.57.41):
     - boost-for-react-native (= 1.63.0)
     - Folly (= 2016.10.31.00)
     - React/jschelpers
     - React/jsinspector
-  - React/DevSupport (0.57.4):
+  - React/DevSupport (0.57.41):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.57.4)
-  - React/jschelpers (0.57.4):
+  - React/fishhook (0.57.41)
+  - React/jschelpers (0.57.41):
     - Folly (= 2016.10.31.00)
     - React/PrivateDatabase
-  - React/jsinspector (0.57.4)
-  - React/PrivateDatabase (0.57.4)
-  - React/RCTActionSheet (0.57.4):
+  - React/jsinspector (0.57.41)
+  - React/PrivateDatabase (0.57.41)
+  - React/RCTActionSheet (0.57.41):
     - React/Core
-  - React/RCTAnimation (0.57.4):
+  - React/RCTAnimation (0.57.41):
     - React/Core
-  - React/RCTBlob (0.57.4):
+  - React/RCTBlob (0.57.41):
     - React/Core
-  - React/RCTCameraRoll (0.57.4):
+  - React/RCTCameraRoll (0.57.41):
     - React/Core
     - React/RCTImage
-  - React/RCTGeolocation (0.57.4):
+  - React/RCTGeolocation (0.57.41):
     - React/Core
-  - React/RCTImage (0.57.4):
+  - React/RCTImage (0.57.41):
     - React/Core
     - React/RCTNetwork
-  - React/RCTLinkingIOS (0.57.4):
+  - React/RCTLinkingIOS (0.57.41):
     - React/Core
-  - React/RCTNetwork (0.57.4):
+  - React/RCTNetwork (0.57.41):
     - React/Core
-  - React/RCTText (0.57.4):
+  - React/RCTText (0.57.41):
     - React/Core
-  - React/RCTVibration (0.57.4):
+  - React/RCTVibration (0.57.41):
     - React/Core
-  - React/RCTWebSocket (0.57.4):
+  - React/RCTWebSocket (0.57.41):
     - React/Core
     - React/fishhook
     - React/RCTBlob
   - ReactNativeAnalyticsSegmentIo (3.1.3):
     - Analytics
+    - React
+  - ReactNativeHeicConverter (1.1.1):
     - React
   - ReactNativeNavigation (2.1.2):
     - React
@@ -193,41 +206,54 @@ PODS:
     - React
     - Sentry (~> 4.0.1)
   - SSZipArchive (2.1.4)
-  - yoga (0.57.4.React)
+  - Starscream (3.0.6)
+  - SwiftFormat/CLI (0.35.8)
+  - SwiftLint (0.28.2)
+  - Tempura (2.1.0):
+    - Katana (< 3, >= 2.0)
+  - UIViewRoundedCorners (1.0.0)
+  - yoga (0.57.41.React)
 
 DEPENDENCIES:
+  - Apollo
+  - Apollo/WebSocket
   - Branch-SDK (from `../node_modules/react-native-branch/ios`)
   - CodePush (from `../node_modules/react-native-code-push`)
   - Crashlytics (~> 3.10.7)
-  - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - Disk (~> 0.4.0)
+  - "DoubleConversion (from `../node_modules/@hedviginsurance/react-native/third-party-podspecs/DoubleConversion.podspec`)"
+  - DynamicColor (~> 4.0.2)
   - Fabric (~> 1.7.11)
   - Firebase/Core
   - Firebase/Messaging
-  - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
-  - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - FlowFramework (~> 1.0)
+  - "Folly (from `../node_modules/@hedviginsurance/react-native/third-party-podspecs/Folly.podspec`)"
+  - "glog (from `../node_modules/@hedviginsurance/react-native/third-party-podspecs/glog.podspec`)"
   - lottie-react-native (from `../node_modules/lottie-react-native`)
+  - PinLayout
   - react-native-blur (from `../node_modules/react-native-blur`)
   - react-native-branch (from `../node_modules/react-native-branch`)
   - "react-native-config (from `../node_modules/@hedviginsurance/react-native-config`)"
-  - react-native-document-picker (from `../node_modules/react-native-document-picker`)
+  - "react-native-document-picker (from `../node_modules/@hedviginsurance/react-native-document-picker`)"
   - react-native-fast-image (from `../node_modules/react-native-fast-image`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-video (from `../node_modules/react-native-video`)
-  - React/ART (from `../node_modules/react-native`)
-  - React/Core (from `../node_modules/react-native`)
-  - React/CxxBridge (from `../node_modules/react-native`)
-  - React/DevSupport (from `../node_modules/react-native`)
-  - React/RCTActionSheet (from `../node_modules/react-native`)
-  - React/RCTAnimation (from `../node_modules/react-native`)
-  - React/RCTCameraRoll (from `../node_modules/react-native`)
-  - React/RCTGeolocation (from `../node_modules/react-native`)
-  - React/RCTImage (from `../node_modules/react-native`)
-  - React/RCTLinkingIOS (from `../node_modules/react-native`)
-  - React/RCTNetwork (from `../node_modules/react-native`)
-  - React/RCTText (from `../node_modules/react-native`)
-  - React/RCTVibration (from `../node_modules/react-native`)
-  - React/RCTWebSocket (from `../node_modules/react-native`)
+  - "React/ART (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/Core (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/CxxBridge (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/DevSupport (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTActionSheet (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTAnimation (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTCameraRoll (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTGeolocation (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTImage (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTLinkingIOS (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTNetwork (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTText (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTVibration (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTWebSocket (from `../node_modules/@hedviginsurance/react-native`)"
   - ReactNativeAnalyticsSegmentIo (from `../node_modules/react-native-analytics-segment-io`)
+  - ReactNativeHeicConverter (from `../node_modules/react-native-heic-converter`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - ReactNativePermissions (from `../node_modules/react-native-permissions`)
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
@@ -239,14 +265,21 @@ DEPENDENCIES:
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - SentryReactNative (from `../node_modules/react-native-sentry`)
-  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+  - SwiftFormat/CLI
+  - SwiftLint
+  - Tempura
+  - UIViewRoundedCorners
+  - "yoga (from `../node_modules/@hedviginsurance/react-native/ReactCommon/yoga`)"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Analytics
+    - Apollo
     - Base64
     - boost-for-react-native
     - Crashlytics
+    - Disk
+    - DynamicColor
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -255,15 +288,23 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - FLAnimatedImage
+    - FlowFramework
     - GoogleAppMeasurement
     - GoogleUtilities
     - JWT
+    - Katana
     - lottie-ios
     - nanopb
+    - PinLayout
     - Protobuf
     - SDWebImage
     - Sentry
     - SSZipArchive
+    - Starscream
+    - SwiftFormat
+    - SwiftLint
+    - Tempura
+    - UIViewRoundedCorners
 
 EXTERNAL SOURCES:
   Branch-SDK:
@@ -271,15 +312,15 @@ EXTERNAL SOURCES:
   CodePush:
     :path: "../node_modules/react-native-code-push"
   DoubleConversion:
-    :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+    :podspec: "../node_modules/@hedviginsurance/react-native/third-party-podspecs/DoubleConversion.podspec"
   Folly:
-    :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
+    :podspec: "../node_modules/@hedviginsurance/react-native/third-party-podspecs/Folly.podspec"
   glog:
-    :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+    :podspec: "../node_modules/@hedviginsurance/react-native/third-party-podspecs/glog.podspec"
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
   React:
-    :path: "../node_modules/react-native"
+    :path: "../node_modules/@hedviginsurance/react-native"
   react-native-blur:
     :path: "../node_modules/react-native-blur"
   react-native-branch:
@@ -287,7 +328,7 @@ EXTERNAL SOURCES:
   react-native-config:
     :path: "../node_modules/@hedviginsurance/react-native-config"
   react-native-document-picker:
-    :path: "../node_modules/react-native-document-picker"
+    :path: "../node_modules/@hedviginsurance/react-native-document-picker"
   react-native-fast-image:
     :path: "../node_modules/react-native-fast-image"
   react-native-image-picker:
@@ -296,6 +337,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-video"
   ReactNativeAnalyticsSegmentIo:
     :path: "../node_modules/react-native-analytics-segment-io"
+  ReactNativeHeicConverter:
+    :path: "../node_modules/react-native-heic-converter"
   ReactNativeNavigation:
     :path: "../node_modules/react-native-navigation"
   ReactNativePermissions:
@@ -319,42 +362,49 @@ EXTERNAL SOURCES:
   SentryReactNative:
     :path: "../node_modules/react-native-sentry"
   yoga:
-    :path: "../node_modules/react-native/ReactCommon/yoga"
+    :path: "../node_modules/@hedviginsurance/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Analytics: 6541ce337e99d9f7a2240a8b3953940a7be5f998
+  Analytics: 63744ad4afa65c3bcdcdb7a94b62515bde5b3900
+  Apollo: 450856adbdebcdf28c3c671f81732ac3f9944065
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   Branch-SDK: 8a0fa24e01a68cc3f98f184900e5adf0328c7f02
   CodePush: f6b348759cdc42c734d9c3a46ceb2997c270b12e
   Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
+  Disk: ef2956657d5bb56034b38b29b352170165226440
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
+  DynamicColor: c7adcfe871781a2b39877a5774e452ba51b79eb3
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
-  Firebase: b48f9e653da971ecce5b8c749684bc8bb2d26bd3
+  Firebase: 6df9a6114bc9f106a98fe83d5438d4d9833c2019
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
-  FirebaseCore: d16552f06821489ce1affe2e5e3e5593402ddfe3
+  FirebaseCore: fba2bfaa691c49028309b92e4dd37cc4b5512fbe
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseMessaging: 0f14a264b0d7f867e8eff5d3556bc5d0d4e57888
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FlowFramework: dad5379307484c03e9065c633115c215333d5789
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
-  GoogleUtilities: abb092d2c12e817fa3e0e7b274987dd72fb86ec3
+  GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
+  Katana: f624d693c272dac8e3a20c5049a34d0821f067c9
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   lottie-react-native: db4bd75685428c4ad0ec2f913145abff3d38b640
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PinLayout: fe2a2432d6982588e208572005c941aeeae417ab
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-blur: c35c1f6c2c76db7108bde7ed343bd2b01d64e0c0
   react-native-branch: 8988998ef912c6373dc39a24e4638f02a1268265
   react-native-config: 9314df2fa7cca076e4bb38b8068210029beded14
-  react-native-document-picker: e7934f6a3c898a1b62fa68b1f09371beef6ac51a
+  react-native-document-picker: e9e39ca249a9c47f789130a1115b92986792b76b
   react-native-fast-image: cba3d9bf9c2cf8ddb643d887a686c53a5dd90a2c
   react-native-image-picker: f42de90075c5b1af53417af927631d909a1a746e
   react-native-video: 6db316323366025251a815c49ca0e2edabe30a2a
   ReactNativeAnalyticsSegmentIo: d571ea899d7dfcd864fbd6dfbbd04e23ef04786a
+  ReactNativeHeicConverter: 5fc5378c507c55dd3b4b5555bcf00b2597ce8063
   ReactNativeNavigation: 20522060de61b1c293ec50681a6aa11488596286
   ReactNativePermissions: 9f2d9c45c98800795e6c2ed330e25d11a66a8169
   rn-fetch-blob: 76a8f798dae965bbcd146a2438f2e1d381c91ae3
@@ -369,8 +419,13 @@ SPEC CHECKSUMS:
   Sentry: a38f7879924c02239e121b19d993d23bdd1684db
   SentryReactNative: d476259b21060a59dc637a29a40d60f0aac09cf7
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftFormat: 5af0a2c27175163c317c88b00ae7b6f971a7822a
+  SwiftLint: f1629ae733b64e9cad20052de01d1debd5b640e7
+  Tempura: 819db8b32776dc68e628902da7119621fddb33bf
+  UIViewRoundedCorners: 51b74df8b6052e0488c71197951566aac632ee1a
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: fcb56eb1e653f1929bb73e5e70e3f6c640b80f3b
+PODFILE CHECKSUM: 24734b9e6e6b325fe6b1e4952f9997515fa6bec7
 
 COCOAPODS: 1.5.3

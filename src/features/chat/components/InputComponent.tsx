@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import ChatNumberInput from '../containers/ChatNumberInput';
 import ChatTextInput from '../containers/ChatTextInput';
 import MultipleSelectInput from '../containers/MultipleSelectInput';
 import SingleSelectInput from '../containers/SingleSelectInput';
@@ -23,7 +22,7 @@ const inputComponentMap: {
 } = {
   multiple_select: () => <MultipleSelectInput />,
   text: (props) => <ChatTextInput {...props} />,
-  number: () => <ChatNumberInput />,
+  number: (props) => <ChatTextInput {...props} keyboardType="numeric" />,
   single_select: (props) => <SingleSelectInput {...props} />,
   bankid_collect: () => <BankIdCollectInput />,
   paragraph: () => <ParagraphInput />,

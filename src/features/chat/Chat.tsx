@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { View, AppState, KeyboardAvoidingView } from 'react-native';
+import { View, AppState } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
 import { Container, EffectMap, EffectProps } from 'constate';
 
@@ -15,7 +13,8 @@ import { chatActions, dialogActions } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
 import { NavigationEvents } from 'src/navigation/events';
-import { getMainLayout, setLayout } from '../../navigation/layout';
+import { getMainLayout } from 'src/navigation/layouts/mainLayout';
+import { setLayout } from 'src/navigation/layouts/setLayout';
 import {
   getOfferScreen,
   OFFER_GROUPS,
@@ -76,18 +75,6 @@ const effects: EffectMap<State, Effects> = {
     }
   },
 };
-
-const KeyboardAvoid = styled(KeyboardAvoidingView)({
-  flex: 1,
-  ...ifIphoneX(
-    {
-      marginBottom: 20,
-    },
-    {
-      marginBottom: 0,
-    },
-  ),
-});
 
 const Messages = styled(View)({
   flex: 1,
@@ -234,21 +221,13 @@ const Chat: React.SFC<ChatProps> = ({
             showReturnToOfferButton,
           )}
         >
-          <KeyboardAvoid
-            keyboardVerticalOffset={isIphoneX() ? 85 : 65}
-            behavior="padding"
-            enabled={Platform.OS === 'ios'}
-          >
-            <Messages>
-              {messages.length ? <MessageList /> : <Loader />}
-            </Messages>
-            <Response>
-              <InputComponent
-                showOffer={() => showOffer(componentId)}
-                messages={messages}
-              />
-            </Response>
-          </KeyboardAvoid>
+          <Messages>{messages.length ? <MessageList /> : <Loader />}</Messages>
+          <Response>
+            <InputComponent
+              showOffer={() => showOffer(componentId)}
+              messages={messages}
+            />
+          </Response>
         </NavigationOptions>
       </>
     )}

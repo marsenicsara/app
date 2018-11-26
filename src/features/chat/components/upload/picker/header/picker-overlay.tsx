@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import { DraggableOverlay } from 'src/components/draggable-overlay';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Dimensions, View, TouchableOpacity, Text } from 'react-native';
@@ -9,7 +9,7 @@ import ImagePicker from 'react-native-image-picker';
 import {
   DocumentPicker,
   DocumentPickerUtil,
-} from 'react-native-document-picker';
+} from '@hedviginsurance/react-native-document-picker';
 import { Navigation } from 'react-native-navigation';
 import { BackButton } from 'src/components/BackButton';
 
@@ -46,17 +46,19 @@ const Heading = styled(Text)({
 });
 
 interface PickerOverlayProps {
-  componentId: string
-  upload: (uri: string) => Promise<Error | { key: string }>
-  onUpload: (key: string) => void
+  componentId: string;
+  upload: (uri: string) => Promise<Error | { key: string }>;
+  onUpload: (key: string) => void;
 }
 
-export const PickerOverlay: React.SFC<PickerOverlayProps> = ({ componentId, upload, onUpload }) => (
+export const PickerOverlay: React.SFC<PickerOverlayProps> = ({
+  componentId,
+  upload,
+  onUpload,
+}) => (
   <DraggableOverlay
     heightPercentage={
-      ((isIphoneX() ? 125 : 100) /
-        Dimensions.get('window').height) *
-      100
+      ((isIphoneX() ? 125 : 100) / Dimensions.get('window').height) * 100
     }
     onClose={() => Navigation.dismissOverlay(componentId)}
   >
@@ -73,14 +75,12 @@ export const PickerOverlay: React.SFC<PickerOverlayProps> = ({ componentId, uplo
                 ImagePicker.launchImageLibrary({}, (response) => {
                   if (response.origURL) {
                     handleClose();
-                    upload(response.origURL).then(
-                      (uploadResponse) => {
-                        if (uploadResponse instanceof Error) {
-                        } else {
-                          onUpload(uploadResponse.key);
-                        }
-                      },
-                    );
+                    upload(response.origURL).then((uploadResponse) => {
+                      if (uploadResponse instanceof Error) {
+                      } else {
+                        onUpload(uploadResponse.key);
+                      }
+                    });
                   }
                 });
               }}
@@ -115,4 +115,4 @@ export const PickerOverlay: React.SFC<PickerOverlayProps> = ({ componentId, uplo
       </>
     )}
   </DraggableOverlay>
-)
+);

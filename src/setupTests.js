@@ -24,7 +24,7 @@ jest.mock('react-native-firebase', () => ({
   getToken: () => {},
 }));
 jest.mock('react-native-fs', () => ({}));
-jest.mock('react-native-document-picker', () => ({}));
+jest.mock('@hedviginsurance/react-native-document-picker', () => ({}));
 jest.mock('react-native-analytics-segment-io', () => ({
   setup: () => {},
   track: () => {},
@@ -48,6 +48,11 @@ jest.mock('react-native-branch', () => ({
   BranchEvent: {},
 }));
 jest.mock('@hedviginsurance/react-native-floating-action', () => ({}));
+jest.mock(
+  '@hedviginsurance/react-native-keyboard-spacer',
+  () => require('react-native-mock-render').View,
+);
+
 jest.mock('react-native-audio', () => ({
   AudioRecorder: {},
   AudioUtils: {},

@@ -16,7 +16,8 @@ import { LogoutButton } from 'src/features/profile/logoutButton';
 import { SelectCashback } from './components/select-cashback';
 
 import { Store } from 'src/setupApp';
-import { setLayout, getMarketingLayout } from 'src/navigation/layout';
+import { setLayout } from 'src/navigation/layouts/setLayout';
+import { getMarketingLayout } from 'src/navigation/layouts/marketingLayout';
 import { deleteToken } from 'src/graphql/context';
 
 const PROFILE_QUERY = gql`

@@ -1,4 +1,4 @@
-declare module 'react-native-document-picker' {
+declare module '@hedviginsurance/react-native-document-picker' {
   type DocumentPickerFileOption = string;
 
   interface IDocumentPickerUtil {
