@@ -116,8 +116,8 @@ class ChatTextInput extends React.Component {
   _send = (message) => {
     this.requestPush();
     if (!this.props.isSending) {
+      console.log(message);
       const inputValue = String(message);
-      this.ref.clear();
       this.props.send(this.props.message, inputValue);
     }
   };
@@ -184,7 +184,7 @@ class ChatTextInput extends React.Component {
                               enablesReturnKeyAutomatically
                             />
                             <SendButton
-                              onPress={this._send}
+                              onPress={() => this._send(value)}
                               disabled={!value}
                               size="small"
                             />
