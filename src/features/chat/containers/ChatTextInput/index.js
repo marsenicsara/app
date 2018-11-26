@@ -8,6 +8,7 @@ import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
 import mime from 'mime-types';
 import { Container } from 'constate';
 import { connect } from 'react-redux';
+import firebase from 'react-native-firebase';
 
 import { chatActions, dialogActions } from '../../../../../hedvig-redux';
 import { SendButton } from '../../components/Button';
