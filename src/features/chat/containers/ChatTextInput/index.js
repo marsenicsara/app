@@ -29,14 +29,22 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     minHeight: 40,
     maxHeight: 160,
-    paddingTop: 5,
     paddingRight: 16,
-    paddingBottom: 5,
     paddingLeft: 16,
     marginRight: 8,
     fontSize: 15,
     overflow: 'hidden',
     fontFamily: fonts.CIRCULAR,
+    ...Platform.select({
+      android: {
+        paddingTop: 5,
+        paddingBottom: 5,
+      },
+      ios: {
+        paddingTop: 10,
+        paddingBottom: 10,
+      },
+    }),
   },
 });
 
