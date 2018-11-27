@@ -18,7 +18,6 @@ import OfferChat from 'src/features/chat/OfferChat';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
-
 import { CHAT_SCREEN } from 'src/navigation/screens/chat';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
@@ -95,7 +94,11 @@ export const ChatButton: React.SFC = () => (
                     <>
                       <TranslationsConsumer textKey="OFFER_CHAT_HEADER">
                         {(text) => (
-                          <Header title={text} onCloseClick={handleClose} />
+                          <Header
+                            title={text}
+                            onCloseClick={handleClose}
+                            restartButton={true}
+                          />
                         )}
                       </TranslationsConsumer>
                       <OfferChat onRequestClose={handleClose} />
