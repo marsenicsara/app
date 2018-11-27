@@ -25,6 +25,7 @@ import {
   V_COMPACT,
 } from '../../../../services/DimensionSizes';
 import { colors } from '@hedviginsurance/brand';
+import { RestartOfferChat } from '../../../../components/RestartOfferChat';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -87,23 +88,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const LOGOUT_MUTATION = gql`
-  mutation LogoutMutation {
-    logout
-  }
-`;
-
-const RestartButton = styled(TouchableOpacity)({
-  paddingTop: 10,
-  paddingBottom: 10,
-  paddingLeft: 20,
-  paddingRight: 20,
-  marginTop: 10,
-  marginBottom: 30,
-  borderRadius: 20,
-  backgroundColor: colors.WHITE,
-});
-
 class OfferScreen extends React.Component {
   render() {
     return (
@@ -123,29 +107,7 @@ class OfferScreen extends React.Component {
                 </Text>
               </View>
               <View style={styles.content}>
-                <Mutation mutation={LOGOUT_MUTATION}>
-                  {(logout, { client }) => (
-                    <RestartButton
-                      onPress={async () => {
-                        chatActions.resetConversation();
-                        await logout();
-                        deleteToken();
-                        Store.dispatch({ type: 'DELETE_TOKEN' });
-                        Store.dispatch({ type: 'DELETE_TRACKING_ID' });
-                        Store.dispatch({ type: 'AUTHENTICATE' });
-                        await AsyncStorage.removeItem(
-                          '@hedvig:alreadySeenMarketingCarousel',
-                        );
-                        await setLayout(getChatLayout());
-                        setTimeout(() => {
-                          client.resetStore();
-                        }, 200);
-                      }}
-                    >
-                      <Text>Börja om</Text>
-                    </RestartButton>
-                  )}
-                </Mutation>
+                <RestartOfferChat />
                 <Text style={styles.categoryHeader}>Personskydd</Text>
                 <Text style={styles.categoryHeader}>Prylskydd</Text>
                 <Text style={styles.categoryHeader}>Lägenhetsskydd</Text>
