@@ -25,7 +25,6 @@ import {
   V_COMPACT,
 } from '../../../../services/DimensionSizes';
 import { colors } from '@hedviginsurance/brand';
-import { RestartOfferChat } from '../../../../components/RestartOfferChat';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -107,7 +106,6 @@ class OfferScreen extends React.Component {
                 </Text>
               </View>
               <View style={styles.content}>
-                <RestartOfferChat />
                 <Text style={styles.categoryHeader}>Personskydd</Text>
                 <Text style={styles.categoryHeader}>Prylskydd</Text>
                 <Text style={styles.categoryHeader}>Lägenhetsskydd</Text>

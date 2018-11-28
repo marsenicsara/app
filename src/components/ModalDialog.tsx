@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  title: string;
-  paragraph: string;
-  confirmButtonTitle?: string;
-  dismissButtonTitle?: string;
+  title: React.ReactNode;
+  paragraph: React.ReactNode;
+  confirmButtonTitle: React.ReactNode;
+  dismissButtonTitle: React.ReactNode;
   onConfirm?: () => void;
   onDismiss?: () => void;
 }

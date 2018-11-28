@@ -10,6 +10,7 @@ import gql from 'graphql-tag';
 import { getChatLayout } from 'src/navigation/layouts/chatLayout';
 import { ModalDialog } from './ModalDialog';
 import { Delayed } from './Delayed';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const RestartButton = styled(TouchableOpacity)({});
 
@@ -41,12 +42,26 @@ export const RestartOfferChat: React.SFC = () => (
               unmountChildrenAfter={100}
             >
               <ModalDialog
-                title={'Börja om'}
-                paragraph={
-                  'Är du säker på att du vill börja om?\n Ditt nuvarande erbjudande kommer försvinna.'
+                title={
+                  <TranslationsConsumer textKey="RESTART_OFFER_CHAT_TITLE">
+                    {(text) => text}
+                  </TranslationsConsumer>
                 }
-                confirmButtonTitle={'Ja'}
-                dismissButtonTitle={'Nej'}
+                paragraph={
+                  <TranslationsConsumer textKey="RESTART_OFFER_CHAT_PARAGRAPH">
+                    {(text) => text}
+                  </TranslationsConsumer>
+                }
+                confirmButtonTitle={
+                  <TranslationsConsumer textKey="RESTART_OFFER_CHAT_BUTTON_CONFIRM">
+                    {(text) => text}
+                  </TranslationsConsumer>
+                }
+                dismissButtonTitle={
+                  <TranslationsConsumer textKey="RESTART_OFFER_CHAT_BUTTON_DISMISS">
+                    {(text) => text}
+                  </TranslationsConsumer>
+                }
                 onConfirm={async () => {
                   state.updateModalVisibility(false);
                   await logout();
