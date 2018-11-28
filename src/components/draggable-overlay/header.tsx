@@ -50,6 +50,6 @@ export const Header: React.SFC<HeaderProps> = ({
       <Arrow width={12} height={12} arrowFill={colors.PURPLE} rotate={0} />
     </CloseButton>
     <Title>{title}</Title>
-    {restartButton && <RestartOfferChat />}
+    {restartButton && <RestartOfferChat onCloseClick={() => onCloseClick()} />}
   </HeaderContainer>
 );

@@ -39,14 +39,10 @@ const ListHeaderContext = React.createContext<ListHeaderContextProps>({
 
 interface ListFooterContext {
   error: boolean;
-  loading: boolean;
-  loadMore: () => void;
 }
 
 const ListFooterContext = React.createContext<ListFooterContext>({
   error: false,
-  loading: false,
-  loadMore: () => {},
 });
 
 const ListHeaderComponent = () => (
@@ -64,9 +60,7 @@ const ListHeaderComponent = () => (
 
 const ListFooterComponent = () => (
   <ListFooterContext.Consumer>
-    {({ error, loading, loadMore }) => (
-      <ErrorMessage loading={loading} error={error} retry={loadMore} />
-    )}
+    {({ error }) => <ErrorMessage error={error} />}
   </ListFooterContext.Consumer>
 );
 
@@ -91,10 +85,8 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
             mountChildrenAfter={0}
           >
             <Data shouldLoad={isOpen}>
-              {({ photos, loadMore, loading, error }) => (
-                <ListFooterContext.Provider
-                  value={{ loading, error, loadMore }}
-                >
+              {({ photos, loadMore, error }) => (
+                <ListFooterContext.Provider value={{ error }}>
                   <FlatList
                     ListHeaderComponent={ListHeaderComponent}
                     ListFooterComponent={ListFooterComponent}

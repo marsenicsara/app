@@ -752,15 +752,20 @@
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-config/-/react-native-config-0.11.6.tgz#edf8aa2cf2510bcdbb199114f2029664b7bb2aae"
   integrity sha512-LZz5RujYyUTCb2Q3hibKV5e8eTZCpESXDT8KquKCCPeOSAqKBR4TnNUKqeOxPug3HcZ4i4MHiNgaJasPV5Jqzw==
 
+"@hedviginsurance/react-native-document-picker@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-document-picker/-/react-native-document-picker-2.1.1.tgz#2423d6dabef6427e836808af616d593563715c77"
+  integrity sha512-W8UxlK3LaP3n6ttEjqgie23icvhf0tQUVb4GtDh9hd6bjVgEceoNQcWa4PD4rFSd4LTZEckqmkNNaOHODnRrdA==
+
 "@hedviginsurance/react-native-floating-action@^1.11.3":
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.11.3.tgz#1f974e3a5ca73d05ae8575552137b55465a4602f"
   integrity sha512-jSqgHj4fJ0mQv/Wzxx6Cm0nbpolCJBAtIyDtItdJTjdyq5GEBIiTJJazZnWTitCSizj6ay+I2VONe2ctJFThMw==
 
-"@hedviginsurance/react-native-keyboard-spacer@0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.4.tgz#b3f71d4e0c9f792292de741f53d87d2e89aa4225"
-  integrity sha512-7qQ8wbaAzhn1c3NL+Oor1igdYJD+2i8JK7j+q+b1Rp7XBbgDg8pXPtjoHtiGImPitTQ8zwid0lYKYajpGDM+7g==
+"@hedviginsurance/react-native-keyboard-spacer@0.4.9":
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.9.tgz#82896c9405c81a29b66b454849ae9ca26a2ae959"
+  integrity sha512-21TCQ2717SQqf+kJ54psf7B60uusmI69wu0l56o5BeU3MVuM9tYTc5T10T8/pleZQNskdODpAcutKLcHca+pIA==
 
 "@hedviginsurance/react-native@^0.57.41":
   version "0.57.41"
@@ -8270,11 +8275,6 @@ react-native-device-info@^0.22.5:
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.22.6.tgz#32a674b0484d31214fdcfbbb0e677621e83ba69d"
   integrity sha512-/w87PmHPvT5MY3HwzdVEWyFg/ib91lY6TlYJGNnNPaXNXY60ShB8HI+GXKyq4KAtbUc/WhRM1RQ8/WKJOal+UQ==
 
-react-native-document-picker@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-2.1.0.tgz#61bbe113435a9d7bf67ab77093a4092d76b52fe3"
-  integrity sha512-BFCBXwz8xuLvHLVFVeQM+RhaY8yZ38PEWt9WSbq5VIoZ/VssP6uu51XxOfdwaMALOrAHIojK0SiYnd155upZAg==
-
 react-native-fast-image@^5.0.11:
   version "5.0.11"
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-5.0.11.tgz#a8f21864d379e6f566e4f68dd04f2c0f7de0dfec"
@@ -8296,10 +8296,10 @@ react-native-fs@^2.11.18:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
 
-react-native-gesture-handler@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.7.tgz#86677c709c42d04555210cad9759b09e2c657720"
-  integrity sha512-lu4RizR3iBJ6qq8UfcHQKbf+HaiQHMGaQPSMSy8i7ij6tsOxatKuzxuEZRMblQ2Ma7op4CpfssD29yo1AjI7PQ==
+react-native-gesture-handler@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.9.tgz#ddec4d19d51cb6fb54df6eca792ebd76aaef083f"
+  integrity sha512-TPaiS8cAGqQA9p1GwjDbgMyNVCO/7cWC05h1rWIX2ZLoB1oSxGEBi5Es211HpBUmsTAzrUGH7M+ASGkAQeYH/A==
   dependencies:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"

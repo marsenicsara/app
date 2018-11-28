@@ -13,9 +13,7 @@ import Lottie from 'lottie-react-native';
 
 import {
   verticalSizeClass,
-  V_COMPACT,
-  V_REGULAR,
-  V_SPACIOUS,
+  VerticalSizeClass,
 } from '../../../../services/DimensionSizes';
 
 const animationModule = require('../../../../../assets/animations/claims_demo.json');
@@ -35,9 +33,9 @@ const styles = StyleSheet.create({
   },
   header: {
     marginTop: {
-      [V_COMPACT]: 10,
-      [V_REGULAR]: 25,
-      [V_SPACIOUS]: 15,
+      [VerticalSizeClass.COMPACT]: 10,
+      [VerticalSizeClass.REGULAR]: 25,
+      [VerticalSizeClass.COMPACT]: 15,
     }[verticalSizeClass],
     fontFamily: 'CircularStd-Bold',
     fontSize: 23,

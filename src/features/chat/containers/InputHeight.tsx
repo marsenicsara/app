@@ -20,11 +20,7 @@ interface Props {
 }
 
 export const InputHeightContainer: React.SFC<Props> = ({ children }) => (
-  <Container
-    context="inputHeight"
-    initialState={{ inputHeight: 0 }}
-    actions={actions}
-  >
+  <Container context="inputHeight" actions={actions}>
     {children}
   </Container>
 );

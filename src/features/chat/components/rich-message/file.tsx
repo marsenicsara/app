@@ -42,6 +42,7 @@ export const FileMessage: React.SFC<Props> = ({
   message,
   withMargin,
   index,
+  fromUser,
 }) => {
   const key = message.body.key;
   const extension = path.extname(key || '');
@@ -57,6 +58,7 @@ export const FileMessage: React.SFC<Props> = ({
         if (error) {
           return (
             <TextMessage
+              fromUser
               message={{
                 ...message,
                 body: { text: 'Kunde inte ladda fil...' },
@@ -70,6 +72,7 @@ export const FileMessage: React.SFC<Props> = ({
         if (loading || !data) {
           return (
             <TextMessage
+              fromUser
               message={{ ...message, body: { text: 'Laddar...' } }}
               withMargin={withMargin}
               index={index}
@@ -77,9 +80,10 @@ export const FileMessage: React.SFC<Props> = ({
           );
         }
 
-        if (isImageMessage) {
+        if (isImageMessage(data!.file.signedUrl)) {
           return (
             <ImageMessage
+              fromUser
               message={{ ...message, body: { text: data!.file.signedUrl } }}
               withMargin={withMargin}
               index={index}
@@ -97,7 +101,7 @@ export const FileMessage: React.SFC<Props> = ({
               <Content>
                 <File width={20} height={25} />
                 <Spacing width={5} />
-                <StyledDefaultUserMessageText>
+                <StyledDefaultUserMessageText fromUser={fromUser}>
                   {extension.replace('.', '')} fil uppladdad
                 </StyledDefaultUserMessageText>
               </Content>

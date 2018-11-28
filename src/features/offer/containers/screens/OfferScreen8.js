@@ -17,13 +17,9 @@ import {
 import {
   horizontalSizeClass,
   verticalSizeClass,
-  H_SPACIOUS,
-  H_REGULAR,
-  H_COMPACT,
-  V_SPACIOUS,
-  V_REGULAR,
-  V_COMPACT,
-} from '../../../../services/DimensionSizes';
+  HorizontalSizeClass,
+  VerticalSizeClass,
+} from 'src/services/DimensionSizes';
 import { OFFER_CHECKOUT } from '../../state/actions';
 import { Dialog } from '../../../bankid/Dialog';
 
@@ -48,9 +44,9 @@ const styles = StyleSheet.create({
   },
   priceContainer: {
     marginTop: {
-      [V_SPACIOUS]: 50,
-      [V_REGULAR]: 40,
-      [V_COMPACT]: 30,
+      [VerticalSizeClass.SPACIOUS]: 50,
+      [VerticalSizeClass.REGULAR]: 40,
+      [VerticalSizeClass.COMPACT]: 30,
     }[verticalSizeClass],
   },
   priceBackground: {
@@ -106,23 +102,23 @@ const styles = StyleSheet.create({
   checkWrapper: {
     flex: 1,
     marginTop: {
-      [V_SPACIOUS]: 70,
-      [V_REGULAR]: 50,
-      [V_COMPACT]: 30,
+      [VerticalSizeClass.SPACIOUS]: 70,
+      [VerticalSizeClass.REGULAR]: 50,
+      [VerticalSizeClass.COMPACT]: 30,
     }[verticalSizeClass],
     width: {
-      [H_SPACIOUS]: 330,
-      [H_REGULAR]: 320,
-      [H_COMPACT]: '85%',
+      [HorizontalSizeClass.SPACIOUS]: 330,
+      [HorizontalSizeClass.REGULAR]: 320,
+      [HorizontalSizeClass.COMPACT]: '85%',
     }[horizontalSizeClass],
   },
   check: {
     flexDirection: 'row',
     position: 'relative',
     marginBottom: {
-      [H_SPACIOUS]: 40,
-      [H_REGULAR]: 40,
-      [H_COMPACT]: 35,
+      [HorizontalSizeClass.SPACIOUS]: 40,
+      [HorizontalSizeClass.REGULAR]: 40,
+      [HorizontalSizeClass.COMPACT]: 35,
     }[horizontalSizeClass],
     alignItems: 'center',
   },

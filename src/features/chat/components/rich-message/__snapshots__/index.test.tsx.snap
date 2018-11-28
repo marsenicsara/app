@@ -2,6 +2,7 @@
 
 exports[`renders giphy messages correctly 1`] = `
 <Component
+  fromUser={true}
   index={0}
   message={
     Object {
@@ -17,6 +18,7 @@ exports[`renders giphy messages correctly 1`] = `
   withMargin={false}
 >
   <Component
+    fromUser={true}
     index={0}
     message={
       Object {
@@ -224,6 +226,7 @@ exports[`renders giphy messages correctly 1`] = `
 
 exports[`renders image messages correctly 1`] = `
 <Component
+  fromUser={true}
   index={0}
   message={
     Object {
@@ -239,6 +242,7 @@ exports[`renders image messages correctly 1`] = `
   withMargin={false}
 >
   <Component
+    fromUser={true}
     index={0}
     message={
       Object {
@@ -360,6 +364,7 @@ exports[`renders image messages correctly 1`] = `
 
 exports[`renders text messages correctly 1`] = `
 <Component
+  fromUser={true}
   index={0}
   message={
     Object {
@@ -375,6 +380,7 @@ exports[`renders text messages correctly 1`] = `
   withMargin={false}
 >
   <Component
+    fromUser={true}
     index={0}
     message={
       Object {
@@ -434,19 +440,21 @@ exports[`renders text messages correctly 1`] = `
               <View>
                 <react-native-mock>
                   <StyledDefaultUserMessageText
+                    fromUser={true}
                     key=".0"
                   >
                     <Text
+                      fromUser={true}
                       selectable={true}
                       style={
                         Array [
+                          undefined,
                           Object {
                             "color": "#FFFFFF",
                             "fontFamily": "CircularStd-Book",
                             "fontSize": 16,
                             "textAlign": "left",
                           },
-                          undefined,
                         ]
                       }
                     >
@@ -468,6 +476,7 @@ exports[`renders text messages correctly 1`] = `
 
 exports[`renders text messages with hyperlinks correctly 1`] = `
 <Component
+  fromUser={true}
   index={0}
   message={
     Object {
@@ -483,6 +492,7 @@ exports[`renders text messages with hyperlinks correctly 1`] = `
   withMargin={false}
 >
   <Component
+    fromUser={true}
     index={0}
     message={
       Object {
@@ -542,29 +552,33 @@ exports[`renders text messages with hyperlinks correctly 1`] = `
               <View>
                 <react-native-mock>
                   <StyledDefaultUserMessageText
+                    fromUser={true}
                     key=".0"
                   >
                     <Text
+                      fromUser={true}
                       selectable={true}
                       style={
                         Array [
+                          undefined,
                           Object {
                             "color": "#FFFFFF",
                             "fontFamily": "CircularStd-Book",
                             "fontSize": 16,
                             "textAlign": "left",
                           },
-                          undefined,
                         ]
                       }
                     >
                       <react-native-mock>
                         <Text
+                          fromUser={true}
                           key=".0"
                         >
                           <react-native-mock>
                             mock message hello 123 
                             <Text
+                              fromUser={true}
                               key="https://www.hedvig.com23"
                               onPress={[Function]}
                               style={

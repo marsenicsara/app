@@ -8,6 +8,7 @@ class ProfileScreen extends React.Component {
     return {
       topBar: {
         visible: false,
+        drawBehind: true,
       },
       statusBar: {
         visible: true,

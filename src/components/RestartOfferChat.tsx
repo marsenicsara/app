@@ -25,7 +25,11 @@ const RestartIcon = styled(Image)({
   width: 32,
 });
 
-export const RestartOfferChat: React.SFC = () => (
+interface Props {
+  onCloseClick: () => void;
+}
+
+export const RestartOfferChat: React.SFC<Props> = ({ onCloseClick }) => (
   <Mutation mutation={LOGOUT_MUTATION}>
     {(logout, { client }) => (
       <RestartOfferContainer>
@@ -60,6 +64,7 @@ export const RestartOfferChat: React.SFC = () => (
                 confirmButtonTitle={'RESTART_OFFER_CHAT_BUTTON_CONFIRM'}
                 dismissButtonTitle={'RESTART_OFFER_CHAT_BUTTON_DISMISS'}
                 onConfirm={async () => {
+                  onCloseClick();
                   state.updateModalVisibility(false);
                   await logout();
                   deleteToken();

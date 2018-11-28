@@ -6,6 +6,7 @@ import Hyperlink from 'react-native-hyperlink';
 import EditMessageButton from '../../containers/EditMessageButton';
 import {
   StyledUserChatMessage,
+  StyledHedvigMessage,
   StyledDefaultUserMessageText,
 } from '../../styles/chat';
 
@@ -20,28 +21,36 @@ const EditMessageButtonContainer = styled(View)(
   }),
 );
 
+const getContainerComponent = (fromUser: boolean) =>
+  fromUser ? StyledUserChatMessage : StyledHedvigMessage;
+
 export const TextMessage: React.SFC<Props> = ({
   message,
   index,
   withMargin,
-}) => (
-  <>
-    {message.header.editAllowed && (
-      <EditMessageButtonContainer
-        hasStatusMessage={!!message.header.statusMessage}
-      >
-        <EditMessageButton index={index} />
-      </EditMessageButtonContainer>
-    )}
-    <StyledUserChatMessage withMargin={withMargin}>
-      <Hyperlink
-        linkDefault={true}
-        linkStyle={{ textDecorationLine: 'underline' }}
-      >
-        <StyledDefaultUserMessageText>
-          {message.body.text}
-        </StyledDefaultUserMessageText>
-      </Hyperlink>
-    </StyledUserChatMessage>
-  </>
-);
+  fromUser,
+}) => {
+  const MessageContainer = getContainerComponent(fromUser);
+
+  return (
+    <>
+      {message.header.editAllowed && (
+        <EditMessageButtonContainer
+          hasStatusMessage={!!message.header.statusMessage}
+        >
+          <EditMessageButton index={index} />
+        </EditMessageButtonContainer>
+      )}
+      <MessageContainer withMargin={withMargin}>
+        <Hyperlink
+          linkDefault={true}
+          linkStyle={{ textDecorationLine: 'underline' }}
+        >
+          <StyledDefaultUserMessageText fromUser={fromUser}>
+            {message.body.text}
+          </StyledDefaultUserMessageText>
+        </Hyperlink>
+      </MessageContainer>
+    </>
+  );
+};

@@ -30,7 +30,7 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
       <PickerContainer isOpen={isOpen}>
         <Delayed
           mountChildren={isOpen}
-          unmountChildrenAfter={30000}
+          unmountChildrenAfter={500}
           mountChildrenAfter={0}
         >
           <SearchBar>

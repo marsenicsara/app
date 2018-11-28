@@ -42,8 +42,9 @@
     "@hedviginsurance/podspec-generator": "^0.2.3",
     "@hedviginsurance/react-native": "^0.57.41",
     "@hedviginsurance/react-native-config": "^0.11.6",
+    "@hedviginsurance/react-native-document-picker": "2.1.1",
     "@hedviginsurance/react-native-floating-action": "^1.11.3",
-    "@hedviginsurance/react-native-keyboard-spacer": "0.4.4",
+    "@hedviginsurance/react-native-keyboard-spacer": "0.4.9",
     "@redux-beacon/logger": "^1.0.0",
     "@sampettersson/primitives": "^9.2.16",
     "@types/apollo-upload-client": "^8.1.1",
@@ -123,11 +124,10 @@
     "react-native-code-push": "^5.4.1",
     "react-native-debugger-open": "^0.3.15",
     "react-native-device-info": "^0.22.5",
-    "react-native-document-picker": "^2.1.0",
     "react-native-fast-image": "^5.0.11",
     "react-native-firebase": "^5.0.0",
     "react-native-fs": "^2.11.18",
-    "react-native-gesture-handler": "^1.0.7",
+    "react-native-gesture-handler": "^1.0.9",
     "react-native-heic-converter": "^1.1.1",
     "react-native-hyperlink": "^0.0.14",
     "react-native-image-picker": "^0.27.1",
@@ -188,5 +188,5 @@
       }
     }
   },
-  "version": "2.3.0"
+  "version": "2.4.0"
 }
