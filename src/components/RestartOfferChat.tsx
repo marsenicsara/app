@@ -21,8 +21,8 @@ const LOGOUT_MUTATION = gql`
 `;
 
 const RestartIcon = styled(Image)({
-  height: 40,
-  width: 40,
+  height: 32,
+  width: 32,
 });
 
 export const RestartOfferChat: React.SFC = () => (
