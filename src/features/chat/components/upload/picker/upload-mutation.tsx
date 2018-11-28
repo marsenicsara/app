@@ -75,19 +75,19 @@ const uploadHandler = (
   mutate: MutationFunc<UploadResponse>,
   setIsUploading: ((isUploading: boolean) => void),
   isUploading: boolean,
-) => async (uri: string) => {
+) => async (uri: string, android?: { filename: string, mimetype: string }) => {
   if (isUploading) return new Error('Already uploading');
 
   setIsUploading(true);
 
-  const filename = path.basename(url.parse(uri).pathname || '');
-  const realURI = await getRealURI(uri, filename);
-  const realFileName = path.basename(url.parse(realURI).pathname || '');
+  const filename = android ? android.filename : path.basename(url.parse(uri).pathname || '');
+  const realURI = android ? uri : await getRealURI(uri, filename);
+  const realFileName = android ? filename : path.basename(url.parse(realURI).pathname || '');
 
   const file = new ReactNativeFile({
     uri: realURI,
     name: realFileName.toLowerCase(),
-    type: mime.lookup(realFileName) || '',
+    type: android ? android.mimetype : mime.lookup(realFileName) || 'image/jpeg',
   });
 
   const response = await mutate({
@@ -110,18 +110,18 @@ const uploadHandler = (
 export const UploadMutation: React.SFC<UploadMutationProps> = ({
   children,
 }) => (
-  <Container actions={actions} initialState={{ isUploading: false }}>
-    {({ isUploading, setIsUploading }) => (
-      <Mutation mutation={UPLOAD_MUTATION}>
-        {(mutate) => (
-          <UploadMutationContainer>
-            {children(
-              uploadHandler(mutate, setIsUploading, isUploading),
-              isUploading,
-            )}
-          </UploadMutationContainer>
-        )}
-      </Mutation>
-    )}
-  </Container>
-);
+    <Container actions={actions} initialState={{ isUploading: false }}>
+      {({ isUploading, setIsUploading }) => (
+        <Mutation mutation={UPLOAD_MUTATION}>
+          {(mutate) => (
+            <UploadMutationContainer>
+              {children(
+                uploadHandler(mutate, setIsUploading, isUploading),
+                isUploading,
+              )}
+            </UploadMutationContainer>
+          )}
+        </Mutation>
+      )}
+    </Container>
+  );
