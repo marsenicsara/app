@@ -52,16 +52,8 @@ export const RestartOfferChat: React.SFC = () => (
                     {(text) => text}
                   </TranslationsConsumer>
                 }
-                confirmButtonTitle={
-                  <TranslationsConsumer textKey="RESTART_OFFER_CHAT_BUTTON_CONFIRM">
-                    {(text) => text}
-                  </TranslationsConsumer>
-                }
-                dismissButtonTitle={
-                  <TranslationsConsumer textKey="RESTART_OFFER_CHAT_BUTTON_DISMISS">
-                    {(text) => text}
-                  </TranslationsConsumer>
-                }
+                confirmButtonTitle={'RESTART_OFFER_CHAT_BUTTON_CONFIRM'}
+                dismissButtonTitle={'RESTART_OFFER_CHAT_BUTTON_DISMISS'}
                 onConfirm={async () => {
                   state.updateModalVisibility(false);
                   await logout();
