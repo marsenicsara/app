@@ -50,7 +50,7 @@ export const ModalDialog: React.SFC<Props> = ({
               <Heading>{title}</Heading>
               <Paragraph>{paragraph}</Paragraph>
               <ButtonsContainer style={{ backgroundColor: colors.BLACK }}>
-                <TranslationsConsumer textKey="RESTART_OFFER_CHAT_BUTTON_DISMISS">
+                <TranslationsConsumer textKey={confirmButtonTitle}>
                   {(text) => (
                     <DialogButton
                       title={text}
@@ -59,7 +59,7 @@ export const ModalDialog: React.SFC<Props> = ({
                     />
                   )}
                 </TranslationsConsumer>
-                <TranslationsConsumer textKey="RESTART_OFFER_CHAT_BUTTON_CONFIRM">
+                <TranslationsConsumer textKey={dismissButtonTitle}>
                   {(text) => <DialogButton title={text} onPress={onConfirm} />}
                 </TranslationsConsumer>
               </ButtonsContainer>

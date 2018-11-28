@@ -20,6 +20,11 @@ const LOGOUT_MUTATION = gql`
   }
 `;
 
+const RestartIcon = styled(Image)({
+  height: 40,
+  width: 40,
+});
+
 export const RestartOfferChat: React.SFC = () => (
   <Mutation mutation={LOGOUT_MUTATION}>
     {(logout, { client }) => (
@@ -31,8 +36,8 @@ export const RestartOfferChat: React.SFC = () => (
                 state.updateModalVisibility(true);
               }}
             >
-              <Image
-                source={require('../../assets/icons/navigation/topBar/ios/restart.png')}
+              <RestartIcon
+                source={require('../../assets/icons/restart_white.png')}
               />
             </RestartButton>
 

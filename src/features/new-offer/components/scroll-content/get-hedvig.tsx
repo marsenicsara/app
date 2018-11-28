@@ -4,6 +4,7 @@ import { colors, fonts } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Container, ActionMap } from 'constate';
+
 import { Spacing } from 'src/components/Spacing';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 
