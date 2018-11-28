@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { View, AppState, KeyboardAvoidingView } from 'react-native';
+import { View, AppState, KeyboardAvoidingView, Platform } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
@@ -15,6 +15,7 @@ import * as selectors from './state/selectors';
 import Dialog from 'src/containers/Dialog';
 
 import { Message } from './types';
+import { InputHeightContainer } from './containers/InputHeight';
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -103,6 +104,18 @@ const showOffer = (stopPolling: () => void, onRequestClose: () => void) => {
   onRequestClose();
 };
 
+const KeyboardAvoidingOnAndroid: React.SFC = ({ children }) => (
+  Platform.OS === 'android' ? (
+    <InputHeightContainer>
+      {({ inputHeight }) => (
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={inputHeight + 8}>
+          {children}
+        </KeyboardAvoidingView>
+      )}
+    </InputHeightContainer>
+  ) : <>{children}</>
+)
+
 const Chat: React.SFC<ChatProps> = ({
   intent,
   messages,
@@ -110,59 +123,61 @@ const Chat: React.SFC<ChatProps> = ({
   getMessages,
   onRequestClose,
 }) => (
-  <Container effects={effects} initialState={initialState}>
-    {({ startPolling, stopPolling }) => (
-      <>
-        <Mount
-          on={() => {
-            getMessages(intent);
-            getAvatars();
-            AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
-            });
-            startPolling(getMessages, intent);
-          }}
-        >
-          {null}
-        </Mount>
-        <Update
-          was={() => {
-            startPolling(getMessages, intent);
-          }}
-          watched={messages}
-        >
-          {null}
-        </Update>
-        <Unmount
-          on={() => {
-            AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
-            });
-            stopPolling();
-          }}
-        >
-          {null}
-        </Unmount>
-        <Messages>
-          {messages.length ? (
-            <MessageList
-              showOffer={() => showOffer(stopPolling, onRequestClose)}
-            />
-          ) : (
-            <Loader />
-          )}
-        </Messages>
-        <Response>
-          <InputComponent
-            messages={messages}
-            showOffer={() => showOffer(stopPolling, onRequestClose)}
-          />
-        </Response>
-        <Dialog />
-      </>
-    )}
-  </Container>
-);
+    <Container effects={effects} initialState={initialState}>
+      {({ startPolling, stopPolling }) => (
+        <>
+          <Mount
+            on={() => {
+              getMessages(intent);
+              getAvatars();
+              AppState.addEventListener('change', (appState) => {
+                handleAppStateChange(appState, getMessages, intent);
+              });
+              startPolling(getMessages, intent);
+            }}
+          >
+            {null}
+          </Mount>
+          <Update
+            was={() => {
+              startPolling(getMessages, intent);
+            }}
+            watched={messages}
+          >
+            {null}
+          </Update>
+          <Unmount
+            on={() => {
+              AppState.addEventListener('change', (appState) => {
+                handleAppStateChange(appState, getMessages, intent);
+              });
+              stopPolling();
+            }}
+          >
+            {null}
+          </Unmount>
+          <KeyboardAvoidingOnAndroid>
+            <Messages>
+              {messages.length ? (
+                <MessageList
+                  showOffer={() => showOffer(stopPolling, onRequestClose)}
+                />
+              ) : (
+                  <Loader />
+                )}
+            </Messages>
+            <Response>
+              <InputComponent
+                messages={messages}
+                showOffer={() => showOffer(stopPolling, onRequestClose)}
+              />
+            </Response>
+            <Dialog />
+          </KeyboardAvoidingOnAndroid>
+        </>
+      )}
+    </Container>
+  );
 
 const mapStateToProps = (state: any) => {
   return {
