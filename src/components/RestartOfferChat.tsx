@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, TouchableOpacity, AsyncStorage } from 'react-native';
+import { TouchableOpacity, AsyncStorage } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { Store } from 'src/setupApp';
 import { Mutation } from 'react-apollo';
@@ -21,11 +21,6 @@ const LOGOUT_MUTATION = gql`
     logout
   }
 `;
-
-const RestartIcon = styled(Image)({
-  height: 32,
-  width: 32,
-});
 
 interface Props {
   onCloseClick: () => void;
