@@ -79,11 +79,15 @@ const wsLink = new WebSocketLink({
   uri: `ws://localhost:4000/subscriptions`,
   options: {
     reconnect: true,
+    connectionParams: async () => ({
+      Authorization: await getToken(),
+    }),
   },
 });
 
 const uploadLink = createUploadLink({
-  uri: Config.GRAPHQL_URL,
+  // uri: Config.GRAPHQL_URL,
+  uri: 'http://localhost:4000/graphql',
 });
 
 const setAuthorizationLink = setContext(async () => ({
