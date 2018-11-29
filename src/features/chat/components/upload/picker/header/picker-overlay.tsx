@@ -47,7 +47,7 @@ const Heading = styled(Text)({
 
 interface PickerOverlayProps {
   componentId: string;
-  upload: (uri: string, android?: { filename: string, mimetype: string }) => Promise<Error | { key: string }>;
+  upload: (uri: string) => Promise<Error | { key: string }>;
   onUpload: (key: string) => void;
 }
 
@@ -73,7 +73,6 @@ export const PickerOverlay: React.SFC<PickerOverlayProps> = ({
               <OpenPickerButton
                 onPress={() => {
                   ImagePicker.launchImageLibrary({}, (response) => {
-                    console.log('response is:', response)
                     if (response.origURL) {
                       handleClose();
                       upload(response.origURL).then((uploadResponse) => {
@@ -84,7 +83,7 @@ export const PickerOverlay: React.SFC<PickerOverlayProps> = ({
                       });
                     } else if (Platform.OS === 'android' && response.uri) {
                       handleClose();
-                      upload(response.uri, { filename: response.fileName as string, mimetype: response.type as string }).then((uploadResponse) => {
+                      upload(response.uri).then((uploadResponse) => {
                         if (uploadResponse instanceof Error) {
 
                         } else {
@@ -107,7 +106,7 @@ export const PickerOverlay: React.SFC<PickerOverlayProps> = ({
                     (_: any, res: any) => {
                       setTimeout(() => {
                         handleClose();
-                        upload(res.uri, Platform.OS === 'android' ? { filename: res.fileName, mimetype: res.type } : undefined).then((uploadResponse) => {
+                        upload(res.uri).then((uploadResponse) => {
                           if (uploadResponse instanceof Error) {
                           } else {
                             onUpload(uploadResponse.key);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { Mutation, MutationFunc } from 'react-apollo';
 import gql from 'graphql-tag';
 import { ReactNativeFile } from 'apollo-upload-client';
@@ -71,23 +71,28 @@ const getRealURI = async (uri: string, filename: string) => {
   );
 };
 
+const getFilenameAndroid = async (uri: string): Promise<string> => {
+  const realFileInfo = await fs.stat(uri) as any
+  return path.basename(realFileInfo.originalFilepath)
+}
+
 const uploadHandler = (
   mutate: MutationFunc<UploadResponse>,
   setIsUploading: ((isUploading: boolean) => void),
   isUploading: boolean,
-) => async (uri: string, android?: { filename: string, mimetype: string }) => {
+) => async (uri: string) => {
   if (isUploading) return new Error('Already uploading');
 
   setIsUploading(true);
 
-  const filename = android ? android.filename : path.basename(url.parse(uri).pathname || '');
-  const realURI = android ? uri : await getRealURI(uri, filename);
-  const realFileName = android ? filename : path.basename(url.parse(realURI).pathname || '');
+  const filename = Platform.OS === 'android' ? await getFilenameAndroid(uri) || '' : path.basename(url.parse(uri).pathname || '');
+  const realURI = Platform.OS === 'android' ? uri : await getRealURI(uri, filename);
+  const realFileName = Platform.OS === 'android' ? filename : path.basename(url.parse(realURI).pathname || '');
 
   const file = new ReactNativeFile({
     uri: realURI,
     name: realFileName.toLowerCase(),
-    type: android ? android.mimetype : mime.lookup(realFileName) || 'image/jpeg',
+    type: mime.lookup(realFileName) || '',
   });
 
   const response = await mutate({
