@@ -3,7 +3,7 @@ import { View, Platform } from 'react-native';
 import { Mutation, MutationFunc } from 'react-apollo';
 import gql from 'graphql-tag';
 import { ReactNativeFile } from 'apollo-upload-client';
-import fs from 'react-native-fs';
+import fs from '@hedviginsurance/react-native-fs';
 import styled from '@sampettersson/primitives';
 import path from 'path';
 import mime from 'mime-types';
@@ -72,7 +72,12 @@ const getRealURI = async (uri: string, filename: string) => {
 };
 
 const getFilenameAndroid = async (uri: string): Promise<string> => {
-  const realFileInfo = await fs.stat(uri) as any
+  const decodedUri = decodeURI(uri)
+
+  if (decodedUri.includes('app_images/Pictures')) {
+    return path.basename(decodedUri);
+  }
+  const realFileInfo = await fs.stat(decodedUri)
   return path.basename(realFileInfo.originalFilepath)
 }
 

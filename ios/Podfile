@@ -59,7 +59,7 @@ target 'hedvig' do
 
   pod 'react-native-video', :path => '../node_modules/react-native-video'
 
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
+  pod 'RNFS', :path => '../node_modules/@hedviginsurance/react-native-fs'
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
