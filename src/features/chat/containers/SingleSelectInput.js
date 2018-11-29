@@ -40,10 +40,13 @@ class SingleSelectInput extends React.Component {
   static propTypes = {
     selectChoice: PropTypes.func.isRequired,
     done: PropTypes.func.isRequired,
+    message: PropTypes.object.isRequired,
   };
 
   render() {
+    console.log(this.props);
     const { message, selectChoice, done, showOffer } = this.props;
+
     let anySelected = message.body.choices.some((choice) => choice.selected);
     let opts = message.body.choices.map((choice) => {
       return (
@@ -85,13 +88,13 @@ class SingleSelectInput extends React.Component {
     return <StyledMarginContainer>{opts}</StyledMarginContainer>;
   }
 }
-
+/*
 const mapStateToProps = (state) => {
   return {
     message: state.chat.messages[0],
   };
 };
-
+*/
 const mapDispatchToProps = (dispatch) => {
   return {
     selectChoice: (message, choice) =>
@@ -100,9 +103,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const SingleSelectInputContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SingleSelectInput);
+const SingleSelectInputContainer = connect(mapDispatchToProps)(
+  SingleSelectInput,
+);
 
 export default SingleSelectInputContainer;

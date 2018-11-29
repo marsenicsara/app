@@ -7,13 +7,15 @@ import BankIdCollectInput from '../containers/BankIdCollectInput';
 import AudioInput from '../containers/AudioInput';
 import ParagraphInput from '../containers/ParagraphInput';
 
+import { Message } from '../types';
+
 interface InputComponentProps {
-  messages: any;
+  messages: Array<Message>;
   showOffer: () => void;
 }
 
 interface InputComponentMapProps {
-  message: any;
+  message: Message;
   showOffer: () => void;
 }
 
@@ -44,7 +46,6 @@ const InputComponent: React.SFC<InputComponentProps> = (props) => {
   if (!Component) {
     return null;
   }
-
   return <Component {...props} message={lastMessage} />;
 };
 

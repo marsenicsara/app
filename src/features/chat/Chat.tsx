@@ -154,7 +154,7 @@ const handleAppStateChange = (
 };
 
 const MESSAGE_SUBSCRIPTION = gql`
-  subscription onNewMessage {
+  subscription newMessage {
     message {
       globalId
     }
@@ -296,8 +296,8 @@ const Chat: React.SFC<ChatProps> = ({
   getMessages,
   resetConversation,
 }) => (
-  <Query query={MESSAGE_QUERY} variables={{ query: 's' }}>
-    {({ loading, error, data }) => {
+  <Query query={MESSAGE_QUERY}>
+    {({ loading, error, data, subscribeToMore }) => {
       if (loading || !data) {
         return (
           <>
@@ -313,10 +313,7 @@ const Chat: React.SFC<ChatProps> = ({
         );
       }
 
-      console.log('DATA HERERERE');
       console.log(data);
-
-      return <Text>kalrt</Text>;
 
       return (
         <Container effects={effects} initialState={initialState}>
@@ -347,6 +344,18 @@ const Chat: React.SFC<ChatProps> = ({
                   getAvatars();
                   AppState.addEventListener('change', (appState) => {
                     handleAppStateChange(appState, getMessages, intent);
+                  });
+
+                  subscribeToMore({
+                    document: MESSAGE_SUBSCRIPTION,
+                    updateQuery: (prev, { subscriptionData }) => {
+                      console.log(subscriptionData);
+                      if (!subscriptionData.data) return prev;
+                      console.log(subscriptionData.data);
+
+                      //return Object.assign({}, prev, {});
+                    },
+                    onError: (err) => console.log(err),
                   });
                   // startPolling(getMessages, intent);
                 }}
@@ -380,12 +389,16 @@ const Chat: React.SFC<ChatProps> = ({
                 )}
               >
                 <Messages>
-                  {messages.length ? <MessageList /> : <Loader />}
+                  {data.messages.length ? (
+                    <MessageList messages={data.messages} />
+                  ) : (
+                    <Loader />
+                  )}
                 </Messages>
                 <Response>
                   <InputComponent
                     showOffer={() => showOffer(componentId)}
-                    messages={messages}
+                    messages={data.messages}
                   />
                 </Response>
               </NavigationOptions>

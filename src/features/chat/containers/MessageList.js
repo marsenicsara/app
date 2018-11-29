@@ -96,7 +96,7 @@ const HedvigMessageMapping = {
 };
 
 const renderMessage = (message, idx) => {
-  let fromMe = message.header.fromId !== 1;
+  let fromMe = message.header.fromMyself;
   const lastIndex = idx === 0;
 
   let MessageRenderComponent;
@@ -163,13 +163,4 @@ class MessageList extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    messages: state.chat.messages,
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  undefined,
-)(MessageList);
+export default connect(undefined)(MessageList);
