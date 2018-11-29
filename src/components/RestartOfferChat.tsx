@@ -11,6 +11,8 @@ import { getChatLayout } from 'src/navigation/layouts/chatLayout';
 import { ModalDialog } from './ModalDialog';
 import { Delayed } from './Delayed';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { Restart } from 'src/components/icons/Restart';
+import { colors } from '@hedviginsurance/brand';
 
 const RestartButton = styled(TouchableOpacity)({});
 
@@ -40,9 +42,7 @@ export const RestartOfferChat: React.SFC<Props> = ({ onCloseClick }) => (
                 state.updateModalVisibility(true);
               }}
             >
-              <RestartIcon
-                source={require('../../assets/icons/restart_white.png')}
-              />
+              <Restart width={24} height={24} fill={colors.WHITE} />
             </RestartButton>
 
             <Delayed
