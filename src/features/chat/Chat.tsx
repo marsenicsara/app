@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { View, AppState, Text, Alert } from 'react-native';
+import { View, AppState } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
-import { Container, EffectMap, EffectProps } from 'constate';
+import { Container, ActionMap } from 'constate';
 
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
@@ -26,10 +26,11 @@ import {
   SHOW_OFFER_BUTTON,
 } from '../../navigation/screens/chat/buttons';
 
-import { Message } from './types';
+import { Message, Choice } from './types';
 
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import { MESSAGE_QUERY } from './chat-query';
+import { MESSAGE_SUBSCRIPTION } from './chat-subscription';
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -42,42 +43,6 @@ interface ChatProps {
   getMessages: (intent: string) => void;
   resetConversation: () => void;
 }
-
-interface State {
-  longPollTimeout: number | null;
-}
-
-const initialState: State = {
-  longPollTimeout: null,
-};
-
-interface Effects {
-  startPolling: (getMessages: (intent: string) => void, intent: string) => void;
-  stopPolling: () => void;
-}
-
-const effects: EffectMap<State, Effects> = {
-  startPolling: (getMessages, intent) => ({
-    setState,
-    state,
-  }: EffectProps<State>) => {
-    if (!state.longPollTimeout) {
-      setState(() => ({
-        longPollTimeout: setInterval(() => {
-          getMessages(intent);
-        }, 15000),
-      }));
-    }
-  },
-  stopPolling: () => ({ setState, state }: EffectProps<State>) => {
-    if (state.longPollTimeout) {
-      clearInterval(state.longPollTimeout);
-      setState(() => ({
-        longPollTimeout: null,
-      }));
-    }
-  },
-};
 
 const Messages = styled(View)({
   flex: 1,
@@ -153,137 +118,44 @@ const handleAppStateChange = (
   }
 };
 
-const MESSAGE_SUBSCRIPTION = gql`
-  subscription newMessage {
-    message {
-      globalId
-    }
-  }
-`;
+interface Data {
+  messages: Message[];
+}
 
-const MESSAGE_QUERY = gql`
-  query Messages {
-    messages {
-      globalId
-      id
-      body {
-        ...SingleSelect
-        ...MultipleSelect
-        ...Text
-        ...Number
-        ...Audio
-        ...BankIdCollect
-        ...Paragraph
-        ...File
-        ...Undefined
-      }
-      header {
-        ...Header
-      }
-    }
-  }
+interface State {
+  messages: Message[];
+}
 
-  fragment Header on MessageHeader {
-    messageId
-    fromMyself
-    timeStamp
-    richTextChatCompatible
-    editAllowed
-    shouldRequestPushNotifications
-  }
+interface Actions {
+  setMessages: (messages: Message[]) => void;
+  selectChoice: (message: Message, choice: Choice) => void;
+}
 
-  fragment SingleSelect on MessageBodySingleSelect {
-    type
-    id
-    text
-    choices {
-      ...ChoicesSelection
-      ...ChoicesLink
-      ...ChoicesUndefined
-    }
-  }
+const actions: ActionMap<State, Actions> = {
+  setMessages: (messages) => () => ({
+    messages,
+  }),
+  selectChoice: (message, choice) => (state) => {
+    const messages = state.messages;
 
-  fragment MultipleSelect on MessageBodySingleSelect {
-    type
-    id
-    text
-    choices {
-      ...ChoicesSelection
-      ...ChoicesLink
-      ...ChoicesUndefined
-    }
-  }
+    const messageIndex = messages.findIndex(
+      (m) => m.globalId === message.globalId,
+    );
 
-  fragment Text on MessageBodyText {
-    type
-    id
-    text
-  }
+    const choiceIndex = messages[messageIndex].body.choices.findIndex((c) =>
+      Object.is(c, choice),
+    );
 
-  fragment Number on MessageBodyText {
-    type
-    id
-    text
-  }
+    const currentSelection =
+      messages[messageIndex].body.choices[choiceIndex].selected;
 
-  fragment Audio on MessageBodyAudio {
-    type
-    id
-    text
-    url
-  }
+    messages[messageIndex].body.choices[
+      choiceIndex
+    ].selected = !currentSelection;
 
-  fragment BankIdCollect on MessageBodyBankIdCollect {
-    type
-    id
-    text
-    referenceId
-  }
-
-  fragment File on MessageBodyFile {
-    type
-    id
-    text
-    key
-    mimeType
-  }
-
-  fragment Undefined on MessageBodyUndefined {
-    type
-    id
-    text
-  }
-
-  fragment ChoicesSelection on MessageBodyChoicesSelection {
-    type
-    value
-    text
-    selected
-  }
-
-  fragment ChoicesLink on MessageBodyChoicesLink {
-    type
-    value
-    text
-    selected
-    view
-    appUrl
-    webUrl
-  }
-
-  fragment ChoicesUndefined on MessageBodyChoicesUndefined {
-    type
-    value
-    text
-    selected
-  }
-
-  fragment Paragraph on MessageBodyParagraph {
-    type
-    id
-    text
-  }
-`;
+    return { messages };
+  },
+};
 
 const Chat: React.SFC<ChatProps> = ({
   onboardingDone = false,
@@ -291,33 +163,15 @@ const Chat: React.SFC<ChatProps> = ({
   showReturnToOfferButton,
   componentId,
   intent,
-  messages,
   getAvatars,
   getMessages,
   resetConversation,
 }) => (
-  <Query query={MESSAGE_QUERY}>
-    {({ loading, error, data, subscribeToMore }) => {
-      if (loading || !data) {
-        return (
-          <>
-            <Text>laddar...</Text>
-            <Loader />
-          </>
-        );
-      }
-
-      if (error) {
-        throw new Error(
-          `error when fetching data: ${JSON.stringify(error, null, 2)}`,
-        );
-      }
-
-      console.log(data);
-
-      return (
-        <Container effects={effects} initialState={initialState}>
-          {({ startPolling, stopPolling }) => (
+  <Query<Data> query={MESSAGE_QUERY}>
+    {({ loading, error, data, subscribeToMore }) =>
+      !loading && !error && data ? (
+        <Container actions={actions} initialState={{ messages: data.messages }}>
+          {({ messages, selectChoice }) => (
             <>
               <NavigationEvents
                 onNavigationButtonPressed={(event: any) => {
@@ -340,8 +194,8 @@ const Chat: React.SFC<ChatProps> = ({
               />
               <Mount
                 on={() => {
-                  // getMessages(intent);
                   getAvatars();
+
                   AppState.addEventListener('change', (appState) => {
                     handleAppStateChange(appState, getMessages, intent);
                   });
@@ -349,25 +203,17 @@ const Chat: React.SFC<ChatProps> = ({
                   subscribeToMore({
                     document: MESSAGE_SUBSCRIPTION,
                     updateQuery: (prev, { subscriptionData }) => {
-                      console.log(subscriptionData);
                       if (!subscriptionData.data) return prev;
-                      console.log(subscriptionData.data);
 
-                      //return Object.assign({}, prev, {});
+                      return Object.assign({}, prev, subscriptionData.data);
                     },
                     onError: (err) => console.log(err),
                   });
-                  // startPolling(getMessages, intent);
                 }}
               >
                 {null}
               </Mount>
-              <Update
-                was={() => {
-                  // startPolling(getMessages, intent);
-                }}
-                watched={messages}
-              >
+              <Update was={() => {}} watched={messages}>
                 {null}
               </Update>
               <Unmount
@@ -375,7 +221,6 @@ const Chat: React.SFC<ChatProps> = ({
                   AppState.addEventListener('change', (appState) => {
                     handleAppStateChange(appState, getMessages, intent);
                   });
-                  stopPolling();
                 }}
               >
                 {null}
@@ -389,30 +234,28 @@ const Chat: React.SFC<ChatProps> = ({
                 )}
               >
                 <Messages>
-                  {data.messages.length ? (
-                    <MessageList messages={data.messages} />
-                  ) : (
-                    <Loader />
-                  )}
+                  <MessageList messages={messages} />
                 </Messages>
                 <Response>
                   <InputComponent
                     showOffer={() => showOffer(componentId)}
-                    messages={data.messages}
+                    selectChoice={selectChoice}
+                    messages={messages}
                   />
                 </Response>
               </NavigationOptions>
             </>
           )}
         </Container>
-      );
-    }}
+      ) : (
+        <Loader />
+      )
+    }
   </Query>
 );
 
 const mapStateToProps = (state: any) => {
   return {
-    messages: state.chat.messages,
     showReturnToOfferButton: selectors.shouldShowReturnToOfferScreenButton(
       state,
     ),

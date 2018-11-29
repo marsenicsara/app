@@ -7,16 +7,18 @@ import BankIdCollectInput from '../containers/BankIdCollectInput';
 import AudioInput from '../containers/AudioInput';
 import ParagraphInput from '../containers/ParagraphInput';
 
-import { Message } from '../types';
+import { Message, Choice } from '../types';
 
 interface InputComponentProps {
   messages: Array<Message>;
   showOffer: () => void;
+  selectChoice: (message: Message, choice: Choice) => void;
 }
 
 interface InputComponentMapProps {
   message: Message;
   showOffer: () => void;
+  selectChoice: (message: Message, choice: Choice) => void;
 }
 
 const inputComponentMap: {

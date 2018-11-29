@@ -1,9 +1,10 @@
-interface Choice {
+export interface Choice {
   text: string;
   value: string;
   type: string;
   view: string;
   webUrl: string;
+  appUrl: string;
   id: string;
   selected: boolean;
 }
