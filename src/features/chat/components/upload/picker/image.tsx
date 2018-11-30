@@ -34,33 +34,33 @@ export const Image: React.SFC<ImageProps> = ({
   onUpload,
   isLastInList,
 }) => (
-  <UploadMutation>
-    {(uploadFile, isUploading) => (
-      <Padding isLastInList={isLastInList}>
-        <BorderRadius>
-          <Presend
-            isUploading={isUploading}
-            onPressSend={() => {
-              uploadFile(uri).then((response) => {
-                if (response instanceof Error) {
-                } else {
-                  onUpload(response.key);
-                }
-              });
-            }}
-          >
-            {(showPresendOverlay) => (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  showPresendOverlay();
-                }}
-              >
-                <ImageContainer source={{ uri }} />
-              </TouchableWithoutFeedback>
-            )}
-          </Presend>
-        </BorderRadius>
-      </Padding>
-    )}
-  </UploadMutation>
-);
+    <UploadMutation>
+      {(uploadFile, isUploading) => (
+        <Padding isLastInList={isLastInList}>
+          <BorderRadius>
+            <Presend
+              isUploading={isUploading}
+              onPressSend={() => {
+                uploadFile(uri).then((response) => {
+                  if (response instanceof Error) {
+                  } else {
+                    onUpload(response.key);
+                  }
+                });
+              }}
+            >
+              {(showPresendOverlay) => (
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    showPresendOverlay();
+                  }}
+                >
+                  <ImageContainer source={{ uri }} />
+                </TouchableWithoutFeedback>
+              )}
+            </Presend>
+          </BorderRadius>
+        </Padding>
+      )}
+    </UploadMutation>
+  );
