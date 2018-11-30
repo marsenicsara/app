@@ -116,6 +116,7 @@ class FloatingActionButton extends React.Component {
       return;
     }
     this.props.goToChat(url);
+    this.setState({ fabOpen: false });
   };
 
   onNavigationCommand = async (name) => {
@@ -186,6 +187,7 @@ class FloatingActionButton extends React.Component {
             actionsPaddingTopBottom={0}
             onPressItem={this.handlePressItem}
             onPressMain={(open) => this.setState({ fabOpen: open })}
+            onPressBackdrop={() => this.setState({ fabOpen: false })}
           />
         </AnimationWrapper>
       </React.Fragment>
