@@ -16,6 +16,7 @@ import Dialog from 'src/containers/Dialog';
 
 import { Message } from './types';
 import { InputHeightContainer } from './containers/InputHeight';
+import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -104,17 +105,6 @@ const showOffer = (stopPolling: () => void, onRequestClose: () => void) => {
   onRequestClose();
 };
 
-const KeyboardAvoidingOnAndroid: React.SFC = ({ children }) => (
-  Platform.OS === 'android' ? (
-    <InputHeightContainer>
-      {({ inputHeight }) => (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={inputHeight + 8}>
-          {children}
-        </KeyboardAvoidingView>
-      )}
-    </InputHeightContainer>
-  ) : <>{children}</>
-)
 
 const Chat: React.SFC<ChatProps> = ({
   intent,
@@ -156,7 +146,7 @@ const Chat: React.SFC<ChatProps> = ({
           >
             {null}
           </Unmount>
-          <KeyboardAvoidingOnAndroid>
+          <KeyboardAvoidingOnAndroid additionalPadding={8}>
             <Messages>
               {messages.length ? (
                 <MessageList
