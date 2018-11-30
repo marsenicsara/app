@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  swiperPadding: { paddingTop: 8 },
   swiperContainer: { flex: 1 },
   closeOffer: {
     position: 'absolute',
@@ -60,7 +61,11 @@ const styles = StyleSheet.create({
     left: 17,
     zIndex: 2,
   },
-  closeOfferImage: { width: 26, height: 26 },
+  closeOfferImage: {
+    width: 26,
+    height: 26,
+    ...Platform.select({ android: { marginTop: 17 } }),
+  },
   buttonWrapperStyle: {
     backgroundColor: colors.TRANSPARENT,
     position: 'absolute',
@@ -252,7 +257,7 @@ class OfferSwiper extends React.Component {
           ) : null}
           <Swiper
             ref={(ref) => (this.swiper = ref)}
-            style={styles.swiper} // This is undefined, rofl
+            style={styles.swiperPadding}
             loop={false}
             showsButtons={!isLast}
             showsPagination={!isLast && !isFirst}

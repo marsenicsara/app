@@ -10,6 +10,7 @@ import { Delayed } from 'src/components/Delayed';
 import { Update } from 'react-lifecycle-components';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { ErrorMessage } from './error-message';
+import { BackButton } from 'src/components/BackButton';
 
 const getTranslateY = () => (isIphoneX() ? 35 : 0);
 
@@ -68,6 +69,7 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
   <Consumer>
     {({ isOpen, setIsOpen }) => (
       <ListHeaderContext.Provider value={{ setIsOpen, sendMessage }}>
+        {isOpen && <BackButton onPress={() => setIsOpen(false)} />}
         <PickerContainer isOpen={isOpen}>
           <Update
             watched={isOpen}

@@ -757,10 +757,10 @@
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-document-picker/-/react-native-document-picker-2.1.1.tgz#2423d6dabef6427e836808af616d593563715c77"
   integrity sha512-W8UxlK3LaP3n6ttEjqgie23icvhf0tQUVb4GtDh9hd6bjVgEceoNQcWa4PD4rFSd4LTZEckqmkNNaOHODnRrdA==
 
-"@hedviginsurance/react-native-floating-action@^1.11.3":
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.11.3.tgz#1f974e3a5ca73d05ae8575552137b55465a4602f"
-  integrity sha512-jSqgHj4fJ0mQv/Wzxx6Cm0nbpolCJBAtIyDtItdJTjdyq5GEBIiTJJazZnWTitCSizj6ay+I2VONe2ctJFThMw==
+"@hedviginsurance/react-native-floating-action@1.13.1":
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.13.1.tgz#e1f97f5d5ca914d7ebb89f53f8a2b86f84bec5d7"
+  integrity sha512-q/SspeAu/zm41v2HLoJREuOebbqT1bjNDViCj54CxBp+Mj51nPylLyxka/ObxRDzd+MENit9Xjhz2i8dUfiQSw==
 
 "@hedviginsurance/react-native-fs@2.12.2":
   version "2.12.2"
