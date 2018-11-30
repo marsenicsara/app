@@ -17,7 +17,7 @@ class PerilScreen extends React.Component {
       },
       statusBar: {
         visible: true,
-        style: 'dark',
+        style: 'light',
         drawBehind: false,
       },
       layout: {
