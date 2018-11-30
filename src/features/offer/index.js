@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  swiperPadding: { paddingTop: 8 },
   swiperContainer: { flex: 1 },
   closeOffer: {
     position: 'absolute',
@@ -256,7 +257,7 @@ class OfferSwiper extends React.Component {
           ) : null}
           <Swiper
             ref={(ref) => (this.swiper = ref)}
-            style={{ paddingTop: 8 }} // This is undefined, rofl
+            style={styles.swiperPadding}
             loop={false}
             showsButtons={!isLast}
             showsPagination={!isLast && !isFirst}
