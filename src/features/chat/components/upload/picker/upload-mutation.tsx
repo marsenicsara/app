@@ -81,6 +81,23 @@ const getFilenameAndroid = async (uri: string): Promise<string> => {
   return path.basename(realFileInfo.originalFilepath)
 }
 
+const getFileParameters = async (uri: string): Promise<{ realURI: string, realFileName: string }> => {
+  if (Platform.OS === 'android') {
+    const filename = await getFilenameAndroid(uri)
+    return { realURI: uri, realFileName: filename }
+  }
+
+  if (Platform.OS === 'ios') {
+    const filename = path.basename(url.parse(uri).pathname || '')
+    const realURI = await getRealURI(uri, filename)
+    const realFileName = path.basename(url.parse(realURI).pathname || '');
+
+    return { realURI, realFileName }
+  }
+
+  throw new Error(`invalid OS: ${Platform.OS}`)
+}
+
 const uploadHandler = (
   mutate: MutationFunc<UploadResponse>,
   setIsUploading: ((isUploading: boolean) => void),
@@ -90,9 +107,7 @@ const uploadHandler = (
 
   setIsUploading(true);
 
-  const filename = Platform.OS === 'android' ? await getFilenameAndroid(uri) || '' : path.basename(url.parse(uri).pathname || '');
-  const realURI = Platform.OS === 'android' ? uri : await getRealURI(uri, filename);
-  const realFileName = Platform.OS === 'android' ? filename : path.basename(url.parse(realURI).pathname || '');
+  const { realURI, realFileName } = await getFileParameters(uri);
 
   const file = new ReactNativeFile({
     uri: realURI,

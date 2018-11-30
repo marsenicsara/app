@@ -84,9 +84,7 @@ export const PickerOverlay: React.SFC<PickerOverlayProps> = ({
                     } else if (Platform.OS === 'android' && response.uri) {
                       handleClose();
                       upload(response.uri).then((uploadResponse) => {
-                        if (uploadResponse instanceof Error) {
-
-                        } else {
+                        if (!(uploadResponse instanceof Error)) {
                           onUpload(uploadResponse.key)
                         }
                       })
@@ -107,8 +105,7 @@ export const PickerOverlay: React.SFC<PickerOverlayProps> = ({
                       setTimeout(() => {
                         handleClose();
                         upload(res.uri).then((uploadResponse) => {
-                          if (uploadResponse instanceof Error) {
-                          } else {
+                          if (!(uploadResponse instanceof Error)) {
                             onUpload(uploadResponse.key);
                           }
                         });
