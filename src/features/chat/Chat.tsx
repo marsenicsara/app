@@ -118,10 +118,6 @@ const handleAppStateChange = (
   }
 };
 
-interface Data {
-  messages: Message[];
-}
-
 interface State {
   messages: Message[];
 }
@@ -167,11 +163,11 @@ const Chat: React.SFC<ChatProps> = ({
   getMessages,
   resetConversation,
 }) => (
-  <Query<Data> query={MESSAGE_QUERY}>
+  <Query query={MESSAGE_QUERY}>
     {({ loading, error, data, subscribeToMore }) =>
       !loading && !error && data ? (
         <Container actions={actions} initialState={{ messages: data.messages }}>
-          {({ messages, selectChoice }) => (
+          {({ messages, selectChoice, setMessages }) => (
             <>
               <NavigationEvents
                 onNavigationButtonPressed={(event: any) => {
@@ -205,7 +201,23 @@ const Chat: React.SFC<ChatProps> = ({
                     updateQuery: (prev, { subscriptionData }) => {
                       if (!subscriptionData.data) return prev;
 
-                      return Object.assign({}, prev, subscriptionData.data);
+                      console.log(prev);
+                      console.log(subscriptionData.data);
+
+                      const prevMessages = prev;
+                      const newMessage =
+                        subscriptionData.data.currentChatResponse;
+
+                      console.log('prev messages', prevMessages);
+                      console.log('new message', newMessage);
+
+                      const toReturn = Object.assign({}, prev, {
+                        messages: [newMessage, ...prev.messages],
+                      });
+
+                      console.log('toreturn: ', toReturn);
+                      setMessages(toReturn.messages);
+                      return toReturn;
                     },
                     onError: (err) => console.log(err),
                   });

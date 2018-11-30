@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Linking } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { Container, ActionMap } from 'constate';
 
 import { AnimatedSingleSelectOptionButton } from '../components/Button';
 import {
@@ -40,7 +39,7 @@ const goToDashboard = () => {
 };
 
 const SEND_SINGLE_SELECT_CHOICE = gql`
-  mutation sendSingleSelectChoice($input: ChatResponseSingleSelectInput) {
+  mutation sendSingleSelectChoice($input: ChatResponseSingleSelectInput!) {
     sendChatSingleSelectResponse(input: $input)
   }
 `;
@@ -50,8 +49,6 @@ interface SingleSelectInputProps {
   showOffer: () => void;
   selectChoice: (message: Message, choice: Choice) => void;
 }
-
-const done = (message: Message) => {};
 
 const SingleSelectInput: React.SFC<SingleSelectInputProps> = ({
   message,
@@ -63,7 +60,7 @@ const SingleSelectInput: React.SFC<SingleSelectInputProps> = ({
   return (
     <StyledMarginContainer>
       <Mutation mutation={SEND_SINGLE_SELECT_CHOICE}>
-        {(send) => (
+        {(mutate) => (
           <>
             {message.body.choices.map((choice) => (
               <StyledRightAlignedOptions key={choice.text}>
@@ -72,14 +69,24 @@ const SingleSelectInput: React.SFC<SingleSelectInputProps> = ({
                   title={choice.text}
                   selected={choice.selected}
                   onPress={() => {
-                    // send({ variables: { input: message } });
+                    const send = () => {
+                      console.log('sending!');
+                      mutate({
+                        variables: {
+                          input: {
+                            globalId: message.globalId,
+                            body: { selectedValue: choice.value },
+                          },
+                        },
+                      });
+                    };
 
                     if (choice.type === 'selection') {
                       selectChoice(message, choice);
-                      done(message);
+                      send();
                     } else if (choice.type === 'link' && choice.view !== null) {
                       selectChoice(message, choice);
-                      done(message);
+                      send();
                       if (choice.view === 'Dashboard') {
                         goToDashboard();
                       } else if (choice.view === 'Offer') {
@@ -90,19 +97,19 @@ const SingleSelectInput: React.SFC<SingleSelectInputProps> = ({
                       choice.appUrl !== null
                     ) {
                       selectChoice(message, choice);
-                      done(message);
+                      send();
                       Linking.openURL(choice.appUrl);
                     } else if (
                       choice.type === 'link' &&
                       choice.webUrl !== null
                     ) {
                       selectChoice(message, choice);
-                      done(message);
+                      send();
                       Linking.openURL(choice.webUrl);
                     } else if (choice.type === 'trustly') {
                       showTrustly(choice.id);
                       selectChoice(message, choice);
-                      done(message);
+                      send();
                     }
                   }}
                 />
