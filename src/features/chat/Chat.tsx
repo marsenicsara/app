@@ -28,6 +28,7 @@ import {
 
 import { Message } from './types';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
+import { BackButton } from 'src/components/BackButton';
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -165,6 +166,7 @@ const Chat: React.SFC<ChatProps> = ({
     <Container effects={effects} initialState={initialState}>
       {({ startPolling, stopPolling }) => (
         <>
+          <BackButton onPress={() => Navigation.dismissModal(componentId)} />
           <NavigationEvents
             onNavigationButtonPressed={(event: any) => {
               if (event.buttonId === RESTART_BUTTON.id) {
