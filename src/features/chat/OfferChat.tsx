@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { View, AppState, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, AppState } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
 import { Container, EffectMap, EffectProps } from 'constate';
 
@@ -15,7 +14,6 @@ import * as selectors from './state/selectors';
 import Dialog from 'src/containers/Dialog';
 
 import { Message } from './types';
-import { InputHeightContainer } from './containers/InputHeight';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
 
 interface ChatProps {
@@ -65,18 +63,6 @@ const effects: EffectMap<State, Effects> = {
     }
   },
 };
-
-const KeyboardAvoid = styled(KeyboardAvoidingView)({
-  flex: 1,
-  ...ifIphoneX(
-    {
-      marginBottom: 20,
-    },
-    {
-      marginBottom: 0,
-    },
-  ),
-});
 
 const Messages = styled(View)({
   flex: 1,

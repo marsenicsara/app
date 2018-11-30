@@ -152,6 +152,14 @@ const handleAppStateChange = (
   }
 };
 
+const KeyboardAvoidingOnAndroidIfModal: React.SFC<{ isModal: boolean }> = ({ children, isModal }) => (
+  isModal ? (
+    <KeyboardAvoidingOnAndroid additionalPadding={16}>
+      {children}
+    </KeyboardAvoidingOnAndroid>
+  ) : <>{children}</>
+)
+
 const Chat: React.SFC<ChatProps> = ({
   onboardingDone = false,
   isModal,
@@ -224,7 +232,7 @@ const Chat: React.SFC<ChatProps> = ({
               showReturnToOfferButton,
             )}
           >
-            <KeyboardAvoidingOnAndroid additionalPadding={16}>
+            <KeyboardAvoidingOnAndroidIfModal isModal={isModal}>
               <Messages>{messages.length ? <MessageList /> : <Loader />}</Messages>
               <Response>
                 <InputComponent
@@ -232,7 +240,7 @@ const Chat: React.SFC<ChatProps> = ({
                   messages={messages}
                 />
               </Response>
-            </KeyboardAvoidingOnAndroid>
+            </KeyboardAvoidingOnAndroidIfModal>
           </NavigationOptions>
         </>
       )}
