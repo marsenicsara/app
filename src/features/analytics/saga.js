@@ -81,6 +81,14 @@ const trackDeepLinkOpened = function*({ payload }) {
         body: JSON.stringify(campaignParams, null, 2),
       },
     });
+    yield put({
+      action: TRACK_SET_IDENTITY,
+      payload: {
+        customTraits: {
+          ...campaignParams,
+        },
+      },
+    });
   }
 
   // https://segment.com/docs/spec/mobile/#install-attributed
