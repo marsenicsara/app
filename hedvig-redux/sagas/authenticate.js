@@ -3,6 +3,7 @@ import * as R from 'ramda';
 import { put, takeEvery } from 'redux-saga/effects';
 import { AUTHENTICATE, RECEIVED_TOKEN, VALIDATE_TOKEN } from '../actions/types';
 import { TRACK_SET_IDENTITY } from 'src/features/analytics/actions';
+import { getCurrentUser } from '../actions/user';
 
 const authenticate = function*(action) {
   let requestOpts = {
@@ -22,6 +23,7 @@ const authenticate = function*(action) {
   if (authResponse.status === 200) {
     let token = yield authResponse.text();
     yield put({ type: RECEIVED_TOKEN, payload: token });
+    yield put(getCurrentUser());
   } else {
     throw new Error('Failed to receive token', authResponse);
   }
