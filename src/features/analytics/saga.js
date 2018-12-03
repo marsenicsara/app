@@ -7,30 +7,20 @@ import {
   TRACK_DEEP_LINK_OPENED,
 } from './actions';
 
-const setTrackingIdentity = function*() {
+const setTrackingIdentity = function*(action) {
   const state = yield select();
   const {
     user: { currentUser },
-    insurance,
   } = state;
 
-  // GDPR 👮
-  // When adding: Do we need to track this to provide our serivce?
-  // https://ec.europa.eu/info/law/law-topic/data-protection/reform/what-personal-data_en
-  const customTraits = {
-    age: currentUser.age,
-    insuranceStatus: insurance.status,
-    insuredAtOtherCompany: insurance.insuredAtOtherCompany,
-    currentInsurerName: insurance.currentInsurerName,
-    insuranceType: insurance.insuranceType,
-    currentTotalPrice: insurance.currentTotalPrice,
-  };
+  if (action.payload.memberId === currentUser.memberId) {
+    return;
+  }
 
   yield put({
     type: TRACK_SET_IDENTITY,
     payload: {
-      userId: currentUser.trackingId,
-      customTraits,
+      userId: action.payload.memberId,
     },
   });
 };
@@ -113,10 +103,7 @@ const trackDeepLinkOpened = function*({ payload }) {
 };
 
 export const setTrackingIdentitySaga = function*() {
-  yield takeEvery(
-    [types.LOADED_USER, types.LOADED_INSURANCE],
-    setTrackingIdentity,
-  );
+  yield takeEvery(types.LOADED_USER, setTrackingIdentity);
 };
 
 export const trackDeepLinkOpenedSaga = function*() {
