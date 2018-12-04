@@ -8,8 +8,8 @@ import {
   ButtonsContainer,
 } from './styles/dialog';
 import { DialogButton } from './Button';
-import { colors } from '@hedviginsurance/brand';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+import styled from '@sampettersson/primitives';
 
 const styles = StyleSheet.create({
   dialogStyle: {
@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+});
+
+const Wrapper = styled(View)({
+  width: Dimensions.get('window').width - 2 * theme.mobile.margin.big,
 });
 
 interface Props {
@@ -40,16 +44,12 @@ export const ModalDialog: React.SFC<Props> = ({
   <>
     <Modal transparent animationType="fade">
       <View style={styles.dialogStyle}>
-        <View
-          style={{
-            width: Dimensions.get('window').width - 2 * theme.mobile.margin.big,
-          }}
-        >
+        <Wrapper>
           {title ? (
             <DialogContainer>
               <Heading>{title}</Heading>
               <Paragraph>{paragraph}</Paragraph>
-              <ButtonsContainer style={{ backgroundColor: colors.BLACK }}>
+              <ButtonsContainer>
                 <TranslationsConsumer textKey={dismissButtonTitle}>
                   {(text) => (
                     <DialogButton
@@ -67,7 +67,7 @@ export const ModalDialog: React.SFC<Props> = ({
           ) : (
             <Text />
           )}
-        </View>
+        </Wrapper>
       </View>
     </Modal>
   </>
