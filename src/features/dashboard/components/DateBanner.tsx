@@ -12,6 +12,7 @@ import { ReadMore } from './ReadMore';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { Container } from 'constate';
+import { Mount, Unmount } from 'react-lifecycle-components';
 
 interface Props {
   activeFrom: string;
@@ -102,86 +103,142 @@ const getActivationMinutes = () => {
 };
 
 interface State {
+  monthsToActivation: number;
+  daysToActivation: number;
   hoursToActivation: number;
   minutesToActivation: number;
+  timerMonths: number;
+  timerDays: number;
+  timerHours: number;
+  timerMinutes: number;
+  timerMonthsID: number;
+  timerDaysID: number;
+  timerHoursID: number;
+  timerMinutesID: number;
 }
 
 interface Actions {
-  updateHours: (hours: number) => void;
-  updateMinutes: (minutes: number) => void;
-}
-
-interface Effects {
-  pollMinutes: () => void;
-  pollHours: () => void;
+  updateMonths: (months: number) => number;
+  updateDays: (days: number) => number;
+  updateHours: (hours: number) => number;
+  updateMinutes: (minutes: number) => number;
+  updateTimerMonths: (timerMonths: number) => number;
+  updateTimerDays: (timerDays: number) => number;
+  updateTimerHours: (timerHours: number) => number;
+  updateTimerMinutes: (timerMinutes: number) => number;
 }
 
 export const DateBanner: React.SFC<Props> = ({ activeFrom, statusCode }) => (
-  <Container<State, Actions, Effects>
-    initialState={{ minutesToActivation: 0 }}
+  <Container<State, Actions>
+    initialState={{
+      monthsToActivation: 0,
+      daysToActivation: 0,
+      hoursToActivation: 0,
+      minutesToActivation: 0,
+      timerMonthsID: 0,
+    }}
     actions={{
-      updateMinutes: (minutes: number) => () => ({
-        minutesToActivation: minutes,
+      updateMonths: (months: number) => () => ({
+        monthsToActivation: months,
+      }),
+      updateDays: (days: number) => () => ({
+        daysToActivation: days,
       }),
       updateHours: (hours: number) => () => ({
         hoursToActivation: hours,
       }),
-    }}
-    effects={{
-      pollMinutes: setInterval(() => {
-        getActivationMinutes();
-      }, 1000),
-      pollHours: setInterval(() => {
-        getActivationMinutes();
-      }, 1000),
+      updateMinutes: (minutes: number) => () => ({
+        minutesToActivation: minutes,
+      }),
+      updateTimerMonths: (timerMonthsID: number) => () => ({
+        timerMonthsID: timerMonthsID,
+      }),
+      updateTimerDays: (timerDaysID: number) => () => ({
+        timerMonthsID: timerDaysID,
+      }),
+      updateTimerHours: (timerHoursID: number) => () => ({
+        timerMonthsID: timerHoursID,
+      }),
+      updateTimerMinutes: (timerMinutesID: number) => () => ({
+        timerMonthsID: timerMinutesID,
+      }),
     }}
   >
     {(state) => (
       <Wrapper>
-        <Row>
-          <ActivationText textColor={colors.BLACK}>
-            <TranslationsConsumer textKey="DASHBOARD_HAVE_START_DATE_BANNER_TITLE">
-              {(text) => text}
-            </TranslationsConsumer>
-          </ActivationText>
-        </Row>
-        <TimeRow>
-          <CountNumber textColor={colors.BLACK_PURPLE}>
-            {getActivationMonths(activeFrom)}
-          </CountNumber>
-          <CountText textColor={colors.BLACK_PURPLE}>
-            <TranslationsConsumer textKey="DASHBOARD_BANNER_MONTHS">
-              {(text) => text}
-            </TranslationsConsumer>
-          </CountText>
-          <CountNumber textColor={colors.PINK}>
-            {getActivationDays(activeFrom)}
-          </CountNumber>
-          <CountText textColor={colors.PINK}>
-            <TranslationsConsumer textKey="DASHBOARD_BANNER_DAYS">
-              {(text) => text}
-            </TranslationsConsumer>
-          </CountText>
-          <CountNumber textColor={colors.PURPLE}>
-            {getActivationHours()}
-          </CountNumber>
-          <CountText textColor={colors.PURPLE}>
-            <TranslationsConsumer textKey="DASHBOARD_BANNER_HOURS">
-              {(text) => text}
-            </TranslationsConsumer>
-          </CountText>
-          <CountNumber textColor={colors.GREEN}>
-            {setInterval(() => {
-              getActivationMinutes();
-            }, 60 * 1000)}
-          </CountNumber>
-          <CountText textColor={colors.GREEN}>
-            <TranslationsConsumer textKey="DASHBOARD_BANNER_MINUTES">
-              {(text) => text}
-            </TranslationsConsumer>
-          </CountText>
-        </TimeRow>
-        <ReadMore status={statusCode} activeFrom={activeFrom} />
+        <Mount
+          on={() => {
+            let timerMonths = setInterval(() => {
+              state.updateMonths(getActivationMonths(activeFrom));
+            }, 1000);
+            let timerDays = setInterval(() => {
+              state.updateDays(getActivationDays(activeFrom));
+            }, 1000);
+            let timerHours = setInterval(() => {
+              state.updateHours(getActivationHours());
+            }, 1000);
+            let timerMinutes = setInterval(() => {
+              state.updateMinutes(getActivationMinutes());
+            }, 1000);
+            state.updateTimerMonths(timerMonths);
+            state.updateTimerDays(timerDays);
+            state.updateTimerHours(timerHours);
+            state.updateTimerMinutes(timerMinutes);
+          }}
+        >
+          <Row>
+            <ActivationText textColor={colors.BLACK}>
+              <TranslationsConsumer textKey="DASHBOARD_HAVE_START_DATE_BANNER_TITLE">
+                {(text) => text}
+              </TranslationsConsumer>
+            </ActivationText>
+          </Row>
+          <TimeRow>
+            <CountNumber textColor={colors.BLACK_PURPLE}>
+              {state.monthsToActivation}
+            </CountNumber>
+            <CountText textColor={colors.BLACK_PURPLE}>
+              <TranslationsConsumer textKey="DASHBOARD_BANNER_MONTHS">
+                {(text) => text}
+              </TranslationsConsumer>
+            </CountText>
+            <CountNumber textColor={colors.PINK}>
+              {state.daysToActivation}
+            </CountNumber>
+            <CountText textColor={colors.PINK}>
+              <TranslationsConsumer textKey="DASHBOARD_BANNER_DAYS">
+                {(text) => text}
+              </TranslationsConsumer>
+            </CountText>
+            <CountNumber textColor={colors.PURPLE}>
+              {state.hoursToActivation}
+            </CountNumber>
+            <CountText textColor={colors.PURPLE}>
+              <TranslationsConsumer textKey="DASHBOARD_BANNER_HOURS">
+                {(text) => text}
+              </TranslationsConsumer>
+            </CountText>
+            <CountNumber textColor={colors.GREEN}>
+              {state.minutesToActivation}
+            </CountNumber>
+            <CountText textColor={colors.GREEN}>
+              <TranslationsConsumer textKey="DASHBOARD_BANNER_MINUTES">
+                {(text) => text}
+              </TranslationsConsumer>
+            </CountText>
+          </TimeRow>
+          <ReadMore status={statusCode} activeFrom={activeFrom} />
+        </Mount>
+        <Unmount
+          on={() => {
+            clearInterval(state.timerMonths);
+            clearInterval(state.timerDays);
+            clearInterval(state.timerHours);
+            clearInterval(state.timerMinutes);
+          }}
+        >
+          {null}
+        </Unmount>
       </Wrapper>
     )}
   </Container>
