@@ -1,18 +1,15 @@
 import * as React from 'react';
-import { TouchableOpacity, AsyncStorage } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { Store } from 'src/setupApp';
 import { Mutation } from 'react-apollo';
 import { RestartOfferContainer } from '../features/chat/containers/restartOffer';
-import { deleteToken } from 'src/graphql/context';
-import { setLayout } from 'src/navigation/layouts/setLayout';
 import gql from 'graphql-tag';
-import { getChatLayout } from 'src/navigation/layouts/chatLayout';
 import { ModalDialog } from './ModalDialog';
 import { Delayed } from './Delayed';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { Restart } from 'src/components/icons/Restart';
 import { colors } from '@hedviginsurance/brand';
+import { resetLoggedInUser } from 'src/utils';
 
 const RestartButton = styled(TouchableOpacity)({});
 
@@ -61,18 +58,7 @@ export const RestartOfferChat: React.SFC<Props> = ({ onCloseClick }) => (
                 onConfirm={async () => {
                   onCloseClick();
                   state.updateModalVisibility(false);
-                  await logout();
-                  deleteToken();
-                  Store.dispatch({ type: 'DELETE_TOKEN' });
-                  Store.dispatch({ type: 'DELETE_TRACKING_ID' });
-                  Store.dispatch({ type: 'AUTHENTICATE' });
-                  await AsyncStorage.removeItem(
-                    '@hedvig:alreadySeenMarketingCarousel',
-                  );
-                  await setLayout(getChatLayout());
-                  setTimeout(() => {
-                    client.resetStore();
-                  }, 200);
+                  resetLoggedInUser(logout, client);
                 }}
                 onDismiss={() => {
                   state.updateModalVisibility(false);
