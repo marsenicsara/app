@@ -1,16 +1,14 @@
 import * as React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { fonts, colors } from '@hedviginsurance/brand';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
-import { CircledCross } from 'src/components/icons/CircledCross';
-// import { CircledCheckmarkFilled } from 'src/components/icons/CircledCheckmarkFilled';
+import { InfoCircle } from 'src/components/icons/InfoCircle';
+import { FilledCircledCheckmark } from 'src/components/icons/FilledCheckmark';
 
-const Icon = styled(Image)({
+const IconContainer = styled(View)({
   marginTop: 24,
   marginLeft: 5,
-  width: 32,
-  height: 32,
 });
 
 const StatusText = styled(Text)({
@@ -32,18 +30,17 @@ interface Props {
 
 const InsuranceStatusDisplay: React.SFC<Props> = ({ active }) => (
   <Container>
-    {active ? (
-      <CircledCross width={32} height={32} />
-    ) : (
-      <CircledCross width={32} height={32} />
-    )}
-    <Icon
-      source={
-        active
-          ? require('assets/icons/my_insurance/aktiv_32px.png')
-          : require('assets/icons/info/info_blue_32px.png')
-      }
-    />
+    <IconContainer>
+      {active ? (
+        <FilledCircledCheckmark
+          width={32}
+          height={32}
+          checkmarkLineColor={colors.WHITE}
+        />
+      ) : (
+        <InfoCircle width={32} height={32} />
+      )}
+    </IconContainer>
     <StatusText>
       <TranslationsConsumer
         textKey={
