@@ -11,6 +11,7 @@ import {
 import { ReadMore } from './ReadMore';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { Container } from 'constate';
 
 interface Props {
   activeFrom: string;
@@ -100,49 +101,88 @@ const getActivationMinutes = () => {
   return 60 - 1 - Number(nowFormat);
 };
 
+interface State {
+  hoursToActivation: number;
+  minutesToActivation: number;
+}
+
+interface Actions {
+  updateHours: (hours: number) => void;
+  updateMinutes: (minutes: number) => void;
+}
+
+interface Effects {
+  pollMinutes: () => void;
+  pollHours: () => void;
+}
+
 export const DateBanner: React.SFC<Props> = ({ activeFrom, statusCode }) => (
-  <Wrapper>
-    <Row>
-      <ActivationText textColor={colors.BLACK}>
-        <TranslationsConsumer textKey="DASHBOARD_HAVE_START_DATE_BANNER_TITLE">
-          {(text) => text}
-        </TranslationsConsumer>
-      </ActivationText>
-    </Row>
-    <TimeRow>
-      <CountNumber textColor={colors.BLACK_PURPLE}>
-        {getActivationMonths(activeFrom)}
-      </CountNumber>
-      <CountText textColor={colors.BLACK_PURPLE}>
-        <TranslationsConsumer textKey="DASHBOARD_BANNER_MONTHS">
-          {(text) => text}
-        </TranslationsConsumer>
-      </CountText>
-      <CountNumber textColor={colors.PINK}>
-        {getActivationDays(activeFrom)}
-      </CountNumber>
-      <CountText textColor={colors.PINK}>
-        <TranslationsConsumer textKey="DASHBOARD_BANNER_DAYS">
-          {(text) => text}
-        </TranslationsConsumer>
-      </CountText>
-      <CountNumber textColor={colors.PURPLE}>
-        {getActivationHours()}
-      </CountNumber>
-      <CountText textColor={colors.PURPLE}>
-        <TranslationsConsumer textKey="DASHBOARD_BANNER_HOURS">
-          {(text) => text}
-        </TranslationsConsumer>
-      </CountText>
-      <CountNumber textColor={colors.GREEN}>
-        {getActivationMinutes()}
-      </CountNumber>
-      <CountText textColor={colors.GREEN}>
-        <TranslationsConsumer textKey="DASHBOARD_BANNER_MINUTES">
-          {(text) => text}
-        </TranslationsConsumer>
-      </CountText>
-    </TimeRow>
-    <ReadMore status={statusCode} activeFrom={activeFrom} />
-  </Wrapper>
+  <Container<State, Actions, Effects>
+    initialState={{ minutesToActivation: 0 }}
+    actions={{
+      updateMinutes: (minutes: number) => () => ({
+        minutesToActivation: minutes,
+      }),
+      updateHours: (hours: number) => () => ({
+        hoursToActivation: hours,
+      }),
+    }}
+    effects={{
+      pollMinutes: setInterval(() => {
+        getActivationMinutes();
+      }, 1000),
+      pollHours: setInterval(() => {
+        getActivationMinutes();
+      }, 1000),
+    }}
+  >
+    {(state) => (
+      <Wrapper>
+        <Row>
+          <ActivationText textColor={colors.BLACK}>
+            <TranslationsConsumer textKey="DASHBOARD_HAVE_START_DATE_BANNER_TITLE">
+              {(text) => text}
+            </TranslationsConsumer>
+          </ActivationText>
+        </Row>
+        <TimeRow>
+          <CountNumber textColor={colors.BLACK_PURPLE}>
+            {getActivationMonths(activeFrom)}
+          </CountNumber>
+          <CountText textColor={colors.BLACK_PURPLE}>
+            <TranslationsConsumer textKey="DASHBOARD_BANNER_MONTHS">
+              {(text) => text}
+            </TranslationsConsumer>
+          </CountText>
+          <CountNumber textColor={colors.PINK}>
+            {getActivationDays(activeFrom)}
+          </CountNumber>
+          <CountText textColor={colors.PINK}>
+            <TranslationsConsumer textKey="DASHBOARD_BANNER_DAYS">
+              {(text) => text}
+            </TranslationsConsumer>
+          </CountText>
+          <CountNumber textColor={colors.PURPLE}>
+            {getActivationHours()}
+          </CountNumber>
+          <CountText textColor={colors.PURPLE}>
+            <TranslationsConsumer textKey="DASHBOARD_BANNER_HOURS">
+              {(text) => text}
+            </TranslationsConsumer>
+          </CountText>
+          <CountNumber textColor={colors.GREEN}>
+            {setInterval(() => {
+              getActivationMinutes();
+            }, 60 * 1000)}
+          </CountNumber>
+          <CountText textColor={colors.GREEN}>
+            <TranslationsConsumer textKey="DASHBOARD_BANNER_MINUTES">
+              {(text) => text}
+            </TranslationsConsumer>
+          </CountText>
+        </TimeRow>
+        <ReadMore status={statusCode} activeFrom={activeFrom} />
+      </Wrapper>
+    )}
+  </Container>
 );

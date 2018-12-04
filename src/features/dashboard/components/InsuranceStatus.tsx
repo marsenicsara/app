@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { View, Image, Text } from 'react-native';
 import styled from '@sampettersson/primitives';
-
 import { fonts, colors } from '@hedviginsurance/brand';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { CircledCross } from 'src/components/icons/CircledCross';
+// import { CircledCheckmarkFilled } from 'src/components/icons/CircledCheckmarkFilled';
 
 const Icon = styled(Image)({
   marginTop: 24,
@@ -31,6 +32,11 @@ interface Props {
 
 const InsuranceStatusDisplay: React.SFC<Props> = ({ active }) => (
   <Container>
+    {active ? (
+      <CircledCross width={32} height={32} />
+    ) : (
+      <CircledCross width={32} height={32} />
+    )}
     <Icon
       source={
         active
