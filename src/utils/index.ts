@@ -6,7 +6,7 @@ import { deleteToken } from 'src/graphql/context';
 import { setLayout } from 'src/navigation/layouts/setLayout';
 import { AsyncStorage } from 'react-native';
 
-export const isApartmentOwner = (insuranceType) => {
+export const isApartmentOwner = (insuranceType: INSURANCE_TYPES) => {
   switch (insuranceType) {
     case INSURANCE_TYPES.BRF:
     case INSURANCE_TYPES.SUBLET_BRF:
@@ -17,7 +17,7 @@ export const isApartmentOwner = (insuranceType) => {
   }
 };
 
-export const isStudentInsurance = (insuranceType) => {
+export const isStudentInsurance = (insuranceType: INSURANCE_TYPES) => {
   switch (insuranceType) {
     case INSURANCE_TYPES.STUDENT_BRF:
     case INSURANCE_TYPES.STUDENT_RENT:
