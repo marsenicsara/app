@@ -91,7 +91,7 @@ dependencies {
   compile project(':react-native-firebase')
   compile project(':react-native-branch')
   compile project(':react-native-audio')
-  compile project(':react-native-analytics-segment-io')
+  compile project(':@hedviginsurance/react-native-analytics-segment-io')
   compile project(':lottie-react-native')
   compile project(':react-native-code-push')
 

@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import Segment from 'react-native-analytics-segment-io';
+import Segment from '@hedviginsurance/react-native-analytics-segment-io';
 import Branch, { BranchEvent } from 'react-native-branch';
 
 export const SemanticEvents = {

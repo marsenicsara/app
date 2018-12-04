@@ -43,8 +43,6 @@ export const identify = (eventDef) => (action, prevState, nextState) => {
 };
 
 export const SegmentReduxTarget = (androidWriteKey, iosWriteKey, Segment) => {
-  Segment.initialize({ androidWriteKey, iosWriteKey });
-
   return (events) => {
     events.forEach((event) => {
       switch (event.hitType) {

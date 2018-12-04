@@ -252,7 +252,7 @@ DEPENDENCIES:
   - "React/RCTText (from `../node_modules/@hedviginsurance/react-native`)"
   - "React/RCTVibration (from `../node_modules/@hedviginsurance/react-native`)"
   - "React/RCTWebSocket (from `../node_modules/@hedviginsurance/react-native`)"
-  - ReactNativeAnalyticsSegmentIo (from `../node_modules/react-native-analytics-segment-io`)
+  - ReactNativeAnalyticsSegmentIo (from `../node_modules/@hedviginsurance/react-native-analytics-segment-io`)
   - ReactNativeHeicConverter (from `../node_modules/react-native-heic-converter`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - ReactNativePermissions (from `../node_modules/react-native-permissions`)
@@ -336,7 +336,7 @@ EXTERNAL SOURCES:
   react-native-video:
     :path: "../node_modules/react-native-video"
   ReactNativeAnalyticsSegmentIo:
-    :path: "../node_modules/react-native-analytics-segment-io"
+    :path: "../node_modules/@hedviginsurance/react-native-analytics-segment-io"
   ReactNativeHeicConverter:
     :path: "../node_modules/react-native-heic-converter"
   ReactNativeNavigation:

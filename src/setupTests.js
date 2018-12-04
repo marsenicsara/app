@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-jest.mock('react-native-analytics-segment-io', () => ({
+jest.mock('@hedviginsurance/react-native-analytics-segment-io', () => ({
   track: () => {},
 }));
 
@@ -25,7 +25,7 @@ jest.mock('react-native-firebase', () => ({
 }));
 jest.mock('@hedviginsurance/react-native-fs', () => ({}));
 jest.mock('@hedviginsurance/react-native-document-picker', () => ({}));
-jest.mock('react-native-analytics-segment-io', () => ({
+jest.mock('@hedviginsurance/react-native-analytics-segment-io', () => ({
   setup: () => {},
   track: () => {},
 }));
