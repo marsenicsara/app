@@ -7,8 +7,10 @@ class DashboardScreen extends React.Component {
   static get options() {
     return {
       topBar: {
-        drawBehind: true,
-        visible: false,
+        visible: true,
+        largeTitle: {
+          visible: true,
+        },
         title: {
           text: 'Min hemförsäkring',
         },
