@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  BackHandler,
   StyleSheet,
   ActivityIndicator,
   Linking,
@@ -14,6 +13,7 @@ import {
 } from 'react-native';
 import * as R from 'ramda';
 
+import { BackButton } from 'src/components/BackButton';
 import {
   BANKID_SIGN,
   BANKID_SIGN_CANCEL,
@@ -207,14 +207,6 @@ class Dialog extends React.Component {
     isVisible: false,
   };
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this._signCancel);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this._signCancel);
-  }
-
   componentDidUpdate() {
     if (this.props.bankid.sign.isCurrentlySigning) {
       this._show();
@@ -265,6 +257,7 @@ class Dialog extends React.Component {
       this.state.isVisible &&
       isCurrentlySigning && (
         <Modal onRequestClose={() => this._dismiss()} transparent>
+          <BackButton onPress={this._signCancel} />
           <View style={styles.container}>
             <TouchableWithoutFeedback
               accessibilityTraits="none"

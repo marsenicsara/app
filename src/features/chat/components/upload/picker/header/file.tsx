@@ -22,6 +22,11 @@ export const File: React.SFC<FileProps> = ({ onUpload }) => (
             Navigation.showOverlay({
               component: {
                 name: FILE_PICKER_COMPONENT.name,
+                options: {
+                  layout: {
+                    backgroundColor: 'transparent',
+                  },
+                },
                 passProps: {
                   upload,
                   onUpload,
@@ -30,7 +35,7 @@ export const File: React.SFC<FileProps> = ({ onUpload }) => (
             });
           }}
         >
-          <UploadingAnimation isUploading={isUploading}>
+          <UploadingAnimation darkMode isUploading={isUploading}>
             <ImageLibrary width={18} height={18} />
           </UploadingAnimation>
         </PickerButton>

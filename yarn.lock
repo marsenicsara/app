@@ -752,10 +752,23 @@
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-config/-/react-native-config-0.11.6.tgz#edf8aa2cf2510bcdbb199114f2029664b7bb2aae"
   integrity sha512-LZz5RujYyUTCb2Q3hibKV5e8eTZCpESXDT8KquKCCPeOSAqKBR4TnNUKqeOxPug3HcZ4i4MHiNgaJasPV5Jqzw==
 
-"@hedviginsurance/react-native-floating-action@^1.11.3":
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.11.3.tgz#1f974e3a5ca73d05ae8575552137b55465a4602f"
-  integrity sha512-jSqgHj4fJ0mQv/Wzxx6Cm0nbpolCJBAtIyDtItdJTjdyq5GEBIiTJJazZnWTitCSizj6ay+I2VONe2ctJFThMw==
+"@hedviginsurance/react-native-document-picker@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-document-picker/-/react-native-document-picker-2.1.1.tgz#2423d6dabef6427e836808af616d593563715c77"
+  integrity sha512-W8UxlK3LaP3n6ttEjqgie23icvhf0tQUVb4GtDh9hd6bjVgEceoNQcWa4PD4rFSd4LTZEckqmkNNaOHODnRrdA==
+
+"@hedviginsurance/react-native-floating-action@1.13.1":
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.13.1.tgz#e1f97f5d5ca914d7ebb89f53f8a2b86f84bec5d7"
+  integrity sha512-q/SspeAu/zm41v2HLoJREuOebbqT1bjNDViCj54CxBp+Mj51nPylLyxka/ObxRDzd+MENit9Xjhz2i8dUfiQSw==
+
+"@hedviginsurance/react-native-fs@2.12.2":
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-fs/-/react-native-fs-2.12.2.tgz#3ab8a714ef2031a0564a732514d9a8d9de0931f9"
+  integrity sha512-EkWt86qOV29j1Xm0sCpkQUHx1dy7gVlg4KDVZ/wbzTXQLBMih/eHIsVYr8ImZku5oc2GXEWva9nY4ORZPSoiNA==
+  dependencies:
+    base-64 "^0.1.0"
+    utf8 "^2.1.1"
 
 "@hedviginsurance/react-native-keyboard-spacer@0.4.9":
   version "0.4.9"
@@ -4446,6 +4459,13 @@ get-closest@^0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/get-closest/-/get-closest-0.0.4.tgz#269ac776d1e6022aa0fd586dd708e8a7d32269af"
   integrity sha1-JprHdtHmAiqg/Vht1wjop9Miaa8=
+
+get-dev-paths@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/get-dev-paths/-/get-dev-paths-0.1.0.tgz#eaf98ef50441d0fba3c5cbf81d6b4ba394facb77"
+  integrity sha512-5DasBkZpPPUnowOkt6Kso9q44iKVGyJLDb2MGQrnMfAznLggoYwCcOBXDHGe5bmU4TE5U+W0HuplWeoofbaHcw==
+  dependencies:
+    type-error "^1.0.3"
 
 get-own-enumerable-property-symbols@^2.0.1:
   version "2.0.1"
@@ -8277,11 +8297,6 @@ react-native-device-info@^0.22.5:
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.22.6.tgz#32a674b0484d31214fdcfbbb0e677621e83ba69d"
   integrity sha512-/w87PmHPvT5MY3HwzdVEWyFg/ib91lY6TlYJGNnNPaXNXY60ShB8HI+GXKyq4KAtbUc/WhRM1RQ8/WKJOal+UQ==
 
-react-native-document-picker@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-2.1.0.tgz#61bbe113435a9d7bf67ab77093a4092d76b52fe3"
-  integrity sha512-BFCBXwz8xuLvHLVFVeQM+RhaY8yZ38PEWt9WSbq5VIoZ/VssP6uu51XxOfdwaMALOrAHIojK0SiYnd155upZAg==
-
 react-native-fast-image@^5.0.11:
   version "5.0.11"
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-5.0.11.tgz#a8f21864d379e6f566e4f68dd04f2c0f7de0dfec"
@@ -8295,18 +8310,10 @@ react-native-firebase@^5.0.0:
     opencollective-postinstall "^2.0.0"
     prop-types "^15.6.2"
 
-react-native-fs@^2.11.18:
-  version "2.11.18"
-  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.11.18.tgz#5ad9fd6d565b1bb2d77242c7a6103229e2e43170"
-  integrity sha512-ICU2g47C2+6D3VxlqYCYy+QBUe1v9JvTN5jhcCGMDn4ckQlgmYBVENePZsppwMLdTasp4bYmtF3MmHhqSvcHYQ==
-  dependencies:
-    base-64 "^0.1.0"
-    utf8 "^2.1.1"
-
-react-native-gesture-handler@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.7.tgz#86677c709c42d04555210cad9759b09e2c657720"
-  integrity sha512-lu4RizR3iBJ6qq8UfcHQKbf+HaiQHMGaQPSMSy8i7ij6tsOxatKuzxuEZRMblQ2Ma7op4CpfssD29yo1AjI7PQ==
+react-native-gesture-handler@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.9.tgz#ddec4d19d51cb6fb54df6eca792ebd76aaef083f"
+  integrity sha512-TPaiS8cAGqQA9p1GwjDbgMyNVCO/7cWC05h1rWIX2ZLoB1oSxGEBi5Es211HpBUmsTAzrUGH7M+ASGkAQeYH/A==
   dependencies:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
@@ -10000,6 +10007,11 @@ type-check@~0.3.2:
   integrity sha1-WITKtRLPHTVeP7eE8wgEsrUg23I=
   dependencies:
     prelude-ls "~1.1.2"
+
+type-error@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/type-error/-/type-error-1.0.3.tgz#4cec6ebbb8a8f57fb9b7ef33ca0ec93b1bd87ab2"
+  integrity sha512-hlNA4NwwjtL9clb8nv+x/5C45uzxND+N+h+/y3z2dYdubGSmdtNtJjHVH4E68ZHR98Bkav4ACf1lmTZepc/4sg==
 
 typedarray-to-buffer@^3.1.2:
   version "3.1.5"

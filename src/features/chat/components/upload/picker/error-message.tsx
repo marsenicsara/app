@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { View, Text, Dimensions, Animated } from 'react-native';
+import { Text, Dimensions, Animated } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { CircledExclamationMark } from 'src/components/icons/CircledExclamationMark';
 import { Spacing } from 'src/components/Spacing';
 import { fonts, colors } from '@hedviginsurance/brand';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
-import { PillButton } from 'src/components/PillButton';
 
 import { Sequence, Delay, Spring } from 'animated-react-native-components';
 import { AnimatedView } from 'src/components/AnimatedPrimitives';
@@ -35,11 +34,6 @@ const Container = styled(AnimatedView)(
   }),
 );
 
-const ButtonContainer = styled(View)({
-  width: '100%',
-  height: 40,
-});
-
 const Message = styled(Text)({
   fontFamily: fonts.CIRCULAR,
   color: colors.BLACK,
@@ -47,44 +41,32 @@ const Message = styled(Text)({
 });
 
 interface ErrorMessageProps {
-  retry: () => void;
-  loading: boolean;
-  error: boolean | undefined;
+  error: boolean;
 }
 
-export const ErrorMessage: React.SFC<ErrorMessageProps> = ({
-  error,
-  loading,
-  retry,
-}) => (
-  <Sequence>
-    <Delay config={{ delay: 350 }} />
-    <Spring
-      toValue={error ? 1 : 0}
-      initialValue={0}
-      config={{ bounciness: 12 }}
-    >
-      {(animatedValue) => (
-        <Container animatedValue={animatedValue} error={error}>
-          <CircledExclamationMark width={30} height={30} />
-          <Spacing height={15} />
-          <TranslationsConsumer textKey="FILE_UPLOAD_ERROR">
-            {(text) => <Message>{text}</Message>}
-          </TranslationsConsumer>
-          <Spacing height={15} />
-          <ButtonContainer>
-            <TranslationsConsumer textKey="FILE_UPLOAD_ERROR_RETRY_BUTTON">
-              {(text) => (
-                <PillButton
-                  loading={loading}
-                  text={text}
-                  onPress={() => retry()}
-                />
-              )}
+export const ErrorMessage: React.SFC<ErrorMessageProps> = ({ error }) => {
+  if (!error) {
+    return null;
+  }
+
+  return (
+    <Sequence>
+      <Delay config={{ delay: 350 }} />
+      <Spring
+        toValue={error ? 1 : 0}
+        initialValue={0}
+        config={{ bounciness: 12 }}
+      >
+        {(animatedValue) => (
+          <Container animatedValue={animatedValue} error={error}>
+            <CircledExclamationMark width={30} height={30} />
+            <Spacing height={15} />
+            <TranslationsConsumer textKey="FILE_UPLOAD_ERROR">
+              {(text) => <Message>{text}</Message>}
             </TranslationsConsumer>
-          </ButtonContainer>
-        </Container>
-      )}
-    </Spring>
-  </Sequence>
-);
+          </Container>
+        )}
+      </Spring>
+    </Sequence>
+  );
+};

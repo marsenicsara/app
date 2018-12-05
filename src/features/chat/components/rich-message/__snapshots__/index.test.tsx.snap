@@ -448,14 +448,13 @@ exports[`renders text messages correctly 1`] = `
                       selectable={true}
                       style={
                         Array [
+                          undefined,
                           Object {
                             "color": "#FFFFFF",
                             "fontFamily": "CircularStd-Book",
                             "fontSize": 16,
                             "textAlign": "left",
                           },
-                          undefined,
-                          false,
                         ]
                       }
                     >
@@ -561,14 +560,13 @@ exports[`renders text messages with hyperlinks correctly 1`] = `
                       selectable={true}
                       style={
                         Array [
+                          undefined,
                           Object {
                             "color": "#FFFFFF",
                             "fontFamily": "CircularStd-Book",
                             "fontSize": 16,
                             "textAlign": "left",
                           },
-                          undefined,
-                          false,
                         ]
                       }
                     >

@@ -59,7 +59,7 @@ target 'hedvig' do
 
   pod 'react-native-video', :path => '../node_modules/react-native-video'
 
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
+  pod 'RNFS', :path => '../node_modules/@hedviginsurance/react-native-fs'
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
@@ -67,7 +67,7 @@ target 'hedvig' do
 
   pod 'react-native-blur', :path => '../node_modules/react-native-blur'
 
-  pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
+  pod 'react-native-document-picker', :path => '../node_modules/@hedviginsurance/react-native-document-picker'
 
   ## Pods from ugglan
   pod 'Tempura'

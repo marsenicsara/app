@@ -23,8 +23,8 @@ jest.mock('react-native-firebase', () => ({
   messaging: () => {},
   getToken: () => {},
 }));
-jest.mock('react-native-fs', () => ({}));
-jest.mock('react-native-document-picker', () => ({}));
+jest.mock('@hedviginsurance/react-native-fs', () => ({}));
+jest.mock('@hedviginsurance/react-native-document-picker', () => ({}));
 jest.mock('react-native-analytics-segment-io', () => ({
   setup: () => {},
   track: () => {},

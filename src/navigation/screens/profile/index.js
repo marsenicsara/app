@@ -17,7 +17,7 @@ class ProfileScreen extends React.Component {
       },
       statusBar: {
         visible: true,
-        style: 'dark',
+        style: 'light',
       },
     };
   }
