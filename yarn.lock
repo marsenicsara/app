@@ -747,10 +747,10 @@
     minimist "^1.2.0"
     path-resolve "0.0.1"
 
-"@hedviginsurance/react-native-analytics-segment-io@^3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-analytics-segment-io/-/react-native-analytics-segment-io-3.1.4.tgz#b1bae11e109ec09a4fcd86bc7b6ac8e2e8e519aa"
-  integrity sha512-KvyhdnM6X1jXWwMda+3jOGduUXoh35yh147obYA1iKZwFE8OX23+ETXnIWuMw22i4VcS0Qe7bHi/z3AX0Mj3hQ==
+"@hedviginsurance/react-native-analytics-segment-io@^3.1.5":
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-analytics-segment-io/-/react-native-analytics-segment-io-3.1.5.tgz#52ecdfe471267e31ed116606d04b2d736e1a0e6e"
+  integrity sha512-eF3I93a4j7RyslsYdAURJdptkXZLV0MD2FGqXeW5XaQlyx6eaFo2L2pcUjbr06NeIfioIrWrxros0cv6VNRC8w==
 
 "@hedviginsurance/react-native-config@^0.11.6":
   version "0.11.6"

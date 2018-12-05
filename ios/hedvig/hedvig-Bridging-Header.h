@@ -10,9 +10,12 @@
 #else
 #import "RNSentry.h" // This is used for versions of react < 0.40
 #endif
+#import "ReactNativeConfig.h"
 #import <Firebase.h>
 #import "RNFirebaseNotifications.h"
 #import "RNFirebaseMessaging.h"
 #import <CodePush/CodePush.h>
+#import <Analytics/SEGAnalytics.h>
+#import <HedviginsuranceReactNativeAnalyticsSegmentIo/RNASegmentIO.h>
 #import <react-native-branch/RNBranch.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
