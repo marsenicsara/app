@@ -29,6 +29,7 @@ export const MESSAGE_QUERY = gql`
     richTextChatCompatible
     editAllowed
     shouldRequestPushNotifications
+    pollingInterval
   }
 
   fragment SingleSelect on MessageBodySingleSelect {

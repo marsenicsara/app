@@ -214,23 +214,16 @@ const Chat: React.SFC<ChatProps> = ({
                     updateQuery: (prev, { subscriptionData }) => {
                       if (!subscriptionData.data) return prev;
 
-                      console.log(prev);
-                      console.log(subscriptionData.data);
+                      const newMessage = subscriptionData.data.message;
 
-                      const prevMessages = prev;
-                      const newMessage =
-                        subscriptionData.data.currentChatResponse;
-
-                      console.log('prev messages', prevMessages);
-                      console.log('new message', newMessage);
-
-                      const toReturn = Object.assign({}, prev, {
+                      const updatedMessages = Object.assign({}, prev, {
                         messages: [newMessage, ...prev.messages],
                       });
 
-                      console.log('toreturn: ', toReturn);
-                      setMessages(toReturn.messages);
-                      return toReturn;
+                      const delay = newMessage.header.pollingInterval || 0;
+
+                      setMessages(updatedMessages.messages);
+                      return updatedMessages;
                     },
                     onError: (err) => console.log(err),
                   });

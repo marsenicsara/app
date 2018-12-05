@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const MESSAGE_SUBSCRIPTION = gql`
   subscription newMessage {
-    currentChatResponse {
+    message {
       globalId
       id
       body {
@@ -29,6 +29,7 @@ export const MESSAGE_SUBSCRIPTION = gql`
     richTextChatCompatible
     editAllowed
     shouldRequestPushNotifications
+    pollingInterval
   }
 
   fragment SingleSelect on MessageBodySingleSelect {

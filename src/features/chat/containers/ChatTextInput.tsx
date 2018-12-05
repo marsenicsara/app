@@ -5,9 +5,11 @@ import styled from '@sampettersson/primitives';
 import color from 'color';
 import { BlurView } from 'react-native-blur';
 import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
+import mime from 'mime-types';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { SendButton } from '../components/Button';
+import { SendChatFileResponseComponent } from 'src/graphql/components';
 
 import { colors, fonts } from '@hedviginsurance/brand';
 import { Provider } from '../components/upload/context';
@@ -16,8 +18,9 @@ import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
 import { Provider as GiphyProvider } from '../components/giphy-picker/context';
 import { Buttons } from '../components/pickers/buttons';
 import { isIphoneX } from 'react-native-iphone-x-helper';
-
+import { BlurSwitchContainer } from '../components/BlurSwitchContainer';
 import { InputHeightContainer } from './InputHeight';
+
 import { Message } from '../types';
 import { Container, ActionMap } from 'constate';
 import { Mutation } from 'react-apollo';
@@ -28,20 +31,22 @@ const TextField = styled(TextInput)({
   alignSelf: 'stretch',
   minHeight: 40,
   maxHeight: 160,
-  paddingTop: 10,
   paddingRight: 16,
-  paddingBottom: 10,
   paddingLeft: 16,
   marginRight: 8,
-  fontSize: 16,
+  fontSize: 15,
   overflow: 'hidden',
   fontFamily: fonts.CIRCULAR,
-});
-
-const BlurContainer = styled(BlurView)({
-  position: 'absolute',
-  bottom: 0,
-  width: '100%',
+  ...Platform.select({
+    android: {
+      paddingTop: 5,
+      paddingBottom: 5,
+    },
+    ios: {
+      paddingTop: 10,
+      paddingBottom: 10,
+    },
+  }),
 });
 
 const BarContainer = styled(View)({
@@ -86,12 +91,9 @@ interface Actions {
 }
 
 const actions: ActionMap<State, Actions> = {
-  setInputValue: (inputValue) => () => {
-    console.log('set: ', inputValue);
-    return {
-      inputValue,
-    };
-  },
+  setInputValue: (inputValue) => () => ({
+    inputValue,
+  }),
   setScrollEnabled: (scrollEnabled) => () => ({
     scrollEnabled,
   }),
@@ -156,7 +158,7 @@ const ChatTextInput: React.SFC<ChatTextInputProps> = ({
                 return (
                   <Provider>
                     <GiphyProvider>
-                      <BlurContainer blurType="xlight">
+                      <BlurSwitchContainer>
                         <BarContainer>
                           <InputHeightContainer>
                             {({ setInputHeight }) => (
@@ -198,6 +200,7 @@ const ChatTextInput: React.SFC<ChatTextInputProps> = ({
                                       }
                                       onSubmitEditing={() => {
                                         if (!richTextChatCompatible) {
+                                          setInputValue('');
                                           send();
                                         }
                                       }}
@@ -216,14 +219,37 @@ const ChatTextInput: React.SFC<ChatTextInputProps> = ({
                                     />
                                   </TextInputContainer>
                                 </Bar>
-                                <Picker sendMessage={sendFileMessage} />
+                                <SendChatFileResponseComponent>
+                                  {(mutate) => (
+                                    <Picker
+                                      sendMessage={(key) => {
+                                        mutate({
+                                          variables: {
+                                            input: {
+                                              globalId: message.globalId,
+                                              body: {
+                                                key,
+                                                mimeType:
+                                                  mime.lookup(key) || '',
+                                              },
+                                            },
+                                          },
+                                        });
+                                      }}
+                                    />
+                                  )}
+                                </SendChatFileResponseComponent>
                                 <GiphyPicker sendMessage={send} />
                               </View>
                             )}
                           </InputHeightContainer>
-                          <KeyboardSpacer restSpacing={isIphoneX() ? 35 : 0} />
+                          {Platform.OS === 'ios' && (
+                            <KeyboardSpacer
+                              restSpacing={isIphoneX() ? 35 : 0}
+                            />
+                          )}
                         </BarContainer>
-                      </BlurContainer>
+                      </BlurSwitchContainer>
                     </GiphyProvider>
                   </Provider>
                 );
