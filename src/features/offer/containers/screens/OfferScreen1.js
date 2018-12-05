@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-
 import React from 'react';
 import {
   ScrollView,
@@ -9,14 +8,10 @@ import {
   Dimensions,
   ImageBackground,
 } from 'react-native';
-
 import {
   verticalSizeClass,
-  V_SPACIOUS,
-  V_REGULAR,
-  V_COMPACT,
+  VerticalSizeClass,
 } from '../../../../services/DimensionSizes';
-
 import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
@@ -49,9 +44,9 @@ const styles = StyleSheet.create({
   heading: {
     position: 'absolute',
     top: {
-      [V_SPACIOUS]: 60,
-      [V_REGULAR]: 50,
-      [V_COMPACT]: 43,
+      [VerticalSizeClass.SPACIOUS]: 60,
+      [VerticalSizeClass.REGULAR]: 50,
+      [VerticalSizeClass.COMPACT]: 43,
     }[verticalSizeClass],
   },
   headingText: {
@@ -63,14 +58,14 @@ const styles = StyleSheet.create({
   },
   categoryHeader: {
     marginTop: {
-      [V_SPACIOUS]: '23%',
-      [V_REGULAR]: '21%',
-      [V_COMPACT]: '21%',
+      [VerticalSizeClass.COMPACT]: '23%',
+      [VerticalSizeClass.REGULAR]: '21%',
+      [VerticalSizeClass.COMPACT]: '21%',
     }[verticalSizeClass],
     marginBottom: {
-      [V_SPACIOUS]: '23%',
-      [V_REGULAR]: '21%',
-      [V_COMPACT]: '19%',
+      [VerticalSizeClass.COMPACT]: '23%',
+      [VerticalSizeClass.REGULAR]: '21%',
+      [VerticalSizeClass.COMPACT]: '19%',
     }[verticalSizeClass],
     fontFamily: 'CircularStd-Bold',
     fontSize: 20,

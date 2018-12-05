@@ -19,7 +19,7 @@ export const setLayout = ({
         fontFamily: fonts.CIRCULAR,
       },
       largeTitle: {
-        fontFamily: fonts.CIRCULAR,
+        fontFamily: fonts.SORAY,
         fontSize: 30,
       },
     },

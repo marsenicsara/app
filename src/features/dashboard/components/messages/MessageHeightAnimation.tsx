@@ -1,44 +1,19 @@
 import * as React from 'react';
-import styled from '@sampettersson/primitives';
-import { View, LayoutAnimation } from 'react-native';
 import { Mount, Update } from 'react-lifecycle-components';
-
+import { HeightConstraint } from '../HeightConstraint';
+import { scheduleAnimation } from '../ScheduleAnimation';
 import { OpenState } from 'src/components/OpenState';
-
-const HeightConstraint = styled(View)(({ visible }: { visible: boolean }) => ({
-  marginBottom: visible ? 15 : 0,
-  maxHeight: visible ? Number.MAX_SAFE_INTEGER : 0,
-  overflow: 'hidden',
-}));
 
 interface MessageHeightAnimationProps {
   visible: boolean;
+  useWidth?: boolean;
+  notificationMessage?: boolean;
 }
-
-const scheduleAnimation = () => {
-  LayoutAnimation.configureNext({
-    duration: 600,
-    create: {
-      type: LayoutAnimation.Types.spring,
-      springDamping: 1,
-      property: LayoutAnimation.Properties.scaleXY,
-    },
-    update: {
-      type: LayoutAnimation.Types.spring,
-      springDamping: 1,
-      property: LayoutAnimation.Properties.scaleXY,
-    },
-    delete: {
-      type: LayoutAnimation.Types.spring,
-      springDamping: 1,
-      property: LayoutAnimation.Properties.scaleXY,
-    },
-  });
-};
 
 export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
   children,
   visible,
+  useWidth,
 }) => (
   <OpenState initialOpenState={false}>
     {({ isOpen, setIsOpen }) => (
@@ -48,7 +23,7 @@ export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
             if (!visible) return;
             setTimeout(() => {
               setIsOpen(true);
-              scheduleAnimation();
+              scheduleAnimation(600);
             }, 50);
           }}
         >
@@ -58,13 +33,17 @@ export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
         <Update
           was={() => {
             setIsOpen(true);
-            scheduleAnimation();
+            scheduleAnimation(600);
           }}
           watched={visible}
         >
           {null}
         </Update>
-        <HeightConstraint visible={visible && isOpen}>
+        <HeightConstraint
+          visible={visible && isOpen}
+          notificationMessage={true}
+          useWidth={useWidth}
+        >
           {children}
         </HeightConstraint>
       </>

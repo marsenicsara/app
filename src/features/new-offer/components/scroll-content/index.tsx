@@ -56,32 +56,32 @@ export const ScrollContent: React.SFC<ScrollContentProps> = ({
   scrollAnimatedValue,
   insuredAtOtherCompany,
 }) => (
-  <Sequence>
-    <Delay config={{ delay: 950 }} />
-    <Spring
-      config={{
-        bounciness: 5,
-      }}
-      toValue={0}
-      initialValue={Dimensions.get('window').height * 0.3}
-    >
-      {(translateY) => (
-        <ScrollContentContainer translateY={translateY}>
-          <ArrowContainer scrollAnimatedValue={scrollAnimatedValue}>
-            <Arrow arrowFill={colors.WHITE} width={20} height={20} />
-          </ArrowContainer>
-          <Spacing height={20} />
-          <Content>
-            <Header />
-            <OfferScreen4 disableScroll />
-            <OfferScreen3 disableScroll />
-            <OfferScreen2 disableScroll />
-            <OfferScreen5 disableScroll />
-            {insuredAtOtherCompany && <OfferScreen7 disableScroll />}
-            <GetHedvig scrollAnimatedValue={scrollAnimatedValue} />
-          </Content>
-        </ScrollContentContainer>
-      )}
-    </Spring>
-  </Sequence>
-);
+    <Sequence>
+      <Delay config={{ delay: 950 }} />
+      <Spring
+        config={{
+          bounciness: 5,
+        }}
+        toValue={0}
+        initialValue={Dimensions.get('window').height * 0.3}
+      >
+        {(translateY) => (
+          <ScrollContentContainer translateY={translateY}>
+            <ArrowContainer scrollAnimatedValue={scrollAnimatedValue}>
+              <Arrow arrowFill={colors.WHITE} width={20} height={20} />
+            </ArrowContainer>
+            <Spacing height={20} />
+            <Content>
+              <Header />
+              <OfferScreen4 disableScroll />
+              <OfferScreen3 disableScroll />
+              <OfferScreen2 />
+              <OfferScreen5 disableScroll />
+              {insuredAtOtherCompany && <OfferScreen7 disableScroll />}
+              <GetHedvig scrollAnimatedValue={scrollAnimatedValue} />
+            </Content>
+          </ScrollContentContainer>
+        )}
+      </Spring>
+    </Sequence>
+  );

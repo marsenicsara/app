@@ -31,6 +31,8 @@ import { Message, Choice } from './types';
 import { Query } from 'react-apollo';
 import { MESSAGE_QUERY } from './chat-query';
 import { MESSAGE_SUBSCRIPTION } from './chat-subscription';
+import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
+import { BackButton } from 'src/components/BackButton';
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -152,6 +154,17 @@ const actions: ActionMap<State, Actions> = {
     return { messages };
   },
 };
+const KeyboardAvoidingOnAndroidIfModal: React.SFC<{ isModal: boolean }> = ({
+  children,
+  isModal,
+}) =>
+  isModal ? (
+    <KeyboardAvoidingOnAndroid additionalPadding={16}>
+      {children}
+    </KeyboardAvoidingOnAndroid>
+  ) : (
+    <>{children}</>
+  );
 
 const Chat: React.SFC<ChatProps> = ({
   onboardingDone = false,
@@ -245,16 +258,19 @@ const Chat: React.SFC<ChatProps> = ({
                   showReturnToOfferButton,
                 )}
               >
-                <Messages>
-                  <MessageList messages={messages} />
-                </Messages>
-                <Response>
-                  <InputComponent
-                    showOffer={() => showOffer(componentId)}
-                    selectChoice={selectChoice}
-                    messages={messages}
-                  />
-                </Response>
+                <KeyboardAvoidingOnAndroidIfModal isModal={isModal}>
+                  <Messages>
+                    <MessageList messages={messages} />
+                  </Messages>
+
+                  <Response>
+                    <InputComponent
+                      showOffer={() => showOffer(componentId)}
+                      selectChoice={selectChoice}
+                      messages={messages}
+                    />
+                  </Response>
+                </KeyboardAvoidingOnAndroidIfModal>
               </NavigationOptions>
             </>
           )}

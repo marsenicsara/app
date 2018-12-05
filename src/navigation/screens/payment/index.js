@@ -2,6 +2,7 @@ import React from 'react';
 import Payment from '../../../features/payment';
 import { StandalonePayment } from 'src/features/payment/StandalonePayment';
 import { CLOSE_BUTTON } from './buttons';
+import { navigationConstants } from '../../constants';
 
 class PaymentScreen extends React.Component {
   static get options() {
@@ -15,7 +16,11 @@ class PaymentScreen extends React.Component {
       },
       statusBar: {
         visible: true,
-        style: 'dark',
+        style: 'light',
+        drawBehind: false,
+      },
+      layout: {
+        topMargin: navigationConstants.statusBarHeight * 3,
       },
     };
   }

@@ -3,7 +3,6 @@ import { Navigation } from 'react-native-navigation';
 
 import { Message, MessageType } from './Message';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
-import { Spacing } from 'src/components/Spacing';
 import { PAYMENT_SCREEN } from 'src/navigation/screens/payment';
 
 import { MessagesComponent, DirectDebitStatus } from 'src/graphql/components';
@@ -11,11 +10,8 @@ import { MessagesComponent, DirectDebitStatus } from 'src/graphql/components';
 export const Messages: React.SFC = () => (
   <MessagesComponent>
     {({ data, loading, error }) =>
-      loading || error || data === undefined ? (
-        <Spacing height={15} />
-      ) : (
+      loading || error || data === undefined ? null : (
         <>
-          <Spacing height={15} />
           <Message
             visible={data.directDebitStatus === DirectDebitStatus.NEEDS_SETUP}
             message={

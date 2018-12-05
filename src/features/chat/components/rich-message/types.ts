@@ -5,6 +5,8 @@ interface Header {
 
 interface Body {
   text: string;
+  key?: string;
+  mimeType?: string;
 }
 
 interface Message {
@@ -16,4 +18,5 @@ export interface Props {
   message: Message;
   index: number;
   withMargin: boolean;
+  fromUser: boolean;
 }

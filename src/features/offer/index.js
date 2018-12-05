@@ -40,9 +40,7 @@ import OfferScreen8 from './containers/screens/OfferScreen8';
 
 import {
   verticalSizeClass,
-  V_SPACIOUS,
-  V_REGULAR,
-  V_COMPACT,
+  VerticalSizeClass,
 } from '../../services/DimensionSizes';
 
 import { colors } from '@hedviginsurance/brand';
@@ -55,6 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  swiperPadding: { paddingTop: 8 },
   swiperContainer: { flex: 1 },
   closeOffer: {
     position: 'absolute',
@@ -62,7 +61,11 @@ const styles = StyleSheet.create({
     left: 17,
     zIndex: 2,
   },
-  closeOfferImage: { width: 26, height: 26 },
+  closeOfferImage: {
+    width: 26,
+    height: 26,
+    ...Platform.select({ android: { marginTop: 17 } }),
+  },
   buttonWrapperStyle: {
     backgroundColor: colors.TRANSPARENT,
     position: 'absolute',
@@ -91,9 +94,9 @@ const styles = StyleSheet.create({
       bottom: 30,
     }),
     bottom: {
-      [V_SPACIOUS]: 18,
-      [V_REGULAR]: 15,
-      [V_COMPACT]: 15,
+      [VerticalSizeClass.COMPACT]: 18,
+      [VerticalSizeClass.REGULAR]: 15,
+      [VerticalSizeClass.COMPACT]: 15,
     }[verticalSizeClass],
   },
   button: {
@@ -112,9 +115,9 @@ const styles = StyleSheet.create({
       marginBottom: 40,
     }),
     marginBottom: {
-      [V_SPACIOUS]: 29,
-      [V_REGULAR]: 50,
-      [V_COMPACT]: 26,
+      [VerticalSizeClass.COMPACT]: 29,
+      [VerticalSizeClass.REGULAR]: 50,
+      [VerticalSizeClass.COMPACT]: 26,
     }[verticalSizeClass],
     ...Platform.select({
       android: {
@@ -254,7 +257,7 @@ class OfferSwiper extends React.Component {
           ) : null}
           <Swiper
             ref={(ref) => (this.swiper = ref)}
-            style={styles.swiper} // This is undefined, rofl
+            style={styles.swiperPadding}
             loop={false}
             showsButtons={!isLast}
             showsPagination={!isLast && !isFirst}

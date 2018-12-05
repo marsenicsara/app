@@ -8,6 +8,7 @@ import {
   ViewProps,
   View,
   Text,
+  Platform
 } from 'react-native';
 import { colors, fonts } from '@hedviginsurance/brand';
 import { Container, ActionMap } from 'constate';
@@ -47,12 +48,28 @@ const SendButton = styled(TouchableOpacity)({
   justifyContent: 'center',
 });
 
-const FullSize = styled(BlurView)({
+const FullSizeIOS = styled(BlurView)({
   width: '100%',
   height: '100%',
   alignItems: 'center',
   justifyContent: 'center',
 });
+
+const FullSizeAndroid = styled(View)({
+  width: '100%',
+  height: '100%',
+  backgroundColor: colors.TRANSPARENT,
+  alignItems: 'center',
+  justifyContent: 'center'
+})
+
+const FullSize: React.SFC<{ blurType: string }> = ({ blurType, children }) => (
+  Platform.OS === 'android' ? (
+    <FullSizeAndroid>{children}</FullSizeAndroid>
+  ) : (
+      <FullSizeIOS blurType={blurType}>{children}</FullSizeIOS>
+    )
+)
 
 const FadeInView = styled(AnimatedView)(
   ({ animatedValue }: { animatedValue: Animated.Value }) => ({
@@ -94,65 +111,65 @@ export const Presend: React.SFC<PresendProps> = ({
   onPressSend,
   isUploading,
 }) => (
-  <Container actions={actions} initialState={{ isVisible: false }}>
-    {({ isVisible, setIsVisible }) => (
-      <>
-        <Update
-          watched={isUploading}
-          was={() => {
-            if (!isUploading) {
-              setIsVisible(false);
-            }
-          }}
-        >
-          {null}
-        </Update>
-        {children(() => {
-          setIsVisible(true);
-        })}
-        <Delayed
-          mountChildren={isVisible}
-          mountChildrenAfter={0}
-          unmountChildrenAfter={300}
-        >
-          <Parallel>
-            <Timing
-              toValue={isVisible ? 1 : 0}
-              initialValue={0}
-              config={{ duration: 250 }}
-            >
-              {(animatedValue) => (
-                <FadeInView animatedValue={animatedValue}>
-                  <TouchableWithoutFeedback onPress={() => setIsVisible(false)}>
-                    <FullSize blurType="dark">
-                      <Sequence>
-                        <Delay config={{ delay: 150 }} />
-                        <Spring
-                          toValue={0}
-                          initialValue={-200}
-                          config={{ bounciness: 7 }}
-                        >
-                          {(animatedValue) => (
-                            <ButtonAnimation animatedValue={animatedValue}>
-                              <UploadingAnimation isUploading={isUploading}>
-                                <SendButton onPress={() => onPressSend()}>
-                                  <View>
-                                    <SendButtonText>Skicka</SendButtonText>
-                                  </View>
-                                </SendButton>
-                              </UploadingAnimation>
-                            </ButtonAnimation>
-                          )}
-                        </Spring>
-                      </Sequence>
-                    </FullSize>
-                  </TouchableWithoutFeedback>
-                </FadeInView>
-              )}
-            </Timing>
-          </Parallel>
-        </Delayed>
-      </>
-    )}
-  </Container>
-);
+    <Container actions={actions} initialState={{ isVisible: false }}>
+      {({ isVisible, setIsVisible }) => (
+        <>
+          <Update
+            watched={isUploading}
+            was={() => {
+              if (!isUploading) {
+                setIsVisible(false);
+              }
+            }}
+          >
+            {null}
+          </Update>
+          {children(() => {
+            setIsVisible(true);
+          })}
+          <Delayed
+            mountChildren={isVisible}
+            mountChildrenAfter={0}
+            unmountChildrenAfter={300}
+          >
+            <Parallel>
+              <Timing
+                toValue={isVisible ? 1 : 0}
+                initialValue={0}
+                config={{ duration: 250 }}
+              >
+                {(animatedValue) => (
+                  <FadeInView animatedValue={animatedValue}>
+                    <TouchableWithoutFeedback onPress={() => setIsVisible(false)}>
+                      <FullSize blurType="dark">
+                        <Sequence>
+                          <Delay config={{ delay: 150 }} />
+                          <Spring
+                            toValue={0}
+                            initialValue={-200}
+                            config={{ bounciness: 7 }}
+                          >
+                            {(animatedValue) => (
+                              <ButtonAnimation animatedValue={animatedValue}>
+                                <UploadingAnimation isUploading={isUploading}>
+                                  <SendButton onPress={() => onPressSend()}>
+                                    <View>
+                                      <SendButtonText>Skicka</SendButtonText>
+                                    </View>
+                                  </SendButton>
+                                </UploadingAnimation>
+                              </ButtonAnimation>
+                            )}
+                          </Spring>
+                        </Sequence>
+                      </FullSize>
+                    </TouchableWithoutFeedback>
+                  </FadeInView>
+                )}
+              </Timing>
+            </Parallel>
+          </Delayed>
+        </>
+      )}
+    </Container>
+  );

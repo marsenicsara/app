@@ -2,9 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet, Dimensions } from 'react-native';
 import {
   verticalSizeClass,
-  V_SPACIOUS,
-  V_REGULAR,
-  V_COMPACT,
+  VerticalSizeClass,
 } from '../../../services/DimensionSizes';
 
 const { width: viewportWidth } = Dimensions.get('window');
@@ -16,9 +14,9 @@ const styles = StyleSheet.create({
   image: {
     width: viewportWidth,
     height: {
-      [V_SPACIOUS]: 250,
-      [V_REGULAR]: 170,
-      [V_COMPACT]: 130,
+      [VerticalSizeClass.SPACIOUS]: 250,
+      [VerticalSizeClass.REGULAR]: 170,
+      [VerticalSizeClass.COMPACT]: 130,
     }[verticalSizeClass],
   },
 });
@@ -27,9 +25,9 @@ export class Hero extends React.Component {
   render() {
     const { containerStyle = {} } = this.props;
     const resizeMode = {
-      [V_SPACIOUS]: 'cover',
-      [V_REGULAR]: 'contain',
-      [V_COMPACT]: 'contain',
+      [VerticalSizeClass.SPACIOUS]: 'cover',
+      [VerticalSizeClass.REGULAR]: 'contain',
+      [VerticalSizeClass.COMPACT]: 'contain',
     }[verticalSizeClass];
 
     return (

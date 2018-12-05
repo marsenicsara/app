@@ -42,6 +42,8 @@ export const Delayed: React.SFC<DelayedProps> = ({
     {({ shouldRenderChildren, setShouldRenderChildren, setTimer, timer }) => (
       <Update
         was={() => {
+          clearTimeout(timer);
+
           if (mountChildren) {
             setTimer(
               setTimeout(
@@ -63,6 +65,8 @@ export const Delayed: React.SFC<DelayedProps> = ({
         <>
           <Mount
             on={() => {
+              clearTimeout(timer);
+
               if (mountChildren && !shouldRenderChildren) {
                 setTimer(
                   setTimeout(

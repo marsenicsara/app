@@ -9,6 +9,8 @@ import { Header } from './header';
 import { Delayed } from 'src/components/Delayed';
 import { Update } from 'react-lifecycle-components';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import { ErrorMessage } from './error-message';
+import { BackButton } from 'src/components/BackButton';
 
 const getTranslateY = () => (isIphoneX() ? 35 : 0);
 
@@ -32,8 +34,16 @@ interface ListHeaderContextProps {
 }
 
 const ListHeaderContext = React.createContext<ListHeaderContextProps>({
-  sendMessage: () => {},
-  setIsOpen: () => {},
+  sendMessage: () => { },
+  setIsOpen: () => { },
+});
+
+interface ListFooterContext {
+  error: boolean;
+}
+
+const ListFooterContext = React.createContext<ListFooterContext>({
+  error: false,
 });
 
 const ListHeaderComponent = () => (
@@ -49,10 +59,17 @@ const ListHeaderComponent = () => (
   </ListHeaderContext.Consumer>
 );
 
+const ListFooterComponent = () => (
+  <ListFooterContext.Consumer>
+    {({ error }) => <ErrorMessage error={error} />}
+  </ListFooterContext.Consumer>
+);
+
 export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
   <Consumer>
     {({ isOpen, setIsOpen }) => (
       <ListHeaderContext.Provider value={{ setIsOpen, sendMessage }}>
+        {isOpen && <BackButton onPress={() => setIsOpen(false)} />}
         <PickerContainer isOpen={isOpen}>
           <Update
             watched={isOpen}
@@ -70,35 +87,38 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
             mountChildrenAfter={0}
           >
             <Data shouldLoad={isOpen}>
-              {({ photos, shouldLoadMore }) => (
-                <FlatList
-                  ListHeaderComponent={ListHeaderComponent}
-                  data={photos!.edges!}
-                  renderItem={({ item, index }) =>
-                    item.node.type.includes('Photo') ? (
-                      <Image
-                        uri={item.node.image.uri}
-                        isLastInList={index === photos!.edges!.length - 1}
-                        onUpload={(key) => {
-                          sendMessage(key);
-                          setIsOpen(false);
-                        }}
-                      />
-                    ) : (
-                      <Video
-                        uri={item.node.image.uri}
-                        isLastInList={index === photos!.edges!.length - 1}
-                        onUpload={(key) => {
-                          sendMessage(key);
-                          setIsOpen(false);
-                        }}
-                      />
-                    )
-                  }
-                  keyExtractor={(item) => String(item.node.image.uri)}
-                  onEndReached={() => shouldLoadMore()}
-                  horizontal
-                />
+              {({ photos, loadMore, error }) => (
+                <ListFooterContext.Provider value={{ error }}>
+                  <FlatList
+                    ListHeaderComponent={ListHeaderComponent}
+                    ListFooterComponent={ListFooterComponent}
+                    data={photos!.edges!}
+                    renderItem={({ item, index }) =>
+                      item.node.type.includes('Photo') || item.node.type.includes('image') ? (
+                        <Image
+                          uri={item.node.image.uri}
+                          isLastInList={index === photos!.edges!.length - 1}
+                          onUpload={(key) => {
+                            sendMessage(key);
+                            setIsOpen(false);
+                          }}
+                        />
+                      ) : (
+                          <Video
+                            uri={item.node.image.uri}
+                            isLastInList={index === photos!.edges!.length - 1}
+                            onUpload={(key) => {
+                              sendMessage(key);
+                              setIsOpen(false);
+                            }}
+                          />
+                        )
+                    }
+                    keyExtractor={(item) => String(item.node.image.uri)}
+                    onEndReached={() => loadMore()}
+                    horizontal
+                  />
+                </ListFooterContext.Provider>
               )}
             </Data>
           </Delayed>
