@@ -70,7 +70,6 @@ const SingleSelectInput: React.SFC<SingleSelectInputProps> = ({
                   selected={choice.selected}
                   onPress={() => {
                     const send = () => {
-                      console.log('sending!');
                       mutate({
                         variables: {
                           input: {

@@ -17,6 +17,7 @@ export interface Message {
     loadingIndicator: string;
     statusMessage: string;
     editAllowed: boolean;
+    richTextChatCompatible: boolean;
   };
   body: {
     choices: Array<Choice>;

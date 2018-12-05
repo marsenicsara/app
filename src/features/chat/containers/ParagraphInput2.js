@@ -10,6 +10,7 @@ class ParagraphInput extends React.Component {
   };
 
   componentDidMount() {
+    console.log(this.props.message);
     this.props.startPolling(this.props.message.header.pollingInterval);
   }
 

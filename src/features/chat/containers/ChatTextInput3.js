@@ -120,6 +120,7 @@ class ChatTextInput extends React.Component {
   };
 
   render() {
+    console.log('123');
     const richTextChatCompatible = this.props.message.header
       .richTextChatCompatible;
 

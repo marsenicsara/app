@@ -163,7 +163,7 @@ const Chat: React.SFC<ChatProps> = ({
   getMessages,
   resetConversation,
 }) => (
-  <Query query={MESSAGE_QUERY}>
+  <Query query={MESSAGE_QUERY} fetchPolicy="network-only">
     {({ loading, error, data, subscribeToMore }) =>
       !loading && !error && data ? (
         <Container actions={actions} initialState={{ messages: data.messages }}>
@@ -190,8 +190,8 @@ const Chat: React.SFC<ChatProps> = ({
               />
               <Mount
                 on={() => {
+                  console.log(messages);
                   getAvatars();
-
                   AppState.addEventListener('change', (appState) => {
                     handleAppStateChange(appState, getMessages, intent);
                   });
