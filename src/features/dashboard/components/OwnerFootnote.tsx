@@ -13,7 +13,7 @@ interface OwnerFootnoteProps {
 }
 
 const OwnerFootnote: React.SFC<OwnerFootnoteProps> = ({ type }) =>
-  isApartmentOwner({ insuranceType: type }) ? (
+  isApartmentOwner(type) ? (
     <>
       <Spacing height={16} />
       <Footnote>

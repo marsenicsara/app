@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-
 import React from 'react';
 import {
   ScrollView,
@@ -9,12 +8,10 @@ import {
   Dimensions,
   ImageBackground,
 } from 'react-native';
-
 import {
   verticalSizeClass,
   VerticalSizeClass,
 } from '../../../../services/DimensionSizes';
-
 import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
