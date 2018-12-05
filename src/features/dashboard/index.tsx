@@ -5,16 +5,18 @@ import styled from '@sampettersson/primitives';
 import { ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
 
 import { Loader } from 'src/components/Loader';
-import { colors, fonts } from '@hedviginsurance/brand';
+import { colors } from '@hedviginsurance/brand';
 import { Spacing } from 'src/components/Spacing';
-import { InsuranceStatusDisplay } from 'src/features/dashboard/components/InsuranceStatus';
-import { PerilCategories } from 'src/features/dashboard/components/PerilCategories';
-import { DeductibleFootnote } from 'src/features/dashboard/components/DeductibleFootnote';
-import { OwnerFootnote } from 'src/features/dashboard/components/OwnerFootnote';
-import { InsuranceAmountFootnote } from 'src/features/dashboard/components/InsuranceAmountFootnote';
-import { TravelFootnote } from 'src/features/dashboard/components/TravelFootnote';
-import { Messages } from 'src/features/dashboard/components/messages';
-import { DebugShortcut } from 'src/components/DebugShortcut';
+import { InsuranceStatusDisplay } from './components/InsuranceStatus';
+import { PerilCategories } from './components/PerilCategories';
+import { DeductibleFootnote } from './components/DeductibleFootnote';
+import { OwnerFootnote } from './components/OwnerFootnote';
+import { InsuranceAmountFootnote } from './components/InsuranceAmountFootnote';
+import { TravelFootnote } from './components/TravelFootnote';
+import { Messages } from './components/messages';
+import { DateBanner } from './components/DateBanner';
+import { PendingBanner } from 'src/features/dashboard/components/PendingBanner';
+import { InsuranceStatus } from 'src/graphql/components';
 
 const DASHBOARD_QUERY = gql`
   query DashboardQuery {
@@ -36,6 +38,9 @@ const DASHBOARD_QUERY = gql`
         }
       }
     }
+    member {
+      firstName
+    }
   }
 `;
 
@@ -49,16 +54,18 @@ const InsetPadding = styled(View)({
   paddingRight: 24,
 });
 
-const Header = styled(View)({
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-});
-
-const Heading = styled(Text)({
-  fontFamily: fonts.MERRIWEATHER,
-  color: colors.OFF_BLACK,
-  fontSize: 16,
-});
+const getStartDate = (statusCode: InsuranceStatus) => {
+  switch (statusCode) {
+    case 'ACTIVE':
+      return 0;
+    case 'INACTIVE_WITH_START_DATE':
+      return 1;
+    case 'INACTIVE':
+      return 2;
+    case 'TERMINATED':
+      return 3;
+  }
+};
 
 interface ScreenProps {
   componentId: string
@@ -82,16 +89,20 @@ const Dashboard: React.SFC<ScreenProps> = ({ componentId }) => (
 
       return (
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
-          <Spacing height={24} />
-          <InsetPadding>
-            <Header>
-              <DebugShortcut componentId={componentId}>
-                <Heading>Min hemförsäkring</Heading>
-              </DebugShortcut>
-              <InsuranceStatusDisplay status={status} activeFrom={activeFrom} />
-            </Header>
-          </InsetPadding>
           <Messages />
+          {getStartDate(status) === 0 ? (
+            <InsuranceStatusDisplay active={true} />
+          ) : getStartDate(status) === 3 ? (
+            <InsuranceStatusDisplay active={false} />
+          ) : null}
+          <InsetPadding>
+            {getStartDate(status) === 1 ? (
+              <DateBanner activeFrom={activeFrom} statusCode={status} />
+            ) : getStartDate(status) === 2 ? (
+              <PendingBanner activeFrom={activeFrom} statusCode={status} />
+            ) : null}
+          </InsetPadding>
+          <Spacing height={16} />
           <InsetPadding>
             <PerilCategories perilCategories={perilCategories} />
           </InsetPadding>

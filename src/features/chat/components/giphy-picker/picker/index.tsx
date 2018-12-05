@@ -7,6 +7,7 @@ import { Delayed } from 'src/components/Delayed';
 import { Data } from './data';
 import { SearchBar } from './search-bar';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import { BackButton } from 'src/components/BackButton';
 
 const getTranslateY = () => (isIphoneX() ? 35 : 0);
 
@@ -28,6 +29,7 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
   <Consumer>
     {({ isOpen, setIsOpen }) => (
       <PickerContainer isOpen={isOpen}>
+        {isOpen && <BackButton onPress={() => setIsOpen(false)} />}
         <Delayed
           mountChildren={isOpen}
           unmountChildrenAfter={500}

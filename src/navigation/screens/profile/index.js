@@ -7,12 +7,17 @@ class ProfileScreen extends React.Component {
   static get options() {
     return {
       topBar: {
-        visible: false,
-        drawBehind: true,
+        visible: true,
+        largeTitle: {
+          visible: true,
+        },
+        title: {
+          text: 'Min profil',
+        },
       },
       statusBar: {
         visible: true,
-        style: 'dark',
+        style: 'light',
       },
     };
   }
