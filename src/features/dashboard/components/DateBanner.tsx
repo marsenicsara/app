@@ -107,14 +107,7 @@ interface State {
   daysToActivation: number;
   hoursToActivation: number;
   minutesToActivation: number;
-  timerMonths: number;
-  timerDays: number;
-  timerHours: number;
-  timerMinutes: number;
-  timerMonthsID: number;
-  timerDaysID: number;
-  timerHoursID: number;
-  timerMinutesID: number;
+  timerID: number;
 }
 
 interface Actions {
@@ -122,10 +115,7 @@ interface Actions {
   updateDays: (days: number) => number;
   updateHours: (hours: number) => number;
   updateMinutes: (minutes: number) => number;
-  updateTimerMonths: (timerMonths: number) => number;
-  updateTimerDays: (timerDays: number) => number;
-  updateTimerHours: (timerHours: number) => number;
-  updateTimerMinutes: (timerMinutes: number) => number;
+  updateTimerID: (timerID: number) => number;
 }
 
 export const DateBanner: React.SFC<Props> = ({ activeFrom, statusCode }) => (
@@ -135,7 +125,6 @@ export const DateBanner: React.SFC<Props> = ({ activeFrom, statusCode }) => (
       daysToActivation: 0,
       hoursToActivation: 0,
       minutesToActivation: 0,
-      timerMonthsID: 0,
     }}
     actions={{
       updateMonths: (months: number) => () => ({
@@ -150,17 +139,8 @@ export const DateBanner: React.SFC<Props> = ({ activeFrom, statusCode }) => (
       updateMinutes: (minutes: number) => () => ({
         minutesToActivation: minutes,
       }),
-      updateTimerMonths: (timerMonthsID: number) => () => ({
-        timerMonthsID: timerMonthsID,
-      }),
-      updateTimerDays: (timerDaysID: number) => () => ({
-        timerMonthsID: timerDaysID,
-      }),
-      updateTimerHours: (timerHoursID: number) => () => ({
-        timerMonthsID: timerHoursID,
-      }),
-      updateTimerMinutes: (timerMinutesID: number) => () => ({
-        timerMonthsID: timerMinutesID,
+      updateTimerID: (timerID: number) => () => ({
+        timerID: timerID,
       }),
     }}
   >
@@ -168,22 +148,13 @@ export const DateBanner: React.SFC<Props> = ({ activeFrom, statusCode }) => (
       <Wrapper>
         <Mount
           on={() => {
-            let timerMonths = setInterval(() => {
+            let timer = setInterval(() => {
               state.updateMonths(getActivationMonths(activeFrom));
-            }, 1000);
-            let timerDays = setInterval(() => {
               state.updateDays(getActivationDays(activeFrom));
-            }, 1000);
-            let timerHours = setInterval(() => {
               state.updateHours(getActivationHours());
-            }, 1000);
-            let timerMinutes = setInterval(() => {
               state.updateMinutes(getActivationMinutes());
             }, 1000);
-            state.updateTimerMonths(timerMonths);
-            state.updateTimerDays(timerDays);
-            state.updateTimerHours(timerHours);
-            state.updateTimerMinutes(timerMinutes);
+            state.updateTimerID(timer);
           }}
         >
           <Row>
@@ -231,10 +202,7 @@ export const DateBanner: React.SFC<Props> = ({ activeFrom, statusCode }) => (
         </Mount>
         <Unmount
           on={() => {
-            clearInterval(state.timerMonths);
-            clearInterval(state.timerDays);
-            clearInterval(state.timerHours);
-            clearInterval(state.timerMinutes);
+            clearInterval(state.timerID);
           }}
         >
           {null}
