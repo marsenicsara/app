@@ -1,0 +1,17 @@
+query OfferPerils {
+    insurance {
+      address
+      type
+      perilCategories {
+        title
+        description
+        iconUrl
+        perils {
+          id
+          title
+          imageUrl
+          description
+        }
+      }
+    }
+}
