@@ -54,11 +54,23 @@ PODS:
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
   - FLAnimatedImage (1.0.12)
+  - FlowFeedback (1.0.1):
+    - FlowFramework (~> 1.3)
   - FlowFramework (1.4.1)
+  - FlowOn (1.0.4):
+    - FlowFramework (~> 1.3)
   - Folly (2016.10.31.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
+  - FormFramework (1.5.0):
+    - FlowFramework (~> 1.3)
+    - FormFramework/Form (= 1.5.0)
+  - FormFramework/Form (1.5.0):
+    - FlowFramework (~> 1.3)
+  - FormFramework/Presentation (1.5.0):
+    - FlowFramework (~> 1.3)
+    - PresentationFramework (~> 1.1)
   - glog (0.3.5)
   - GoogleAppMeasurement (5.3.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
@@ -97,6 +109,8 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - PinLayout (1.8.6)
+  - PresentationFramework (1.3.0):
+    - FlowFramework (>= 1.3)
   - Protobuf (3.6.1)
   - React (0.57.41):
     - React/Core (= 0.57.41)
@@ -184,7 +198,7 @@ PODS:
   - RNFirebase (5.0.0):
     - Firebase/Core
     - React
-  - RNFS (2.11.18):
+  - RNFS (2.12.2):
     - React
   - RNGestureHandler (1.0.9):
     - React
@@ -205,13 +219,14 @@ PODS:
   - SentryReactNative (0.39.0):
     - React
     - Sentry (~> 4.0.1)
+  - SnapKit (4.0.1)
   - SSZipArchive (2.1.4)
   - Starscream (3.0.6)
   - SwiftFormat/CLI (0.35.8)
   - SwiftLint (0.28.2)
   - Tempura (2.1.0):
     - Katana (< 3, >= 2.0)
-  - UIViewRoundedCorners (1.0.0)
+  - "UICollectionView+AnimatedScroll (1.0.4)"
   - yoga (0.57.41.React)
 
 DEPENDENCIES:
@@ -226,8 +241,12 @@ DEPENDENCIES:
   - Fabric (~> 1.7.11)
   - Firebase/Core
   - Firebase/Messaging
-  - FlowFramework (~> 1.0)
+  - FlowFeedback (from `https://github.com/HedvigInsurance/FlowFeedback.git`)
+  - FlowFramework (~> 1.3)
+  - FlowOn (from `https://github.com/HedvigInsurance/FlowOn.git`)
   - "Folly (from `../node_modules/@hedviginsurance/react-native/third-party-podspecs/Folly.podspec`)"
+  - FormFramework (from `https://github.com/hedviginsurance/form.git`)
+  - FormFramework/Presentation (from `https://github.com/hedviginsurance/form.git`)
   - "glog (from `../node_modules/@hedviginsurance/react-native/third-party-podspecs/glog.podspec`)"
   - lottie-react-native (from `../node_modules/lottie-react-native`)
   - PinLayout
@@ -260,15 +279,16 @@ DEPENDENCIES:
   - RNAudio (from `../node_modules/react-native-audio`)
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFirebase (from `../node_modules/react-native-firebase/ios`)
-  - RNFS (from `../node_modules/react-native-fs`)
+  - "RNFS (from `../node_modules/@hedviginsurance/react-native-fs`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler/ios`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - SentryReactNative (from `../node_modules/react-native-sentry`)
+  - SnapKit (~> 4.0.0)
   - SwiftFormat/CLI
   - SwiftLint
   - Tempura
-  - UIViewRoundedCorners
+  - "UICollectionView+AnimatedScroll (from `https://github.com/HedvigInsurance/UICollectionView-AnimatedScroll.git`)"
   - "yoga (from `../node_modules/@hedviginsurance/react-native/ReactCommon/yoga`)"
 
 SPEC REPOS:
@@ -296,15 +316,16 @@ SPEC REPOS:
     - lottie-ios
     - nanopb
     - PinLayout
+    - PresentationFramework
     - Protobuf
     - SDWebImage
     - Sentry
+    - SnapKit
     - SSZipArchive
     - Starscream
     - SwiftFormat
     - SwiftLint
     - Tempura
-    - UIViewRoundedCorners
 
 EXTERNAL SOURCES:
   Branch-SDK:
@@ -313,8 +334,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-code-push"
   DoubleConversion:
     :podspec: "../node_modules/@hedviginsurance/react-native/third-party-podspecs/DoubleConversion.podspec"
+  FlowFeedback:
+    :git: https://github.com/HedvigInsurance/FlowFeedback.git
+  FlowOn:
+    :git: https://github.com/HedvigInsurance/FlowOn.git
   Folly:
     :podspec: "../node_modules/@hedviginsurance/react-native/third-party-podspecs/Folly.podspec"
+  FormFramework:
+    :git: https://github.com/hedviginsurance/form.git
   glog:
     :podspec: "../node_modules/@hedviginsurance/react-native/third-party-podspecs/glog.podspec"
   lottie-react-native:
@@ -352,7 +379,7 @@ EXTERNAL SOURCES:
   RNFirebase:
     :path: "../node_modules/react-native-firebase/ios"
   RNFS:
-    :path: "../node_modules/react-native-fs"
+    :path: "../node_modules/@hedviginsurance/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler/ios"
   RNSound:
@@ -361,8 +388,24 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-svg"
   SentryReactNative:
     :path: "../node_modules/react-native-sentry"
+  "UICollectionView+AnimatedScroll":
+    :git: https://github.com/HedvigInsurance/UICollectionView-AnimatedScroll.git
   yoga:
     :path: "../node_modules/@hedviginsurance/react-native/ReactCommon/yoga"
+
+CHECKOUT OPTIONS:
+  FlowFeedback:
+    :commit: f43392beeef74886e68a0f144204590514fd8cd8
+    :git: https://github.com/HedvigInsurance/FlowFeedback.git
+  FlowOn:
+    :commit: da2791cefffed3d3157d5ab1e731956d4aa415ae
+    :git: https://github.com/HedvigInsurance/FlowOn.git
+  FormFramework:
+    :commit: 6cdb1f47969292c7c577ab6c1fa00d7e8b14a980
+    :git: https://github.com/hedviginsurance/form.git
+  "UICollectionView+AnimatedScroll":
+    :commit: b5a5e2b7f95713e74c0bfb623a99429b0489fa1f
+    :git: https://github.com/HedvigInsurance/UICollectionView-AnimatedScroll.git
 
 SPEC CHECKSUMS:
   Analytics: 63744ad4afa65c3bcdcdb7a94b62515bde5b3900
@@ -383,8 +426,11 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseMessaging: 0f14a264b0d7f867e8eff5d3556bc5d0d4e57888
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FlowFeedback: 41fe84846ceaeca0cbf02a922222cc8b862986c0
   FlowFramework: dad5379307484c03e9065c633115c215333d5789
+  FlowOn: 34866b2c0b229d0d9beb94a205187dba0e850dea
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
+  FormFramework: e9eccd44f3d875e5f67ad8696a8e2bb4cd0e9b7d
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
@@ -394,6 +440,7 @@ SPEC CHECKSUMS:
   lottie-react-native: db4bd75685428c4ad0ec2f913145abff3d38b640
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PinLayout: fe2a2432d6982588e208572005c941aeeae417ab
+  PresentationFramework: 1bcdf1fe215edb2ceccf5197dd5dfcbce878bdf5
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-blur: c35c1f6c2c76db7108bde7ed343bd2b01d64e0c0
@@ -418,14 +465,15 @@ SPEC CHECKSUMS:
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   Sentry: a38f7879924c02239e121b19d993d23bdd1684db
   SentryReactNative: d476259b21060a59dc637a29a40d60f0aac09cf7
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SwiftFormat: 5af0a2c27175163c317c88b00ae7b6f971a7822a
   SwiftLint: f1629ae733b64e9cad20052de01d1debd5b640e7
   Tempura: 819db8b32776dc68e628902da7119621fddb33bf
-  UIViewRoundedCorners: 51b74df8b6052e0488c71197951566aac632ee1a
+  "UICollectionView+AnimatedScroll": b5dc2786f0a0bc778c0c6ca36c5904e46a4463d2
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 24734b9e6e6b325fe6b1e4952f9997515fa6bec7
+PODFILE CHECKSUM: b86cb6592a1abaadb16719456ee057e0080b9a57
 
 COCOAPODS: 1.5.3

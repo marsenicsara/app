@@ -28,9 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         RNSentry.install(with: ReactNativeNavigation.getBridge())
         
-        ReactNativeNavigation.bootstrap(jsCodeLocation, launchOptions: launchOptions)
-        
-        TestComponent.register()
+        HedvigApolloClient.shared.initClient().onValue { client in
+            ReactNativeNavigation.bootstrap(jsCodeLocation, launchOptions: launchOptions)
+            MarketingScreenComponent.register(client: client)
+        }
         
         return true
     }
