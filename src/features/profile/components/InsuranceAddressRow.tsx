@@ -6,16 +6,23 @@ import {
   ProfileRowText,
 } from './ProfileRow';
 import { ProfileFamilyIcon } from 'src/components/Icon';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 interface InsuranceAddressRowProps {
-  address: string
+  address: string;
 }
 
-const InsuranceAddressRow: React.SFC<InsuranceAddressRowProps> = ({ address }) => (
+const InsuranceAddressRow: React.SFC<InsuranceAddressRowProps> = ({
+  address,
+}) => (
   <ProfileRow>
     <ProfileFamilyIcon />
     <ProfileRowTextContainer>
-      <ProfileRowHeader>Mitt hem</ProfileRowHeader>
+      <ProfileRowHeader>
+        <TranslationsConsumer textKey="PROFILE_INSURANCE_ADDRESS_ROW">
+          {(text) => text}
+        </TranslationsConsumer>
+      </ProfileRowHeader>
       <ProfileRowText>{address}</ProfileRowText>
     </ProfileRowTextContainer>
   </ProfileRow>

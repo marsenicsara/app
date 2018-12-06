@@ -22,6 +22,7 @@ import {
   StyledPassiveText,
   StyledSmallPassiveText,
 } from '../../../components/styles/text';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 export class PerilsCategory extends React.Component {
   constructor(props) {
@@ -84,7 +85,9 @@ export const ExpandedPerilsCategory = (props) => (
     </StyledPerilsContainer>
     <StyledPerilsHelpText>
       <StyledSmallPassiveText>
-        Klicka på ikonerna för mer info
+        <TranslationsConsumer textKey="DASHBOARD_PERILS_CATEGORY_INFO">
+          {(text) => text}
+        </TranslationsConsumer>
       </StyledSmallPassiveText>
     </StyledPerilsHelpText>
   </View>

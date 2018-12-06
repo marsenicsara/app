@@ -10,6 +10,8 @@ import {
   ProfileRowText,
 } from './ProfileRow';
 import { ProfileBankAccountIcon } from 'src/components/Icon';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { TranslationsPlaceholderConsumer } from 'src/components/translations/placeholder-consumer';
 
 interface PaymentRowProps {
   monthlyCost: number;
@@ -27,9 +29,18 @@ const PaymentRow: React.SFC<PaymentRowProps> = ({ monthlyCost }) => (
   >
     <ProfileBankAccountIcon />
     <ProfileRowTextContainer>
-      <ProfileRowHeader>Min betalning</ProfileRowHeader>
+      <ProfileRowHeader>
+        <TranslationsConsumer textKey="PROFILE_PAYMENT_ROW_HEADER">
+          {(text) => text}
+        </TranslationsConsumer>
+      </ProfileRowHeader>
       <ProfileRowText>
-        {monthlyCost} kr/månad. Betalas via autogiro
+        <TranslationsPlaceholderConsumer
+          textKey="PROFILE_PAYMENT_ROW_TEXT"
+          replacements={{ price: monthlyCost }}
+        >
+          {(text) => text}
+        </TranslationsPlaceholderConsumer>
       </ProfileRowText>
     </ProfileRowTextContainer>
   </TouchableProfileRow>
