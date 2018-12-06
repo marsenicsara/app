@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, View, Dimensions } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { colors, fonts } from '@hedviginsurance/brand';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 import { Spacing } from 'src/components/Spacing';
 
@@ -34,9 +35,13 @@ export const EmptyState: React.SFC<EmptyStateProps> = ({ query }) => (
     <Emoji>{query ? '🙅‍♀️' : '👋'}</Emoji>
     <Spacing height={20} />
     <EmptyText>
-      {query
-        ? 'Oh no, ingen GIF för denna sökning...'
-        : 'Sök på något för att få upp GIFar!'}
+      <TranslationsConsumer
+        textKey={
+          query ? 'CHAT_GIPHY_PICKER_NO_SEARCH_TEXT' : 'CHAT_GIPHY_PICKER_TEXT'
+        }
+      >
+        {(text) => text}
+      </TranslationsConsumer>
     </EmptyText>
   </Box>
 );

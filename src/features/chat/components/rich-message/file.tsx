@@ -4,6 +4,7 @@ import styled from '@sampettersson/primitives';
 import path from 'path';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 import { File } from 'src/components/icons/File';
 
@@ -57,26 +58,36 @@ export const FileMessage: React.SFC<Props> = ({
       {({ data, loading, error }) => {
         if (error) {
           return (
-            <TextMessage
-              fromUser
-              message={{
-                ...message,
-                body: { text: 'Kunde inte ladda fil...' },
-              }}
-              withMargin={withMargin}
-              index={index}
-            />
+            <TranslationsConsumer textKey="CHAT_COULD_NOT_LOAD_FILE">
+              {(text) => (
+                <TextMessage
+                  fromUser
+                  message={{
+                    ...message,
+                    body: {
+                      text: text,
+                    },
+                  }}
+                  withMargin={withMargin}
+                  index={index}
+                />
+              )}
+            </TranslationsConsumer>
           );
         }
 
         if (loading || !data) {
           return (
-            <TextMessage
-              fromUser
-              message={{ ...message, body: { text: 'Laddar...' } }}
-              withMargin={withMargin}
-              index={index}
-            />
+            <TranslationsConsumer textKey="CHAT_FILE_LOADING">
+              {(text) => (
+                <TextMessage
+                  fromUser
+                  message={{ ...message, body: { text: text } }}
+                  withMargin={withMargin}
+                  index={index}
+                />
+              )}
+            </TranslationsConsumer>
           );
         }
 
@@ -92,21 +103,25 @@ export const FileMessage: React.SFC<Props> = ({
         }
 
         return (
-          <TouchableOpacity
-            accessibilityLabel="Ladda ner fil"
-            accessibilityComponentType="button"
-            onPress={() => Linking.openURL(data!.file.signedUrl)}
-          >
-            <StyledUserChatMessage withMargin={withMargin}>
-              <Content>
-                <File width={20} height={25} />
-                <Spacing width={5} />
-                <StyledDefaultUserMessageText fromUser={fromUser}>
-                  {extension.replace('.', '')} fil uppladdad
-                </StyledDefaultUserMessageText>
-              </Content>
-            </StyledUserChatMessage>
-          </TouchableOpacity>
+          <TranslationsConsumer textKey="CHAT_FILE_DOWNLOAD">
+            {(text) => (
+              <TouchableOpacity
+                accessibilityLabel={text}
+                accessibilityComponentType="button"
+                onPress={() => Linking.openURL(data!.file.signedUrl)}
+              >
+                <StyledUserChatMessage withMargin={withMargin}>
+                  <Content>
+                    <File width={20} height={25} />
+                    <Spacing width={5} />
+                    <StyledDefaultUserMessageText fromUser={fromUser}>
+                      {extension.replace('.', '')} fil uppladdad
+                    </StyledDefaultUserMessageText>
+                  </Content>
+                </StyledUserChatMessage>
+              </TouchableOpacity>
+            )}
+          </TranslationsConsumer>
         );
       }}
     </Query>
