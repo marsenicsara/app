@@ -207,7 +207,13 @@ class AudioInput extends React.Component {
             <RecordingTimeContainer>
               <StopRecordingAnimationButton onPress={this.stopRecording} />
               <Spacing height={15} />
-              <StyledPassiveText>Spelar in: {recordingTime}</StyledPassiveText>
+              <TranslationsConsumer textKey="AUDIO_INPUT_RECORDING">
+                {(text) => (
+                  <StyledPassiveText>
+                    {text} {recordingTime}
+                  </StyledPassiveText>
+                )}
+              </TranslationsConsumer>
             </RecordingTimeContainer>
           </StyledRightAlignedOptions>
         </StyledMarginContainer>

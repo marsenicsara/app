@@ -5,6 +5,7 @@ import styled from '@sampettersson/primitives';
 
 import { Giphy } from 'src/components/icons/Giphy';
 import { Spacing } from 'src/components/Spacing';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const GiphyText = styled(Text)({
   marginTop: 1,
@@ -30,6 +31,8 @@ export const GiphyPoweredBy = () => (
   <PoweredBy>
     <Giphy width={20} height={20} />
     <Spacing width={10} />
-    <GiphyText>GIPHY</GiphyText>
+    <TranslationsConsumer textKey="CHAT_GIPHY_TITLE">
+      {(text) => <GiphyText>{text}</GiphyText>}
+    </TranslationsConsumer>
   </PoweredBy>
 );

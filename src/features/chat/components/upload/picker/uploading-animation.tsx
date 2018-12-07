@@ -5,7 +5,7 @@ import { Parallel, Spring } from 'animated-react-native-components';
 import * as Progress from 'react-native-progress';
 import { fonts, colors } from '@hedviginsurance/brand';
 import { Spacing } from 'src/components/Spacing';
-
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
 const AnimationContainer = styled(View)({
@@ -65,7 +65,11 @@ export const UploadingAnimation: React.SFC<UploadingAnimationProps> = ({
                   />
                 </View>
                 <Spacing height={5} />
-                <SpinnerText darkMode={darkMode}>Laddar upp...</SpinnerText>
+                <TranslationsConsumer textKey="CHAT_UPLOADING_ANIMATION_TEXT">
+                  {(text) => (
+                    <SpinnerText darkMode={darkMode}>{text}</SpinnerText>
+                  )}
+                </TranslationsConsumer>
               </Spinner>
             )}
             <Content

@@ -11,6 +11,7 @@ import styled from '@sampettersson/primitives';
 import { colors } from '@hedviginsurance/brand';
 import { Parallel, Timing } from 'animated-react-native-components';
 import { Plus } from 'src/components/icons/Plus';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
@@ -64,7 +65,9 @@ export const GiphyButton = () => (
                     }),
                   }}
                 >
-                  <GIFText>GIF</GIFText>
+                  <TranslationsConsumer textKey="GIF_BUTTON_TITLE">
+                    {(text) => <GIFText>{text}</GIFText>}
+                  </TranslationsConsumer>
                 </GIFTextContainer>
                 <PlusContainer
                   style={{
