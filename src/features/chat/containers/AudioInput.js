@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 import Sound from 'react-native-sound';
 import styled from '@sampettersson/primitives';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 import {
   chatActions,
@@ -217,22 +218,34 @@ class AudioInput extends React.Component {
       return (
         <StyledMarginContainer>
           <StyledRightAlignedOptions>
-            <AnimatedSingleSelectOptionButton
-              title="Gör om"
-              onPress={this.restartRecording}
-            />
+            <TranslationsConsumer textKey="AUDIO_INPUT_REDO">
+              {(text) => (
+                <AnimatedSingleSelectOptionButton
+                  title={text}
+                  onPress={this.restartRecording}
+                />
+              )}
+            </TranslationsConsumer>
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
-            <AnimatedSingleSelectOptionButton
-              title="Spela upp"
-              onPress={this.startPlayback}
-            />
+            <TranslationsConsumer textKey="AUDIO_INPUT_PLAY">
+              {(text) => (
+                <AnimatedSingleSelectOptionButton
+                  title={text}
+                  onPress={this.startPlayback}
+                />
+              )}
+            </TranslationsConsumer>
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
-            <AnimatedSingleSelectOptionButton
-              title="Spara"
-              onPress={this.upload}
-            />
+            <TranslationsConsumer textKey="AUDIO_INPUT_SAVE">
+              {(text) => (
+                <AnimatedSingleSelectOptionButton
+                  title={text}
+                  onPress={this.upload}
+                />
+              )}
+            </TranslationsConsumer>
           </StyledRightAlignedOptions>
         </StyledMarginContainer>
       );
