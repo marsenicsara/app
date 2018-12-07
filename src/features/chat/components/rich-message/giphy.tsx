@@ -7,7 +7,6 @@ import styled from '@sampettersson/primitives';
 
 import { Giphy } from 'src/components/icons/Giphy';
 import { Spacing } from 'src/components/Spacing';
-import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 import { Props } from './types';
 
@@ -60,9 +59,7 @@ export const GiphyMessage: React.SFC<Props> = ({ message, withMargin }) => (
     <PoweredBy>
       <Giphy width={20} height={20} />
       <Spacing width={10} />
-      <TranslationsConsumer textKey="CHAT_GIPHY_TITLE">
-        {(text) => <GiphyText>{text}</GiphyText>}
-      </TranslationsConsumer>
+      <GiphyText>GIPHY</GiphyText>
     </PoweredBy>
   </MessageContainer>
 );
