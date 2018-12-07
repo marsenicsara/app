@@ -114,9 +114,14 @@ export const FileMessage: React.SFC<Props> = ({
                   <Content>
                     <File width={20} height={25} />
                     <Spacing width={5} />
-                    <StyledDefaultUserMessageText fromUser={fromUser}>
-                      {extension.replace('.', '')} fil uppladdad
-                    </StyledDefaultUserMessageText>
+                    <TranslationsConsumer textKey="CHAT_FILE_UPLOADED">
+                      {(text) => (
+                        <StyledDefaultUserMessageText fromUser={fromUser}>
+                          {extension.replace('.', '')}
+                          {text}
+                        </StyledDefaultUserMessageText>
+                      )}
+                    </TranslationsConsumer>
                   </Content>
                 </StyledUserChatMessage>
               </TouchableOpacity>
