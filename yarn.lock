@@ -775,6 +775,17 @@
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.9.tgz#82896c9405c81a29b66b454849ae9ca26a2ae959"
   integrity sha512-21TCQ2717SQqf+kJ54psf7B60uusmI69wu0l56o5BeU3MVuM9tYTc5T10T8/pleZQNskdODpAcutKLcHca+pIA==
 
+"@hedviginsurance/react-native-navigation@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-navigation/-/react-native-navigation-2.1.0.tgz#d09bf6c7defc5d17ea77c906f18d0d53af309b98"
+  integrity sha512-WrbMWNcf4806QlIIw2/bzzZFJFl+P5WmvFBP11Hn+hF547CDj+UfrPLKBntQcTS4DLGJ41caPZY6AEzR8E3a2Q==
+  dependencies:
+    hoist-non-react-statics "3.x.x"
+    lodash "4.17.x"
+    prop-types "15.x.x"
+    react-lifecycles-compat "2.0.0"
+    tslib "1.9.3"
+
 "@hedviginsurance/react-native@^0.57.41":
   version "0.57.41"
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native/-/react-native-0.57.41.tgz#39817f1f3d39f3f9f912af6d2438ee227525ed9d"
@@ -6404,7 +6415,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@4.x.x, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
+lodash@4.17.x, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -8365,13 +8376,13 @@ react-native-mock-render@^0.1.2:
     react-timer-mixin "^0.13.3"
     warning "^2.1.0"
 
-react-native-navigation@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.1.2.tgz#225698d7b39dd114a01ef0a301cca18af260316b"
-  integrity sha512-FmV0tekaWLN3m3TCsEnFVpuy/Zpng9KiFIVXFRgFcxidyvtWxrz2YgMQ/GidlJS17yF2eL7Al27mYLUJpDX6Ow==
+react-native-navigation@2.2.1-snapshot.61:
+  version "2.2.1-snapshot.61"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.2.1-snapshot.61.tgz#fc00fdc0f696b79582afe763329e51c3ab678069"
+  integrity sha512-ZZImrlasZcltXNUzfJxXaQNMBGhB/dk1wIzSnFJYWBq60sle6xqmFyXkBidKoyIMu047b4/qfByZ6tf1M2GL4Q==
   dependencies:
     hoist-non-react-statics "3.x.x"
-    lodash "4.x.x"
+    lodash "4.17.x"
     prop-types "15.x.x"
     react-lifecycles-compat "2.0.0"
     tslib "1.9.3"

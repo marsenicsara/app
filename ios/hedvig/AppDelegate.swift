@@ -1,15 +1,20 @@
 import Foundation
 import UIKit
 import CommonCrypto
+import Presentation
+import Flow
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
+    let bag = DisposeBag()
+    let navigationController = UINavigationController()
+    var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     
     func application(
         _: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
         ) -> BooleanLiteralType {
+        window?.rootViewController = navigationController
         FirebaseApp.configure()
         RNFirebaseNotifications.configure()
         
@@ -29,7 +34,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RNSentry.install(with: ReactNativeNavigation.getBridge())
         
         HedvigApolloClient.shared.initClient().onValue { client in
-            ReactNativeNavigation.bootstrap(jsCodeLocation, launchOptions: launchOptions)
+            let launch = Launch()
+            
+            let launchPresentation = Presentation(
+                launch,
+                style: .modally(
+                    presentationStyle: .overCurrentContext,
+                    transitionStyle: .none,
+                    capturesStatusBarAppearance: true
+                ),
+                options: [.unanimated, .prefersNavigationBarHidden(true)]
+            )
+            
+            self.bag += self.navigationController.present(launchPresentation)
+            self.window?.makeKeyAndVisible()
+            
+            ReactNativeNavigation.bootstrapBrownField(
+                jsCodeLocation,
+                launchOptions: launchOptions,
+                bridgeManagerDelegate: nil,
+                window: self.window
+            )
             MarketingScreenComponent.register(client: client)
         }
         
