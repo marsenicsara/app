@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { View, AppState } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
-import { Container, ActionMap } from 'constate';
+import { Container, ActionMap, EffectMap, EffectProps } from 'constate';
 
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
@@ -26,13 +26,14 @@ import {
   SHOW_OFFER_BUTTON,
 } from '../../navigation/screens/chat/buttons';
 
-import { Message, Choice } from './types';
+import { Avatar, Choice, Message } from './types';
 
 import { Query } from 'react-apollo';
 import { MESSAGE_QUERY } from './chat-query';
 import { MESSAGE_SUBSCRIPTION } from './chat-subscription';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
 import { BackButton } from 'src/components/BackButton';
+import { Text } from 'react-native';
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -41,7 +42,6 @@ interface ChatProps {
   componentId: string;
   intent: string;
   messages: Array<Message>;
-  getAvatars: () => void;
   getMessages: (intent: string) => void;
   resetConversation: () => void;
 }
@@ -122,6 +122,9 @@ const handleAppStateChange = (
 
 interface State {
   messages: Message[];
+  avatars: Avatar[];
+  displayLoadingIndicator: boolean;
+  stackedInterval: number;
 }
 
 interface Actions {
@@ -166,21 +169,71 @@ const KeyboardAvoidingOnAndroidIfModal: React.SFC<{ isModal: boolean }> = ({
     <>{children}</>
   );
 
+interface Effects {
+  addToChat: (messages: any, delay: any) => void;
+}
+
+const effects: EffectMap<State, Effects> = {
+  addToChat: (messages: any, delay: any) => ({
+    setState,
+    state,
+  }: EffectProps<State>) => {
+    console.log(state.stackedInterval);
+    if (state.stackedInterval === 0) {
+      setState((state: any) => ({
+        messages,
+        stackedInterval: state.stackedInterval + delay,
+      }));
+      setTimeout(() => {
+        setState((state: any) => ({
+          stackedInterval: state.stackedInterval - delay,
+        }));
+      }, state.stackedInterval + delay);
+    } else {
+      setState((state: any) => ({
+        stackedInterval: state.stackedInterval + delay,
+      }));
+
+      setTimeout(() => {
+        setState((state: any) => ({
+          messages,
+          stackedInterval: state.stackedInterval - delay,
+        }));
+      }, state.stackedInterval + delay);
+    }
+  },
+};
+
 const Chat: React.SFC<ChatProps> = ({
   onboardingDone = false,
   isModal,
   showReturnToOfferButton,
   componentId,
   intent,
-  getAvatars,
   getMessages,
   resetConversation,
 }) => (
   <Query query={MESSAGE_QUERY} fetchPolicy="network-only">
     {({ loading, error, data, subscribeToMore }) =>
       !loading && !error && data ? (
-        <Container actions={actions} initialState={{ messages: data.messages }}>
-          {({ messages, selectChoice, setMessages }) => (
+        <Container
+          actions={actions}
+          effects={effects}
+          initialState={{
+            messages: data.messages,
+            avatars: data.avatars,
+            displayLoadingIndicator: false,
+            stackedInterval: 0,
+          }}
+        >
+          {({
+            messages,
+            avatars,
+            selectChoice,
+            setMessages,
+            addToChat,
+            stackedInterval,
+          }) => (
             <>
               <NavigationEvents
                 onNavigationButtonPressed={(event: any) => {
@@ -204,10 +257,12 @@ const Chat: React.SFC<ChatProps> = ({
               <Mount
                 on={() => {
                   console.log(messages);
-                  getAvatars();
+                  console.log(data);
                   AppState.addEventListener('change', (appState) => {
                     handleAppStateChange(appState, getMessages, intent);
                   });
+
+                  let prevDelay = 0;
 
                   subscribeToMore({
                     document: MESSAGE_SUBSCRIPTION,
@@ -221,8 +276,8 @@ const Chat: React.SFC<ChatProps> = ({
                       });
 
                       const delay = newMessage.header.pollingInterval || 0;
+                      addToChat(updatedMessages.messages, delay);
 
-                      setMessages(updatedMessages.messages);
                       return updatedMessages;
                     },
                     onError: (err) => console.log(err),
@@ -253,7 +308,11 @@ const Chat: React.SFC<ChatProps> = ({
               >
                 <KeyboardAvoidingOnAndroidIfModal isModal={isModal}>
                   <Messages>
-                    <MessageList messages={messages} />
+                    <MessageList
+                      messages={messages}
+                      avatars={avatars}
+                      displayLoadingIndicator={stackedInterval !== 0}
+                    />
                   </Messages>
 
                   <Response>
@@ -293,7 +352,6 @@ const mapDispatchToProps = (dispatch: any) => {
           intent,
         }),
       ),
-    getAvatars: () => dispatch(chatActions.getAvatars()),
     resetConversation: () =>
       dispatch(
         dialogActions.showDialog({

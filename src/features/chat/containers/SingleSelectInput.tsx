@@ -8,7 +8,7 @@ import {
   StyledMarginContainer,
 } from '../styles/chat';
 
-import { PAYMENT_SCREEN } from '../../../navigation/screens/payment';
+import { PAYMENT_SCREEN } from 'src/navigation/screens/payment';
 import { getMainLayout } from 'src/navigation/layouts/mainLayout';
 import { setLayout } from 'src/navigation/layouts/setLayout';
 

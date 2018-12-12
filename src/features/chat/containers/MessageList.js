@@ -92,7 +92,7 @@ const HedvigMessageMapping = {
   polling: () => null,
 };
 
-const renderMessage = (message, idx) => {
+const renderMessage = (message, idx, avatars, displayLoadingIndicator) => {
   let fromMe = message.header.fromMyself;
   const lastIndex = idx === 0;
 
@@ -125,13 +125,21 @@ const renderMessage = (message, idx) => {
       >
         <MessageRenderComponent message={message} index={idx} />
       </View>
-      {lastIndex ? <LoadingIndicator messageIndex={idx} /> : null}
+      {lastIndex && displayLoadingIndicator ? (
+        <LoadingIndicator avatar={avatars[0]} />
+      ) : null}
     </View>
   );
 };
 
 class MessageList extends React.Component {
-  _renderItem = ({ item, index }) => renderMessage(item, index);
+  _renderItem = ({ item, index }) =>
+    renderMessage(
+      item,
+      index,
+      this.props.avatars,
+      this.props.displayLoadingIndicator,
+    );
   _keyExtractor = (item) => '' + item.globalId;
 
   render() {

@@ -30,6 +30,7 @@ export const MESSAGE_SUBSCRIPTION = gql`
     editAllowed
     shouldRequestPushNotifications
     pollingInterval
+    loadingIndicator
   }
 
   fragment SingleSelect on MessageBodySingleSelect {

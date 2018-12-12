@@ -43,6 +43,9 @@ const InputComponent: React.SFC<InputComponentProps> = (props) => {
   const lastMessage = messages[0];
   const lastMessageType = lastMessage.body.type;
 
+  console.log(lastMessage);
+  console.log(lastMessageType);
+
   const Component = inputComponentMap[lastMessageType];
 
   if (!Component) {

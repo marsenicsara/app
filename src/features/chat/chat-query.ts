@@ -20,6 +20,15 @@ export const MESSAGE_QUERY = gql`
         ...Header
       }
     }
+
+    avatars {
+      name
+      URL
+      width
+      height
+      duration
+      data
+    }
   }
 
   fragment Header on MessageHeader {
@@ -30,6 +39,7 @@ export const MESSAGE_QUERY = gql`
     editAllowed
     shouldRequestPushNotifications
     pollingInterval
+    loadingIndicator
   }
 
   fragment SingleSelect on MessageBodySingleSelect {

@@ -31,3 +31,12 @@ export interface Message {
   };
   globalId: string;
 }
+
+export interface Avatar {
+  name: string;
+  URL: string;
+  width: number;
+  height: number;
+  duration: number;
+  data: object;
+}
