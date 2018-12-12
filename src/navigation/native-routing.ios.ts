@@ -14,3 +14,7 @@ export const setupNativeRouting = () => {
     setLayout(getChatLayout());
   });
 };
+
+export const appHasLoaded = () => {
+  NativeModules.NativeRouting.appHasLoaded();
+};

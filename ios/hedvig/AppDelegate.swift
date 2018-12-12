@@ -72,12 +72,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 bridgeManagerDelegate: nil,
                 window: self.window
             )
+            
+            let bridge = ReactNativeNavigation.getBridge()
+            
+            let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
+            self.bag += nativeRouting.appHasLoadedSignal.onValue({ _ in
+                hasLoadedCallbacker.callAll()
+            })
+            
             self.window?.makeKeyAndVisible()
             self.splashWindow?.makeKeyAndVisible()
             MarketingScreenComponent.register(client: client)
-            self.bag += Signal(after: 2).onValue({ _ in
-                hasLoadedCallbacker.callAll()
-            })
         }
         
         return true
