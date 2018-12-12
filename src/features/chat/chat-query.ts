@@ -70,7 +70,7 @@ export const MESSAGE_QUERY = gql`
     text
   }
 
-  fragment Number on MessageBodyText {
+  fragment Number on MessageBodyNumber {
     type
     id
     text

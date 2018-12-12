@@ -55,7 +55,6 @@ const SingleSelectInput: React.SFC<SingleSelectInputProps> = ({
   showOffer,
   selectChoice,
 }) => {
-  console.log(message);
   const anySelected = message.body.choices.some((choice) => choice.selected);
   return !message.header.fromMyself ? (
     <StyledMarginContainer>

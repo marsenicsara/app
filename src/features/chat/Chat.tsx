@@ -178,7 +178,6 @@ const effects: EffectMap<State, Effects> = {
     setState,
     state,
   }: EffectProps<State>) => {
-    console.log(state.stackedInterval);
     if (state.stackedInterval === 0) {
       setState((state: any) => ({
         messages,
@@ -256,13 +255,9 @@ const Chat: React.SFC<ChatProps> = ({
               />
               <Mount
                 on={() => {
-                  console.log(messages);
-                  console.log(data);
                   AppState.addEventListener('change', (appState) => {
                     handleAppStateChange(appState, getMessages, intent);
                   });
-
-                  let prevDelay = 0;
 
                   subscribeToMore({
                     document: MESSAGE_SUBSCRIPTION,
@@ -270,7 +265,6 @@ const Chat: React.SFC<ChatProps> = ({
                       if (!subscriptionData.data) return prev;
 
                       const newMessage = subscriptionData.data.message;
-                      console.log('newMessage', newMessage);
 
                       const updatedMessages = Object.assign({}, prev, {
                         messages: [newMessage, ...prev.messages],

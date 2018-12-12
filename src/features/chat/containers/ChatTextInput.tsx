@@ -123,7 +123,6 @@ const ChatTextInput: React.SFC<ChatTextInputProps> = ({
         <Mutation mutation={SEND_TEXT_RESPONSE_MUTATION}>
           {(sendChatTextResponse) => {
             const send = (inputMessage?: string) => {
-              console.log(ref);
               if (!isSending) {
                 const value = String(
                   typeof inputMessage === 'string' ? inputMessage : inputValue,

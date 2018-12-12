@@ -18,11 +18,11 @@ const Animation = styled(Lottie)(({ width, height }: AnimationProps) => ({
 }));
 
 interface LoadingIndicatorProps {
-  avatar: Avatar;
+  avatar?: Avatar;
 }
 
 const LoadingIndicator: React.SFC<LoadingIndicatorProps> = ({ avatar }) => {
-  return avatar.data ? (
+  return avatar && avatar.data ? (
     <Sequence>
       <Timing toValue={1} initialValue={0} config={{ duration: 500 }}>
         {(animatedValue) => (
@@ -35,7 +35,9 @@ const LoadingIndicator: React.SFC<LoadingIndicatorProps> = ({ avatar }) => {
               width={avatar.height}
               height={avatar.height}
               loop
-              autoPlay
+              innerRef={(animation: any) =>
+                animation ? animation.play() : null
+              }
               source={avatar.data}
             />
           </AnimatedView>

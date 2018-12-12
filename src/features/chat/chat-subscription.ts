@@ -61,7 +61,7 @@ export const MESSAGE_SUBSCRIPTION = gql`
     text
   }
 
-  fragment Number on MessageBodyText {
+  fragment Number on MessageBodyNumber {
     type
     id
     text
