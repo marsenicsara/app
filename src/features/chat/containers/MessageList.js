@@ -125,8 +125,13 @@ const renderMessage = (message, idx, avatars, displayLoadingIndicator) => {
       >
         <MessageRenderComponent message={message} index={idx} />
       </View>
+      <Text>{message.header.loadingIndicator}</Text>
       {lastIndex && displayLoadingIndicator ? (
-        <LoadingIndicator avatar={avatars[0]} />
+        <LoadingIndicator
+          avatar={avatars.find(
+            (a) => a.name === message.header.loadingIndicator,
+          )}
+        />
       ) : null}
     </View>
   );
