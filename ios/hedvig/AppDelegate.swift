@@ -9,16 +9,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let bag = DisposeBag()
     let navigationController = UINavigationController()
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    var splashWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     
     func application(
         _: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
         ) -> BooleanLiteralType {
-        window?.rootViewController = navigationController
+        splashWindow?.rootViewController = navigationController
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.view = { () -> UIView in
+            let view = UIView()
+            view.backgroundColor = UIColor.clear
+            return view
+        }()
+        splashWindow?.isOpaque = false
+        splashWindow?.backgroundColor = UIColor.clear
+        
         FirebaseApp.configure()
         RNFirebaseNotifications.configure()
         
         RNBranch.initSession(launchOptions: launchOptions, isReferrable: true)
+        
+        let hasLoadedCallbacker = Callbacker<Void>()
+        
+        let launch = Launch(
+            hasLoadedSignal: hasLoadedCallbacker.signal()
+        )
+        
+        let launchPresentation = Presentation(
+            launch,
+            style: .modally(
+                presentationStyle: .overCurrentContext,
+                transitionStyle: .none,
+                capturesStatusBarAppearance: true
+            ),
+            options: [.unanimated, .prefersNavigationBarHidden(true)]
+        )
+        
+        self.bag += self.navigationController.present(launchPresentation).onValue({ _ in
+            self.splashWindow = nil
+            self.window?.makeKeyAndVisible()
+        })
+        self.splashWindow?.makeKeyAndVisible()
         
         var jsCodeLocation: URL
         
@@ -34,28 +66,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RNSentry.install(with: ReactNativeNavigation.getBridge())
         
         HedvigApolloClient.shared.initClient().onValue { client in
-            let launch = Launch()
-            
-            let launchPresentation = Presentation(
-                launch,
-                style: .modally(
-                    presentationStyle: .overCurrentContext,
-                    transitionStyle: .none,
-                    capturesStatusBarAppearance: true
-                ),
-                options: [.unanimated, .prefersNavigationBarHidden(true)]
-            )
-            
-            self.bag += self.navigationController.present(launchPresentation)
-            self.window?.makeKeyAndVisible()
-            
             ReactNativeNavigation.bootstrapBrownField(
                 jsCodeLocation,
                 launchOptions: launchOptions,
                 bridgeManagerDelegate: nil,
                 window: self.window
             )
+            self.window?.makeKeyAndVisible()
+            self.splashWindow?.makeKeyAndVisible()
             MarketingScreenComponent.register(client: client)
+            self.bag += Signal(after: 2).onValue({ _ in
+                hasLoadedCallbacker.callAll()
+            })
         }
         
         return true
