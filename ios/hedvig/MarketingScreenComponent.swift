@@ -20,13 +20,13 @@ struct MarketingScreenComponent {
                 client: client
             )
             
-            let marketingPresentation = Presentation(
+            let marketingPresentation = Presentation<Marketing>(
                 marketing,
                 style: .marketing,
                 options: .unanimated
             ).onValue({ marketingResult in
-                let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
-                nativeRouting.sendMarketingResult(marketingResult: marketingResult)
+                    let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
+                    nativeRouting.sendMarketingResult(marketingResult: marketingResult)
             })
             
             navigationController.present(marketingPresentation)

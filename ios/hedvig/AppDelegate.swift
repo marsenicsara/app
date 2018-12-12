@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             )
             
             let bridge = ReactNativeNavigation.getBridge()
-            
+                        
             let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
             self.bag += nativeRouting.appHasLoadedSignal.onValue({ _ in
                 hasLoadedCallbacker.callAll()
