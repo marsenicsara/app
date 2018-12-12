@@ -270,6 +270,7 @@ const Chat: React.SFC<ChatProps> = ({
                       if (!subscriptionData.data) return prev;
 
                       const newMessage = subscriptionData.data.message;
+                      console.log('newMessage', newMessage);
 
                       const updatedMessages = Object.assign({}, prev, {
                         messages: [newMessage, ...prev.messages],

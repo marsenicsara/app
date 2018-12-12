@@ -57,7 +57,7 @@ const SingleSelectInput: React.SFC<SingleSelectInputProps> = ({
 }) => {
   console.log(message);
   const anySelected = message.body.choices.some((choice) => choice.selected);
-  return (
+  return !message.header.fromMyself ? (
     <StyledMarginContainer>
       <Mutation mutation={SEND_SINGLE_SELECT_CHOICE}>
         {(mutate) => (
@@ -118,7 +118,7 @@ const SingleSelectInput: React.SFC<SingleSelectInputProps> = ({
         )}
       </Mutation>
     </StyledMarginContainer>
-  );
+  ) : null;
 };
 
 export default SingleSelectInput;

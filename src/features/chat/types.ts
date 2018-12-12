@@ -18,6 +18,7 @@ export interface Message {
     statusMessage: string;
     editAllowed: boolean;
     richTextChatCompatible: boolean;
+    fromMyself: boolean;
   };
   body: {
     choices: Array<Choice>;

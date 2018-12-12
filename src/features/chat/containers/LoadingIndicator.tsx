@@ -22,31 +22,27 @@ interface LoadingIndicatorProps {
 }
 
 const LoadingIndicator: React.SFC<LoadingIndicatorProps> = ({ avatar }) => {
-  if (avatar.data) {
-    return (
-      <Sequence>
-        <Timing toValue={1} initialValue={0} config={{ duration: 500 }}>
-          {(animatedValue) => (
-            <AnimatedView
-              style={{
-                opacity: animatedValue,
-              }}
-            >
-              <Animation
-                width={avatar.height}
-                height={avatar.height}
-                loop
-                autoPlay
-                source={avatar.data}
-              />
-            </AnimatedView>
-          )}
-        </Timing>
-      </Sequence>
-    );
-  } else {
-    return null;
-  }
+  return avatar.data ? (
+    <Sequence>
+      <Timing toValue={1} initialValue={0} config={{ duration: 500 }}>
+        {(animatedValue) => (
+          <AnimatedView
+            style={{
+              opacity: animatedValue,
+            }}
+          >
+            <Animation
+              width={avatar.height}
+              height={avatar.height}
+              loop
+              autoPlay
+              source={avatar.data}
+            />
+          </AnimatedView>
+        )}
+      </Timing>
+    </Sequence>
+  ) : null;
 };
 
 export default LoadingIndicator;
