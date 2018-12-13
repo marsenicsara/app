@@ -46,6 +46,9 @@ export const getMainLayout = () => ({
                 overlay: {
                   interceptTouchOutside: false,
                 },
+                statusBar: {
+                  style: 'dark',
+                },
               },
             },
           },

@@ -26,10 +26,6 @@ export const getMarketingLayout = () =>
               topBar: {
                 visible: false,
               },
-              statusBar: {
-                visible: true,
-                style: 'light',
-              },
             },
           },
         },
