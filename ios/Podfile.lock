@@ -222,7 +222,7 @@ PODS:
   - SnapKit (4.0.1)
   - SSZipArchive (2.1.4)
   - Starscream (3.0.6)
-  - SwiftFormat/CLI (0.35.9)
+  - SwiftFormat/CLI (0.35.10)
   - SwiftLint (0.29.1)
   - Tempura (2.1.0):
     - Katana (< 3, >= 2.0)
@@ -402,7 +402,7 @@ CHECKOUT OPTIONS:
     :commit: da2791cefffed3d3157d5ab1e731956d4aa415ae
     :git: https://github.com/HedvigInsurance/FlowOn.git
   FormFramework:
-    :commit: 48c8a4d84b2d3ed8e256add046cb681d7e2b4073
+    :commit: 1b5f3d845b8ebfd67b8d25504d21a986097775fc
     :git: https://github.com/hedviginsurance/form.git
   "UICollectionView+AnimatedScroll":
     :commit: b5a5e2b7f95713e74c0bfb623a99429b0489fa1f
@@ -469,7 +469,7 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
-  SwiftFormat: f1cf26ab5ce1f59aeaee018edc7e6d88e05bfb39
+  SwiftFormat: aa8ed229203cc182be7d59f50a2feb8515ed22c9
   SwiftLint: 6772320e40b52049053a518c17db9b0634a0b45a
   Tempura: 819db8b32776dc68e628902da7119621fddb33bf
   "UICollectionView+AnimatedScroll": b5dc2786f0a0bc778c0c6ca36c5904e46a4463d2
