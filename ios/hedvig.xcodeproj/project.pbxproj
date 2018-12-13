@@ -78,22 +78,22 @@
 		EBECC37821C1020100716BEA /* Viewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC34F21C1020000716BEA /* Viewable.swift */; };
 		EBECC37921C1020100716BEA /* SpringAnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC35021C1020000716BEA /* SpringAnimationStyle.swift */; };
 		EBECC37A21C1020100716BEA /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC35121C1020000716BEA /* ButtonStyle.swift */; };
-		EBECC3DF21C2B91D00716BEA /* MarketingPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3CC21C2B81900716BEA /* MarketingPresentationStyle.swift */; };
-		EBECC3E021C2B91D00716BEA /* MarketingEndScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3CD21C2B81900716BEA /* MarketingEndScreen.swift */; };
-		EBECC3E121C2B91D00716BEA /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3CF21C2B81900716BEA /* Logo.swift */; };
-		EBECC3E221C2B91D00716BEA /* MemberActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3D121C2B81900716BEA /* MemberActionButtons.swift */; };
-		EBECC3E321C2B91D00716BEA /* NewMemberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3D221C2B81900716BEA /* NewMemberButton.swift */; };
-		EBECC3E421C2B91D00716BEA /* ExistingMemberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3D321C2B81900716BEA /* ExistingMemberButton.swift */; };
-		EBECC3E521C2B91D00716BEA /* StoriesIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3D421C2B81900716BEA /* StoriesIndicator.swift */; };
-		EBECC3E621C2B91D00716BEA /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3D521C2B81900716BEA /* Stories.swift */; };
-		EBECC3E721C2B91D00716BEA /* StoriesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3D621C2B81900716BEA /* StoriesCollection.swift */; };
-		EBECC3E821C2B91D00716BEA /* SkipToNextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3D821C2B81900716BEA /* SkipToNextButton.swift */; };
-		EBECC3E921C2B91D00716BEA /* SkipToPreviousButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3D921C2B81900716BEA /* SkipToPreviousButton.swift */; };
-		EBECC3EA21C2B91D00716BEA /* End.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3DA21C2B81900716BEA /* End.swift */; };
-		EBECC3EB21C2B91D00716BEA /* MarketingStoryIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3DB21C2B81900716BEA /* MarketingStoryIndicatorCell.swift */; };
-		EBECC3EC21C2B91D00716BEA /* MarketingStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3DC21C2B81900716BEA /* MarketingStory.swift */; };
-		EBECC3ED21C2B91D00716BEA /* MarketingStoryIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3DD21C2B81900716BEA /* MarketingStoryIndicator.swift */; };
-		EBECC3EE21C2B91D00716BEA /* Marketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3DE21C2B81900716BEA /* Marketing.swift */; };
+		EBECC40621C2BAFF00716BEA /* MarketingPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3F321C2BAFF00716BEA /* MarketingPresentationStyle.swift */; };
+		EBECC40721C2BAFF00716BEA /* MarketingEndScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3F421C2BAFF00716BEA /* MarketingEndScreen.swift */; };
+		EBECC40821C2BAFF00716BEA /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3F621C2BAFF00716BEA /* Logo.swift */; };
+		EBECC40921C2BAFF00716BEA /* MemberActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3F821C2BAFF00716BEA /* MemberActionButtons.swift */; };
+		EBECC40A21C2BAFF00716BEA /* NewMemberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3F921C2BAFF00716BEA /* NewMemberButton.swift */; };
+		EBECC40B21C2BAFF00716BEA /* ExistingMemberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3FA21C2BAFF00716BEA /* ExistingMemberButton.swift */; };
+		EBECC40C21C2BAFF00716BEA /* StoriesIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3FB21C2BAFF00716BEA /* StoriesIndicator.swift */; };
+		EBECC40D21C2BAFF00716BEA /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3FC21C2BAFF00716BEA /* Stories.swift */; };
+		EBECC40E21C2BAFF00716BEA /* StoriesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3FD21C2BAFF00716BEA /* StoriesCollection.swift */; };
+		EBECC40F21C2BAFF00716BEA /* SkipToNextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC3FF21C2BAFF00716BEA /* SkipToNextButton.swift */; };
+		EBECC41021C2BAFF00716BEA /* SkipToPreviousButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC40021C2BAFF00716BEA /* SkipToPreviousButton.swift */; };
+		EBECC41121C2BAFF00716BEA /* End.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC40121C2BAFF00716BEA /* End.swift */; };
+		EBECC41221C2BAFF00716BEA /* MarketingStoryIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC40221C2BAFF00716BEA /* MarketingStoryIndicatorCell.swift */; };
+		EBECC41321C2BAFF00716BEA /* MarketingStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC40321C2BAFF00716BEA /* MarketingStory.swift */; };
+		EBECC41421C2BAFF00716BEA /* MarketingStoryIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC40421C2BAFF00716BEA /* MarketingStoryIndicator.swift */; };
+		EBECC41521C2BAFF00716BEA /* Marketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC40521C2BAFF00716BEA /* Marketing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,22 +210,22 @@
 		EBECC34F21C1020000716BEA /* Viewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Viewable.swift; sourceTree = "<group>"; };
 		EBECC35021C1020000716BEA /* SpringAnimationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringAnimationStyle.swift; sourceTree = "<group>"; };
 		EBECC35121C1020000716BEA /* ButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
-		EBECC3CC21C2B81900716BEA /* MarketingPresentationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingPresentationStyle.swift; sourceTree = "<group>"; };
-		EBECC3CD21C2B81900716BEA /* MarketingEndScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingEndScreen.swift; sourceTree = "<group>"; };
-		EBECC3CF21C2B81900716BEA /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
-		EBECC3D121C2B81900716BEA /* MemberActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberActionButtons.swift; sourceTree = "<group>"; };
-		EBECC3D221C2B81900716BEA /* NewMemberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMemberButton.swift; sourceTree = "<group>"; };
-		EBECC3D321C2B81900716BEA /* ExistingMemberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingMemberButton.swift; sourceTree = "<group>"; };
-		EBECC3D421C2B81900716BEA /* StoriesIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesIndicator.swift; sourceTree = "<group>"; };
-		EBECC3D521C2B81900716BEA /* Stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
-		EBECC3D621C2B81900716BEA /* StoriesCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCollection.swift; sourceTree = "<group>"; };
-		EBECC3D821C2B81900716BEA /* SkipToNextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipToNextButton.swift; sourceTree = "<group>"; };
-		EBECC3D921C2B81900716BEA /* SkipToPreviousButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipToPreviousButton.swift; sourceTree = "<group>"; };
-		EBECC3DA21C2B81900716BEA /* End.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = End.swift; sourceTree = "<group>"; };
-		EBECC3DB21C2B81900716BEA /* MarketingStoryIndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingStoryIndicatorCell.swift; sourceTree = "<group>"; };
-		EBECC3DC21C2B81900716BEA /* MarketingStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingStory.swift; sourceTree = "<group>"; };
-		EBECC3DD21C2B81900716BEA /* MarketingStoryIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingStoryIndicator.swift; sourceTree = "<group>"; };
-		EBECC3DE21C2B81900716BEA /* Marketing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marketing.swift; sourceTree = "<group>"; };
+		EBECC3F321C2BAFF00716BEA /* MarketingPresentationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketingPresentationStyle.swift; sourceTree = "<group>"; };
+		EBECC3F421C2BAFF00716BEA /* MarketingEndScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketingEndScreen.swift; sourceTree = "<group>"; };
+		EBECC3F621C2BAFF00716BEA /* Logo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
+		EBECC3F821C2BAFF00716BEA /* MemberActionButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberActionButtons.swift; sourceTree = "<group>"; };
+		EBECC3F921C2BAFF00716BEA /* NewMemberButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMemberButton.swift; sourceTree = "<group>"; };
+		EBECC3FA21C2BAFF00716BEA /* ExistingMemberButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExistingMemberButton.swift; sourceTree = "<group>"; };
+		EBECC3FB21C2BAFF00716BEA /* StoriesIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesIndicator.swift; sourceTree = "<group>"; };
+		EBECC3FC21C2BAFF00716BEA /* Stories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
+		EBECC3FD21C2BAFF00716BEA /* StoriesCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesCollection.swift; sourceTree = "<group>"; };
+		EBECC3FF21C2BAFF00716BEA /* SkipToNextButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipToNextButton.swift; sourceTree = "<group>"; };
+		EBECC40021C2BAFF00716BEA /* SkipToPreviousButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipToPreviousButton.swift; sourceTree = "<group>"; };
+		EBECC40121C2BAFF00716BEA /* End.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = End.swift; sourceTree = "<group>"; };
+		EBECC40221C2BAFF00716BEA /* MarketingStoryIndicatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketingStoryIndicatorCell.swift; sourceTree = "<group>"; };
+		EBECC40321C2BAFF00716BEA /* MarketingStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketingStory.swift; sourceTree = "<group>"; };
+		EBECC40421C2BAFF00716BEA /* MarketingStoryIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketingStoryIndicator.swift; sourceTree = "<group>"; };
+		EBECC40521C2BAFF00716BEA /* Marketing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marketing.swift; sourceTree = "<group>"; };
 		EE9E45FE503F4AA1B6290424 /* Pods-hedvig.release - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release - development.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release - development.xcconfig"; sourceTree = "<group>"; };
 		FE838C28F7895ED6D2053AD7 /* Pods-hedvig.debug - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug - development.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug - development.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -501,7 +501,7 @@
 		EBECC2B921C0023F00716BEA /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				EBECC3CB21C2B81900716BEA /* MarketingScreen */,
+				EBECC3F221C2BAFF00716BEA /* MarketingScreen */,
 				EBECC33121C1020000716BEA /* ChatScreen */,
 				EBECC34421C1020000716BEA /* Generic */,
 				EBECC31D21C1020000716BEA /* LaunchScreen */,
@@ -601,50 +601,50 @@
 			path = hedvig/ugglan/Hedvig/UI/Generic;
 			sourceTree = SOURCE_ROOT;
 		};
-		EBECC3CB21C2B81900716BEA /* MarketingScreen */ = {
+		EBECC3F221C2BAFF00716BEA /* MarketingScreen */ = {
 			isa = PBXGroup;
 			children = (
-				EBECC3CC21C2B81900716BEA /* MarketingPresentationStyle.swift */,
-				EBECC3CD21C2B81900716BEA /* MarketingEndScreen.swift */,
-				EBECC3CE21C2B81900716BEA /* Viewables */,
-				EBECC3DB21C2B81900716BEA /* MarketingStoryIndicatorCell.swift */,
-				EBECC3DC21C2B81900716BEA /* MarketingStory.swift */,
-				EBECC3DD21C2B81900716BEA /* MarketingStoryIndicator.swift */,
-				EBECC3DE21C2B81900716BEA /* Marketing.swift */,
+				EBECC3F321C2BAFF00716BEA /* MarketingPresentationStyle.swift */,
+				EBECC3F421C2BAFF00716BEA /* MarketingEndScreen.swift */,
+				EBECC3F521C2BAFF00716BEA /* Viewables */,
+				EBECC40221C2BAFF00716BEA /* MarketingStoryIndicatorCell.swift */,
+				EBECC40321C2BAFF00716BEA /* MarketingStory.swift */,
+				EBECC40421C2BAFF00716BEA /* MarketingStoryIndicator.swift */,
+				EBECC40521C2BAFF00716BEA /* Marketing.swift */,
 			);
 			name = MarketingScreen;
-			path = hedvig/ugglan/Hedvig/UI/ChatScreen/MarketingScreen;
+			path = hedvig/ugglan/Hedvig/UI/MarketingScreen;
 			sourceTree = SOURCE_ROOT;
 		};
-		EBECC3CE21C2B81900716BEA /* Viewables */ = {
+		EBECC3F521C2BAFF00716BEA /* Viewables */ = {
 			isa = PBXGroup;
 			children = (
-				EBECC3CF21C2B81900716BEA /* Logo.swift */,
-				EBECC3D021C2B81900716BEA /* MemberActionButtons */,
-				EBECC3D421C2B81900716BEA /* StoriesIndicator.swift */,
-				EBECC3D521C2B81900716BEA /* Stories.swift */,
-				EBECC3D621C2B81900716BEA /* StoriesCollection.swift */,
-				EBECC3D721C2B81900716BEA /* SkipButtons */,
-				EBECC3DA21C2B81900716BEA /* End.swift */,
+				EBECC3F621C2BAFF00716BEA /* Logo.swift */,
+				EBECC3F721C2BAFF00716BEA /* MemberActionButtons */,
+				EBECC3FB21C2BAFF00716BEA /* StoriesIndicator.swift */,
+				EBECC3FC21C2BAFF00716BEA /* Stories.swift */,
+				EBECC3FD21C2BAFF00716BEA /* StoriesCollection.swift */,
+				EBECC3FE21C2BAFF00716BEA /* SkipButtons */,
+				EBECC40121C2BAFF00716BEA /* End.swift */,
 			);
 			path = Viewables;
 			sourceTree = "<group>";
 		};
-		EBECC3D021C2B81900716BEA /* MemberActionButtons */ = {
+		EBECC3F721C2BAFF00716BEA /* MemberActionButtons */ = {
 			isa = PBXGroup;
 			children = (
-				EBECC3D121C2B81900716BEA /* MemberActionButtons.swift */,
-				EBECC3D221C2B81900716BEA /* NewMemberButton.swift */,
-				EBECC3D321C2B81900716BEA /* ExistingMemberButton.swift */,
+				EBECC3F821C2BAFF00716BEA /* MemberActionButtons.swift */,
+				EBECC3F921C2BAFF00716BEA /* NewMemberButton.swift */,
+				EBECC3FA21C2BAFF00716BEA /* ExistingMemberButton.swift */,
 			);
 			path = MemberActionButtons;
 			sourceTree = "<group>";
 		};
-		EBECC3D721C2B81900716BEA /* SkipButtons */ = {
+		EBECC3FE21C2BAFF00716BEA /* SkipButtons */ = {
 			isa = PBXGroup;
 			children = (
-				EBECC3D821C2B81900716BEA /* SkipToNextButton.swift */,
-				EBECC3D921C2B81900716BEA /* SkipToPreviousButton.swift */,
+				EBECC3FF21C2BAFF00716BEA /* SkipToNextButton.swift */,
+				EBECC40021C2BAFF00716BEA /* SkipToPreviousButton.swift */,
 			);
 			path = SkipButtons;
 			sourceTree = "<group>";
@@ -852,47 +852,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBECC3DF21C2B91D00716BEA /* MarketingPresentationStyle.swift in Sources */,
-				EBECC3E021C2B91D00716BEA /* MarketingEndScreen.swift in Sources */,
-				EBECC3E121C2B91D00716BEA /* Logo.swift in Sources */,
-				EBECC3E221C2B91D00716BEA /* MemberActionButtons.swift in Sources */,
-				EBECC3E321C2B91D00716BEA /* NewMemberButton.swift in Sources */,
-				EBECC3E421C2B91D00716BEA /* ExistingMemberButton.swift in Sources */,
-				EBECC3E521C2B91D00716BEA /* StoriesIndicator.swift in Sources */,
-				EBECC3E621C2B91D00716BEA /* Stories.swift in Sources */,
-				EBECC3E721C2B91D00716BEA /* StoriesCollection.swift in Sources */,
-				EBECC3E821C2B91D00716BEA /* SkipToNextButton.swift in Sources */,
-				EBECC3E921C2B91D00716BEA /* SkipToPreviousButton.swift in Sources */,
-				EBECC3EA21C2B91D00716BEA /* End.swift in Sources */,
-				EBECC3EB21C2B91D00716BEA /* MarketingStoryIndicatorCell.swift in Sources */,
-				EBECC3EC21C2B91D00716BEA /* MarketingStory.swift in Sources */,
-				EBECC3ED21C2B91D00716BEA /* MarketingStoryIndicator.swift in Sources */,
-				EBECC3EE21C2B91D00716BEA /* Marketing.swift in Sources */,
+				EBECC40B21C2BAFF00716BEA /* ExistingMemberButton.swift in Sources */,
 				EBECC36421C1020000716BEA /* SendingIndicator.swift in Sources */,
+				EBECC41221C2BAFF00716BEA /* MarketingStoryIndicatorCell.swift in Sources */,
+				EBECC40C21C2BAFF00716BEA /* StoriesIndicator.swift in Sources */,
 				EBECC37921C1020100716BEA /* SpringAnimationStyle.swift in Sources */,
 				EBECC37021C1020100716BEA /* CoreSignal+Animation.swift in Sources */,
 				EBECC37821C1020100716BEA /* Viewable.swift in Sources */,
 				EBECC25321B811F500716BEA /* HedvigFonts.swift in Sources */,
 				EBECC36321C1020000716BEA /* ChatPresentationStyle.swift in Sources */,
 				EBECC37321C1020100716BEA /* UIView+RadiusMask.swift in Sources */,
+				EBECC41521C2BAFF00716BEA /* Marketing.swift in Sources */,
 				EBECC23821B811F500716BEA /* AppNavigation.swift in Sources */,
 				EBECC36121C1020000716BEA /* ChatViewController.swift in Sources */,
 				EBECC37621C1020100716BEA /* AnimationStyle.swift in Sources */,
 				EBECC23A21B811F500716BEA /* AppState.swift in Sources */,
 				EBECC36C21C1020100716BEA /* InputFieldView.swift in Sources */,
 				EBECC23C21B811F500716BEA /* AuthorizationToken.swift in Sources */,
+				EBECC41021C2BAFF00716BEA /* SkipToPreviousButton.swift in Sources */,
 				B56386491DB9693800A0598C /* AppDelegate.swift in Sources */,
 				EBECC23E21B811F500716BEA /* SetMessages.swift in Sources */,
 				EBECC26621B9230000716BEA /* NativeRouting.swift in Sources */,
+				EBECC40621C2BAFF00716BEA /* MarketingPresentationStyle.swift in Sources */,
 				EBECC36221C1020000716BEA /* Chat.swift in Sources */,
 				EBECC36521C1020000716BEA /* MessageView.swift in Sources */,
 				EBECC25021B811F500716BEA /* Icon.swift in Sources */,
 				EBECC23B21B811F500716BEA /* Message.swift in Sources */,
 				EBECC37421C1020100716BEA /* UIView+Viewable.swift in Sources */,
+				EBECC40821C2BAFF00716BEA /* Logo.swift in Sources */,
 				EBECC24121B811F500716BEA /* InsertMessage.swift in Sources */,
 				EBECC37221C1020100716BEA /* CollectionKit+UpdateRows.swift in Sources */,
+				EBECC40D21C2BAFF00716BEA /* Stories.swift in Sources */,
 				EBECC36A21C1020000716BEA /* SelectCollectionViewCell.swift in Sources */,
+				EBECC41421C2BAFF00716BEA /* MarketingStoryIndicator.swift in Sources */,
 				EBECC37A21C1020100716BEA /* ButtonStyle.swift in Sources */,
+				EBECC40A21C2BAFF00716BEA /* NewMemberButton.swift in Sources */,
 				EBECC36921C1020000716BEA /* SelectCollectionView.swift in Sources */,
 				EBECC26821B92E4800716BEA /* NativeRouting.m in Sources */,
 				EBECC36E21C1020100716BEA /* TransitionStyle.swift in Sources */,
@@ -900,18 +894,24 @@
 				EBECC24F21B811F500716BEA /* HedvigColors.swift in Sources */,
 				EBECC24021B811F500716BEA /* AppActions.swift in Sources */,
 				EBECC23F21B811F500716BEA /* SendMessage.swift in Sources */,
+				EBECC41121C2BAFF00716BEA /* End.swift in Sources */,
 				EBECC36F21C1020100716BEA /* Callbacker+Signal.swift in Sources */,
 				EBECC36D21C1020100716BEA /* ChatView.swift in Sources */,
 				EBECC36621C1020000716BEA /* ListView.swift in Sources */,
+				EBECC40921C2BAFF00716BEA /* MemberActionButtons.swift in Sources */,
 				EBECC36B21C1020100716BEA /* SafeAreaContainer.swift in Sources */,
 				EBECC36821C1020000716BEA /* SelectButton.swift in Sources */,
 				EBECC23921B811F500716BEA /* DependenciesContainer.swift in Sources */,
 				EBECC37521C1020100716BEA /* UIView+addConstraint.swift in Sources */,
+				EBECC40F21C2BAFF00716BEA /* SkipToNextButton.swift in Sources */,
+				EBECC41321C2BAFF00716BEA /* MarketingStory.swift in Sources */,
 				EBECC24321B811F500716BEA /* ApolloClient+Flow.swift in Sources */,
 				EBECC24D21B811F500716BEA /* HedvigApolloClient.swift in Sources */,
 				EBECC37121C1020100716BEA /* CopyableLabel.swift in Sources */,
 				EBECC36721C1020000716BEA /* SendButton.swift in Sources */,
+				EBECC40721C2BAFF00716BEA /* MarketingEndScreen.swift in Sources */,
 				EBECC35221C1020000716BEA /* Launch.swift in Sources */,
+				EBECC40E21C2BAFF00716BEA /* StoriesCollection.swift in Sources */,
 				EBECC24C21B811F500716BEA /* API.swift in Sources */,
 				EBECC37721C1020100716BEA /* CollectionKit+ScrollTo.swift in Sources */,
 			);
