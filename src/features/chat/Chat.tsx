@@ -16,10 +16,6 @@ import { NavigationEvents } from 'src/navigation/events';
 import { getMainLayout } from 'src/navigation/layouts/mainLayout';
 import { setLayout } from 'src/navigation/layouts/setLayout';
 import {
-  getOfferScreen,
-  OFFER_GROUPS,
-} from 'src/navigation/screens/offer/ab-test';
-import {
   RESTART_BUTTON,
   CLOSE_BUTTON,
   GO_TO_DASHBOARD_BUTTON,
@@ -29,6 +25,7 @@ import {
 import { Message } from './types';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
 import { BackButton } from 'src/components/BackButton';
+import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -129,17 +126,7 @@ const getNavigationOptions = (
 };
 
 const showOffer = async (componentId: string) => {
-  const { screen, group } = await getOfferScreen();
-
-  if (group === OFFER_GROUPS.OLD) {
-    Navigation.showModal({
-      stack: {
-        children: [screen],
-      },
-    });
-  } else {
-    Navigation.push(componentId, screen);
-  }
+  Navigation.push(componentId, NEW_OFFER_SCREEN);
 };
 
 const handleAppStateChange = (
