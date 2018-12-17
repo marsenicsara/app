@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styled from '@sampettersson/primitives';
 
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 import { Spacing } from '../../components/Spacing';
 
 import { CircledCross } from '../../components/icons/CircledCross';
@@ -16,7 +16,7 @@ const Container = styled(View)({
 });
 
 const Title = styled(Text)({
-  fontFamily: 'Merriweather-Light',
+  fontFamily: fonts.CIRCULAR,
   fontSize: 35,
   color: colors.PINK,
 });
@@ -50,21 +50,21 @@ interface PaymentFailureProps {
 export const PaymentFailure: React.SFC<PaymentFailureProps> = ({
   onPressContinue,
 }) => (
-  <Container>
-    <CircledCross width={100} height={100} />
-    <Spacing height={20} />
-    <TranslationsConsumer textKey="PAYMENT_FAILURE_TITLE">
-      {(text) => <Title>{text}</Title>}
-    </TranslationsConsumer>
-    <Spacing height={20} />
-    <TranslationsConsumer textKey="PAYMENT_FAILURE_BODY">
-      {(text) => <Body>{text}</Body>}
-    </TranslationsConsumer>
-    <Spacing height={25} />
-    <Button onPress={onPressContinue}>
-      <TranslationsConsumer textKey="PAYMENT_FAILURE_BUTTON">
-        {(text) => <ButtonText>{text}</ButtonText>}
+    <Container>
+      <CircledCross width={100} height={100} />
+      <Spacing height={20} />
+      <TranslationsConsumer textKey="PAYMENT_FAILURE_TITLE">
+        {(text) => <Title>{text}</Title>}
       </TranslationsConsumer>
-    </Button>
-  </Container>
-);
+      <Spacing height={20} />
+      <TranslationsConsumer textKey="PAYMENT_FAILURE_BODY">
+        {(text) => <Body>{text}</Body>}
+      </TranslationsConsumer>
+      <Spacing height={25} />
+      <Button onPress={onPressContinue}>
+        <TranslationsConsumer textKey="PAYMENT_FAILURE_BUTTON">
+          {(text) => <ButtonText>{text}</ButtonText>}
+        </TranslationsConsumer>
+      </Button>
+    </Container>
+  );
