@@ -14,6 +14,7 @@ const HeaderContainer = styled(View)({
   alignItems: 'center',
   justifyContent: 'space-between',
   flexDirection: 'row',
+  zIndex: 5
 });
 
 const Title = styled(Text)({
@@ -42,14 +43,14 @@ interface HeaderProps {
 
 export const Header: React.SFC<HeaderProps> = ({
   title,
-  onCloseClick = () => {},
+  onCloseClick = () => { },
   restartButton,
 }) => (
-  <HeaderContainer>
-    <CloseButton onPress={() => onCloseClick()}>
-      <Arrow width={12} height={12} arrowFill={colors.PURPLE} rotate={0} />
-    </CloseButton>
-    <Title>{title}</Title>
-    {restartButton && <RestartOfferChat onCloseClick={() => onCloseClick()} />}
-  </HeaderContainer>
-);
+    <HeaderContainer>
+      <CloseButton onPress={() => onCloseClick()}>
+        <Arrow width={12} height={12} arrowFill={colors.PURPLE} rotate={0} />
+      </CloseButton>
+      <Title>{title}</Title>
+      {restartButton && <RestartOfferChat onCloseClick={() => onCloseClick()} />}
+    </HeaderContainer>
+  );

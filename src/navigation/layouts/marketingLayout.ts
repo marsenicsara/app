@@ -31,6 +31,7 @@ export const getMarketingLayout = () =>
         },
       };
     },
+    // @ts-ignore
     android: () => ({
       root: {
         stack: {
