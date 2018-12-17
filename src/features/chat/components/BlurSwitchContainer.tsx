@@ -12,7 +12,7 @@ const BlurContainer = styled(BlurView)({
 const ContainerAndroid = styled(View)({
   position: 'absolute',
   bottom: 0,
-  widht: '100%',
+  width: '100%',
 });
 
 export const BlurSwitchContainer: React.SFC = ({ children }) => {

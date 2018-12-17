@@ -69,25 +69,25 @@ const Translation = styled(AnimatedView)(
     translationY,
     heightPercentage,
   }: {
-      translationY: Animated.Value;
-      heightPercentage: number;
-    }) => ({
-      position: 'absolute',
-      top: `-${heightPercentage}%`,
-      width: '100%',
-      transform: [
-        {
-          translateY: Animated.add(
-            new Animated.Value(getStationaryTranslate()),
-            translationY.interpolate({
-              inputRange: getTranslateRange(heightPercentage),
-              outputRange: getTranslateRange(heightPercentage),
-              extrapolateLeft: 'clamp',
-            }),
-          ),
-        },
-      ],
-    }),
+    translationY: Animated.Value;
+    heightPercentage: number;
+  }) => ({
+    position: 'absolute',
+    top: `-${heightPercentage}%`,
+    width: '100%',
+    transform: [
+      {
+        translateY: Animated.add(
+          new Animated.Value(getStationaryTranslate()),
+          translationY.interpolate({
+            inputRange: getTranslateRange(heightPercentage),
+            outputRange: getTranslateRange(heightPercentage),
+            extrapolateLeft: 'clamp',
+          }),
+        ),
+      },
+    ],
+  }),
 );
 
 const BOUNCINESS = 8;
@@ -111,10 +111,10 @@ const shouldBounceBack = ({
   translationY,
   heightPercentage,
 }: {
-    velocityY: number;
-    translationY: number;
-    heightPercentage: number;
-  }) =>
+  velocityY: number;
+  translationY: number;
+  heightPercentage: number;
+}) =>
   velocityY < 250 &&
   translationY <
   getStationaryTranslate() *
