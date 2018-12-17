@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView, Text, StyleSheet } from 'react-native';
 
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   carouselContainer: { flex: 1, backgroundColor: colors.WHITE },
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   carouselTexts: { marginTop: 30 },
   imageCarouselContainer: { height: 185 },
   carouselHeading: {
-    fontFamily: 'Merriweather-Light',
+    fontFamily: fonts.CIRCULAR,
     fontSize: 24,
     textAlign: 'center',
     paddingBottom: 24,

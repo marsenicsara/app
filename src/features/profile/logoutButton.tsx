@@ -18,7 +18,7 @@ const Button = styled(TouchableOpacity)({
 });
 
 const ButtonText = styled(Text)({
-  fontFamily: fonts.MERRIWEATHER,
+  fontFamily: fonts.CIRCULAR,
   fontSize: 16,
   color: colors.OFF_BLACK,
   paddingLeft: 15,

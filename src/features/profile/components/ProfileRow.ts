@@ -14,6 +14,7 @@ const ProfileRow = styled(View)({
   borderTopWidth: StyleSheet.hairlineWidth,
   backgroundColor: colors.WHITE,
   borderColor: colors.LIGHT_GRAY,
+  fontFamily: fonts.CIRCULAR
 });
 const TouchableProfileRow = ProfileRow.withComponent(TouchableOpacity)
 
@@ -24,7 +25,7 @@ const ProfileRowTextContainer = styled(View)({
 });
 
 const ProfileRowHeader = styled(Text)({
-  fontFamily: fonts.MERRIWEATHER,
+  fontFamily: fonts.CIRCULAR,
   color: colors.OFF_BLACK,
   fontSize: 16,
 });

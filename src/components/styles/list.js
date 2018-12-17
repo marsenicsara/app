@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   listHeader: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   listElementTexts: { flex: 1, marginRight: 16, marginLeft: 16 },
   listElementHeading: {
-    fontFamily: 'Merriweather-Light',
+    fontFamily: fonts.CIRCULAR,
     color: colors.OFF_BLACK,
     fontSize: 16,
   },
