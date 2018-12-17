@@ -26,6 +26,7 @@ import { Message } from './types';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
 import { BackButton } from 'src/components/BackButton';
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
+import { PixelRatio } from 'react-native';
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -139,9 +140,11 @@ const handleAppStateChange = (
   }
 };
 
+
+
 const KeyboardAvoidingOnAndroidIfModal: React.SFC<{ isModal: boolean }> = ({ children, isModal }) => (
   isModal ? (
-    <KeyboardAvoidingOnAndroid additionalPadding={16}>
+    <KeyboardAvoidingOnAndroid additionalPadding={PixelRatio.getPixelSizeForLayoutSize(14)}>
       {children}
     </KeyboardAvoidingOnAndroid>
   ) : <>{children}</>
