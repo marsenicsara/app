@@ -18,3 +18,4 @@
 #import <React/RCTEventEmitter.h>
 #import <React/RCTBridgeModule.h>
 #import <Lottie/Lottie.h>
+#import "ReactNativeConfig.h"

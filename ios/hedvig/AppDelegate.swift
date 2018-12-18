@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
         ) -> BooleanLiteralType {
+        window?.rootViewController = UINavigationController()
         splashWindow?.rootViewController = navigationController
         navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.view = { () -> UIView in
@@ -50,6 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.splashWindow = nil
             self.window?.makeKeyAndVisible()
         })
+        
+        self.window?.makeKeyAndVisible()
+        self.splashWindow?.windowLevel = .alert
         self.splashWindow?.makeKeyAndVisible()
         
         var jsCodeLocation: URL
@@ -65,7 +69,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         RNSentry.install(with: ReactNativeNavigation.getBridge())
         
-        HedvigApolloClient.shared.initClient().onValue { client in
+        let environment = HedvigApolloEnvironmentConfig(
+            endpointURL: URL(string: ReactNativeConfig.env(for: "GRAPHQL_URL"))!,
+            wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!
+        )
+        
+        HedvigApolloClient.shared.createClient(token: nil, environment: environment).onValue { client in
             ReactNativeNavigation.bootstrapBrownField(
                 jsCodeLocation,
                 launchOptions: launchOptions,
@@ -80,8 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 hasLoadedCallbacker.callAll()
             })
             
-            self.window?.makeKeyAndVisible()
-            self.splashWindow?.makeKeyAndVisible()
             MarketingScreenComponent.register(client: client)
         }
         
