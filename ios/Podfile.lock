@@ -18,6 +18,7 @@ PODS:
     - SSZipArchive (~> 2.1)
   - Crashlytics (3.10.9):
     - Fabric (~> 1.7.13)
+  - DeviceKit (1.11.0)
   - Disk (0.4.0)
   - DoubleConversion (1.1.6)
   - DynamicColor (4.0.3)
@@ -235,6 +236,7 @@ DEPENDENCIES:
   - Branch-SDK (from `../node_modules/react-native-branch/ios`)
   - CodePush (from `../node_modules/react-native-code-push`)
   - Crashlytics (~> 3.10.7)
+  - DeviceKit (~> 1.3)
   - Disk (~> 0.4.0)
   - "DoubleConversion (from `../node_modules/@hedviginsurance/react-native/third-party-podspecs/DoubleConversion.podspec`)"
   - DynamicColor (~> 4.0.2)
@@ -299,6 +301,7 @@ SPEC REPOS:
     - Base64
     - boost-for-react-native
     - Crashlytics
+    - DeviceKit
     - Disk
     - DynamicColor
     - Fabric
@@ -416,6 +419,7 @@ SPEC CHECKSUMS:
   Branch-SDK: 8a0fa24e01a68cc3f98f184900e5adf0328c7f02
   CodePush: f6b348759cdc42c734d9c3a46ceb2997c270b12e
   Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
+  DeviceKit: a3a86f8dddbe1317a9a243cdf9646858bf135dce
   Disk: ef2956657d5bb56034b38b29b352170165226440
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   DynamicColor: bf19b33fe404c59a68e64af95cc6b017346e7e75
@@ -475,6 +479,6 @@ SPEC CHECKSUMS:
   "UICollectionView+AnimatedScroll": b5dc2786f0a0bc778c0c6ca36c5904e46a4463d2
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: b4db999280f52b455dbb1937727fed174750dbf8
+PODFILE CHECKSUM: a58f7d8b31310bc9c3c6087858f1804e798972c7
 
 COCOAPODS: 1.5.3
