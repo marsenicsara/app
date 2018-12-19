@@ -6,6 +6,7 @@ import { Image, StyleSheet } from 'react-native';
 import { FloatingAction } from '@hedviginsurance/react-native-floating-action';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Parallel, Spring } from 'animated-react-native-components';
+import { Navigation } from 'react-native-navigation';
 
 import { Delayed } from 'src/components/Delayed';
 import { AnimatedView } from 'src/components/AnimatedPrimitives';
@@ -120,6 +121,10 @@ class FloatingActionButton extends React.Component {
   };
 
   onNavigationCommand = async (name) => {
+    if (name === 'setRoot') {
+      Navigation.dismissOverlay(this.props.componentId);
+    }
+
     if (name === 'showModal') {
       this.setState({
         show: false,
