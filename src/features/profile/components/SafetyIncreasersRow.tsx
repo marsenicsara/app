@@ -8,17 +8,25 @@ import {
 import { ProfileLockIcon } from 'src/components/Icon';
 
 interface SafetyIncreasersRowProps {
-  safetyIncreasers: Array<string>
+  safetyIncreasers: Array<string>;
 }
 
-const SafetyIncreasersRow: React.SFC<SafetyIncreasersRowProps> = ({ safetyIncreasers }) => (
-  <ProfileRow>
-    <ProfileLockIcon />
-    <ProfileRowTextContainer>
-      <ProfileRowHeader>Mina trygghetshöjare</ProfileRowHeader>
-      <ProfileRowText>{safetyIncreasers.join(', ')}</ProfileRowText>
-    </ProfileRowTextContainer>
-  </ProfileRow>
-);
+const SafetyIncreasersRow: React.SFC<SafetyIncreasersRowProps> = ({
+  safetyIncreasers,
+}) => {
+  if (safetyIncreasers.length) {
+    return (
+      <ProfileRow>
+        <ProfileLockIcon />
+        <ProfileRowTextContainer>
+          <ProfileRowHeader>Mina trygghetshöjare</ProfileRowHeader>
+          <ProfileRowText>{safetyIncreasers.join(', ')}</ProfileRowText>
+        </ProfileRowTextContainer>
+      </ProfileRow>
+    );
+  }
+
+  return null;
+};
 
 export { SafetyIncreasersRow };

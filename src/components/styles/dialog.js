@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   heading: {
-    fontFamily: 'Merriweather-Light',
+    fontFamily: fonts.CIRCULAR,
     fontSize: 24,
     marginTop: 24,
     marginBottom: 16,

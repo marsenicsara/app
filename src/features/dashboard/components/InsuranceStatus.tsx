@@ -1,67 +1,57 @@
 import * as React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { format } from 'date-fns';
-
 import { fonts, colors } from '@hedviginsurance/brand';
-import { InsuranceStatus } from 'src/graphql/components';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { InfoCircle } from 'src/components/icons/InfoCircle';
+import { FilledCircledCheckmark } from 'src/components/icons/FilledCheckmark';
 
-interface InsuranceStatusProps {
-  status: InsuranceStatus;
-  activeFrom: string;
-}
-
-const Icon = styled(Image)({
-  marginRight: 5,
-  width: 16,
-  height: 16,
+const IconContainer = styled(View)({
+  marginTop: 24,
+  marginLeft: 5,
 });
 
 const StatusText = styled(Text)({
+  marginTop: 8,
+  marginBottom: 8,
   fontFamily: fonts.CIRCULAR,
-  color: colors.DARK_GRAY,
+  color: colors.BLACK,
   fontSize: 14,
 });
 
 const Container = styled(View)({
-  flexDirection: 'row',
+  flexDirection: 'column',
+  alignItems: 'center',
 });
 
-const icons = {
-  ACTIVE: require('assets/icons/my_insurance/aktiv.png'),
-  INACTIVE_WITH_START_DATE: require('assets/icons/my_insurance/startdatum_idle.png'),
-  INACTIVE: require('assets/icons/edit_perils/added_peril.png'),
-};
+interface Props {
+  active: boolean;
+}
 
-const getIcon = (status: InsuranceStatus) => {
-  switch (status) {
-    case 'ACTIVE':
-      return icons.ACTIVE;
-    case 'INACTIVE_WITH_START_DATE':
-      return icons.INACTIVE_WITH_START_DATE;
-    case 'INACTIVE':
-      return icons.INACTIVE;
-  }
-};
-
-const getStatusText = (status: InsuranceStatus, activeFrom: string) => {
-  switch (status) {
-    case 'ACTIVE':
-      return 'Aktiv';
-    case 'INACTIVE_WITH_START_DATE':
-      return `Aktiveras ${format(activeFrom, 'YYYY-MM-DD')}`;
-    case 'INACTIVE':
-      return 'Inaktiv';
-  }
-};
-
-const InsuranceStatusDisplay: React.SFC<InsuranceStatusProps> = ({
-  status,
-  activeFrom,
-}) => (
+const InsuranceStatusDisplay: React.SFC<Props> = ({ active }) => (
   <Container>
-    <Icon source={getIcon(status)} />
-    <StatusText>{getStatusText(status, activeFrom)}</StatusText>
+    <IconContainer>
+      {active ? (
+        <FilledCircledCheckmark
+          width={32}
+          height={32}
+          checkmarkLineColor={colors.WHITE}
+        />
+      ) : (
+        <InfoCircle width={32} height={32} />
+      )}
+    </IconContainer>
+    <StatusText>
+      <TranslationsConsumer
+        textKey={
+          active
+            ? 'DASHBOARD_BANNER_ACTIVE_INFO'
+            : 'DASHBOARD_BANNER_TERMINATED_INFO'
+        }
+      >
+        {(text) => text}
+      </TranslationsConsumer>
+    </StatusText>
   </Container>
 );
 

@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from '@sampettersson/primitives';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { colors, fonts } from '@hedviginsurance/brand';
-
 import { Arrow } from 'src/components/icons/Arrow';
+import { RestartOfferChat } from '../RestartOfferChat';
 
 const HeaderContainer = styled(View)({
   height: 60,
@@ -14,6 +14,7 @@ const HeaderContainer = styled(View)({
   alignItems: 'center',
   justifyContent: 'space-between',
   flexDirection: 'row',
+  zIndex: 5
 });
 
 const Title = styled(Text)({
@@ -37,16 +38,19 @@ const CloseButton = styled(TouchableOpacity)({
 interface HeaderProps {
   title: string;
   onCloseClick?: () => void;
+  restartButton?: boolean;
 }
 
 export const Header: React.SFC<HeaderProps> = ({
   title,
-  onCloseClick = () => {},
+  onCloseClick = () => { },
+  restartButton,
 }) => (
-  <HeaderContainer>
-    <Title>{title}</Title>
-    <CloseButton onPress={() => onCloseClick()}>
-      <Arrow width={12} height={12} arrowFill={colors.PURPLE} rotate={0} />
-    </CloseButton>
-  </HeaderContainer>
-);
+    <HeaderContainer>
+      <CloseButton onPress={() => onCloseClick()}>
+        <Arrow width={12} height={12} arrowFill={colors.PURPLE} rotate={0} />
+      </CloseButton>
+      <Title>{title}</Title>
+      {restartButton && <RestartOfferChat onCloseClick={() => onCloseClick()} />}
+    </HeaderContainer>
+  );

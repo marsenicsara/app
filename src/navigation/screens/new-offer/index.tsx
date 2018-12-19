@@ -22,7 +22,6 @@ class NewOfferScreen extends React.Component {
           onNavigationButtonPressed={(_: any, componentId: string) =>
             Navigation.dismissModal(componentId)
           }
-          onGlobalEvent={(event: any) => console.log(event)}
         />
         <Mount on={() => AsyncStorage.setItem(IS_VIEWING_OFFER, 'true')}>
           {null}

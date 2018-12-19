@@ -6,6 +6,7 @@ import { Image, StyleSheet } from 'react-native';
 import { FloatingAction } from '@hedviginsurance/react-native-floating-action';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Parallel, Spring } from 'animated-react-native-components';
+import { Navigation } from 'react-native-navigation';
 
 import { Delayed } from 'src/components/Delayed';
 import { AnimatedView } from 'src/components/AnimatedPrimitives';
@@ -15,6 +16,7 @@ import { chatActions } from '../../../../hedvig-redux';
 import FabAction from '../components/FabAction';
 import { getFabActions } from '../state/selectors';
 import { colors } from '@hedviginsurance/brand';
+import { BackButton } from 'src/components/BackButton';
 
 const styles = StyleSheet.create({
   animatedView: {
@@ -115,9 +117,14 @@ class FloatingActionButton extends React.Component {
       return;
     }
     this.props.goToChat(url);
+    this.setState({ fabOpen: false });
   };
 
   onNavigationCommand = async (name) => {
+    if (name === 'setRoot') {
+      Navigation.dismissOverlay(this.props.componentId);
+    }
+
     if (name === 'showModal') {
       this.setState({
         show: false,
@@ -144,37 +151,51 @@ class FloatingActionButton extends React.Component {
     const { fabActions } = this.props;
 
     return (
-      <AnimationWrapper
-        show={this.state.show}
-        onNavigationCommand={this.onNavigationCommand}
-        onGlobalEvent={this.onGlobalEvent}
-      >
-        <FloatingAction
-          color="#651eff"
-          distanceToEdge={isIphoneX() ? 55 : 20}
-          position={Platform.OS === 'ios' ? 'center' : 'right'}
-          customButtonStyles={{
-            shadowColor: colors.PURPLE,
-            shadowOffset: {
-              width: 0,
-              height: 0,
-            },
-          }}
-          floatingIcon={
-            <Image source={require('assets/buttons/fab/fab-icon.png')} />
-          }
-          overlayColor="rgba(0,0,0,0.15)"
-          actions={fabActions.map((a) => ({
-            name: a.triggerUrl,
-            margin: 0,
-            render: (props) => (
-              <FabAction {...props} text={a.text} enabled={a.enabled} />
-            ),
-          }))}
-          actionsPaddingTopBottom={0}
-          onPressItem={this.handlePressItem}
-        />
-      </AnimationWrapper>
+      <React.Fragment>
+        {this.state.fabOpen ? (
+          <BackButton
+            onPress={() => {
+              if (this.fabRef) {
+                this.fabRef.animateButton();
+              }
+            }}
+          />
+        ) : null}
+        <AnimationWrapper
+          show={this.state.show}
+          onNavigationCommand={this.onNavigationCommand}
+          onGlobalEvent={this.onGlobalEvent}
+        >
+          <FloatingAction
+            ref={(ref) => (this.fabRef = ref)}
+            color="#651eff"
+            distanceToEdge={isIphoneX() ? 55 : 20}
+            position={Platform.OS === 'ios' ? 'center' : 'right'}
+            customButtonStyles={{
+              shadowColor: colors.PURPLE,
+              shadowOffset: {
+                width: 0,
+                height: 0,
+              },
+            }}
+            floatingIcon={
+              <Image source={require('assets/buttons/fab/fab-icon.png')} />
+            }
+            overlayColor="rgba(0,0,0,0.15)"
+            actions={fabActions.map((a) => ({
+              name: a.triggerUrl,
+              margin: 0,
+              render: (props) => (
+                <FabAction {...props} text={a.text} enabled={a.enabled} />
+              ),
+            }))}
+            actionsPaddingTopBottom={0}
+            onPressItem={this.handlePressItem}
+            onPressMain={(open) => this.setState({ fabOpen: open })}
+            onPressBackdrop={() => this.setState({ fabOpen: false })}
+          />
+        </AnimationWrapper>
+      </React.Fragment>
     );
   }
 }

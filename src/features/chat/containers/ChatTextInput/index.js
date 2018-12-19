@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, TextInput, Platform, View } from 'react-native';
 import styled from '@sampettersson/primitives';
 import color from 'color';
-import { BlurView } from 'react-native-blur';
 import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
 import mime from 'mime-types';
 import { Container } from 'constate';
@@ -21,7 +20,7 @@ import { Picker as GiphyPicker } from '../../components/giphy-picker/picker';
 import { Provider as GiphyProvider } from '../../components/giphy-picker/context';
 import { Buttons } from '../../components/pickers/buttons';
 import { isIphoneX } from 'react-native-iphone-x-helper';
-
+import { BlurSwitchContainer } from '../../components/BlurSwitchContainer';
 import { InputHeightContainer } from '../InputHeight';
 
 const styles = StyleSheet.create({
@@ -47,18 +46,6 @@ const styles = StyleSheet.create({
       },
     }),
   },
-});
-
-const BlurContainer = styled(Platform.OS === 'android' ? View : BlurView)({
-  position: 'absolute',
-  bottom: 0,
-  width: '100%',
-  ...Platform.select({
-    ios: {},
-    android: {
-      backgroundColor: colors.WHITE,
-    },
-  }),
 });
 
 const BarContainer = styled(View)({
@@ -126,12 +113,18 @@ class ChatTextInput extends React.Component {
     const richTextChatCompatible = this.props.message.header
       .richTextChatCompatible;
 
+    const placeholder = this.props.message.body.placeholder
+      ? this.props.message.body.placeholder
+      : 'Skriv här...';
+
+    const keyboardType = this.props.message.body.keyboardType;
+
     return (
       <Container actions={actions} context="chatTextInputState">
         {({ setValue, value }) => (
           <Provider>
             <GiphyProvider>
-              <BlurContainer blurType="xlight">
+              <BlurSwitchContainer>
                 <BarContainer>
                   <InputHeightContainer>
                     {({ setInputHeight }) => (
@@ -149,9 +142,9 @@ class ChatTextInput extends React.Component {
                               autoFocus
                               autoCapitalize="none"
                               placeholder={
-                                this.props.keyboardType === 'numeric' ||
+                                keyboardType === 'numeric' ||
                                 !richTextChatCompatible
-                                  ? 'Skriv här...'
+                                  ? placeholder
                                   : 'Aa'
                               }
                               underlineColorAndroid="transparent"
@@ -162,7 +155,7 @@ class ChatTextInput extends React.Component {
                                   : undefined
                               }
                               multiline={richTextChatCompatible}
-                              keyboardType={this.props.keyboardType}
+                              keyboardType={keyboardType}
                               returnKeyType={
                                 richTextChatCompatible ? 'default' : 'send'
                               }
@@ -181,6 +174,9 @@ class ChatTextInput extends React.Component {
                                   this.setState({ scrollEnabled: false });
                                 }
                               }}
+                              textContentType={
+                                this.props.message.body.textContentType
+                              }
                               enablesReturnKeyAutomatically
                             />
                             <SendButton
@@ -220,7 +216,7 @@ class ChatTextInput extends React.Component {
                     <KeyboardSpacer restSpacing={isIphoneX() ? 35 : 0} />
                   )}
                 </BarContainer>
-              </BlurContainer>
+              </BlurSwitchContainer>
             </GiphyProvider>
           </Provider>
         )}

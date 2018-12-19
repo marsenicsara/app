@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { HEDVIG_LOGO_TITLE_COMPONENT } from '../../components/hedvigLogoTitle';
 import Chat from '../../../features/chat/Chat';
 
@@ -13,11 +14,15 @@ class ChatScreen extends React.Component {
           component: HEDVIG_LOGO_TITLE_COMPONENT,
         },
         rightButtons: [RESTART_BUTTON],
+        backButton: {
+          visible: false,
+        },
       },
       statusBar: {
         visible: true,
-        style: 'dark',
+        style: Platform.OS === 'android' ? 'light' : 'dark',
       },
+      popGesture: false,
     };
   }
 

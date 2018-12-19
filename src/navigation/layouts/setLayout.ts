@@ -19,13 +19,14 @@ export const setLayout = ({
         fontFamily: fonts.CIRCULAR,
       },
       largeTitle: {
-        fontFamily: fonts.CIRCULAR,
+        fontFamily: fonts.SORAY,
         fontSize: 30,
       },
     },
     statusBar: {
       visible: true,
       drawBehind: false,
+      style: 'light',
     },
     bottomTab: {
       iconColor: colors.DARK_GRAY,

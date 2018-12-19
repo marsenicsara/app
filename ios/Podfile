@@ -49,7 +49,7 @@ target 'hedvig' do
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
   pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
   pod 'react-native-config', :path => '../node_modules/@hedviginsurance/react-native-config'
-  pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
+  pod 'ReactNativeNavigation', :path => '../node_modules/@hedviginsurance/react-native-navigation'
   pod 'ReactNativeAnalyticsSegmentIo', :path => '../node_modules/react-native-analytics-segment-io'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler/ios'
@@ -59,7 +59,7 @@ target 'hedvig' do
 
   pod 'react-native-video', :path => '../node_modules/react-native-video'
 
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
+  pod 'RNFS', :path => '../node_modules/@hedviginsurance/react-native-fs'
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
@@ -70,16 +70,23 @@ target 'hedvig' do
   pod 'react-native-document-picker', :path => '../node_modules/@hedviginsurance/react-native-document-picker'
 
   ## Pods from ugglan
+  pod 'DeviceKit', '~> 1.3'
+  pod 'lottie-ios'
   pod 'Tempura'
   pod 'PinLayout'
   pod 'SwiftLint'
   pod 'DynamicColor', '~> 4.0.2'
   pod 'SwiftFormat/CLI'
-  pod 'UIViewRoundedCorners'
   pod 'Apollo'
   pod 'Apollo/WebSocket'
   pod 'Disk', '~> 0.4.0'
-  pod 'FlowFramework', '~> 1.0'
+  pod 'FlowFramework', '~> 1.3'
+  pod 'FormFramework/Presentation', git: 'https://github.com/hedviginsurance/form.git'
+  pod 'FormFramework', git: 'https://github.com/hedviginsurance/form.git'
+  pod 'SnapKit', '~> 4.0.0'
+  pod 'UICollectionView+AnimatedScroll', git: 'https://github.com/HedvigInsurance/UICollectionView-AnimatedScroll.git'
+  pod 'FlowOn', git: 'https://github.com/HedvigInsurance/FlowOn.git'
+  pod 'FlowFeedback', git: 'https://github.com/HedvigInsurance/FlowFeedback.git'
 
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|

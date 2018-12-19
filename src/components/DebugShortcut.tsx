@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Config from '@hedviginsurance/react-native-config'
 import { TouchableWithoutFeedback, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { getDebugLayout, openDebugLayout } from 'src/navigation/screens/debug/layout';
@@ -9,7 +10,7 @@ interface DebugShortcutProps {
 }
 
 export const DebugShortcut: React.StatelessComponent<DebugShortcutProps> = ({ children, componentId }) => {
-  if (__DEV__) {
+  if (__DEV__ || Config.APP_ID !== 'com.hedvig.app') {
     return (
       <TouchableWithoutFeedback onLongPress={() => {
         switch (Platform.OS) {

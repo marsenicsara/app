@@ -7,15 +7,17 @@ class DashboardScreen extends React.Component {
   static get options() {
     return {
       topBar: {
-        drawBehind: true,
-        visible: false,
+        visible: true,
+        largeTitle: {
+          visible: true,
+        },
         title: {
           text: 'Min hemförsäkring',
         },
       },
       statusBar: {
         visible: true,
-        style: 'dark',
+        style: Platform.OS === 'android' ? 'light' : 'dark',
       },
     };
   }

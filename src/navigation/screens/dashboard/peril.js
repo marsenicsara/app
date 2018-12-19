@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { HEDVIG_LOGO_TITLE_COMPONENT } from '../../components/hedvigLogoTitle';
 import { Perils } from '../../../components/Perils';
 import { navigationConstants } from '../../constants';
@@ -17,7 +18,7 @@ class PerilScreen extends React.Component {
       },
       statusBar: {
         visible: true,
-        style: 'dark',
+        style: Platform.OS === 'android' ? 'light' : 'dark',
         drawBehind: false,
       },
       layout: {
