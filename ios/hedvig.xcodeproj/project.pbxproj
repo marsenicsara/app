@@ -73,6 +73,7 @@
 		EB034D5D21C95D3E00078D65 /* SafeAreaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB034D2521C95D3D00078D65 /* SafeAreaContainer.swift */; };
 		EB034D5E21C95D3E00078D65 /* InputFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB034D2621C95D3D00078D65 /* InputFieldView.swift */; };
 		EB034D5F21C95D3E00078D65 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB034D2721C95D3D00078D65 /* ChatView.swift */; };
+		EB034D6821CA7D2900078D65 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB034D6521CA7D2900078D65 /* Button.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
 		EBECC21521B811F500716BEA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EBECC1A721B811F400716BEA /* .swiftlint.yml */; };
 		EBECC23821B811F500716BEA /* AppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC1DB21B811F500716BEA /* AppNavigation.swift */; };
@@ -207,6 +208,7 @@
 		EB034D2521C95D3D00078D65 /* SafeAreaContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeAreaContainer.swift; sourceTree = "<group>"; };
 		EB034D2621C95D3D00078D65 /* InputFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputFieldView.swift; sourceTree = "<group>"; };
 		EB034D2721C95D3D00078D65 /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		EB034D6521CA7D2900078D65 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		EB3A235521A57EE4007F52B6 /* hedvig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hedvig-Bridging-Header.h"; sourceTree = "<group>"; };
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 		EB034CFC21C95D3D00078D65 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
+				EB034D6421CA7D2900078D65 /* Viewables */,
 				EB034CFD21C95D3D00078D65 /* DelayedDisposer.swift */,
 				EB034CFE21C95D3D00078D65 /* Flow+PanGesture.swift */,
 				EB034CFF21C95D3D00078D65 /* TransitionStyle.swift */,
@@ -528,6 +531,14 @@
 				EB034D2421C95D3D00078D65 /* SelectCollectionViewCell.swift */,
 			);
 			path = SelectCollection;
+			sourceTree = "<group>";
+		};
+		EB034D6421CA7D2900078D65 /* Viewables */ = {
+			isa = PBXGroup;
+			children = (
+				EB034D6521CA7D2900078D65 /* Button.swift */,
+			);
+			path = Viewables;
 			sourceTree = "<group>";
 		};
 		EBECC1A621B811F400716BEA /* ugglan */ = {
@@ -945,6 +956,7 @@
 				EB034D4821C95D3E00078D65 /* ClosureHandler.swift in Sources */,
 				EB034D4921C95D3E00078D65 /* UIView+Viewable.swift in Sources */,
 				EB034D3221C95D3E00078D65 /* End.swift in Sources */,
+				EB034D6821CA7D2900078D65 /* Button.swift in Sources */,
 				EBECC24121B811F500716BEA /* InsertMessage.swift in Sources */,
 				EB034D3A21C95D3E00078D65 /* MarketingStoryIndicator.swift in Sources */,
 				EB034D5421C95D3E00078D65 /* Chat.swift in Sources */,
