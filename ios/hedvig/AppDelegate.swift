@@ -7,7 +7,6 @@ import Flow
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let bag = DisposeBag()
-    let navigationController = UINavigationController()
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     var splashWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     
@@ -15,16 +14,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
         ) -> BooleanLiteralType {
-        window?.rootViewController = UINavigationController()
-        splashWindow?.rootViewController = navigationController
-        navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.view = { () -> UIView in
+        let rootNavigationController = UINavigationController()
+        rootNavigationController.setNavigationBarHidden(true, animated: false)
+        rootNavigationController.view = { () -> UIView in
+            let view = UIView()
+            view.backgroundColor = UIColor.white
+            return view
+        }()
+        window?.rootViewController = rootNavigationController
+        window?.backgroundColor = UIColor.white
+        
+        let splashNavigationController = UINavigationController()
+        splashWindow?.rootViewController = splashNavigationController
+        splashNavigationController.setNavigationBarHidden(true, animated: false)
+        splashNavigationController.view = { () -> UIView in
             let view = UIView()
             view.backgroundColor = UIColor.clear
             return view
         }()
         splashWindow?.isOpaque = false
         splashWindow?.backgroundColor = UIColor.clear
+        splashWindow?.windowLevel = .alert
+        splashWindow?.makeKeyAndVisible()
         
         FirebaseApp.configure()
         RNFirebaseNotifications.configure()
@@ -47,14 +58,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             options: [.unanimated, .prefersNavigationBarHidden(true)]
         )
         
-        self.bag += self.navigationController.present(launchPresentation).onValue({ _ in
+        self.bag += splashNavigationController.present(launchPresentation).onValue({ _ in
             self.splashWindow = nil
             self.window?.makeKeyAndVisible()
         })
-        
-        self.window?.makeKeyAndVisible()
-        self.splashWindow?.windowLevel = .alert
-        self.splashWindow?.makeKeyAndVisible()
         
         var jsCodeLocation: URL
         
@@ -74,7 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!
         )
         
-        HedvigApolloClient.shared.createClient(token: nil, environment: environment).onValue { client in
+        // we get a black screen flicker without the delay
+        HedvigApolloClient.shared.createClient(token: nil, environment: environment).delay(by: 0.05).onValue { client in
             ReactNativeNavigation.bootstrapBrownField(
                 jsCodeLocation,
                 launchOptions: launchOptions,
@@ -86,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
             let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
             self.bag += nativeRouting.appHasLoadedSignal.onValue({ _ in
+                self.window?.makeKeyAndVisible()
                 hasLoadedCallbacker.callAll()
             })
             
