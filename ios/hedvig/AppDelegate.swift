@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return view
         }()
         window?.rootViewController = rootNavigationController
+        window?.windowLevel = .normal
         window?.backgroundColor = UIColor.white
+        window?.makeKeyAndVisible()
         
         let splashNavigationController = UINavigationController()
         splashWindow?.rootViewController = splashNavigationController
@@ -60,7 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.bag += splashNavigationController.present(launchPresentation).onValue({ _ in
             self.splashWindow = nil
-            self.window?.makeKeyAndVisible()
         })
         
         var jsCodeLocation: URL
@@ -94,7 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
             let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
             self.bag += nativeRouting.appHasLoadedSignal.onValue({ _ in
-                self.window?.makeKeyAndVisible()
                 hasLoadedCallbacker.callAll()
             })
             
