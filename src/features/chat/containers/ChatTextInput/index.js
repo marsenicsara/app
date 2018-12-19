@@ -174,6 +174,9 @@ class ChatTextInput extends React.Component {
                                   this.setState({ scrollEnabled: false });
                                 }
                               }}
+                              textContentType={
+                                this.props.message.body.textContentType
+                              }
                               enablesReturnKeyAutomatically
                             />
                             <SendButton
