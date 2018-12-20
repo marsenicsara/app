@@ -3,13 +3,13 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { View, AppState } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { Mount, Update, Unmount } from 'react-lifecycle-components';
+import { Mount, Update } from 'react-lifecycle-components';
 import { Container, ActionMap, EffectMap, EffectProps } from 'constate';
 
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
 import { Loader } from '../../components/Loader';
-import { chatActions, dialogActions } from '../../../hedvig-redux';
+import { chatActions } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
 import { NavigationEvents } from 'src/navigation/events';
@@ -28,12 +28,18 @@ import {
 
 import { Avatar, Choice, Message } from './types';
 
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import { MESSAGE_QUERY } from './chat-query';
 import { MESSAGE_SUBSCRIPTION } from './chat-subscription';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
-import { BackButton } from 'src/components/BackButton';
-import { Text } from 'react-native';
+import gql from 'graphql-tag';
+import { ResetChatModal } from './components/ResetChatModal';
+
+const RESET_MUTATION = gql`
+  mutation resetConversation {
+    resetConversation
+  }
+`;
 
 interface ChatProps {
   onboardingDone: boolean;
@@ -42,7 +48,6 @@ interface ChatProps {
   componentId: string;
   intent: string;
   messages: Array<Message>;
-  getMessages: (intent: string) => void;
   resetConversation: () => void;
 }
 
@@ -110,26 +115,18 @@ const showOffer = async (componentId: string) => {
   }
 };
 
-const handleAppStateChange = (
-  appState: string,
-  getMessages: (intent: string) => void,
-  intent: string,
-) => {
-  if (appState === 'active') {
-    getMessages(intent);
-  }
-};
-
 interface State {
   messages: Message[];
   avatars: Avatar[];
   displayLoadingIndicator: boolean;
   stackedInterval: number;
+  showResetDialog: boolean;
 }
 
 interface Actions {
   setMessages: (messages: Message[]) => void;
   selectChoice: (message: Message, choice: Choice) => void;
+  setShowResetDialog: (show: boolean) => void;
 }
 
 const actions: ActionMap<State, Actions> = {
@@ -156,6 +153,9 @@ const actions: ActionMap<State, Actions> = {
 
     return { messages };
   },
+  setShowResetDialog: (showResetDialog) => () => ({
+    showResetDialog,
+  }),
 };
 const KeyboardAvoidingOnAndroidIfModal: React.SFC<{ isModal: boolean }> = ({
   children,
@@ -208,12 +208,9 @@ const Chat: React.SFC<ChatProps> = ({
   isModal,
   showReturnToOfferButton,
   componentId,
-  intent,
-  getMessages,
-  resetConversation,
 }) => (
   <Query query={MESSAGE_QUERY} fetchPolicy="network-only">
-    {({ loading, error, data, subscribeToMore }) =>
+    {({ loading, error, data, subscribeToMore, client }) =>
       !loading && !error && data ? (
         <Container
           actions={actions}
@@ -232,12 +229,14 @@ const Chat: React.SFC<ChatProps> = ({
             setMessages,
             addToChat,
             stackedInterval,
+            showResetDialog,
+            setShowResetDialog,
           }) => (
             <>
               <NavigationEvents
                 onNavigationButtonPressed={(event: any) => {
                   if (event.buttonId === RESTART_BUTTON.id) {
-                    resetConversation();
+                    setShowResetDialog(true);
                   }
 
                   if (event.buttonId === CLOSE_BUTTON.id) {
@@ -255,10 +254,6 @@ const Chat: React.SFC<ChatProps> = ({
               />
               <Mount
                 on={() => {
-                  AppState.addEventListener('change', (appState) => {
-                    handleAppStateChange(appState, getMessages, intent);
-                  });
-
                   subscribeToMore({
                     document: MESSAGE_SUBSCRIPTION,
                     updateQuery: (prev, { subscriptionData }) => {
@@ -266,8 +261,13 @@ const Chat: React.SFC<ChatProps> = ({
 
                       const newMessage = subscriptionData.data.message;
 
+                      console.log(newMessage);
+                      console.log(prev);
+
                       const updatedMessages = Object.assign({}, prev, {
-                        messages: [newMessage, ...prev.messages],
+                        messages: prev.messages
+                          ? [newMessage, ...prev.messages]
+                          : [newMessage],
                       });
 
                       const delay = newMessage.header.pollingInterval || 0;
@@ -284,15 +284,6 @@ const Chat: React.SFC<ChatProps> = ({
               <Update was={() => {}} watched={messages}>
                 {null}
               </Update>
-              <Unmount
-                on={() => {
-                  AppState.addEventListener('change', (appState) => {
-                    handleAppStateChange(appState, getMessages, intent);
-                  });
-                }}
-              >
-                {null}
-              </Unmount>
 
               <NavigationOptions
                 options={getNavigationOptions(
@@ -319,6 +310,26 @@ const Chat: React.SFC<ChatProps> = ({
                   </Response>
                 </KeyboardAvoidingOnAndroidIfModal>
               </NavigationOptions>
+
+              <Mutation mutation={RESET_MUTATION}>
+                {(reset) => (
+                  <ResetChatModal
+                    showModal={showResetDialog}
+                    updateModalVisibility={setShowResetDialog}
+                    onConfirm={() => {
+                      setMessages([]);
+                      client.clearStore();
+                      reset({
+                        refetchQueries: [
+                          {
+                            query: MESSAGE_QUERY,
+                          },
+                        ],
+                      });
+                    }}
+                  />
+                )}
+              </Mutation>
             </>
           )}
         </Container>
@@ -334,31 +345,12 @@ const mapStateToProps = (state: any) => {
     showReturnToOfferButton: selectors.shouldShowReturnToOfferScreenButton(
       state,
     ),
-    intent: state.conversation.intent,
     onboardingDone: selectors.isOnboardingDone(state),
   };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getMessages: (intent: null | string) =>
-      dispatch(
-        chatActions.getMessages({
-          intent,
-        }),
-      ),
-    resetConversation: () =>
-      dispatch(
-        dialogActions.showDialog({
-          title: 'Vill du börja om?',
-          paragraph:
-            'Om du trycker ja så börjar\nkonversationen om från början',
-          confirmButtonTitle: 'Ja',
-          dismissButtonTitle: 'Nej',
-          onConfirm: () => dispatch(chatActions.resetConversation()),
-          onDismiss: () => {},
-        }),
-      ),
     editLastResponse: () => dispatch(chatActions.editLastResponse()),
   };
 };
