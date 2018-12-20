@@ -259,18 +259,41 @@ const Chat: React.SFC<ChatProps> = ({
                     updateQuery: (prev, { subscriptionData }) => {
                       if (!subscriptionData.data) return prev;
 
+                      console.log('\n\nPrev: ', prev.messages);
+
                       const newMessage = subscriptionData.data.message;
 
-                      console.log(newMessage);
-                      console.log(prev);
+                      const filteredMessages =
+                        prev.messages &&
+                        prev.messages.filter(
+                          (message: Message) =>
+                            message.globalId !== newMessage.globalId,
+                        );
+
+                      const deleted = prev.messages
+                        ? filteredMessages.length !== prev.messages.length
+                        : false;
+
+                      console.log('New message: ', newMessage);
+
+                      if (prev.messages) {
+                        console.log('Deleted: ', deleted);
+                      }
+
+                      console.log('Filtered: ', filteredMessages);
 
                       const updatedMessages = Object.assign({}, prev, {
                         messages: prev.messages
-                          ? [newMessage, ...prev.messages]
+                          ? deleted
+                            ? filteredMessages
+                            : [newMessage, ...prev.messages]
                           : [newMessage],
                       });
 
-                      const delay = newMessage.header.pollingInterval || 0;
+                      const delay = deleted
+                        ? 0
+                        : newMessage.header.pollingInterval || 0;
+
                       addToChat(updatedMessages.messages, delay);
 
                       return updatedMessages;
@@ -281,9 +304,6 @@ const Chat: React.SFC<ChatProps> = ({
               >
                 {null}
               </Mount>
-              <Update was={() => {}} watched={messages}>
-                {null}
-              </Update>
 
               <NavigationOptions
                 options={getNavigationOptions(
@@ -317,15 +337,7 @@ const Chat: React.SFC<ChatProps> = ({
                     showModal={showResetDialog}
                     updateModalVisibility={setShowResetDialog}
                     onConfirm={() => {
-                      setMessages([]);
-                      client.clearStore();
-                      reset({
-                        refetchQueries: [
-                          {
-                            query: MESSAGE_QUERY,
-                          },
-                        ],
-                      });
+                      reset();
                     }}
                   />
                 )}
