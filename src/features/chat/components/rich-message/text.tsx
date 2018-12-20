@@ -14,6 +14,7 @@ import {
 
 import { Props } from './types';
 import gql from 'graphql-tag';
+import { ConfirmationDialog } from '../ConfirmationDialog';
 
 const EDIT_LAST_RESPONSE_MUTATION = gql`
   mutation editLastResponse {
@@ -63,15 +64,11 @@ export const TextMessage: React.SFC<Props> = ({
             <EditMessageButtonContainer
               hasStatusMessage={!!message.header.statusMessage}
             >
-              <Mutation mutation={EDIT_LAST_RESPONSE_MUTATION}>
-                {(edit) => (
-                  <EditMessageButton
-                    onPress={() => {
-                      setShowEditDialog(true), edit();
-                    }}
-                  />
-                )}
-              </Mutation>
+              <EditMessageButton
+                onPress={() => {
+                  setShowEditDialog(true);
+                }}
+              />
             </EditMessageButtonContainer>
           )}
           <MessageContainer withMargin={withMargin}>
@@ -84,6 +81,22 @@ export const TextMessage: React.SFC<Props> = ({
               </StyledDefaultUserMessageText>
             </Hyperlink>
           </MessageContainer>
+
+          <Mutation mutation={EDIT_LAST_RESPONSE_MUTATION}>
+            {(edit) => (
+              <ConfirmationDialog
+                title={'Vill du ändra ditt svar?'}
+                paragraph={'Tryck ja för att ändra ditt\nsvar på förra frågan'}
+                confirmButtonTitle={'Ja'}
+                dismissButtonTitle={'Nej'}
+                showModal={showEditDialog}
+                updateModalVisibility={setShowEditDialog}
+                onConfirm={() => {
+                  edit();
+                }}
+              />
+            )}
+          </Mutation>
         </>
       )}
     </Container>
