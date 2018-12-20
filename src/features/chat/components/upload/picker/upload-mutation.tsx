@@ -111,7 +111,7 @@ const uploadHandler = (
 
   const file = new ReactNativeFile({
     uri: realURI,
-    name: realFileName.toLowerCase(),
+    name: encodeURI(realFileName.toLowerCase()),
     type: mime.lookup(realFileName) || '',
   });
 
