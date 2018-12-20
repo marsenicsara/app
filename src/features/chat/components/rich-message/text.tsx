@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import styled from '@sampettersson/primitives';
 import Hyperlink from 'react-native-hyperlink';
 import { Mutation } from 'react-apollo';
-import { Container } from 'constate';
+import { Container, ActionMap } from 'constate';
 
 import EditMessageButton from 'src/features/chat/containers/EditMessageButton';
 import {
@@ -30,6 +30,20 @@ const EditMessageButtonContainer = styled(View)(
   }),
 );
 
+interface State {
+  showEditDialog: boolean;
+}
+
+interface Actions {
+  setShowEditDialog: (show: boolean) => void;
+}
+
+const actions: ActionMap<State, Actions> = {
+  setShowEditDialog: (showEditDialog) => () => ({
+    showEditDialog,
+  }),
+};
+
 const getContainerComponent = (fromUser: boolean) =>
   fromUser ? StyledUserChatMessage : StyledHedvigMessage;
 
@@ -42,8 +56,8 @@ export const TextMessage: React.SFC<Props> = ({
   const MessageContainer = getContainerComponent(fromUser);
 
   return (
-    <Container initialState={{ showEditDialog: false }}>
-      {({ showEditDialog }) => (
+    <Container actions={actions} initialState={{ showEditDialog: false }}>
+      {({ showEditDialog, setShowEditDialog }) => (
         <>
           {message.header.editAllowed && (
             <EditMessageButtonContainer
@@ -53,7 +67,7 @@ export const TextMessage: React.SFC<Props> = ({
                 {(edit) => (
                   <EditMessageButton
                     onPress={() => {
-                      edit();
+                      setShowEditDialog(true), edit();
                     }}
                   />
                 )}

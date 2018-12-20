@@ -3,12 +3,20 @@ import { ModalDialog } from 'src/components/ModalDialog';
 import { Delayed } from 'src/components/Delayed';
 
 interface Props {
+  title: string;
+  paragraph: string;
+  confirmButtonTitle: string;
+  dismissButtonTitle: string;
   showModal: boolean;
   updateModalVisibility: (visible: boolean) => void;
   onConfirm: () => void;
 }
 
-export const ResetChatModal: React.SFC<Props> = ({
+export const ConfirmationDialog: React.SFC<Props> = ({
+  title,
+  paragraph,
+  confirmButtonTitle,
+  dismissButtonTitle,
   showModal,
   updateModalVisibility,
   onConfirm,
@@ -19,10 +27,10 @@ export const ResetChatModal: React.SFC<Props> = ({
     unmountChildrenAfter={100}
   >
     <ModalDialog
-      title={'Vill du börja om?'}
-      paragraph={'Om du trycker ja så börjar\nkonversationen om från början'}
-      confirmButtonTitle={'Ja'}
-      dismissButtonTitle={'Nej'}
+      title={title}
+      paragraph={paragraph}
+      confirmButtonTitle={confirmButtonTitle}
+      dismissButtonTitle={dismissButtonTitle}
       onConfirm={async () => {
         updateModalVisibility(false);
         onConfirm();

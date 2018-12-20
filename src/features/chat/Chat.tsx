@@ -33,7 +33,7 @@ import { MESSAGE_QUERY } from './chat-query';
 import { MESSAGE_SUBSCRIPTION } from './chat-subscription';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
 import gql from 'graphql-tag';
-import { ResetChatModal } from './components/ResetChatModal';
+import { ConfirmationDialog } from './components/ConfirmationDialog';
 
 const RESET_MUTATION = gql`
   mutation resetConversation {
@@ -333,7 +333,13 @@ const Chat: React.SFC<ChatProps> = ({
 
               <Mutation mutation={RESET_MUTATION}>
                 {(reset) => (
-                  <ResetChatModal
+                  <ConfirmationDialog
+                    title={'Vill du börja om?'}
+                    paragraph={
+                      'Om du trycker ja så börjar\nkonversationen om från början'
+                    }
+                    confirmButtonTitle={'Ja'}
+                    dismissButtonTitle={'Nej'}
                     showModal={showResetDialog}
                     updateModalVisibility={setShowResetDialog}
                     onConfirm={() => {
