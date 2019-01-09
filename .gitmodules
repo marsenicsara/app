@@ -1,3 +1,6 @@
 [submodule "ios/hedvig/ugglan"]
 	path = ios/hedvig/ugglan
 	url = https://github.com/hedviginsurance/ugglan
+[submodule "android/owldroid"]
+	path = android/owldroid
+	url = git@github.com:HedvigInsurance/owldroid.git
