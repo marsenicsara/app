@@ -1,8 +1,6 @@
 include ':app'
 include ':react-native-document-picker'
 project(':react-native-document-picker').projectDir = new File(rootProject.projectDir, '../node_modules/@hedviginsurance/react-native-document-picker/android')
-include ':react-native-blur'
-project(':react-native-blur').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-blur/android')
 include ':react-native-fast-image'
 project(':react-native-fast-image').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fast-image/android')
 include ':react-native-image-picker'
@@ -38,6 +36,9 @@ project(':react-native-branch').projectDir = new File(rootProject.projectDir, '.
 include ':react-native-audio'
 project(':react-native-audio').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-audio/android')
 include ':react-native-analytics-segment-io'
-project(':react-native-analytics-segment-io').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-analytics-segment-io/android')
+project(':react-native-analytics-segment-io').projectDir = new File(rootProject.projectDir, '../node_modules/@hedviginsurance/react-native-analytics-segment-io/android')
 include ':lottie-react-native'
 project(':lottie-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/lottie-react-native/src/android')
+
+include ':owldroid'
+project(':owldroid').projectDir = new File(rootProject.projectDir, 'owldroid/app')

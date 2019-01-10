@@ -31,11 +31,21 @@ export const getMarketingLayout = () =>
         },
       };
     },
-    // @ts-ignore
     android: () => ({
       root: {
         stack: {
-          children: [MARKETING_SCREEN],
+          children: [
+            {
+              externalComponent: {
+                name: 'marketingScreen'
+              }
+            },
+          ],
+          options: {
+            topBar: {
+              visible: false
+            }
+          }
         },
       },
     }),
