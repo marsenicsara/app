@@ -1,5 +1,4 @@
 import { Platform } from 'react-native';
-import { MARKETING_SCREEN } from '../screens/marketing';
 import { Navigation } from 'react-native-navigation';
 import { registerExternalComponentId } from './../native-routing';
 
@@ -31,22 +30,29 @@ export const getMarketingLayout = () =>
         },
       };
     },
-    android: () => ({
-      root: {
-        stack: {
-          children: [
-            {
-              externalComponent: {
-                name: 'marketingScreen'
+    android: () => {
+      Navigation.events().registerComponentDidAppearListener(({ componentId, componentName }) => {
+        registerExternalComponentId(componentId, componentName)
+      })
+
+      return {
+        root: {
+          stack: {
+            children: [
+              {
+                externalComponent: {
+                  name: 'marketingScreen'
+                }
+              },
+            ],
+            options: {
+              topBar: {
+                visible: false,
+                drawBehind: true,
               }
-            },
-          ],
-          options: {
-            topBar: {
-              visible: false
             }
-          }
+          },
         },
-      },
-    }),
+      }
+    }
   })();

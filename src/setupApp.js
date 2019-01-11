@@ -22,7 +22,6 @@ import routerReducer from './reducers/router';
 import conversationReducer from './reducers/conversation';
 import { bankIdReducer } from './features/bankid/reducer';
 import { offerReducer } from './features/offer/state/reducer';
-import { marketingReducer } from './features/marketing/reducer';
 import { appStateSaga } from './sagas/appState';
 import { keyboardSaga } from './sagas/keyboard';
 import { handleCheckoutSaga } from './features/offer/state/saga';
@@ -34,7 +33,6 @@ import {
   bankIdAppStateChangeSaga,
 } from './features/bankid/saga';
 import { requestPushSaga, registerPushSaga } from './sagas/pushNotifications';
-import { chatStartSaga, chatLoginSaga } from './features/marketing/saga';
 import { DEEP_LINK_OPENED } from './features/deep-linking/actions';
 import { getOrLoadToken } from './services/TokenStorage';
 import {
@@ -65,11 +63,6 @@ import {
   TRACK_OFFER_SIGNED,
   TRACK_PAYMENT_ADDED,
 } from './features/analytics/actions';
-import {
-  MARKETING_SET_ACTIVE_SCREEN,
-  MARKETING_CHAT_LOGIN,
-  MARKETING_CHAT_START,
-} from './features/marketing/actions';
 
 let SentryInstance = Sentry;
 let ravenMiddleware;
@@ -133,23 +126,6 @@ const eventsMap = {
     eventName: SemanticEvents.Ecommerce.PaymentInfoEntered,
     customProperties: payload,
   })),
-  [MARKETING_SET_ACTIVE_SCREEN]: trackEvent(({ payload, analytics }) => ({
-    eventName: SemanticEvents.Ecommerce.PromotionViewed,
-    customProperties: {
-      step: payload.index,
-      ...analytics,
-    },
-  })),
-  [MARKETING_CHAT_LOGIN]: trackEvent(({ analytics }) => ({
-    eventName: 'Log in clicked',
-    customProperties: {
-      ...analytics,
-    },
-  })),
-  [MARKETING_CHAT_START]: trackEvent(({ analytics }) => ({
-    eventName: 'Start chat clicked',
-    customProperties: { ...analytics },
-  })),
 };
 
 const segmentMiddleware = createMiddleware(
@@ -191,7 +167,6 @@ let store = hedvigRedux.configureStore({
     router: routerReducer,
     bankid: bankIdReducer,
     offer: offerReducer,
-    marketing: marketingReducer,
   },
   additionalSagas: [
     apiAndNavigateToChatSaga,
@@ -199,8 +174,6 @@ let store = hedvigRedux.configureStore({
     keyboardSaga,
     tokenStorageSaga,
     logoutSaga,
-    chatStartSaga,
-    chatLoginSaga,
     requestPushSaga,
     registerPushSaga,
     handleCheckoutSaga,

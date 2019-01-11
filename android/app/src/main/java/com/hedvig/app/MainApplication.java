@@ -96,7 +96,8 @@ public class MainApplication extends NavigationApplication implements HasSupport
                 new RNBranchPackage(),
                 new ReactNativeAudioPackage(),
                 new AnalyticsPackage(),
-                new LottiePackage()
+                new LottiePackage(),
+                new NativeRoutingPackage()
         );
     }
 
