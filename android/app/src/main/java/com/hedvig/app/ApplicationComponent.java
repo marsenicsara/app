@@ -1,8 +1,8 @@
 package com.hedvig.app;
 
-import com.hedvig.android.app.AppModule;
-import com.hedvig.android.app.FragmentContributorModule;
-import com.hedvig.android.app.ViewModelModule;
+import com.hedvig.android.owldroid.di.FragmentContributorModule;
+import com.hedvig.android.owldroid.di.OwldroidModule;
+import com.hedvig.android.owldroid.di.ViewModelModule;
 
 import javax.inject.Singleton;
 
@@ -12,7 +12,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
-@Component(modules = { AndroidSupportInjectionModule.class, ApplicationModule.class, AppModule.class, ViewModelModule.class, FragmentContributorModule.class})
+@Component(modules = { AndroidSupportInjectionModule.class, ApplicationModule.class, OwldroidModule.class, ViewModelModule.class, FragmentContributorModule.class})
 public interface ApplicationComponent extends AndroidInjector<MainApplication> {
     @Override
     void inject(MainApplication mainApplication);

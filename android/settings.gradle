@@ -41,4 +41,4 @@ include ':lottie-react-native'
 project(':lottie-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/lottie-react-native/src/android')
 
 include ':owldroid'
-project(':owldroid').projectDir = new File(rootProject.projectDir, 'owldroid/app')
+project(':owldroid').projectDir = new File(rootProject.projectDir, 'owldroid/owldroid')

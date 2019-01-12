@@ -6,9 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.hedvig.android.owldroid.ui.marketing.MarketingFragment;
 import com.reactnativenavigation.viewcontrollers.externalcomponent.ExternalComponent;
-
-import com.hedvig.android.app.MarketingFragment;
 
 public class MarketingScreenComponent implements ExternalComponent {
     private final FrameLayout component;

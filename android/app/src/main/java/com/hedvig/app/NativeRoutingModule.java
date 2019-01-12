@@ -14,7 +14,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import com.hedvig.android.app.MarketingFragment;
+import com.hedvig.android.owldroid.ui.marketing.MarketingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
