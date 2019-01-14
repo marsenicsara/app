@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
+
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
 project.ext.react = [
-  entryFile: "index.js",
-  bundleInStaging: true,
-  devDisabledInStaging: true
+        entryFile           : "index.js",
+        bundleInStaging     : true,
+        devDisabledInStaging: true
 ]
 
 apply from: '../../node_modules/react-native/react.gradle'
@@ -16,104 +17,115 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-  compileSdkVersion 28
-  buildToolsVersion '28.0.2'
+    compileSdkVersion 28
 
-  defaultConfig {
-    applicationId project.env.get('APP_ID')
-    minSdkVersion 19
-    multiDexEnabled true
-    versionCode 40
-    versionName '2.5.0'
-    missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
+    defaultConfig {
+        applicationId project.env.get('APP_ID')
+        minSdkVersion 19
+        multiDexEnabled true
+        versionCode 40
+        versionName '2.5.0'
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
 
-    resValue "string", "build_config_package", "com.hedvig.app"
+        resValue "string", "build_config_package", "com.hedvig.app"
 
-    ndk {
-      abiFilters 'armeabi-v7a', 'x86'
-    }
-  }
-
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
-
-  splits {
-    abi {
-      reset()
-      enable enableSeparateBuildPerCPUArchitecture
-      universalApk true
-      include 'armeabi-v7a', 'x86'
-    }
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled enableProguardInReleaseBuilds
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86'
+        }
     }
 
-    staging {
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    debug {
-      debuggable true
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk true
+            include 'armeabi-v7a', 'x86'
+        }
     }
-  }
 
-  applicationVariants.all { variant ->
-    variant.outputs.each { output ->
-      def versionCodes = ['armeabi-v7a':1, 'x86':2]
-      def abi = output.getFilter(OutputFile.ABI)
-      if (abi != null) {
-        output.versionCodeOverride = versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
-      }
+    buildTypes {
+        release {
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        staging {
+
+        }
+
+        debug {
+            debuggable true
+        }
     }
-  }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def versionCodes = ['armeabi-v7a': 1, 'x86': 2]
+            def abi = output.getFilter(OutputFile.ABI)
+            if (abi != null) {
+                output.versionCodeOverride = versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+            }
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.force 'android.arch.lifecycle:livedata-core:1.1.0'
+        resolutionStrategy.force 'android.arch.core:runtime:1.1.0'
+        resolutionStrategy.force 'android.arch.core:common:1.1.0'
+    }
 }
 
 dependencies {
-  compile project(':react-native-document-picker')
-  compile project(':react-native-blur')
-  compile project(':react-native-fast-image')
-  compile project(':react-native-image-picker')
-  compile project(':react-native-fs')
-  compile project(':react-native-video')
-  compile project(':react-native-gesture-handler')
-  compile project(':react-native-device-info')
-  compile project(':react-native-svg')
-  compile project(':react-native-config')
-  compile project(':rn-fetch-blob')
-  compile project(':react-native-sound')
-  compile project(':react-native-sentry')
-  compile project(':react-native-firebase')
-  compile project(':react-native-branch')
-  compile project(':react-native-audio')
-  compile project(':react-native-analytics-segment-io')
-  compile project(':lottie-react-native')
-  compile project(':react-native-code-push')
+    implementation project(':react-native-document-picker')
+    implementation project(':react-native-fast-image')
+    implementation project(':react-native-image-picker')
+    implementation project(':react-native-fs')
+    implementation project(':react-native-video')
+    implementation project(':react-native-gesture-handler')
+    implementation project(':react-native-device-info')
+    implementation project(':react-native-svg')
+    implementation project(':react-native-config')
+    implementation project(':rn-fetch-blob')
+    implementation project(':react-native-sound')
+    implementation project(':react-native-sentry')
+    implementation project(':react-native-firebase')
+    implementation project(':react-native-branch')
+    implementation project(':react-native-audio')
+    implementation project(':react-native-analytics-segment-io')
+    implementation project(':lottie-react-native')
+    implementation project(':react-native-code-push')
 
-  // React-Native-Navigation
-  implementation project(':react-native-navigation')
-  implementation 'com.android.support:design:27.1.1'
+    // React-Native-Navigation
+    implementation project(':react-native-navigation')
+    implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
 
-  // Firebase
-  implementation project(':react-native-firebase')
-  implementation 'com.google.android.gms:play-services-base:15.0.1'
-  implementation 'com.google.firebase:firebase-core:16.0.1'
-  implementation 'com.google.firebase:firebase-messaging:17.3.0'
-  implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
+    // Firebase
+    implementation project(':react-native-firebase')
+    implementation 'com.google.android.gms:play-services-base:15.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-messaging:17.3.0'
+    implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
 
-  // Segment
-  implementation 'com.google.android.gms:play-services-ads:15.0.1'
-  compile 'com.segment.analytics.android:analytics:4.2.6'
-  compile 'com.android.support:multidex:1.0.3'
-  // compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
+    // Segment
+    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+    implementation 'com.segment.analytics.android:analytics:4.2.6'
+    implementation 'com.android.support:multidex:1.0.3'
+    // compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
 
-  // Animated GIF support
-  compile 'com.facebook.fresco:animated-gif:1.11.0'
+    // Animated GIF support
+    implementation 'com.facebook.fresco:animated-gif:1.11.0'
+
+    implementation project(':owldroid')
+    def dagger_version = "2.16"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
