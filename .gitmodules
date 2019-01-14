@@ -3,4 +3,4 @@
 	url = https://github.com/hedviginsurance/ugglan
 [submodule "android/owldroid"]
 	path = android/owldroid
-	url = git@github.com:HedvigInsurance/owldroid.git
+	url = https://github.com/hedviginsurance/owldroid
