@@ -242,7 +242,6 @@ const mapStateToProps = (state: any) => {
     showReturnToOfferButton: selectors.shouldShowReturnToOfferScreenButton(
       state,
     ),
-    intent: state.conversation.intent,
     onboardingDone: selectors.isOnboardingDone(state),
   };
 };
