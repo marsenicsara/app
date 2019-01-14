@@ -31,6 +31,15 @@ class ChatScreen extends React.Component {
   }
 }
 
+export const chatScreen = (intent) => ({
+  component: {
+    name: 'ChatScreen',
+    passProps: {
+      intent,
+    },
+  },
+});
+
 export const CHAT_SCREEN = {
   component: {
     name: 'ChatScreen',

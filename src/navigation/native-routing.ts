@@ -1,7 +1,7 @@
-import { NativeEventEmitter, NativeModules, AsyncStorage } from 'react-native';
+import { NativeEventEmitter, NativeModules, AsyncStorage, Platform } from 'react-native';
 
 import { SEEN_MARKETING_CAROUSEL_KEY } from 'src/constants';
-import { CHAT_SCREEN } from './screens/chat';
+import { chatScreen } from './screens/chat';
 
 import { Navigation } from 'react-native-navigation';
 
@@ -12,7 +12,11 @@ export const setupNativeRouting = () => {
 
   nativeRoutingEvents.addListener('NativeRoutingMarketingResult', (event) => {
     AsyncStorage.setItem(SEEN_MARKETING_CAROUSEL_KEY, 'true');
-    Navigation.push(event.componentId, CHAT_SCREEN);
+    if (Platform.OS === 'ios') {
+      Navigation.push(event.componentId, chatScreen(event.marketingResult));
+    } else if (Platform.OS === 'android') {
+      Navigation.setStackRoot(event.componentId, chatScreen(event.marketingResult))
+    }
   });
 };
 
