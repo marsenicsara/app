@@ -10,9 +10,15 @@ class ChatScreen extends React.Component {
     return {
       topBar: {
         visible: true,
-        title: {
-          component: HEDVIG_LOGO_TITLE_COMPONENT,
-        },
+        title: Platform.select({
+          ios: {
+            component: HEDVIG_LOGO_TITLE_COMPONENT,
+          },
+          android: {
+            externalComponent: { name: 'logo' },
+            alignment: 'center',
+          },
+        }),
         rightButtons: [RESTART_BUTTON],
         backButton: {
           visible: false,
