@@ -53,24 +53,25 @@ export const TextMessage: React.SFC<Props> = ({
   index,
   withMargin,
   fromUser,
+  canEdit,
 }) => {
   const MessageContainer = getContainerComponent(fromUser);
-
   return (
     <Container actions={actions} initialState={{ showEditDialog: false }}>
       {({ showEditDialog, setShowEditDialog }) => (
         <>
-          {message.header.editAllowed && (
-            <EditMessageButtonContainer
-              hasStatusMessage={!!message.header.statusMessage}
-            >
-              <EditMessageButton
-                onPress={() => {
-                  setShowEditDialog(true);
-                }}
-              />
-            </EditMessageButtonContainer>
-          )}
+          {message.header.editAllowed &&
+            canEdit && (
+              <EditMessageButtonContainer
+                hasStatusMessage={!!message.header.statusMessage}
+              >
+                <EditMessageButton
+                  onPress={() => {
+                    setShowEditDialog(true);
+                  }}
+                />
+              </EditMessageButtonContainer>
+            )}
           <MessageContainer withMargin={withMargin}>
             <Hyperlink
               linkDefault={true}
@@ -82,21 +83,25 @@ export const TextMessage: React.SFC<Props> = ({
             </Hyperlink>
           </MessageContainer>
 
-          <Mutation mutation={EDIT_LAST_RESPONSE_MUTATION}>
-            {(edit) => (
-              <ConfirmationDialog
-                title={'Vill du ändra ditt svar?'}
-                paragraph={'Tryck ja för att ändra ditt\nsvar på förra frågan'}
-                confirmButtonTitle={'Ja'}
-                dismissButtonTitle={'Nej'}
-                showModal={showEditDialog}
-                updateModalVisibility={setShowEditDialog}
-                onConfirm={() => {
-                  edit();
-                }}
-              />
-            )}
-          </Mutation>
+          {canEdit && (
+            <Mutation mutation={EDIT_LAST_RESPONSE_MUTATION}>
+              {(edit) => (
+                <ConfirmationDialog
+                  title={'Vill du ändra ditt svar?'}
+                  paragraph={
+                    'Tryck ja för att ändra ditt\nsvar på förra frågan'
+                  }
+                  confirmButtonTitle={'Ja'}
+                  dismissButtonTitle={'Nej'}
+                  showModal={showEditDialog}
+                  updateModalVisibility={setShowEditDialog}
+                  onConfirm={() => {
+                    edit();
+                  }}
+                />
+              )}
+            </Mutation>
+          )}
         </>
       )}
     </Container>

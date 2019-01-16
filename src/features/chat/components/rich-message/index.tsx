@@ -14,6 +14,7 @@ export const RichMessage: React.SFC<Props> = ({
   withMargin,
   index,
   fromUser,
+  canEdit,
 }) => {
   if (isUrl(message.body.text.trim())) {
     if (isGiphyMessage(message.body.text)) {
@@ -56,6 +57,7 @@ export const RichMessage: React.SFC<Props> = ({
       message={message}
       withMargin={withMargin}
       index={index}
+      canEdit={canEdit}
     />
   );
 };

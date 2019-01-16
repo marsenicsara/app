@@ -61,11 +61,13 @@ const DefaultHedvigMessage: React.SFC<DefaultHedvigMessageProps> = ({
 interface DefaultUserMessageProps {
   message: Message;
   index: number;
+  canEdit: boolean;
 }
 
 const DefaultUserMessage: React.SFC<DefaultUserMessageProps> = ({
   message,
   index,
+  canEdit,
 }) => {
   const withMargin =
     !message.header.statusMessage ||
@@ -81,6 +83,7 @@ const DefaultUserMessage: React.SFC<DefaultUserMessageProps> = ({
           index={index}
           message={message}
           withMargin={withMargin}
+          canEdit={canEdit}
         />
       </View>
       {message.header.statusMessage &&
@@ -107,12 +110,14 @@ const renderMessage = (
   idx: number,
   avatars: AvatarType[],
   displayLoadingIndicator: boolean,
+  lastFromMyselfMessageId?: number | string,
 ) => {
-  const fromMe = message.header.fromMyself;
+  const fromMyself = message.header.fromMyself;
+  const canEdit = lastFromMyselfMessageId === message.globalId;
   const lastIndex = idx === 0;
 
   let MessageRenderComponent;
-  if (!fromMe) {
+  if (!fromMyself) {
     MessageRenderComponent = DefaultHedvigMessage;
     if (HedvigMessageMapping.hasOwnProperty(message.body.type)) {
       MessageRenderComponent =
@@ -146,10 +151,16 @@ const renderMessage = (
       {avatar}
       <View
         style={
-          fromMe ? styles.messageUserContainer : styles.messageHedvigContainer
+          fromMyself
+            ? styles.messageUserContainer
+            : styles.messageHedvigContainer
         }
       >
-        <MessageRenderComponent message={message} index={idx} />
+        <MessageRenderComponent
+          message={message}
+          index={idx}
+          canEdit={canEdit}
+        />
       </View>
       {lastIndex && displayLoadingIndicator ? (
         <LoadingIndicator
@@ -177,8 +188,23 @@ const MessageList: React.SFC<MessageListProps> = ({
     item: Message;
     index: number;
   }
+
+  const fromMyselfMessages = messages
+    .filter((m) => m.header.fromMyself === true)
+    .reverse();
+  const lastFromMyselfMessageId =
+    fromMyselfMessages.length === 0
+      ? -1
+      : fromMyselfMessages[fromMyselfMessages.length - 1].globalId;
+
   const renderItem = ({ item, index }: RenderItemInterface) =>
-    renderMessage(item, index, avatars, displayLoadingIndicator);
+    renderMessage(
+      item,
+      index,
+      avatars,
+      displayLoadingIndicator,
+      lastFromMyselfMessageId,
+    );
   const keyExtractor = (item: Message) => '' + item.globalId;
   return (
     <InputHeightContainer>
