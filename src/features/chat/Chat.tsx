@@ -261,13 +261,17 @@ const Chat: React.SFC<ChatProps> = ({
 
                       console.log('\n\nPrev: ', prev.messages);
 
-                      const newMessage = subscriptionData.data.message;
+                      console.log(subscriptionData.data);
+
+                      const newMessage = subscriptionData.data.messages[0];
 
                       const filteredMessages =
                         prev.messages &&
                         prev.messages.filter(
-                          (message: Message) =>
-                            message.globalId !== newMessage.globalId,
+                          (m1: Message) =>
+                            !subscriptionData.data.messages.some(
+                              (m2: Message) => m1.globalId === m2.globalId,
+                            ),
                         );
 
                       const deleted = prev.messages
