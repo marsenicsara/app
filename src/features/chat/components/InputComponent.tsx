@@ -30,7 +30,7 @@ const inputComponentMap: {
   single_select: (props) => <SingleSelectInput {...props} />,
   bankid_collect: () => <BankIdCollectInput />,
   paragraph: () => <ParagraphInput />,
-  audio: () => <AudioInput />,
+  audio: (props) => <AudioInput {...props} />,
 };
 
 const InputComponent: React.SFC<InputComponentProps> = (props) => {
