@@ -1,8 +1,10 @@
 package com.hedvig.app;
 
-import com.reactnativenavigation.NavigationActivity;
-import io.branch.rnbranch.*;
 import android.content.Intent;
+
+import com.reactnativenavigation.NavigationActivity;
+
+import io.branch.rnbranch.RNBranchModule;
 
 public class MainActivity extends NavigationActivity {
     @Override

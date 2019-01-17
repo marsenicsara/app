@@ -164,7 +164,6 @@ const Chat: React.SFC<ChatProps> = ({
     <Container effects={effects} initialState={initialState}>
       {({ startPolling, stopPolling }) => (
         <>
-          <BackButton onPress={() => Navigation.dismissModal(componentId)} />
           <NavigationEvents
             onNavigationButtonPressed={(event: any) => {
               if (event.buttonId === RESTART_BUTTON.id) {
@@ -243,7 +242,6 @@ const mapStateToProps = (state: any) => {
     showReturnToOfferButton: selectors.shouldShowReturnToOfferScreenButton(
       state,
     ),
-    intent: state.conversation.intent,
     onboardingDone: selectors.isOnboardingDone(state),
   };
 };
