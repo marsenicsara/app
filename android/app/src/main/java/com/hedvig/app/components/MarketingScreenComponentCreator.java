@@ -1,4 +1,4 @@
-package com.hedvig.app;
+package com.hedvig.app.components;
 
 import android.support.v4.app.FragmentActivity;
 
@@ -8,9 +8,10 @@ import com.reactnativenavigation.viewcontrollers.externalcomponent.ExternalCompo
 
 import org.json.JSONObject;
 
-public class LogoComponentCreator implements ExternalComponentCreator {
+public class MarketingScreenComponentCreator implements ExternalComponentCreator {
+
     @Override
     public ExternalComponent create(FragmentActivity activity, ReactInstanceManager reactInstanceManager, JSONObject props) {
-        return new LogoComponent(activity);
+        return new MarketingScreenComponent(activity);
     }
 }

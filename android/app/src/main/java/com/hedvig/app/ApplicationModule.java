@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
+import com.hedvig.android.owldroid.util.react.AsyncStorageNativeReader;
 
 import java.io.File;
 
@@ -30,5 +31,11 @@ public class ApplicationModule {
     @Singleton
     SimpleCache simpleCache(Context context) {
         return new SimpleCache(new File(context.getCacheDir(), "hedvig_story_video_cache"), new LeastRecentlyUsedCacheEvictor(10 * 1024 * 1024));
+    }
+
+    @Provides
+    @Singleton
+    AsyncStorageNativeReader asyncStorageNativeReader(Context context) {
+        return new AsyncStorageNativeReaderImpl(context);
     }
 }

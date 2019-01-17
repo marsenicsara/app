@@ -19,6 +19,7 @@ import { Store } from 'src/setupApp';
 import { setLayout } from 'src/navigation/layouts/setLayout';
 import { getMarketingLayout } from 'src/navigation/layouts/marketingLayout';
 import { deleteToken } from 'src/graphql/context';
+import { MyInfoRow } from './components/MyInfoRow';
 
 const PROFILE_QUERY = gql`
   query ProfileQuery {
@@ -61,7 +62,7 @@ const CashbackImage = styled(Image)({
   height: 100,
 });
 
-const Profile: React.SFC = () => (
+const Profile: React.SFC<{ componentId: string }> = ({ componentId }) => (
   <Query query={PROFILE_QUERY}>
     {({ loading, error, data }) => {
       if (loading || !data) {
@@ -97,6 +98,7 @@ const Profile: React.SFC = () => (
             <Spacing height={16} />
           </Header>
           {cashback && <CashbackRow name={cashback.name} />}
+          <MyInfoRow componentId={componentId} />
           <InsuranceAddressRow address={address} />
           <SafetyIncreasersRow safetyIncreasers={safetyIncreasers} />
           <PaymentRow monthlyCost={monthlyCost} />

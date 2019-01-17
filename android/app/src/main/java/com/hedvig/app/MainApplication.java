@@ -12,6 +12,9 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.hedvig.app.components.LogoComponentCreator;
+import com.hedvig.app.components.MarketingScreenComponentCreator;
+import com.hedvig.app.components.MyInfoComponentCreator;
 import com.horcrux.svg.SvgPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -125,6 +128,7 @@ public class MainApplication extends NavigationApplication implements HasSupport
                 .inject(this);
         registerExternalComponent("marketingScreen", new MarketingScreenComponentCreator());
         registerExternalComponent("logo", new LogoComponentCreator());
+        registerExternalComponent("myInfo", new MyInfoComponentCreator());
     }
 
     @Override
