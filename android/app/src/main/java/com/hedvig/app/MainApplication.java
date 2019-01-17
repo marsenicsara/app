@@ -124,6 +124,7 @@ public class MainApplication extends NavigationApplication implements HasSupport
                 .build()
                 .inject(this);
         registerExternalComponent("marketingScreen", new MarketingScreenComponentCreator());
+        registerExternalComponent("logo", new LogoComponentCreator());
     }
 
     @Override
