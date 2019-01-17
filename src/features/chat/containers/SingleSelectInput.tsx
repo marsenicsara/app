@@ -85,9 +85,9 @@ const SingleSelectInput: React.SFC<SingleSelectInputProps> = ({
                     } else if (choice.type === 'link' && choice.view !== null) {
                       selectChoice(message, choice);
                       send();
-                      if (choice.view === 'Dashboard') {
+                      if (choice.view.toLowerCase() === 'dashboard') {
                         goToDashboard();
-                      } else if (choice.view === 'Offer') {
+                      } else if (choice.view.toLowerCase() === 'offer') {
                         showOffer();
                       }
                     } else if (
