@@ -8,6 +8,7 @@ import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
 import java.io.File;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -30,5 +31,11 @@ public class ApplicationModule {
     @Singleton
     SimpleCache simpleCache(Context context) {
         return new SimpleCache(new File(context.getCacheDir(), "hedvig_story_video_cache"), new LeastRecentlyUsedCacheEvictor(10 * 1024 * 1024));
+    }
+
+    @Provides
+    @Named("GRAPHQL_URL")
+    String graphqlUrl() {
+        return BuildConfig.GRAPHQL_URL;
     }
 }
