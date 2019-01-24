@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const MESSAGE_SUBSCRIPTION = gql`
-  subscription newMessage {
-    messages {
+  subscription newMessage($mostRecentTimestamp: String!) {
+    messages(mostRecentTimestamp: $mostRecentTimestamp) {
       globalId
       id
       body {

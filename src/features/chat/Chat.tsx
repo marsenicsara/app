@@ -28,7 +28,7 @@ import {
 
 import { Avatar, Choice, Message } from './types';
 
-import { Query, Mutation } from 'react-apollo';
+import { Query, Mutation, Subscription } from 'react-apollo';
 import { MESSAGE_QUERY } from './chat-query';
 import { MESSAGE_SUBSCRIPTION } from './chat-subscription';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
@@ -209,157 +209,168 @@ const Chat: React.SFC<ChatProps> = ({
   showReturnToOfferButton,
   componentId,
 }) => (
-  <Query query={MESSAGE_QUERY} fetchPolicy="network-only">
-    {({ loading, error, data, subscribeToMore, client }) =>
-      !loading && !error && data ? (
-        <Container
-          actions={actions}
-          effects={effects}
-          initialState={{
-            messages: data.messages,
-            avatars: data.avatars,
-            displayLoadingIndicator: false,
-            stackedInterval: 0,
-          }}
-        >
-          {({
-            messages,
-            avatars,
-            selectChoice,
-            setMessages,
-            addToChat,
-            stackedInterval,
-            showResetDialog,
-            setShowResetDialog,
-          }) => (
-            <>
-              <NavigationEvents
-                onNavigationButtonPressed={(event: any) => {
-                  if (event.buttonId === RESTART_BUTTON.id) {
-                    setShowResetDialog(true);
-                  }
-
-                  if (event.buttonId === CLOSE_BUTTON.id) {
-                    Navigation.dismissModal(componentId);
-                  }
-
-                  if (event.buttonId === GO_TO_DASHBOARD_BUTTON.id) {
-                    setLayout(getMainLayout());
-                  }
-
-                  if (event.buttonId === SHOW_OFFER_BUTTON.id) {
-                    showOffer(componentId);
-                  }
-                }}
-              />
-              <Mount
-                on={() => {
-                  subscribeToMore({
-                    document: MESSAGE_SUBSCRIPTION,
-                    updateQuery: (prev, { subscriptionData }) => {
-                      if (!subscriptionData.data) return prev;
-
-                      console.log('\n\nPrev: ', prev.messages);
-
-                      console.log(subscriptionData.data);
-
-                      const newMessage = subscriptionData.data.messages[0];
-
-                      const filteredMessages =
-                        prev.messages &&
-                        prev.messages.filter(
-                          (m1: Message) =>
-                            !subscriptionData.data.messages.some(
-                              (m2: Message) => m1.globalId === m2.globalId,
-                            ),
-                        );
-
-                      const deleted = prev.messages
-                        ? filteredMessages.length !== prev.messages.length
-                        : false;
-
-                      console.log('New message: ', newMessage);
-
-                      if (prev.messages) {
-                        console.log('Deleted: ', deleted);
-                      }
-
-                      console.log('Filtered: ', filteredMessages);
-
-                      const updatedMessages = Object.assign({}, prev, {
-                        messages: prev.messages
-                          ? deleted
-                            ? filteredMessages
-                            : [newMessage, ...prev.messages]
-                          : [newMessage],
-                      });
-
-                      const delay = deleted
-                        ? 0
-                        : newMessage.header.pollingInterval || 0;
-
-                      addToChat(updatedMessages.messages, delay);
-
-                      return updatedMessages;
-                    },
-                    onError: (err) => console.log(err),
-                  });
-                }}
-              >
-                {null}
-              </Mount>
-
-              <NavigationOptions
-                options={getNavigationOptions(
-                  onboardingDone,
-                  isModal,
-                  showReturnToOfferButton,
-                )}
-              >
-                <KeyboardAvoidingOnAndroidIfModal isModal={isModal}>
-                  <Messages>
-                    <MessageList
-                      messages={messages}
-                      avatars={avatars}
-                      displayLoadingIndicator={stackedInterval !== 0}
-                    />
-                  </Messages>
-
-                  <Response>
-                    <InputComponent
-                      showOffer={() => showOffer(componentId)}
-                      selectChoice={selectChoice}
-                      messages={messages}
-                    />
-                  </Response>
-                </KeyboardAvoidingOnAndroidIfModal>
-              </NavigationOptions>
-
-              <Mutation mutation={RESET_MUTATION}>
-                {(reset) => (
-                  <ConfirmationDialog
-                    title={'Vill du börja om?'}
-                    paragraph={
-                      'Om du trycker ja så börjar\nkonversationen om från början'
+  <>
+    <Query query={MESSAGE_QUERY} fetchPolicy="network-only">
+      {({ loading, error, data, subscribeToMore, client }) => {
+        console.log(data);
+        return !loading && !error && data ? (
+          <Container
+            actions={actions}
+            effects={effects}
+            initialState={{
+              messages: data.messages,
+              avatars: data.avatars,
+              displayLoadingIndicator: false,
+              stackedInterval: 0,
+            }}
+          >
+            {({
+              messages,
+              avatars,
+              selectChoice,
+              setMessages,
+              addToChat,
+              stackedInterval,
+              showResetDialog,
+              setShowResetDialog,
+            }) => (
+              <>
+                <NavigationEvents
+                  onNavigationButtonPressed={(event: any) => {
+                    if (event.buttonId === RESTART_BUTTON.id) {
+                      setShowResetDialog(true);
                     }
-                    confirmButtonTitle={'Ja'}
-                    dismissButtonTitle={'Nej'}
-                    showModal={showResetDialog}
-                    updateModalVisibility={setShowResetDialog}
-                    onConfirm={() => {
-                      reset();
-                    }}
-                  />
-                )}
-              </Mutation>
-            </>
-          )}
-        </Container>
-      ) : (
-        <Loader />
-      )
-    }
-  </Query>
+
+                    if (event.buttonId === CLOSE_BUTTON.id) {
+                      Navigation.dismissModal(componentId);
+                    }
+
+                    if (event.buttonId === GO_TO_DASHBOARD_BUTTON.id) {
+                      setLayout(getMainLayout());
+                    }
+
+                    if (event.buttonId === SHOW_OFFER_BUTTON.id) {
+                      showOffer(componentId);
+                    }
+                  }}
+                />
+                <Mount
+                  on={() => {
+                    const mostRecentTimestamp =
+                      messages.length !== 0
+                        ? messages[0].header.timeStamp
+                        : Number.MAX_SAFE_INTEGER.toString();
+
+                    subscribeToMore({
+                      document: MESSAGE_SUBSCRIPTION,
+                      variables: {
+                        mostRecentTimestamp,
+                      },
+                      updateQuery: (prev, { subscriptionData }) => {
+                        if (!subscriptionData.data) return prev;
+
+                        console.log('\n\nPrev: ', prev.messages);
+
+                        console.log(subscriptionData.data);
+
+                        const newMessage = subscriptionData.data.messages[0];
+
+                        const filteredMessages =
+                          prev.messages &&
+                          prev.messages.filter(
+                            (m1: Message) =>
+                              !subscriptionData.data.messages.some(
+                                (m2: Message) => m1.globalId === m2.globalId,
+                              ),
+                          );
+
+                        const deleted = prev.messages
+                          ? filteredMessages.length !== prev.messages.length
+                          : false;
+
+                        console.log('New message: ', newMessage);
+
+                        if (prev.messages) {
+                          console.log('Deleted: ', deleted);
+                        }
+
+                        console.log('Filtered: ', filteredMessages);
+
+                        const updatedMessages = Object.assign({}, prev, {
+                          messages: prev.messages
+                            ? deleted
+                              ? filteredMessages
+                              : [newMessage, ...prev.messages]
+                            : [newMessage],
+                        });
+
+                        const delay = deleted
+                          ? 0
+                          : newMessage.header.pollingInterval || 0;
+
+                        addToChat(updatedMessages.messages, delay);
+
+                        return updatedMessages;
+                      },
+                      onError: (err) => console.log(err),
+                    });
+                  }}
+                >
+                  {null}
+                </Mount>
+
+                <NavigationOptions
+                  options={getNavigationOptions(
+                    onboardingDone,
+                    isModal,
+                    showReturnToOfferButton,
+                  )}
+                >
+                  <KeyboardAvoidingOnAndroidIfModal isModal={isModal}>
+                    <Messages>
+                      <MessageList
+                        messages={messages}
+                        avatars={avatars}
+                        displayLoadingIndicator={stackedInterval !== 0}
+                      />
+                    </Messages>
+
+                    <Response>
+                      <InputComponent
+                        showOffer={() => showOffer(componentId)}
+                        selectChoice={selectChoice}
+                        messages={messages}
+                      />
+                    </Response>
+                  </KeyboardAvoidingOnAndroidIfModal>
+                </NavigationOptions>
+
+                <Mutation mutation={RESET_MUTATION}>
+                  {(reset) => (
+                    <ConfirmationDialog
+                      title={'Vill du börja om?'}
+                      paragraph={
+                        'Om du trycker ja så börjar\nkonversationen om från början'
+                      }
+                      confirmButtonTitle={'Ja'}
+                      dismissButtonTitle={'Nej'}
+                      showModal={showResetDialog}
+                      updateModalVisibility={setShowResetDialog}
+                      onConfirm={() => {
+                        reset();
+                      }}
+                    />
+                  )}
+                </Mutation>
+              </>
+            )}
+          </Container>
+        ) : (
+          <Loader />
+        );
+      }}
+    </Query>
+  </>
 );
 
 const mapStateToProps = (state: any) => {

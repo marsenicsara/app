@@ -26,6 +26,14 @@ import { Mount } from 'react-lifecycle-components';
 import { UploadMutation } from '../components/upload/picker/upload-mutation';
 import { Message } from '../types';
 import { ConfirmationDialog } from '../components/ConfirmationDialog';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+
+const SEND_AUDIO_MUTATION = gql`
+  mutation SendChatAudioResponse($input: ChatResponseAudioInput!) {
+    sendChatAudioResponse(input: $input)
+  }
+`;
 
 const audioPath = `${AudioUtils.DocumentDirectoryPath}/claim.aac`;
 
@@ -104,7 +112,6 @@ const effects: EffectMap<State, Effects> = {
     state,
   }: EffectProps<State>) => {
     if (!success) {
-      console.log('ERROR, TODO');
       return;
     }
 
@@ -298,20 +305,31 @@ const AudioInput: React.SFC<AudioInputProps> = ({ message }) => {
                     />
                   </StyledRightAlignedOptions>
                   <StyledRightAlignedOptions>
-                    <AnimatedSingleSelectOptionButton
-                      title="Spara"
-                      onPress={() => {
-                        upload(recordingUrl).then((uploadResponse) => {
-                          console.log(uploadResponse);
-
-                          if (uploadResponse instanceof Error) {
-                            console.log('Error when uploading audio');
-                          } else {
-                            // Do something
-                          }
-                        });
-                      }}
-                    />
+                    <Mutation mutation={SEND_AUDIO_MUTATION}>
+                      {(mutate) => (
+                        <AnimatedSingleSelectOptionButton
+                          title="Spara"
+                          onPress={() => {
+                            upload(recordingUrl).then((uploadResponse: any) => {
+                              if (uploadResponse instanceof Error) {
+                                console.log('Error when uploading audio.');
+                              } else {
+                                mutate({
+                                  variables: {
+                                    input: {
+                                      globalId: message.globalId,
+                                      body: {
+                                        url: recordingUrl,
+                                      },
+                                    },
+                                  },
+                                });
+                              }
+                            });
+                          }}
+                        />
+                      )}
+                    </Mutation>
                   </StyledRightAlignedOptions>
                 </StyledMarginContainer>
               ) : (

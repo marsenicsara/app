@@ -19,6 +19,7 @@ export interface Message {
     editAllowed: boolean;
     richTextChatCompatible: boolean;
     fromMyself: boolean;
+    timeStamp: string;
   };
   body: {
     choices: Array<Choice>;

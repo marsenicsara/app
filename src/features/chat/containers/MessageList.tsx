@@ -116,7 +116,9 @@ const renderMessage = (
   const canEdit = lastFromMyselfMessageId === message.globalId;
   const lastIndex = idx === 0;
 
-  let MessageRenderComponent;
+  let MessageRenderComponent: any = !fromMyself
+    ? DefaultHedvigMessage
+    : DefaultUserMessage;
   if (!fromMyself) {
     MessageRenderComponent = DefaultHedvigMessage;
     if (HedvigMessageMapping.hasOwnProperty(message.body.type)) {
