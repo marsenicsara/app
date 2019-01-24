@@ -304,9 +304,12 @@ const Chat: React.SFC<ChatProps> = ({
                             : [newMessage],
                         });
 
-                        const delay = deleted
-                          ? 0
-                          : newMessage.header.pollingInterval || 0;
+                        const pollingInterval =
+                          newMessage.body.type === 'paragraph'
+                            ? newMessage.header.pollingInterval || 0
+                            : 0;
+
+                        const delay = deleted ? 0 : pollingInterval;
 
                         addToChat(updatedMessages.messages, delay);
 
