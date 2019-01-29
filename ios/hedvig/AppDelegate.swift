@@ -75,6 +75,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.splashWindow = nil
         })
 
+        DefaultStyling.installCustom()
+
+        loadApolloAndReactNative(
+            hasLoadedCallbacker: hasLoadedCallbacker,
+            launchOptions: launchOptions
+        )
+
+        return true
+    }
+
+    func loadApolloAndReactNative(
+        hasLoadedCallbacker: Callbacker<Void>? = nil,
+        launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) {
         var jsCodeLocation: URL
 
         #if DEBUG
@@ -86,14 +100,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             jsCodeLocation = CodePush.bundleURL()
         #endif
 
-        RNSentry.install(with: ReactNativeNavigation.getBridge())
-
         let environment = HedvigApolloEnvironmentConfig(
             endpointURL: URL(string: ReactNativeConfig.env(for: "GRAPHQL_URL"))!,
             wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!
         )
-
-        DefaultStyling.installCustom()
 
         let token = Future<String?> { completion in
             let rctSenderBlock = { response in
@@ -106,7 +116,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var response2 = response1[0] as! [Any]
 
                         if (response2.count) > 1 {
-                            value = response2[1] as! String
+                            if let string = response2[1] as? String {
+                                value = string
+                            }
                         }
                     }
                 }
@@ -121,7 +133,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // we get a black screen flicker without the delay
         token.flatMap { token -> Future<ApolloClient> in
-            HedvigApolloClient.shared.createClient(token: token, environment: environment)
+            guard let token = token else {
+                let initClient = HedvigApolloClient.shared.initClient(environment: environment)
+
+                // set the new token created by initClient in React Native's async storage
+                // so that we don't create another session later on
+                initClient.onValue({ _ in
+                    guard let token = HedvigApolloClient.shared.retreiveToken() else {
+                        return
+                    }
+
+                    let rctSenderBlock = { _ in } as RCTResponseSenderBlock
+                    RCTAsyncLocalStorage().multiSet(
+                        [["@hedvig:token", token.token]],
+                        callback: rctSenderBlock
+                    )
+                })
+
+                return initClient
+            }
+
+            return HedvigApolloClient.shared.createClient(
+                token: token,
+                environment: environment
+            )
         }.delay(by: 0.05).onValue { client in
             HedvigApolloClient.shared.client = client
 
@@ -137,17 +172,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
 
             self.bag += nativeRouting.appHasLoadedSignal.onValue({ _ in
-                hasLoadedCallbacker.callAll()
+                hasLoadedCallbacker?.callAll()
             })
 
             MarketingScreenComponent.register(client: client)
             LoggedInScreenComponent.register(client: client)
         }
-
-        return true
     }
 
-    func logout() {}
+    func logout() {
+        bag.dispose()
+        RCTAsyncLocalStorage().clearAllData()
+        loadApolloAndReactNative()
+    }
 
     func application(_: UIApplication, didReceive notification: UILocalNotification) {
         RNFirebaseNotifications.instance().didReceive(notification)

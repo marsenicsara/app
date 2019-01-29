@@ -24,6 +24,7 @@
 
 @interface RCTAsyncLocalStorage (Private)
 - (void)multiGet:(NSArray<NSString *> *)keys callback:(RCTResponseSenderBlock)callback;
+- (void)multiSet:(NSArray<NSArray<NSString *> *> *)kvPairs callback:(RCTResponseSenderBlock)callback;
 @end
 
 @interface LocalStorage : RCTAsyncLocalStorage

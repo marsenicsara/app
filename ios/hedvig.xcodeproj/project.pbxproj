@@ -23,6 +23,7 @@
 		EB4695BA21FF551E0004C75D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695B721FF551E0004C75D /* API.swift */; };
 		EB4695BC220050520004C75D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695BB220050520004C75D /* Dashboard.swift */; };
 		EB4695BE220051BF0004C75D /* Pods-Hedvig-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */; };
+		EB4695CC220079BA0004C75D /* LocalizationKey+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695C9220079BA0004C75D /* LocalizationKey+String.swift */; };
 		EBD6754321FF4EE200050E86 /* LoggedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD674F921FF4EE200050E86 /* LoggedIn.swift */; };
 		EBD6754421FF4EE200050E86 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD674FB21FF4EE200050E86 /* Launch.swift */; };
 		EBD6754521FF4EE200050E86 /* MarketingPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD674FD21FF4EE200050E86 /* MarketingPresentationStyle.swift */; };
@@ -200,6 +201,7 @@
 		EB4695B721FF551E0004C75D /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		EB4695BB220050520004C75D /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-Hedvig-acknowledgements.plist"; sourceTree = "<group>"; };
+		EB4695C9220079BA0004C75D /* LocalizationKey+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocalizationKey+String.swift"; sourceTree = "<group>"; };
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD674F921FF4EE200050E86 /* LoggedIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedIn.swift; sourceTree = "<group>"; };
 		EBD674FB21FF4EE200050E86 /* Launch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
@@ -731,6 +733,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD6758521FF4EE800050E86 /* UIWebView+Signal.swift */,
+				EB4695C9220079BA0004C75D /* LocalizationKey+String.swift */,
 				EBD6758621FF4EE800050E86 /* Callbacker+Signal.swift */,
 				EBD6758721FF4EE800050E86 /* SignalProvider+LazyBindTo.swift */,
 				EBD6758821FF4EE800050E86 /* ApolloClient+Flow.swift */,
@@ -944,8 +947,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B56386581DB9693800A0598C /* Build configuration list for PBXNativeTarget "hedvig" */;
 			buildPhases = (
-				EB4695C1220063810004C75D /* Swiftformat */,
 				44BDFBEAACB7B256479661F4 /* [CP] Check Pods Manifest.lock */,
+				EB4695C1220063810004C75D /* Swiftformat */,
 				B563863D1DB9693800A0598C /* Sources */,
 				B563863E1DB9693800A0598C /* Frameworks */,
 				EBC15BE5212850D700D0E296 /* Bundle React Native code and images */,
@@ -1129,13 +1132,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = Swiftformat;
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1246,6 +1245,7 @@
 				EBECC26621B9230000716BEA /* NativeRouting.swift in Sources */,
 				EBD675C721FF4EE800050E86 /* CollectionKit+UpdateRows.swift in Sources */,
 				EBD675DC21FF4EE800050E86 /* CellForRow.swift in Sources */,
+				EB4695CC220079BA0004C75D /* LocalizationKey+String.swift in Sources */,
 				EBD675E121FF4EE800050E86 /* SharedElement.swift in Sources */,
 				EB4695BA21FF551E0004C75D /* API.swift in Sources */,
 				EBD675BD21FF4EE800050E86 /* Callbacker+Signal.swift in Sources */,
