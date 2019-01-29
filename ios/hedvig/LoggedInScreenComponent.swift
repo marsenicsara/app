@@ -7,23 +7,22 @@
 //
 
 import Apollo
+import Flow
 import Foundation
 import Presentation
-import Flow
 
 struct LoggedInScreenComponent {
     static func register(client: ApolloClient) {
-        ReactNativeNavigation.registerExternalComponent("loggedInScreen") { (hashable, bridge) -> UIViewController? in
+        ReactNativeNavigation.registerExternalComponent("loggedInScreen") { (_, _) -> UIViewController? in
             let loggedIn = LoggedIn(
                 client: client
             )
-            
+
             let (viewController, disposable) = loggedIn.materialize()
-            
+
             (UIApplication.shared.delegate as! AppDelegate).bag += disposable
-            
+
             return viewController
         }
     }
 }
-

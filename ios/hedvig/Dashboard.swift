@@ -16,16 +16,16 @@ struct Dashboard {}
 extension Dashboard: Presentable {
     func materialize() -> (UIViewController, Disposable) {
         let bag = DisposeBag()
-        
+
         let viewController = UIViewController()
         viewController.title = String(.DASHBOARD_BANNER_ACTIVE_TITLE(firstName: "hej"))
-        
+
         viewController.view = RNNReactView(
             bridge: ReactNativeNavigation.getBridge(),
             moduleName: "DashboardScreen",
             initialProperties: ["componentId": "1"]
         )
-        
+
         return (viewController, bag)
     }
 }
