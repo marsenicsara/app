@@ -3,6 +3,8 @@ import UIKit
 import CommonCrypto
 import Presentation
 import Flow
+import Form
+import Apollo
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -82,8 +84,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!
         )
         
+        DefaultStyling.installCustom()
+        
+        let token = Future<String?> { completion in
+            let rctSenderBlock = { response in
+                guard let response = response else { return }
+                var value = ""
+                
+                if response.count > 1 {
+                    var response1 = response[1] as! [Any]
+                    if response1.count > 0 {
+                        var response2 = response1[0] as! [Any]
+                        
+                        if (response2.count) > 1 {
+                            value = response2[1] as! String
+                        }
+                    }
+                }
+                
+                completion(.success(value))
+            } as RCTResponseSenderBlock
+            
+            RCTAsyncLocalStorage().multiGet(["@hedvig:token"], callback: rctSenderBlock)
+            
+            return NilDisposer()
+        }
+        
         // we get a black screen flicker without the delay
-        HedvigApolloClient.shared.createClient(token: nil, environment: environment).delay(by: 0.05).onValue { client in
+        token.flatMap { token -> Future<ApolloClient> in
+            HedvigApolloClient.shared.createClient(token: token, environment: environment)
+        }.delay(by: 0.05).onValue { client in
+            HedvigApolloClient.shared.client = client
+            
             ReactNativeNavigation.bootstrapBrownField(
                 jsCodeLocation,
                 launchOptions: launchOptions,
@@ -91,17 +123,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 window: self.window
             )
             
+            
+                        
             let bridge = ReactNativeNavigation.getBridge()
                         
             let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
+
             self.bag += nativeRouting.appHasLoadedSignal.onValue({ _ in
                 hasLoadedCallbacker.callAll()
             })
             
             MarketingScreenComponent.register(client: client)
+            LoggedInScreenComponent.register(client: client)
         }
         
         return true
+    }
+    
+    func logout() {
+        
     }
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {

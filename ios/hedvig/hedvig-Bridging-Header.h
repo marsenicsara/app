@@ -4,6 +4,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <React/RCTAsyncLocalStorage.h>
 #if __has_include(<React/RNSentry.h>)
 #import <React/RNSentry.h> // This is used for versions of react >= 0.40
 #else
@@ -15,7 +16,15 @@
 #import <CodePush/CodePush.h>
 #import <react-native-branch/RNBranch.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
+#import <ReactNativeNavigation/RNNReactView.h>
 #import <React/RCTEventEmitter.h>
 #import <React/RCTBridgeModule.h>
 #import <Lottie/Lottie.h>
 #import "ReactNativeConfig.h"
+
+@interface RCTAsyncLocalStorage (Private)
+- (void)multiGet:(NSArray<NSString *> *)keys callback:(RCTResponseSenderBlock)callback;
+@end
+
+@interface LocalStorage : RCTAsyncLocalStorage
+@end

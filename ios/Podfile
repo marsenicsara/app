@@ -72,23 +72,29 @@ target 'hedvig' do
   ## Pods from ugglan
   pod 'DeviceKit', '~> 1.3'
   pod 'lottie-ios'
-  pod 'Tempura'
-  pod 'PinLayout'
   pod 'SwiftLint'
   pod 'DynamicColor', '~> 4.0.2'
   pod 'SwiftFormat/CLI'
   pod 'Apollo'
   pod 'Apollo/WebSocket'
   pod 'Disk', '~> 0.4.0'
-  pod 'FlowFramework', '~> 1.3'
+  pod 'FlowFramework', git: 'https://github.com/hedviginsurance/flow.git'
+  pod 'PresentationFramework', git: 'https://github.com/hedviginsurance/presentation.git'
   pod 'FormFramework/Presentation', git: 'https://github.com/hedviginsurance/form.git'
   pod 'FormFramework', git: 'https://github.com/hedviginsurance/form.git'
   pod 'SnapKit', '~> 4.0.0'
   pod 'UICollectionView+AnimatedScroll', git: 'https://github.com/HedvigInsurance/UICollectionView-AnimatedScroll.git'
-  pod 'FlowOn', git: 'https://github.com/HedvigInsurance/FlowOn.git'
   pod 'FlowFeedback', git: 'https://github.com/HedvigInsurance/FlowFeedback.git'
+  pod 'SwiftGen'
+  pod 'Firebase/Core'
+  pod 'AcknowList'
 
   post_install do |installer|
+    system("cd hedvig/ugglan; ../../Pods/SwiftGen/bin/swiftgen")
+    system("cd hedvig/ugglan; sh scripts/update-translations.sh")
+    system("cd hedvig/ugglan; sh scripts/update-graphql-schema.sh")
+    system("CONFIGURATION=\"DEBUG\" sh Pods/Apollo/scripts/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\"  --schema=hedvig/ugglan/Hedvig/Data/schema.json hedvig/ugglan/Hedvig/Data/API.swift")
+
     installer.pods_project.build_configurations.each do |config|
       if config.name.start_with?("Debug")
         config.build_settings["GCC_PREPROCESSOR_DEFINITIONS"].push("DEBUG=1")

@@ -1,9 +1,10 @@
 PODS:
+  - AcknowList (1.8)
   - Analytics (3.6.10)
-  - Apollo (0.9.4):
-    - Apollo/Core (= 0.9.4)
-  - Apollo/Core (0.9.4)
-  - Apollo/WebSocket (0.9.4):
+  - Apollo (0.9.5):
+    - Apollo/Core (= 0.9.5)
+  - Apollo/Core (0.9.5)
+  - Apollo/WebSocket (0.9.5):
     - Apollo/Core
     - Starscream (~> 3.0.2)
   - Base64 (1.1.2)
@@ -23,43 +24,41 @@ PODS:
   - DoubleConversion (1.1.6)
   - DynamicColor (4.0.3)
   - Fabric (1.7.13)
-  - Firebase/Core (5.14.0):
+  - Firebase/Core (5.16.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.4.0)
-  - Firebase/CoreOnly (5.14.0):
-    - FirebaseCore (= 5.1.9)
-  - Firebase/Messaging (5.14.0):
+    - FirebaseAnalytics (= 5.5.0)
+  - Firebase/CoreOnly (5.16.0):
+    - FirebaseCore (= 5.2.0)
+  - Firebase/Messaging (5.16.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (= 3.2.2)
-  - FirebaseAnalytics (5.4.0):
-    - FirebaseCore (~> 5.1)
-    - FirebaseInstanceID (~> 3.3)
-    - GoogleAppMeasurement (= 5.4.0)
+    - FirebaseMessaging (= 3.3.0)
+  - FirebaseAnalytics (5.5.0):
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
+    - GoogleAppMeasurement (= 5.5.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
   - FirebaseAnalyticsInterop (1.1.0)
-  - FirebaseCore (5.1.9):
+  - FirebaseCore (5.2.0):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseInstanceID (3.3.0):
-    - FirebaseCore (~> 5.1)
+  - FirebaseInstanceID (3.4.0):
+    - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseMessaging (3.2.2):
+  - FirebaseMessaging (3.3.0):
     - FirebaseAnalyticsInterop (~> 1.1)
-    - FirebaseCore (~> 5.1)
-    - FirebaseInstanceID (~> 3.0)
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
   - FLAnimatedImage (1.0.12)
   - FlowFeedback (1.0.1):
     - FlowFramework (~> 1.3)
-  - FlowFramework (1.4.2)
-  - FlowOn (1.0.4):
-    - FlowFramework (~> 1.3)
+  - FlowFramework (1.5.0)
   - Folly (2016.10.31.00):
     - boost-for-react-native
     - DoubleConversion
@@ -73,33 +72,32 @@ PODS:
     - FlowFramework (~> 1.3)
     - PresentationFramework (~> 1.1)
   - glog (0.3.5)
-  - GoogleAppMeasurement (5.4.0):
+  - GoogleAppMeasurement (5.5.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (5.3.6):
+  - GoogleUtilities/AppDelegateSwizzler (5.3.7):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.3.6)
-  - GoogleUtilities/Logger (5.3.6):
+  - GoogleUtilities/Environment (5.3.7)
+  - GoogleUtilities/Logger (5.3.7):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.3.6):
+  - GoogleUtilities/MethodSwizzler (5.3.7):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.3.6):
+  - GoogleUtilities/Network (5.3.7):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.3.6)"
-  - GoogleUtilities/Reachability (5.3.6):
+  - "GoogleUtilities/NSData+zlib (5.3.7)"
+  - GoogleUtilities/Reachability (5.3.7):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.3.6):
+  - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
   - JWT (3.0.0-beta.11):
     - Base64 (~> 1.1.2)
-  - Katana (2.0.0)
   - lottie-ios (2.5.2)
   - lottie-react-native (2.5.8):
     - lottie-ios
@@ -109,7 +107,6 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - PinLayout (1.8.6)
   - PresentationFramework (1.3.0):
     - FlowFramework (>= 1.3)
   - Protobuf (3.6.1)
@@ -210,8 +207,8 @@ PODS:
     - React/Core
   - RNSVG (7.0.3):
     - React
-  - SDWebImage/Core (4.4.3)
-  - SDWebImage/GIF (4.4.3):
+  - SDWebImage/Core (4.4.4)
+  - SDWebImage/GIF (4.4.4):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
   - Sentry (4.0.1):
@@ -223,14 +220,14 @@ PODS:
   - SnapKit (4.0.1)
   - SSZipArchive (2.1.4)
   - Starscream (3.0.6)
-  - SwiftFormat/CLI (0.35.10)
-  - SwiftLint (0.29.1)
-  - Tempura (2.1.0):
-    - Katana (< 3, >= 2.0)
+  - SwiftFormat/CLI (0.37.5)
+  - SwiftGen (6.0.2)
+  - SwiftLint (0.30.1)
   - "UICollectionView+AnimatedScroll (1.0.4)"
   - yoga (0.57.41.React)
 
 DEPENDENCIES:
+  - AcknowList
   - Apollo
   - Apollo/WebSocket
   - Branch-SDK (from `../node_modules/react-native-branch/ios`)
@@ -244,15 +241,14 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
   - FlowFeedback (from `https://github.com/HedvigInsurance/FlowFeedback.git`)
-  - FlowFramework (~> 1.3)
-  - FlowOn (from `https://github.com/HedvigInsurance/FlowOn.git`)
+  - FlowFramework (from `https://github.com/hedviginsurance/flow.git`)
   - "Folly (from `../node_modules/@hedviginsurance/react-native/third-party-podspecs/Folly.podspec`)"
   - FormFramework (from `https://github.com/hedviginsurance/form.git`)
   - FormFramework/Presentation (from `https://github.com/hedviginsurance/form.git`)
   - "glog (from `../node_modules/@hedviginsurance/react-native/third-party-podspecs/glog.podspec`)"
   - lottie-ios
   - lottie-react-native (from `../node_modules/lottie-react-native`)
-  - PinLayout
+  - PresentationFramework (from `https://github.com/hedviginsurance/presentation.git`)
   - react-native-blur (from `../node_modules/react-native-blur`)
   - react-native-branch (from `../node_modules/react-native-branch`)
   - "react-native-config (from `../node_modules/@hedviginsurance/react-native-config`)"
@@ -289,13 +285,14 @@ DEPENDENCIES:
   - SentryReactNative (from `../node_modules/react-native-sentry`)
   - SnapKit (~> 4.0.0)
   - SwiftFormat/CLI
+  - SwiftGen
   - SwiftLint
-  - Tempura
   - "UICollectionView+AnimatedScroll (from `https://github.com/HedvigInsurance/UICollectionView-AnimatedScroll.git`)"
   - "yoga (from `../node_modules/@hedviginsurance/react-native/ReactCommon/yoga`)"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AcknowList
     - Analytics
     - Apollo
     - Base64
@@ -312,15 +309,11 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - FLAnimatedImage
-    - FlowFramework
     - GoogleAppMeasurement
     - GoogleUtilities
     - JWT
-    - Katana
     - lottie-ios
     - nanopb
-    - PinLayout
-    - PresentationFramework
     - Protobuf
     - SDWebImage
     - Sentry
@@ -328,8 +321,8 @@ SPEC REPOS:
     - SSZipArchive
     - Starscream
     - SwiftFormat
+    - SwiftGen
     - SwiftLint
-    - Tempura
 
 EXTERNAL SOURCES:
   Branch-SDK:
@@ -340,8 +333,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/@hedviginsurance/react-native/third-party-podspecs/DoubleConversion.podspec"
   FlowFeedback:
     :git: https://github.com/HedvigInsurance/FlowFeedback.git
-  FlowOn:
-    :git: https://github.com/HedvigInsurance/FlowOn.git
+  FlowFramework:
+    :git: https://github.com/hedviginsurance/flow.git
   Folly:
     :podspec: "../node_modules/@hedviginsurance/react-native/third-party-podspecs/Folly.podspec"
   FormFramework:
@@ -350,6 +343,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/@hedviginsurance/react-native/third-party-podspecs/glog.podspec"
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
+  PresentationFramework:
+    :git: https://github.com/hedviginsurance/presentation.git
   React:
     :path: "../node_modules/@hedviginsurance/react-native"
   react-native-blur:
@@ -401,19 +396,23 @@ CHECKOUT OPTIONS:
   FlowFeedback:
     :commit: f43392beeef74886e68a0f144204590514fd8cd8
     :git: https://github.com/HedvigInsurance/FlowFeedback.git
-  FlowOn:
-    :commit: da2791cefffed3d3157d5ab1e731956d4aa415ae
-    :git: https://github.com/HedvigInsurance/FlowOn.git
+  FlowFramework:
+    :commit: 883eb86dc541d940080337f877ab8a9c29204d4b
+    :git: https://github.com/hedviginsurance/flow.git
   FormFramework:
     :commit: 1b5f3d845b8ebfd67b8d25504d21a986097775fc
     :git: https://github.com/hedviginsurance/form.git
+  PresentationFramework:
+    :commit: a809c2d89f05ba537810d28278cd641ddf1cccde
+    :git: https://github.com/hedviginsurance/presentation.git
   "UICollectionView+AnimatedScroll":
     :commit: b5a5e2b7f95713e74c0bfb623a99429b0489fa1f
     :git: https://github.com/HedvigInsurance/UICollectionView-AnimatedScroll.git
 
 SPEC CHECKSUMS:
+  AcknowList: 5b8820004d019d0a8d6a091ea2392dcb54bd3ad2
   Analytics: 63744ad4afa65c3bcdcdb7a94b62515bde5b3900
-  Apollo: 450856adbdebcdf28c3c671f81732ac3f9944065
+  Apollo: 19caf3246d292bbb69ecad1bd098661f78222aba
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   Branch-SDK: 8a0fa24e01a68cc3f98f184900e5adf0328c7f02
@@ -424,27 +423,24 @@ SPEC CHECKSUMS:
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   DynamicColor: bf19b33fe404c59a68e64af95cc6b017346e7e75
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
-  Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
-  FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
+  Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
+  FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
-  FirebaseCore: 8f49b70f57ab5cbb032ef41d64992ded21606459
-  FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
-  FirebaseMessaging: b412996f6a09337d232bb3a6676ce4d1f353d024
+  FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
+  FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
+  FirebaseMessaging: acbd51fe1a172bf29abaaa6e93a60f98bbf8e4f9
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FlowFeedback: 41fe84846ceaeca0cbf02a922222cc8b862986c0
-  FlowFramework: 593983dc440c915457e728d26b9e9dba1c31f91b
-  FlowOn: 34866b2c0b229d0d9beb94a205187dba0e850dea
+  FlowFramework: 4d85bf59082c36c107229396ae67981717ca1e76
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   FormFramework: e9eccd44f3d875e5f67ad8696a8e2bb4cd0e9b7d
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
-  GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
-  GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
+  GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
+  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
-  Katana: f624d693c272dac8e3a20c5049a34d0821f067c9
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   lottie-react-native: db4bd75685428c4ad0ec2f913145abff3d38b640
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  PinLayout: fe2a2432d6982588e208572005c941aeeae417ab
   PresentationFramework: 1bcdf1fe215edb2ceccf5197dd5dfcbce878bdf5
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
@@ -467,18 +463,18 @@ SPEC CHECKSUMS:
   RNGestureHandler: 968e4453152673aedcbbb7c1ada6700c214cea7a
   RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
-  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  SDWebImage: c00ec18ab25d10e5ffac109b0f78d1b4341c9691
   Sentry: a38f7879924c02239e121b19d993d23bdd1684db
   SentryReactNative: d476259b21060a59dc637a29a40d60f0aac09cf7
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
-  SwiftFormat: aa8ed229203cc182be7d59f50a2feb8515ed22c9
-  SwiftLint: 6772320e40b52049053a518c17db9b0634a0b45a
-  Tempura: 819db8b32776dc68e628902da7119621fddb33bf
+  SwiftFormat: a92d2a20cc8ffd0cbcc6a850a09945cf190f8ce5
+  SwiftGen: e5b047067aa84082826a0c4f1c4c2ddc95bcf74c
+  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
   "UICollectionView+AnimatedScroll": b5dc2786f0a0bc778c0c6ca36c5904e46a4463d2
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: a58f7d8b31310bc9c3c6087858f1804e798972c7
+PODFILE CHECKSUM: 90d91c926086146040e48514f030d57e4d73a3c4
 
 COCOAPODS: 1.5.3
