@@ -123,6 +123,9 @@ class FloatingActionButton extends React.Component {
   onNavigationCommand = async (name) => {
     if (name === 'setRoot') {
       Navigation.dismissOverlay(this.props.componentId);
+      this.setState({
+        show: false,
+      });
     }
 
     if (name === 'showModal') {
