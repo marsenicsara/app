@@ -70,11 +70,11 @@ struct RCTApolloClient {
                 environment: environment
             )
         }
-        
+
         clientFuture.onValue { client in
             HedvigApolloClient.shared.client = client
         }
-        
+
         return clientFuture
     }
 }

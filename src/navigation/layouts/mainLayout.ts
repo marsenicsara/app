@@ -12,24 +12,7 @@ export const getMainLayout = () =>
             name: 'loggedInScreen',
           },
         },
-        overlays: [
-          {
-            component: {
-              name: FAB_COMPONENT.name,
-              options: {
-                layout: {
-                  backgroundColor: 'transparent',
-                },
-                overlay: {
-                  interceptTouchOutside: false,
-                },
-                statusBar: {
-                  style: 'dark',
-                },
-              },
-            },
-          },
-        ],
+        overlays: [],
       }
     : {
         root: {
