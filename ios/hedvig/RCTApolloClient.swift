@@ -44,7 +44,7 @@ struct RCTApolloClient {
         }
 
         // we get a black screen flicker without the delay
-        return token.flatMap { token -> Future<ApolloClient> in
+        let clientFuture = token.flatMap { token -> Future<ApolloClient> in
             guard let token = token else {
                 let initClient = HedvigApolloClient.shared.initClient(environment: environment)
 
@@ -70,5 +70,11 @@ struct RCTApolloClient {
                 environment: environment
             )
         }
+        
+        clientFuture.onValue { client in
+            HedvigApolloClient.shared.client = client
+        }
+        
+        return clientFuture
     }
 }

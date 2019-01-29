@@ -17,7 +17,7 @@ struct LoggedInScreenComponent {
 
             var resultingViewController: UIViewController?
 
-            RCTApolloClient.getClient().onValue({ client in
+            RCTApolloClient.getClient().onValue({ client in                
                 let loggedIn = LoggedIn(
                     client: client
                 )

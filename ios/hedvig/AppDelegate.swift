@@ -101,8 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
 
         RCTApolloClient.getClient().delay(by: 0.05).onValue { client in
-            HedvigApolloClient.shared.client = client
-
             ReactNativeNavigation.bootstrapBrownField(
                 jsCodeLocation,
                 launchOptions: launchOptions,
