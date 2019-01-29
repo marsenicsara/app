@@ -24,6 +24,7 @@
 		EB4695BC220050520004C75D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695BB220050520004C75D /* Dashboard.swift */; };
 		EB4695BE220051BF0004C75D /* Pods-Hedvig-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */; };
 		EB4695CC220079BA0004C75D /* LocalizationKey+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695C9220079BA0004C75D /* LocalizationKey+String.swift */; };
+		EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695CD220083800004C75D /* RCTApolloClient.swift */; };
 		EBD6754321FF4EE200050E86 /* LoggedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD674F921FF4EE200050E86 /* LoggedIn.swift */; };
 		EBD6754421FF4EE200050E86 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD674FB21FF4EE200050E86 /* Launch.swift */; };
 		EBD6754521FF4EE200050E86 /* MarketingPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD674FD21FF4EE200050E86 /* MarketingPresentationStyle.swift */; };
@@ -202,6 +203,7 @@
 		EB4695BB220050520004C75D /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-Hedvig-acknowledgements.plist"; sourceTree = "<group>"; };
 		EB4695C9220079BA0004C75D /* LocalizationKey+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocalizationKey+String.swift"; sourceTree = "<group>"; };
+		EB4695CD220083800004C75D /* RCTApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTApolloClient.swift; sourceTree = "<group>"; };
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD674F921FF4EE200050E86 /* LoggedIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedIn.swift; sourceTree = "<group>"; };
 		EBD674FB21FF4EE200050E86 /* Launch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				EBECC26521B9230000716BEA /* NativeRouting.swift */,
 				EB4695BB220050520004C75D /* Dashboard.swift */,
 				EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */,
+				EB4695CD220083800004C75D /* RCTApolloClient.swift */,
 			);
 			path = hedvig;
 			sourceTree = "<group>";
@@ -1254,6 +1257,7 @@
 				EBD675D821FF4EE800050E86 /* ActivityView.swift in Sources */,
 				EBD675DA21FF4EE800050E86 /* CenterAllStackView.swift in Sources */,
 				EBD675D021FF4EE800050E86 /* CollectionKit+ScrollTo.swift in Sources */,
+				EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */,
 				EBD6754921FF4EE200050E86 /* Logo.swift in Sources */,
 				EBD675BA21FF4EE800050E86 /* CircleIcon.swift in Sources */,
 				EBD675BF21FF4EE800050E86 /* ApolloClient+Flow.swift in Sources */,
