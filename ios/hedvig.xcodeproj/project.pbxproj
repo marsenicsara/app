@@ -956,7 +956,6 @@
 				B563863E1DB9693800A0598C /* Frameworks */,
 				EBC15BE5212850D700D0E296 /* Bundle React Native code and images */,
 				B563863F1DB9693800A0598C /* Resources */,
-				1692B8F87AFA418B9266FEBB /* Upload Debug Symbols to Sentry */,
 				4058138912982553DF297D6D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1076,20 +1075,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1692B8F87AFA418B9266FEBB /* Upload Debug Symbols to Sentry */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Debug Symbols to Sentry";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
-		};
 		4058138912982553DF297D6D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -112,6 +112,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             let bridge = ReactNativeNavigation.getBridge()
 
+            self.window?.makeKeyAndVisible()
+
             let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
 
             self.bag += nativeRouting.appHasLoadedSignal.onValue({ _ in
@@ -124,6 +126,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func logout() {
+        window?.makeKeyAndVisible()
+        ReactNativeNavigation.getBridge()?.invalidate()
         bag.dispose()
         RCTAsyncLocalStorage().clearAllData()
         loadApolloAndReactNative()
