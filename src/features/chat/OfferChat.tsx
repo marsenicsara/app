@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { Mount } from 'react-lifecycle-components';
+import { Mount, Unmount } from 'react-lifecycle-components';
 import { Container, ActionMap, EffectMap, EffectProps } from 'constate';
 
 import MessageList from './containers/MessageList';
@@ -35,12 +35,14 @@ interface State {
   chatState: ChatState;
   displayLoadingIndicator: boolean;
   stackedInterval: number;
+  unsubscribe: any;
 }
 
 interface Actions {
   setMessages: (messages: Message[]) => void;
   setChatState: (chatState: ChatState) => void;
   selectChoice: (message: Message, choice: Choice) => void;
+  setUnsubscribe: (unsubscribe: any) => void;
 }
 
 const actions: ActionMap<State, Actions> = {
@@ -49,6 +51,9 @@ const actions: ActionMap<State, Actions> = {
   }),
   setChatState: (chatState) => () => ({
     chatState,
+  }),
+  setUnsubscribe: (unsubscribe) => () => ({
+    unsubscribe,
   }),
   selectChoice: (message, choice) => (state) => {
     const messages = state.messages;
@@ -118,16 +123,6 @@ const Response = styled(View)({
   paddingTop: 8,
 });
 
-const handleAppStateChange = (
-  appState: string,
-  getMessages: (intent: string) => void,
-  intent: string,
-) => {
-  if (appState === 'active') {
-    getMessages(intent);
-  }
-};
-
 const showOffer = (onRequestClose: () => void) => {
   onRequestClose();
 };
@@ -146,6 +141,7 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
             chatState: data.chatState,
             displayLoadingIndicator: false,
             stackedInterval: 0,
+            unsubscribe: null,
           }}
         >
           {({
@@ -157,6 +153,8 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
             setChatState,
             addToChat,
             stackedInterval,
+            setUnsubscribe,
+            unsubscribe,
           }) => (
             <>
               <Mount
@@ -180,66 +178,77 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
                     onError: (err) => console.log(err),
                   });
 
-                  subscribeToMore({
-                    document: MESSAGE_SUBSCRIPTION,
-                    variables: {
-                      mostRecentTimestamp,
-                    },
-                    updateQuery: (prev, { subscriptionData }) => {
-                      if (!subscriptionData.data) return prev;
+                  setUnsubscribe(
+                    subscribeToMore({
+                      document: MESSAGE_SUBSCRIPTION,
+                      variables: {
+                        mostRecentTimestamp,
+                      },
+                      updateQuery: (prev, { subscriptionData }) => {
+                        if (!subscriptionData.data) return prev;
 
-                      console.log('\n\nPrev: ', prev.messages);
+                        console.log('\n\nPrev: ', prev.messages);
 
-                      console.log(subscriptionData.data);
+                        console.log(subscriptionData.data);
 
-                      const newMessage = subscriptionData.data.messages[0];
+                        const newMessage = subscriptionData.data.messages[0];
 
-                      const filteredMessages =
-                        prev.messages &&
-                        prev.messages.filter(
-                          (m1: Message) =>
-                            !subscriptionData.data.messages.some(
-                              (m2: Message) => m1.globalId === m2.globalId,
-                            ),
-                        );
+                        const filteredMessages =
+                          prev.messages &&
+                          prev.messages.filter(
+                            (m1: Message) =>
+                              !subscriptionData.data.messages.some(
+                                (m2: Message) => m1.globalId === m2.globalId,
+                              ),
+                          );
 
-                      const deleted = prev.messages
-                        ? filteredMessages.length !== prev.messages.length
-                        : false;
+                        const deleted = prev.messages
+                          ? filteredMessages.length !== prev.messages.length
+                          : false;
 
-                      console.log('New message: ', newMessage);
+                        console.log('New message: ', newMessage);
 
-                      if (prev.messages) {
-                        console.log('Deleted: ', deleted);
-                      }
+                        if (prev.messages) {
+                          console.log('Deleted: ', deleted);
+                        }
 
-                      console.log('Filtered: ', filteredMessages);
+                        console.log('Filtered: ', filteredMessages);
 
-                      const updatedMessages = Object.assign({}, prev, {
-                        messages: prev.messages
-                          ? deleted
-                            ? filteredMessages
-                            : [newMessage, ...prev.messages]
-                          : [newMessage],
-                      });
+                        const updatedMessages = Object.assign({}, prev, {
+                          messages: prev.messages
+                            ? deleted
+                              ? filteredMessages
+                              : [newMessage, ...prev.messages]
+                            : [newMessage],
+                        });
 
-                      const pollingInterval =
-                        newMessage.body.type === 'paragraph'
-                          ? newMessage.header.pollingInterval || 0
-                          : 0;
+                        const pollingInterval =
+                          newMessage.body.type === 'paragraph'
+                            ? newMessage.header.pollingInterval || 0
+                            : 0;
 
-                      const delay = deleted ? 0 : pollingInterval;
+                        const delay = deleted ? 0 : pollingInterval;
 
-                      addToChat(updatedMessages.messages, delay);
+                        addToChat(updatedMessages.messages, delay);
 
-                      return updatedMessages;
-                    },
-                    onError: (err) => console.log(err),
-                  });
+                        return updatedMessages;
+                      },
+                      onError: (err) => console.log(err),
+                    }),
+                  );
                 }}
               >
                 {null}
               </Mount>
+              <Unmount
+                on={() => {
+                  if (unsubscribe !== null) {
+                    unsubscribe();
+                  }
+                }}
+              >
+                {null}
+              </Unmount>
 
               <KeyboardAvoidingOnAndroid additionalPadding={8}>
                 <Messages>

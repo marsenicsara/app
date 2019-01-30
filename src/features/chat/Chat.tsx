@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Navigation } from 'react-native-navigation';
 import { View } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { Mount } from 'react-lifecycle-components';
+import { Mount, Unmount } from 'react-lifecycle-components';
 import { Container, ActionMap, EffectMap, EffectProps } from 'constate';
 
 import MessageList from './containers/MessageList';
@@ -124,6 +124,7 @@ interface State {
   displayLoadingIndicator: boolean;
   stackedInterval: number;
   showResetDialog: boolean;
+  unsubscribe: any;
 }
 
 interface Actions {
@@ -131,6 +132,7 @@ interface Actions {
   setChatState: (chatState: ChatState) => void;
   selectChoice: (message: Message, choice: Choice) => void;
   setShowResetDialog: (show: boolean) => void;
+  setUnsubscribe: (unsubscribe: any) => void;
 }
 
 const actions: ActionMap<State, Actions> = {
@@ -139,6 +141,9 @@ const actions: ActionMap<State, Actions> = {
   }),
   setChatState: (chatState) => () => ({
     chatState,
+  }),
+  setUnsubscribe: (unsubscribe) => () => ({
+    unsubscribe,
   }),
   selectChoice: (message, choice) => (state) => {
     const messages = state.messages;
@@ -164,6 +169,7 @@ const actions: ActionMap<State, Actions> = {
     showResetDialog,
   }),
 };
+
 const KeyboardAvoidingOnAndroidIfModal: React.SFC<{ isModal: boolean }> = ({
   children,
   isModal,
@@ -237,6 +243,8 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
             stackedInterval,
             showResetDialog,
             setShowResetDialog,
+            unsubscribe,
+            setUnsubscribe,
           }) => (
             <>
               <NavigationEvents
@@ -268,7 +276,10 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
                   subscribeToMore({
                     document: CHAT_STATE_SUBSCRIPTON,
                     variables: {
-                      mostRecentTimestamp,
+                      mostRecentTimestamp:
+                        messages.length !== 0
+                          ? messages[0].header.timeStamp
+                          : Number.MAX_SAFE_INTEGER.toString(),
                     },
                     updateQuery: (prev, { subscriptionData }) => {
                       if (!subscriptionData.data) return prev;
@@ -277,68 +288,80 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
                       return subscriptionData.data.chatState;
                     },
                     onError: (err) => console.log(err),
-                  });
+                  }),
+                    setUnsubscribe(
+                      subscribeToMore({
+                        document: MESSAGE_SUBSCRIPTION,
+                        variables: {
+                          mostRecentTimestamp:
+                            messages.length !== 0
+                              ? messages[0].header.timeStamp
+                              : Number.MAX_SAFE_INTEGER.toString(),
+                        },
+                        updateQuery: (prev, { subscriptionData }) => {
+                          if (!subscriptionData.data) return prev;
 
-                  subscribeToMore({
-                    document: MESSAGE_SUBSCRIPTION,
-                    variables: {
-                      mostRecentTimestamp,
-                    },
-                    updateQuery: (prev, { subscriptionData }) => {
-                      if (!subscriptionData.data) return prev;
+                          console.log('\n\nPrev: ', prev.messages);
 
-                      console.log('\n\nPrev: ', prev.messages);
+                          console.log(subscriptionData.data);
 
-                      console.log(subscriptionData.data);
+                          const newMessage = subscriptionData.data.messages[0];
 
-                      const newMessage = subscriptionData.data.messages[0];
+                          const filteredMessages =
+                            prev.messages &&
+                            prev.messages.filter(
+                              (m1: Message) =>
+                                !subscriptionData.data.messages.some(
+                                  (m2: Message) => m1.globalId === m2.globalId,
+                                ),
+                            );
 
-                      const filteredMessages =
-                        prev.messages &&
-                        prev.messages.filter(
-                          (m1: Message) =>
-                            !subscriptionData.data.messages.some(
-                              (m2: Message) => m1.globalId === m2.globalId,
-                            ),
-                        );
+                          const deleted = prev.messages
+                            ? filteredMessages.length !== prev.messages.length
+                            : false;
 
-                      const deleted = prev.messages
-                        ? filteredMessages.length !== prev.messages.length
-                        : false;
+                          console.log('New message: ', newMessage);
 
-                      console.log('New message: ', newMessage);
+                          if (prev.messages) {
+                            console.log('Deleted: ', deleted);
+                          }
 
-                      if (prev.messages) {
-                        console.log('Deleted: ', deleted);
-                      }
+                          console.log('Filtered: ', filteredMessages);
 
-                      console.log('Filtered: ', filteredMessages);
+                          const updatedMessages = Object.assign({}, prev, {
+                            messages: prev.messages
+                              ? deleted
+                                ? filteredMessages
+                                : [newMessage, ...prev.messages]
+                              : [newMessage],
+                          });
 
-                      const updatedMessages = Object.assign({}, prev, {
-                        messages: prev.messages
-                          ? deleted
-                            ? filteredMessages
-                            : [newMessage, ...prev.messages]
-                          : [newMessage],
-                      });
+                          const pollingInterval =
+                            newMessage.body.type === 'paragraph'
+                              ? newMessage.header.pollingInterval || 0
+                              : 0;
 
-                      const pollingInterval =
-                        newMessage.body.type === 'paragraph'
-                          ? newMessage.header.pollingInterval || 0
-                          : 0;
+                          const delay = deleted ? 0 : pollingInterval;
 
-                      const delay = deleted ? 0 : pollingInterval;
+                          addToChat(updatedMessages.messages, delay);
 
-                      addToChat(updatedMessages.messages, delay);
-
-                      return updatedMessages;
-                    },
-                    onError: (err) => console.log(err),
-                  });
+                          return updatedMessages;
+                        },
+                        onError: (err) => console.log(err),
+                      }),
+                    );
                 }}
               >
                 {null}
               </Mount>
+
+              <Unmount
+                on={() => {
+                  unsubscribe();
+                }}
+              >
+                {null}
+              </Unmount>
 
               <NavigationOptions
                 options={getNavigationOptions(
