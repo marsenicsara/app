@@ -10,6 +10,7 @@ import { getToken } from './context';
 import { split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
+import ws from 'ws';
 
 const showNetworkAlert = () => {
   Alert.alert(
@@ -83,6 +84,7 @@ const wsLink = new WebSocketLink({
       Authorization: await getToken(),
     }),
   },
+  webSocketImpl: ws,
 });
 
 const uploadLink = createUploadLink({

@@ -8,7 +8,7 @@ import fm from './fragment-matcher';
 
 const cache = new InMemoryCache({
   fragmentMatcher: fm,
-  dataIdFromObject: (o) =>
+  dataIdFromObject: (o: any) =>
     o.globalId ? `${o.__typename}:${o.globalId}` : null,
 });
 

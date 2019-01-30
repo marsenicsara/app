@@ -283,7 +283,6 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
                     },
                     updateQuery: (prev, { subscriptionData }) => {
                       if (!subscriptionData.data) return prev;
-                      console.log('Chat state', subscriptionData.data);
                       setChatState(subscriptionData.data.chatState);
                       return subscriptionData.data.chatState;
                     },
@@ -301,10 +300,6 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
                         updateQuery: (prev, { subscriptionData }) => {
                           if (!subscriptionData.data) return prev;
 
-                          console.log('\n\nPrev: ', prev.messages);
-
-                          console.log(subscriptionData.data);
-
                           const newMessage = subscriptionData.data.messages[0];
 
                           const filteredMessages =
@@ -319,14 +314,6 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
                           const deleted = prev.messages
                             ? filteredMessages.length !== prev.messages.length
                             : false;
-
-                          console.log('New message: ', newMessage);
-
-                          if (prev.messages) {
-                            console.log('Deleted: ', deleted);
-                          }
-
-                          console.log('Filtered: ', filteredMessages);
 
                           const updatedMessages = Object.assign({}, prev, {
                             messages: prev.messages
