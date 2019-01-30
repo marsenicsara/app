@@ -125,6 +125,8 @@ interface State {
   stackedInterval: number;
   showResetDialog: boolean;
   unsubscribe: any;
+  unsubscribeToMessages: (() => void) | null;
+  unsubscribeToChatState: (() => void) | null;
 }
 
 interface Actions {
@@ -132,7 +134,8 @@ interface Actions {
   setChatState: (chatState: ChatState) => void;
   selectChoice: (message: Message, choice: Choice) => void;
   setShowResetDialog: (show: boolean) => void;
-  setUnsubscribe: (unsubscribe: any) => void;
+  setUnsubscribeToMessages: (unsubscribeToMessages: any) => void;
+  setUnsubscribeToChatState: (unsubscribeToChatState: any) => void;
 }
 
 const actions: ActionMap<State, Actions> = {
@@ -142,8 +145,11 @@ const actions: ActionMap<State, Actions> = {
   setChatState: (chatState) => () => ({
     chatState,
   }),
-  setUnsubscribe: (unsubscribe) => () => ({
-    unsubscribe,
+  setUnsubscribeToMessages: (unsubscribeToMessages) => () => ({
+    unsubscribeToMessages,
+  }),
+  setUnsubscribeToChatState: (unsubscribeToChatState) => () => ({
+    unsubscribeToChatState,
   }),
   selectChoice: (message, choice) => (state) => {
     const messages = state.messages;
@@ -243,8 +249,10 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
             stackedInterval,
             showResetDialog,
             setShowResetDialog,
-            unsubscribe,
-            setUnsubscribe,
+            setUnsubscribeToMessages,
+            unsubscribeToMessages,
+            setUnsubscribeToChatState,
+            unsubscribeToChatState,
           }) => (
             <>
               <NavigationEvents
@@ -273,70 +281,66 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
                       ? messages[0].header.timeStamp
                       : Number.MAX_SAFE_INTEGER.toString();
 
-                  subscribeToMore({
-                    document: CHAT_STATE_SUBSCRIPTON,
-                    variables: {
-                      mostRecentTimestamp:
-                        messages.length !== 0
-                          ? messages[0].header.timeStamp
-                          : Number.MAX_SAFE_INTEGER.toString(),
-                    },
-                    updateQuery: (prev, { subscriptionData }) => {
-                      if (!subscriptionData.data) return prev;
-                      setChatState(subscriptionData.data.chatState);
-                      return subscriptionData.data.chatState;
-                    },
-                    onError: (err) => console.log(err),
-                  }),
-                    setUnsubscribe(
-                      subscribeToMore({
-                        document: MESSAGE_SUBSCRIPTION,
-                        variables: {
-                          mostRecentTimestamp:
-                            messages.length !== 0
-                              ? messages[0].header.timeStamp
-                              : Number.MAX_SAFE_INTEGER.toString(),
-                        },
-                        updateQuery: (prev, { subscriptionData }) => {
-                          if (!subscriptionData.data) return prev;
+                  setUnsubscribeToChatState(
+                    subscribeToMore({
+                      document: CHAT_STATE_SUBSCRIPTON,
+                      variables: {
+                        mostRecentTimestamp,
+                      },
+                      updateQuery: (prev, { subscriptionData }) => {
+                        if (!subscriptionData.data) return prev;
+                        setChatState(subscriptionData.data.chatState);
+                        return subscriptionData.data.chatState;
+                      },
+                      onError: (err) => console.log(err),
+                    }),
+                  );
+                  setUnsubscribeToMessages(
+                    subscribeToMore({
+                      document: MESSAGE_SUBSCRIPTION,
+                      variables: {
+                        mostRecentTimestamp,
+                      },
+                      updateQuery: (prev, { subscriptionData }) => {
+                        if (!subscriptionData.data) return prev;
 
-                          const newMessage = subscriptionData.data.messages[0];
+                        const newMessage = subscriptionData.data.messages[0];
 
-                          const filteredMessages =
-                            prev.messages &&
-                            prev.messages.filter(
-                              (m1: Message) =>
-                                !subscriptionData.data.messages.some(
-                                  (m2: Message) => m1.globalId === m2.globalId,
-                                ),
-                            );
+                        const filteredMessages =
+                          prev.messages &&
+                          prev.messages.filter(
+                            (m1: Message) =>
+                              !subscriptionData.data.messages.some(
+                                (m2: Message) => m1.globalId === m2.globalId,
+                              ),
+                          );
 
-                          const deleted = prev.messages
-                            ? filteredMessages.length !== prev.messages.length
-                            : false;
+                        const deleted = prev.messages
+                          ? filteredMessages.length !== prev.messages.length
+                          : false;
 
-                          const updatedMessages = Object.assign({}, prev, {
-                            messages: prev.messages
-                              ? deleted
-                                ? filteredMessages
-                                : [newMessage, ...prev.messages]
-                              : [newMessage],
-                          });
+                        const updatedMessages = Object.assign({}, prev, {
+                          messages: prev.messages
+                            ? deleted
+                              ? filteredMessages
+                              : [newMessage, ...prev.messages]
+                            : [newMessage],
+                        });
 
-                          const pollingInterval =
-                            newMessage.body.type === 'paragraph'
-                              ? newMessage.header.pollingInterval || 0
-                              : 0;
+                        const pollingInterval =
+                          newMessage.body.type === 'paragraph'
+                            ? newMessage.header.pollingInterval || 0
+                            : 0;
 
-                          const delay = deleted ? 0 : pollingInterval;
+                        const delay = deleted ? 0 : pollingInterval;
 
-                          addToChat(updatedMessages.messages, delay);
+                        addToChat(updatedMessages.messages, delay);
 
-                          return updatedMessages;
-                        },
-                        onError: (err) => console.log(err),
-                      }),
-                    );
+                        return updatedMessages;
+                      },
+                      onError: (err) => console.log(err),
+                    }),
+                  );
                 }}
               >
                 {null}
@@ -344,7 +348,12 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
 
               <Unmount
                 on={() => {
-                  unsubscribe();
+                  if (unsubscribeToMessages !== null) {
+                    unsubscribeToMessages();
+                  }
+                  if (unsubscribeToChatState !== null) {
+                    unsubscribeToChatState();
+                  }
                 }}
               >
                 {null}

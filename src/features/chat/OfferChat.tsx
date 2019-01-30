@@ -35,14 +35,16 @@ interface State {
   chatState: ChatState;
   displayLoadingIndicator: boolean;
   stackedInterval: number;
-  unsubscribe: any;
+  unsubscribeToMessages: (() => void) | null;
+  unsubscribeToChatState: (() => void) | null;
 }
 
 interface Actions {
   setMessages: (messages: Message[]) => void;
   setChatState: (chatState: ChatState) => void;
   selectChoice: (message: Message, choice: Choice) => void;
-  setUnsubscribe: (unsubscribe: any) => void;
+  setUnsubscribeToMessages: (unsubscribeToMessages: any) => void;
+  setUnsubscribeToChatState: (unsubscribeToChatState: any) => void;
 }
 
 const actions: ActionMap<State, Actions> = {
@@ -52,8 +54,11 @@ const actions: ActionMap<State, Actions> = {
   setChatState: (chatState) => () => ({
     chatState,
   }),
-  setUnsubscribe: (unsubscribe) => () => ({
-    unsubscribe,
+  setUnsubscribeToMessages: (unsubscribeToMessages) => () => ({
+    unsubscribeToMessages,
+  }),
+  setUnsubscribeToChatState: (unsubscribeToChatState) => () => ({
+    unsubscribeToChatState,
   }),
   selectChoice: (message, choice) => (state) => {
     const messages = state.messages;
@@ -141,7 +146,8 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
             chatState: data.chatState,
             displayLoadingIndicator: false,
             stackedInterval: 0,
-            unsubscribe: null,
+            unsubscribeToMessages: null,
+            unsubscribeToChatState: null,
           }}
         >
           {({
@@ -153,8 +159,10 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
             setChatState,
             addToChat,
             stackedInterval,
-            setUnsubscribe,
-            unsubscribe,
+            setUnsubscribeToMessages,
+            unsubscribeToMessages,
+            setUnsubscribeToChatState,
+            unsubscribeToChatState,
           }) => (
             <>
               <Mount
@@ -164,21 +172,22 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
                       ? messages[0].header.timeStamp
                       : Number.MAX_SAFE_INTEGER.toString();
 
-                  subscribeToMore({
-                    document: CHAT_STATE_SUBSCRIPTON,
-                    variables: {
-                      mostRecentTimestamp,
-                    },
-                    updateQuery: (prev, { subscriptionData }) => {
-                      if (!subscriptionData.data) return prev;
-                      console.log('Chat state', subscriptionData.data);
-                      setChatState(subscriptionData.data.chatState);
-                      return subscriptionData.data.chatState;
-                    },
-                    onError: (err) => console.log(err),
-                  });
+                  setUnsubscribeToChatState(
+                    subscribeToMore({
+                      document: CHAT_STATE_SUBSCRIPTON,
+                      variables: {
+                        mostRecentTimestamp,
+                      },
+                      updateQuery: (prev, { subscriptionData }) => {
+                        if (!subscriptionData.data) return prev;
+                        setChatState(subscriptionData.data.chatState);
+                        return subscriptionData.data.chatState;
+                      },
+                      onError: (err) => console.log(err),
+                    }),
+                  );
 
-                  setUnsubscribe(
+                  setUnsubscribeToMessages(
                     subscribeToMore({
                       document: MESSAGE_SUBSCRIPTION,
                       variables: {
@@ -186,10 +195,6 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
                       },
                       updateQuery: (prev, { subscriptionData }) => {
                         if (!subscriptionData.data) return prev;
-
-                        console.log('\n\nPrev: ', prev.messages);
-
-                        console.log(subscriptionData.data);
 
                         const newMessage = subscriptionData.data.messages[0];
 
@@ -205,14 +210,6 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
                         const deleted = prev.messages
                           ? filteredMessages.length !== prev.messages.length
                           : false;
-
-                        console.log('New message: ', newMessage);
-
-                        if (prev.messages) {
-                          console.log('Deleted: ', deleted);
-                        }
-
-                        console.log('Filtered: ', filteredMessages);
 
                         const updatedMessages = Object.assign({}, prev, {
                           messages: prev.messages
@@ -242,8 +239,11 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
               </Mount>
               <Unmount
                 on={() => {
-                  if (unsubscribe !== null) {
-                    unsubscribe();
+                  if (unsubscribeToMessages !== null) {
+                    unsubscribeToMessages();
+                  }
+                  if (unsubscribeToChatState !== null) {
+                    unsubscribeToChatState();
                   }
                 }}
               >
