@@ -29,6 +29,12 @@ export const MESSAGE_QUERY = gql`
       duration
       data
     }
+
+    chatState {
+      ongoingClaim
+      showOfferScreen
+      onboardingDone
+    }
   }
 
   fragment Header on MessageHeader {

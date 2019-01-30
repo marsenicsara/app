@@ -42,3 +42,9 @@ export interface Avatar {
   duration: number;
   data: object;
 }
+
+export interface ChatState {
+  ongoingClaim: boolean;
+  showOfferScreen: boolean;
+  onboardingDone: boolean;
+}
