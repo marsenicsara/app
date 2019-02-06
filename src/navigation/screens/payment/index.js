@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import Payment from '../../../features/payment';
 import { StandalonePayment } from 'src/features/payment/StandalonePayment';
 import { CLOSE_BUTTON } from './buttons';
@@ -16,7 +17,7 @@ class PaymentScreen extends React.Component {
       },
       statusBar: {
         visible: true,
-        style: 'light',
+        style: Platform.OS === 'android' ? 'light' : 'dark',
         drawBehind: false,
       },
       layout: {

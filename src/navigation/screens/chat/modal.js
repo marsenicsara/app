@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { HEDVIG_LOGO_TITLE_COMPONENT } from '../../components/hedvigLogoTitle';
 import Chat from '../../../features/chat/Chat';
 import { navigationConstants } from '../../constants';
@@ -10,15 +11,23 @@ class ChatScreenModal extends React.Component {
     return {
       topBar: {
         visible: true,
-        title: {
-          component: HEDVIG_LOGO_TITLE_COMPONENT,
-        },
+        title: Platform.select({
+          ios: {
+            component: HEDVIG_LOGO_TITLE_COMPONENT,
+          },
+          android: {
+            externalComponent: {
+              name: 'logo',
+            },
+            alignment: 'center',
+          },
+        }),
         leftButtons: [CLOSE_BUTTON],
       },
       statusBar: {
         visible: true,
         drawBehind: false,
-        style: 'light',
+        style: Platform.OS === 'android' ? 'light' : 'dark',
       },
       layout: {
         topMargin: navigationConstants.statusBarHeight * 3,

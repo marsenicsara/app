@@ -3,7 +3,10 @@ import { YellowBox, UIManager } from 'react-native';
 
 import { HOC } from './App';
 import { setInitialLayout } from './src/navigation/layouts/initialLayout';
-import { setupNativeRouting } from './src/navigation/native-routing';
+import {
+  setupNativeRouting,
+  appHasLoaded,
+} from './src/navigation/native-routing';
 import { getNavigationConstants } from './src/navigation/constants';
 import { register } from './src/navigation/register';
 import { patchCustomConfig } from './src/features/debug/patch-custom-config';
@@ -34,6 +37,7 @@ getNavigationConstants().then(() => {
 
 Navigation.events().registerAppLaunchedListener(async () => {
   await setInitialLayout();
+  appHasLoaded();
   setupPushNotifications();
   setupNativeRouting();
 });

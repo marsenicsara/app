@@ -7,12 +7,6 @@ const HedvigLogoImage = styled(Image)({
   height: 30,
   justifyContent: 'center',
   alignItems: 'center',
-  ...Platform.select({
-    android: {
-      marginTop: 5,
-    },
-    ios: {},
-  }),
 });
 
 export const HedvigLogoTitle = () => (

@@ -17,7 +17,7 @@ class DashboardScreen extends React.Component {
       },
       statusBar: {
         visible: true,
-        style: 'light',
+        style: Platform.OS === 'android' ? 'light' : 'dark',
       },
     };
   }

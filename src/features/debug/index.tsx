@@ -6,7 +6,6 @@ import { fonts } from '@hedviginsurance/brand';
 
 import { getMarketingLayout } from 'src/navigation/layouts/marketingLayout';
 import { getChatLayout } from 'src/navigation/layouts/chatLayout';
-import { getOldOfferLayout } from 'src/navigation/layouts/oldOfferLayout';
 import { getNewOfferLayout } from 'src/navigation/layouts/newOfferLayout';
 import { getMainLayout } from 'src/navigation/layouts/mainLayout';
 import { setLayout } from 'src/navigation/layouts/setLayout';
@@ -19,8 +18,6 @@ import { Row } from './row';
 const openMarketingLayout = async () => setLayout(await getMarketingLayout());
 
 const openChatLayout = async () => setLayout(await getChatLayout());
-
-const openOfferLayout = async () => setLayout(await getOldOfferLayout());
 
 const openNewOfferLayout = async () => setLayout(await getNewOfferLayout());
 
@@ -59,7 +56,6 @@ export const Debug = () => (
     <Label>Screens</Label>
     <Row onPress={openMarketingLayout}>Open marketing screens</Row>
     <Row onPress={openChatLayout}>Open chat screens</Row>
-    <Row onPress={openOfferLayout}>Open old offering screens</Row>
     <Row onPress={openNewOfferLayout}>Open new offering screens</Row>
     <Row onPress={openMockedNewOfferLayout}>
       Open new offering screens (mocked)

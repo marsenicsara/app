@@ -113,6 +113,12 @@ class ChatTextInput extends React.Component {
     const richTextChatCompatible = this.props.message.header
       .richTextChatCompatible;
 
+    const placeholder = this.props.message.body.placeholder
+      ? this.props.message.body.placeholder
+      : 'Skriv här...';
+
+    const keyboardType = this.props.message.body.keyboardType;
+
     return (
       <Container actions={actions} context="chatTextInputState">
         {({ setValue, value }) => (
@@ -136,9 +142,9 @@ class ChatTextInput extends React.Component {
                               autoFocus
                               autoCapitalize="none"
                               placeholder={
-                                this.props.keyboardType === 'numeric' ||
+                                keyboardType === 'numeric' ||
                                 !richTextChatCompatible
-                                  ? 'Skriv här...'
+                                  ? placeholder
                                   : 'Aa'
                               }
                               underlineColorAndroid="transparent"
@@ -149,7 +155,7 @@ class ChatTextInput extends React.Component {
                                   : undefined
                               }
                               multiline={richTextChatCompatible}
-                              keyboardType={this.props.keyboardType}
+                              keyboardType={keyboardType}
                               returnKeyType={
                                 richTextChatCompatible ? 'default' : 'send'
                               }
@@ -168,6 +174,9 @@ class ChatTextInput extends React.Component {
                                   this.setState({ scrollEnabled: false });
                                 }
                               }}
+                              textContentType={
+                                this.props.message.body.textContentType
+                              }
                               enablesReturnKeyAutomatically
                             />
                             <SendButton

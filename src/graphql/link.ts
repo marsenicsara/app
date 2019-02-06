@@ -76,7 +76,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const wsLink = new WebSocketLink({
-  uri: Config.SUBSCRIPTIONS_URL,
+  uri: Config.WS_GRAPHQL_URL,
   options: {
     reconnect: true,
     connectionParams: async () => ({

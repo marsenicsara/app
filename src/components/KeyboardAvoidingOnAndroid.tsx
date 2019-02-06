@@ -1,15 +1,15 @@
 import * as React from 'react'
+import styled from '@sampettersson/primitives'
 import { Platform, KeyboardAvoidingView } from 'react-native'
-import { InputHeightContainer } from 'src/features/chat/containers/InputHeight';
+
+const ExpandingKeyboardAvoidingView = styled(KeyboardAvoidingView)({
+  flex: 1
+})
 
 export const KeyboardAvoidingOnAndroid: React.SFC<{ additionalPadding: number }> = ({ children, additionalPadding }) => (
   Platform.OS === 'android' ? (
-    <InputHeightContainer>
-      {({ inputHeight }) => (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={inputHeight + additionalPadding}>
-          {children}
-        </KeyboardAvoidingView>
-      )}
-    </InputHeightContainer>
+    <ExpandingKeyboardAvoidingView behavior="padding" keyboardVerticalOffset={50 + additionalPadding}>
+      {children}
+    </ExpandingKeyboardAvoidingView>
   ) : <>{children}</>
 )

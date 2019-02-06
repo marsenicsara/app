@@ -26,6 +26,7 @@ export const setLayout = ({
     statusBar: {
       visible: true,
       drawBehind: false,
+      style: 'light',
     },
     bottomTab: {
       iconColor: colors.DARK_GRAY,

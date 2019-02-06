@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '@sampettersson/primitives';
 import { View, Platform } from 'react-native';
 import { BlurView } from 'react-native-blur';
+import { colors } from '@hedviginsurance/brand';
 
 const BlurContainer = styled(BlurView)({
   position: 'absolute',
@@ -12,7 +13,8 @@ const BlurContainer = styled(BlurView)({
 const ContainerAndroid = styled(View)({
   position: 'absolute',
   bottom: 0,
-  widht: '100%',
+  width: '100%',
+  backgroundColor: colors.WHITE
 });
 
 export const BlurSwitchContainer: React.SFC = ({ children }) => {

@@ -13,10 +13,6 @@ import { NavigationEvents } from 'src/navigation/events';
 import { getMainLayout } from 'src/navigation/layouts/mainLayout';
 import { setLayout } from 'src/navigation/layouts/setLayout';
 import {
-  getOfferScreen,
-  OFFER_GROUPS,
-} from 'src/navigation/screens/offer/ab-test';
-import {
   RESTART_BUTTON,
   CLOSE_BUTTON,
   GO_TO_DASHBOARD_BUTTON,
@@ -31,6 +27,9 @@ import { MESSAGE_SUBSCRIPTION } from './chat-subscription';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
 import gql from 'graphql-tag';
 import { ConfirmationDialog } from './components/ConfirmationDialog';
+import { BackButton } from 'src/components/BackButton';
+import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
+import { PixelRatio } from 'react-native';
 
 const RESET_MUTATION = gql`
   mutation resetConversation {
@@ -104,17 +103,7 @@ const getNavigationOptions = (
 };
 
 const showOffer = async (componentId: string) => {
-  const { screen, group } = await getOfferScreen();
-
-  if (group === OFFER_GROUPS.OLD) {
-    Navigation.showModal({
-      stack: {
-        children: [screen],
-      },
-    });
-  } else {
-    Navigation.push(componentId, screen);
-  }
+  Navigation.push(componentId, NEW_OFFER_SCREEN);
 };
 
 interface State {
@@ -181,7 +170,9 @@ const KeyboardAvoidingOnAndroidIfModal: React.SFC<{ isModal: boolean }> = ({
   isModal,
 }) =>
   isModal ? (
-    <KeyboardAvoidingOnAndroid additionalPadding={16}>
+    <KeyboardAvoidingOnAndroid
+      additionalPadding={PixelRatio.getPixelSizeForLayoutSize(14)}
+    >
       {children}
     </KeyboardAvoidingOnAndroid>
   ) : (

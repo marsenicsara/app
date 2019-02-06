@@ -7,20 +7,20 @@
 //
 
 import Apollo
+import Flow
 import Foundation
 import Presentation
-import Flow
 
 struct MarketingScreenComponent {
     static func register(client: ApolloClient) {
-        ReactNativeNavigation.registerExternalComponent("marketingScreen") { (hashable, bridge) -> UIViewController? in
+        ReactNativeNavigation.registerExternalComponent("marketingScreen") { (_, bridge) -> UIViewController? in
             let navigationController = UINavigationController()
-            
+
             let marketing = Marketing(
                 client: client
             )
-            
-            let marketingPresentation = Presentation(
+
+            let marketingPresentation = Presentation<Marketing>(
                 marketing,
                 style: .marketing,
                 options: .unanimated
@@ -28,9 +28,9 @@ struct MarketingScreenComponent {
                 let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
                 nativeRouting.sendMarketingResult(marketingResult: marketingResult)
             })
-            
+
             navigationController.present(marketingPresentation)
-            
+
             return navigationController
         }
     }

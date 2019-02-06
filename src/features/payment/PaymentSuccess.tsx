@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styled from '@sampettersson/primitives';
 
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 import { Spacing } from '../../components/Spacing';
 import { CircledCheckmark } from '../../components/icons/CircledCheckmark';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
@@ -15,7 +15,7 @@ const Container = styled(View)({
 });
 
 const Title = styled(Text)({
-  fontFamily: 'Merriweather-Light',
+  fontFamily: fonts.CIRCULAR,
   fontSize: 35,
   color: colors.GREEN,
 });
@@ -49,21 +49,21 @@ interface PaymentSuccessProps {
 export const PaymentSuccess: React.SFC<PaymentSuccessProps> = ({
   onPressContinue,
 }) => (
-  <Container>
-    <CircledCheckmark height={100} width={100} />
-    <Spacing height={20} />
-    <TranslationsConsumer textKey="PAYMENT_SUCCESS_TITLE">
-      {(text) => <Title>{text}</Title>}
-    </TranslationsConsumer>
-    <Spacing height={20} />
-    <TranslationsConsumer textKey="PAYMENT_SUCCESS_BODY">
-      {(text) => <Body>{text}</Body>}
-    </TranslationsConsumer>
-    <Spacing height={25} />
-    <Button onPress={onPressContinue}>
-      <TranslationsConsumer textKey="PAYMENT_SUCCESS_BUTTON">
-        {(text) => <ButtonText>{text}</ButtonText>}
+    <Container>
+      <CircledCheckmark height={100} width={100} />
+      <Spacing height={20} />
+      <TranslationsConsumer textKey="PAYMENT_SUCCESS_TITLE">
+        {(text) => <Title>{text}</Title>}
       </TranslationsConsumer>
-    </Button>
-  </Container>
-);
+      <Spacing height={20} />
+      <TranslationsConsumer textKey="PAYMENT_SUCCESS_BODY">
+        {(text) => <Body>{text}</Body>}
+      </TranslationsConsumer>
+      <Spacing height={25} />
+      <Button onPress={onPressContinue}>
+        <TranslationsConsumer textKey="PAYMENT_SUCCESS_BUTTON">
+          {(text) => <ButtonText>{text}</ButtonText>}
+        </TranslationsConsumer>
+      </Button>
+    </Container>
+  );
