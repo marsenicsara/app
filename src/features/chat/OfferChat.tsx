@@ -134,9 +134,8 @@ const showOffer = (onRequestClose: () => void) => {
 
 const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
   <Query query={MESSAGE_QUERY} fetchPolicy="network-only">
-    {({ loading, error, data, subscribeToMore }) => {
-      console.log(data);
-      return !loading && !error && data ? (
+    {({ loading, error, data, subscribeToMore }) =>
+      !loading && !error && data ? (
         <Container
           actions={actions}
           effects={effects}
@@ -272,8 +271,8 @@ const Chat: React.SFC<ChatProps> = ({ onRequestClose }) => (
         </Container>
       ) : (
         <Loader />
-      );
-    }}
+      )
+    }
   </Query>
 );
 

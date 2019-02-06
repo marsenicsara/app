@@ -122,7 +122,6 @@ const effects: EffectMap<State, Effects> = {
   startRecording: () => async ({ setState, state }: EffectProps<State>) => {
     const hasPermission = await requestPermissions();
     if (!hasPermission) {
-      // SHOW PERMISSION DIALOG
       setState(() => ({ showPermissionDialog: true }));
     }
 
@@ -312,7 +311,7 @@ const AudioInput: React.SFC<AudioInputProps> = ({ message }) => {
                           onPress={() => {
                             upload(recordingUrl).then((uploadResponse: any) => {
                               if (uploadResponse instanceof Error) {
-                                console.log('Error when uploading audio.');
+                                console.error('Error when uploading audio.');
                               } else {
                                 mutate({
                                   variables: {

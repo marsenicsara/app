@@ -224,9 +224,8 @@ const effects: EffectMap<State, Effects> = {
 
 const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
   <Query query={MESSAGE_QUERY} fetchPolicy="network-only">
-    {({ loading, error, data, subscribeToMore }) => {
-      console.log(data);
-      return !loading && !error && data ? (
+    {({ loading, error, data, subscribeToMore }) =>
+      !loading && !error && data ? (
         <Container
           actions={actions}
           effects={effects}
@@ -338,7 +337,7 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
 
                         return updatedMessages;
                       },
-                      onError: (err) => console.log(err),
+                      onError: (err) => console.error(err),
                     }),
                   );
                 }}
@@ -407,8 +406,8 @@ const Chat: React.SFC<ChatProps> = ({ isModal, componentId }) => (
         </Container>
       ) : (
         <Loader />
-      );
-    }}
+      )
+    }
   </Query>
 );
 

@@ -76,7 +76,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:4000/subscriptions`,
+  uri: Config.SUBSCRIPTIONS_URL,
   options: {
     reconnect: true,
     connectionParams: async () => ({
@@ -86,8 +86,7 @@ const wsLink = new WebSocketLink({
 });
 
 const uploadLink = createUploadLink({
-  // uri: Config.GRAPHQL_URL,
-  uri: 'http://localhost:4000/graphql',
+  uri: Config.GRAPHQL_URL,
 });
 
 const setAuthorizationLink = setContext(async () => ({
