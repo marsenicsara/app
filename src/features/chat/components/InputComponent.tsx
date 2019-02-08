@@ -7,14 +7,18 @@ import BankIdCollectInput from '../containers/BankIdCollectInput';
 import AudioInput from '../containers/AudioInput';
 import ParagraphInput from '../containers/ParagraphInput';
 
+import { Message, Choice } from '../types';
+
 interface InputComponentProps {
-  messages: any;
+  messages: Array<Message>;
   showOffer: () => void;
+  selectChoice: (message: Message, choice: Choice) => void;
 }
 
 interface InputComponentMapProps {
-  message: any;
+  message: Message;
   showOffer: () => void;
+  selectChoice: (message: Message, choice: Choice) => void;
 }
 
 const inputComponentMap: {
@@ -24,9 +28,9 @@ const inputComponentMap: {
   text: (props) => <ChatTextInput {...props} />,
   number: (props) => <ChatTextInput {...props} keyboardType="numeric" />,
   single_select: (props) => <SingleSelectInput {...props} />,
-  bankid_collect: () => <BankIdCollectInput />,
+  bankid_collect: (props) => <BankIdCollectInput {...props} />,
   paragraph: () => <ParagraphInput />,
-  audio: () => <AudioInput />,
+  audio: (props) => <AudioInput {...props} />,
 };
 
 const InputComponent: React.SFC<InputComponentProps> = (props) => {
@@ -44,7 +48,6 @@ const InputComponent: React.SFC<InputComponentProps> = (props) => {
   if (!Component) {
     return null;
   }
-
   return <Component {...props} message={lastMessage} />;
 };
 

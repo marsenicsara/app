@@ -20,7 +20,7 @@ import {
 import { shouldShowDashboard } from './utils';
 
 export const getInitialLayout = async () => {
-  if (await AsyncStorage.getItem(LAUNCH_DEBUG)) {
+  if ((await AsyncStorage.getItem(LAUNCH_DEBUG)) || true) {
     return getDebugLayout();
   }
 

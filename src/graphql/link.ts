@@ -7,6 +7,10 @@ import { Navigation } from 'react-native-navigation';
 
 import { getToken } from './context';
 
+import { split } from 'apollo-link';
+import { WebSocketLink } from 'apollo-link-ws';
+import { getMainDefinition } from 'apollo-utilities';
+
 const showNetworkAlert = () => {
   Alert.alert(
     'Nätverksproblem',
@@ -71,6 +75,16 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
+const wsLink = new WebSocketLink({
+  uri: Config.WS_GRAPHQL_URL,
+  options: {
+    reconnect: true,
+    connectionParams: async () => ({
+      Authorization: await getToken(),
+    }),
+  },
+});
+
 const uploadLink = createUploadLink({
   uri: Config.GRAPHQL_URL,
 });
@@ -79,4 +93,13 @@ const setAuthorizationLink = setContext(async () => ({
   headers: { Authorization: await getToken() },
 }));
 
-export const link = errorLink.concat(setAuthorizationLink.concat(uploadLink));
+const splitter = split(
+  ({ query }) => {
+    const { kind, operation }: any = getMainDefinition(query);
+    return kind === 'OperationDefinition' && operation === 'subscription';
+  },
+  wsLink,
+  uploadLink,
+);
+
+export const link = errorLink.concat(setAuthorizationLink.concat(splitter));

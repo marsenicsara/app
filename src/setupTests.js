@@ -88,6 +88,13 @@ jest.mock('redux-persist', () => ({
   persistReducer: () => ({}),
 }));
 
+jest.mock('WebSocket', () => ({}));
+jest.mock('apollo-link-ws', () => ({
+  WebSocketLink: () => ({
+    request: [],
+  }),
+}));
+
 global.fetch = jest.fn(() => {});
 
 jest.useFakeTimers();
