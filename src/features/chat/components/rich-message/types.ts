@@ -19,5 +19,4 @@ export interface Props {
   index: number;
   withMargin: boolean;
   fromUser: boolean;
-  canEdit?: boolean;
 }

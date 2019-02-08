@@ -395,107 +395,81 @@ exports[`renders text messages correctly 1`] = `
     }
     withMargin={false}
   >
-    <Container
-      actions={
-        Object {
-          "setShowEditDialog": [Function],
-        }
-      }
-      initialState={
-        Object {
-          "showEditDialog": false,
-        }
-      }
+    <StyledUserChatMessage
+      withMargin={false}
     >
-      <InnerContainer
-        actions={
-          Object {
-            "setShowEditDialog": [Function],
-          }
-        }
-        initialState={
-          Object {
-            "showEditDialog": false,
-          }
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "backgroundColor": "#651EFF",
+              "borderColor": "#651EFF",
+              "borderRadius": 24,
+              "borderWidth": 1,
+              "justifyContent": "center",
+              "marginBottom": 2,
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            undefined,
+          ]
         }
       >
-        <StyledUserChatMessage
-          withMargin={false}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "alignSelf": "center",
-                  "backgroundColor": "#651EFF",
-                  "borderColor": "#651EFF",
-                  "borderRadius": 24,
-                  "borderWidth": 1,
-                  "justifyContent": "center",
-                  "marginBottom": 2,
-                  "paddingBottom": 8,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 8,
-                },
-                undefined,
-              ]
+        <react-native-mock>
+          <_class
+            linkDefault={true}
+            linkStyle={
+              Object {
+                "textDecorationLine": "underline",
+              }
             }
           >
-            <react-native-mock>
-              <_class
-                linkDefault={true}
-                linkStyle={
-                  Object {
-                    "textDecorationLine": "underline",
-                  }
+            <Hyperlink
+              linkDefault={true}
+              linkStyle={
+                Object {
+                  "textDecorationLine": "underline",
                 }
-              >
-                <Hyperlink
-                  linkDefault={true}
-                  linkStyle={
-                    Object {
-                      "textDecorationLine": "underline",
-                    }
-                  }
-                  onPress={[Function]}
-                >
-                  <View>
-                    <react-native-mock>
-                      <StyledDefaultUserMessageText
-                        fromUser={true}
-                        key=".0"
-                      >
-                        <Text
-                          fromUser={true}
-                          selectable={true}
-                          style={
-                            Array [
-                              undefined,
-                              Object {
-                                "color": "#FFFFFF",
-                                "fontFamily": "CircularStd-Book",
-                                "fontSize": 16,
-                                "textAlign": "left",
-                              },
-                            ]
-                          }
-                        >
-                          <react-native-mock>
-                            mock message hello 123
-                          </react-native-mock>
-                        </Text>
-                      </StyledDefaultUserMessageText>
-                    </react-native-mock>
-                  </View>
-                </Hyperlink>
-              </_class>
-            </react-native-mock>
-          </View>
-        </StyledUserChatMessage>
-      </InnerContainer>
-    </Container>
+              }
+              onPress={[Function]}
+            >
+              <View>
+                <react-native-mock>
+                  <StyledDefaultUserMessageText
+                    fromUser={true}
+                    key=".0"
+                  >
+                    <Text
+                      fromUser={true}
+                      selectable={true}
+                      style={
+                        Array [
+                          undefined,
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontFamily": "CircularStd-Book",
+                            "fontSize": 16,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      <react-native-mock>
+                        mock message hello 123
+                      </react-native-mock>
+                    </Text>
+                  </StyledDefaultUserMessageText>
+                </react-native-mock>
+              </View>
+            </Hyperlink>
+          </_class>
+        </react-native-mock>
+      </View>
+    </StyledUserChatMessage>
   </Component>
 </Component>
 `;
@@ -533,131 +507,105 @@ exports[`renders text messages with hyperlinks correctly 1`] = `
     }
     withMargin={false}
   >
-    <Container
-      actions={
-        Object {
-          "setShowEditDialog": [Function],
-        }
-      }
-      initialState={
-        Object {
-          "showEditDialog": false,
-        }
-      }
+    <StyledUserChatMessage
+      withMargin={false}
     >
-      <InnerContainer
-        actions={
-          Object {
-            "setShowEditDialog": [Function],
-          }
-        }
-        initialState={
-          Object {
-            "showEditDialog": false,
-          }
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "backgroundColor": "#651EFF",
+              "borderColor": "#651EFF",
+              "borderRadius": 24,
+              "borderWidth": 1,
+              "justifyContent": "center",
+              "marginBottom": 2,
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            },
+            undefined,
+          ]
         }
       >
-        <StyledUserChatMessage
-          withMargin={false}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "alignSelf": "center",
-                  "backgroundColor": "#651EFF",
-                  "borderColor": "#651EFF",
-                  "borderRadius": 24,
-                  "borderWidth": 1,
-                  "justifyContent": "center",
-                  "marginBottom": 2,
-                  "paddingBottom": 8,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 8,
-                },
-                undefined,
-              ]
+        <react-native-mock>
+          <_class
+            linkDefault={true}
+            linkStyle={
+              Object {
+                "textDecorationLine": "underline",
+              }
             }
           >
-            <react-native-mock>
-              <_class
-                linkDefault={true}
-                linkStyle={
-                  Object {
-                    "textDecorationLine": "underline",
-                  }
+            <Hyperlink
+              linkDefault={true}
+              linkStyle={
+                Object {
+                  "textDecorationLine": "underline",
                 }
-              >
-                <Hyperlink
-                  linkDefault={true}
-                  linkStyle={
-                    Object {
-                      "textDecorationLine": "underline",
-                    }
-                  }
-                  onPress={[Function]}
-                >
-                  <View>
-                    <react-native-mock>
-                      <StyledDefaultUserMessageText
-                        fromUser={true}
-                        key=".0"
-                      >
+              }
+              onPress={[Function]}
+            >
+              <View>
+                <react-native-mock>
+                  <StyledDefaultUserMessageText
+                    fromUser={true}
+                    key=".0"
+                  >
+                    <Text
+                      fromUser={true}
+                      selectable={true}
+                      style={
+                        Array [
+                          undefined,
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontFamily": "CircularStd-Book",
+                            "fontSize": 16,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      <react-native-mock>
                         <Text
                           fromUser={true}
-                          selectable={true}
-                          style={
-                            Array [
-                              undefined,
-                              Object {
-                                "color": "#FFFFFF",
-                                "fontFamily": "CircularStd-Book",
-                                "fontSize": 16,
-                                "textAlign": "left",
-                              },
-                            ]
-                          }
+                          key=".0"
                         >
                           <react-native-mock>
+                            mock message hello 123 
                             <Text
                               fromUser={true}
-                              key=".0"
+                              key="https://www.hedvig.com23"
+                              onPress={[Function]}
+                              style={
+                                Array [
+                                  undefined,
+                                  Object {
+                                    "textDecorationLine": "underline",
+                                  },
+                                ]
+                              }
                             >
                               <react-native-mock>
-                                mock message hello 123 
-                                <Text
-                                  fromUser={true}
-                                  key="https://www.hedvig.com23"
-                                  onPress={[Function]}
-                                  style={
-                                    Array [
-                                      undefined,
-                                      Object {
-                                        "textDecorationLine": "underline",
-                                      },
-                                    ]
-                                  }
-                                >
-                                  <react-native-mock>
-                                    https://www.hedvig.com
-                                  </react-native-mock>
-                                </Text>
+                                https://www.hedvig.com
                               </react-native-mock>
                             </Text>
                           </react-native-mock>
                         </Text>
-                      </StyledDefaultUserMessageText>
-                    </react-native-mock>
-                  </View>
-                </Hyperlink>
-              </_class>
-            </react-native-mock>
-          </View>
-        </StyledUserChatMessage>
-      </InnerContainer>
-    </Container>
+                      </react-native-mock>
+                    </Text>
+                  </StyledDefaultUserMessageText>
+                </react-native-mock>
+              </View>
+            </Hyperlink>
+          </_class>
+        </react-native-mock>
+      </View>
+    </StyledUserChatMessage>
   </Component>
 </Component>
 `;

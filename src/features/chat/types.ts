@@ -1,10 +1,9 @@
-export interface Choice {
+interface Choice {
   text: string;
   value: string;
   type: string;
   view: string;
   webUrl: string;
-  appUrl: string;
   id: string;
   selected: boolean;
 }
@@ -17,9 +16,6 @@ export interface Message {
     loadingIndicator: string;
     statusMessage: string;
     editAllowed: boolean;
-    richTextChatCompatible: boolean;
-    fromMyself: boolean;
-    timeStamp: string;
   };
   body: {
     choices: Array<Choice>;
@@ -32,19 +28,4 @@ export interface Message {
     imageWidth: number;
   };
   globalId: string;
-}
-
-export interface Avatar {
-  name: string;
-  URL: string;
-  width: number;
-  height: number;
-  duration: number;
-  data: object;
-}
-
-export interface ChatState {
-  ongoingClaim: boolean;
-  showOfferScreen: boolean;
-  onboardingDone: boolean;
 }

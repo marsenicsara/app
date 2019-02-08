@@ -135,20 +135,6 @@ export const Config = () => (
               }}
             />
             <Spacing height={20} />
-            <Label>Subscriptions URL</Label>
-            <Spacing height={10} />
-            <Input
-              placeholder="Subscriptions URL"
-              defaultValue={RNConfig.SUBSCRIPTIONS_URL}
-              onChangeText={(text: string) => {
-                Object.defineProperty(RNConfig, 'SUBSCRIPTIONS_URL', {
-                  get: function() {
-                    return text;
-                  },
-                });
-              }}
-            />
-            <Spacing height={20} />
             <Button
               onPress={() => {
                 AsyncStorage.setItem(CUSTOM_CONFIG, JSON.stringify(RNConfig));

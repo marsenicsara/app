@@ -1,12 +1,17 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import OfferChat from './OfferChat';
+import { PureOfferChat } from './OfferChat';
 
 const dummyProps = {
+  onboardingDone: false,
+  intent: '',
+  messages: [],
+  getAvatars: () => {},
+  getMessages: (intent: string) => {},
   onRequestClose: () => {},
 };
 
 it('Should render without crashing', () => {
-  expect(() => () => shallow(<OfferChat {...dummyProps} />)).not.toThrow();
+  expect(() => () => shallow(<PureOfferChat {...dummyProps} />)).not.toThrow();
 });

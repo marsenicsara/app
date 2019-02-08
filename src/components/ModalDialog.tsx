@@ -11,11 +11,13 @@ import { DialogButton } from './Button';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import styled from '@sampettersson/primitives';
 
-const ModalView = styled(View)({
-  backgroundColor: 'rgba(0,0,0,0.5)',
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
+const styles = StyleSheet.create({
+  dialogStyle: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const Wrapper = styled(View)({
@@ -41,7 +43,7 @@ export const ModalDialog: React.SFC<Props> = ({
 }) => (
   <>
     <Modal transparent animationType="fade">
-      <ModalView>
+      <View style={styles.dialogStyle}>
         <Wrapper>
           {title ? (
             <DialogContainer>
@@ -66,7 +68,7 @@ export const ModalDialog: React.SFC<Props> = ({
             <Text />
           )}
         </Wrapper>
-      </ModalView>
+      </View>
     </Modal>
   </>
 );
