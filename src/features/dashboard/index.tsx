@@ -2,10 +2,16 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from '@sampettersson/primitives';
-import { ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from 'react-native';
 
 import { Loader } from 'src/components/Loader';
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 import { Spacing } from 'src/components/Spacing';
 import { InsuranceStatusDisplay } from './components/InsuranceStatus';
 import { PerilCategories } from './components/PerilCategories';
@@ -17,6 +23,7 @@ import { Messages } from './components/messages';
 import { DateBanner } from './components/DateBanner';
 import { PendingBanner } from 'src/features/dashboard/components/PendingBanner';
 import { InsuranceStatus } from 'src/graphql/components';
+import { Actions } from './components/Actions';
 
 const DASHBOARD_QUERY = gql`
   query DashboardQuery {
@@ -68,7 +75,7 @@ const getStartDate = (statusCode: InsuranceStatus) => {
 };
 
 interface ScreenProps {
-  componentId: string
+  componentId: string;
 }
 
 const Dashboard: React.SFC<ScreenProps> = ({ componentId }) => (
@@ -102,6 +109,8 @@ const Dashboard: React.SFC<ScreenProps> = ({ componentId }) => (
               <PendingBanner activeFrom={activeFrom} statusCode={status} />
             ) : null}
           </InsetPadding>
+          <Spacing height={16} />
+          <Actions />
           <Spacing height={16} />
           <InsetPadding>
             <PerilCategories perilCategories={perilCategories} />
