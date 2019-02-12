@@ -7,12 +7,7 @@ import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { Container } from 'constate';
 import { Mount, Unmount } from 'react-lifecycle-components';
-import {
-  differenceInMinutes,
-  eachDay,
-  getMonth,
-  getDaysInMonth,
-} from 'date-fns';
+import { differenceInMinutes } from 'date-fns';
 
 interface Props {
   activeFrom: string;
@@ -75,32 +70,12 @@ const CountText = styled(Text)(({ textColor }: { textColor: string }) => ({
 const getActivationFigures = (startDate: Date) => {
   const now = new Date();
 
-  let daysBetweenDates = eachDay(now, startDate);
   let totalMinutes = differenceInMinutes(startDate, now);
 
-  let daysPerMonth: { [key: number]: number } = {};
+  let months = totalMinutes / 43829.0639;
+  let actualMonths = Math.floor(months);
 
-  daysBetweenDates.forEach((day) => {
-    let month = getMonth(day);
-
-    if (daysPerMonth[month]) {
-      daysPerMonth[month] = daysPerMonth[month] + 1;
-    } else {
-      daysPerMonth[month] = 1;
-    }
-  });
-
-  let minutesForMonths = 0;
-  let actualMonths = 0;
-
-  Object.keys(daysPerMonth).forEach((key) => {
-    if (getDaysInMonth(key) == daysPerMonth[parseInt(key)]) {
-      actualMonths = actualMonths + 1;
-      minutesForMonths = minutesForMonths + daysPerMonth[parseInt(key)] * 1440;
-    }
-  });
-
-  totalMinutes -= minutesForMonths;
+  totalMinutes -= actualMonths * 43829.0639;
 
   let days = totalMinutes / 1440;
   let actualDays = Math.floor(days);
@@ -112,7 +87,7 @@ const getActivationFigures = (startDate: Date) => {
 
   totalMinutes -= actualHours * 60;
 
-  let actualMinutes = totalMinutes;
+  let actualMinutes = Math.floor(totalMinutes);
 
   return {
     months: actualMonths,
