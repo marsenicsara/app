@@ -24,7 +24,7 @@ const InsetPadding = styled(View)({
 const ActionsTitle = styled(Text)({
   fontFamily: fonts.CIRCULAR,
   fontSize: 16,
-  color: colors.OFF_BLACK,
+  color: colors.BLACK,
   fontWeight: '500',
 });
 

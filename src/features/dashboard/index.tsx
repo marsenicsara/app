@@ -61,6 +61,13 @@ const InsetPadding = styled(View)({
   paddingRight: 24,
 });
 
+const CoverageTitle = styled(Text)({
+  fontFamily: fonts.CIRCULAR,
+  fontSize: 16,
+  color: colors.BLACK,
+  fontWeight: '500',
+});
+
 const getStartDate = (statusCode: InsuranceStatus) => {
   switch (statusCode) {
     case 'ACTIVE':
@@ -112,6 +119,10 @@ const Dashboard: React.SFC<ScreenProps> = ({ componentId }) => (
           <Spacing height={16} />
           <Actions />
           <Spacing height={16} />
+          <InsetPadding>
+            <CoverageTitle>Ditt skydd</CoverageTitle>
+          </InsetPadding>
+          <Spacing height={10} />
           <InsetPadding>
             <PerilCategories perilCategories={perilCategories} />
           </InsetPadding>
