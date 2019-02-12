@@ -24,6 +24,10 @@ struct LoggedInScreenComponent {
 
                 let (viewController, disposable) = loggedIn.materialize()
 
+                if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
+                    statusBar.setValue(UIColor.black, forKey: "foregroundColor")
+                }
+
                 (UIApplication.shared.delegate as! AppDelegate).bag += disposable
 
                 resultingViewController = viewController
