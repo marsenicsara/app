@@ -2,17 +2,17 @@ import * as React from 'react';
 import { colors, fonts } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
 import { View, Text } from 'react-native';
-import {
-  format,
-  differenceInMonths,
-  getDaysInMonth,
-  differenceInDays,
-} from 'date-fns';
 import { ReadMore } from './ReadMore';
 import { InsuranceStatus } from 'src/graphql/components';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { Container } from 'constate';
 import { Mount, Unmount } from 'react-lifecycle-components';
+import {
+  differenceInMinutes,
+  eachDay,
+  getMonth,
+  getDaysInMonth,
+} from 'date-fns';
 
 interface Props {
   activeFrom: string;
@@ -72,34 +72,54 @@ const CountText = styled(Text)(({ textColor }: { textColor: string }) => ({
   maxHeight: '100%',
 }));
 
-const getActivationMonths = (activeFrom: string) => {
+const getActivationFigures = (startDate: Date) => {
   const now = new Date();
-  const today = format(now, 'YYYY-MM-DD');
-  const startDate = format(activeFrom, 'YYYY-MM-DD');
-  return differenceInMonths(startDate, today);
-};
 
-const getActivationDays = (activeFrom: string) => {
-  const now = new Date();
-  const today = format(now, 'YYYY-MM-DD');
-  const startDate = format(activeFrom, 'YYYY-MM-DD');
-  let totalDays = differenceInDays(startDate, today);
-  for (let i = 1; i === differenceInMonths(startDate, today); i++) {
-    totalDays -= getDaysInMonth(new Date(i));
-  }
-  return totalDays - 1;
-};
+  let daysBetweenDates = eachDay(now, startDate);
+  let totalMinutes = differenceInMinutes(startDate, now);
 
-const getActivationHours = () => {
-  const now = new Date();
-  const nowFormat = format(now, 'H');
-  return 24 - 1 - Number(nowFormat);
-};
+  let daysPerMonth: { [key: number]: number } = {};
 
-const getActivationMinutes = () => {
-  const now = new Date();
-  const nowFormat = format(now, 'm');
-  return 60 - 1 - Number(nowFormat);
+  daysBetweenDates.forEach((day) => {
+    let month = getMonth(day);
+
+    if (daysPerMonth[month]) {
+      daysPerMonth[month] = daysPerMonth[month] + 1;
+    } else {
+      daysPerMonth[month] = 1;
+    }
+  });
+
+  let minutesForMonths = 0;
+  let actualMonths = 0;
+
+  Object.keys(daysPerMonth).forEach((key) => {
+    if (getDaysInMonth(key) == daysPerMonth[parseInt(key)]) {
+      actualMonths = actualMonths + 1;
+      minutesForMonths = minutesForMonths + daysPerMonth[parseInt(key)] * 1440;
+    }
+  });
+
+  totalMinutes -= minutesForMonths;
+
+  let days = totalMinutes / 1440;
+  let actualDays = Math.floor(days);
+
+  totalMinutes -= actualDays * 1440;
+
+  let hours = totalMinutes / 60;
+  let actualHours = Math.floor(hours);
+
+  totalMinutes -= actualHours * 60;
+
+  let actualMinutes = totalMinutes;
+
+  return {
+    months: actualMonths,
+    days: actualDays,
+    hours: actualHours,
+    minutes: actualMinutes,
+  };
 };
 
 interface State {
@@ -149,10 +169,14 @@ export const DateBanner: React.SFC<Props> = ({ activeFrom, statusCode }) => (
         <Mount
           on={() => {
             let timer = setInterval(() => {
-              state.updateMonths(getActivationMonths(activeFrom));
-              state.updateDays(getActivationDays(activeFrom));
-              state.updateHours(getActivationHours());
-              state.updateMinutes(getActivationMinutes());
+              let { months, days, hours, minutes } = getActivationFigures(
+                new Date(activeFrom),
+              );
+
+              state.updateMonths(months);
+              state.updateDays(days);
+              state.updateHours(hours);
+              state.updateMinutes(minutes);
             }, 1000);
             state.updateTimerID(timer);
           }}
