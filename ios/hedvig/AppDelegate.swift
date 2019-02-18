@@ -23,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 viewController.debugPresentationTitle,
                 screenClass: String(describing: mirror.subjectType)
             )
+            
+            if viewController.debugPresentationTitle == "LoggedIn" {
+                Analytics.setUserProperty("true", forName: "isMember")
+            }
         }
 
         let rootNavigationController = UINavigationController()
