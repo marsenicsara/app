@@ -169,11 +169,7 @@
 		EB265B0E221ABD66009DA493 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB265A66221ABD66009DA493 /* Assets.xcassets */; };
 		EB265B0F221ABD66009DA493 /* HedvigColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A67221ABD66009DA493 /* HedvigColors.swift */; };
 		EB265B10221ABD66009DA493 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A69221ABD66009DA493 /* Icon.swift */; };
-		EB265B11221ABD66009DA493 /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB265A6B221ABD66009DA493 /* Merriweather-Light.ttf */; };
-		EB265B12221ABD66009DA493 /* SoRay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB265A6C221ABD66009DA493 /* SoRay-ExtraBold.ttf */; };
 		EB265B13221ABD66009DA493 /* HedvigFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A6D221ABD66009DA493 /* HedvigFonts.swift */; };
-		EB265B14221ABD66009DA493 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB265A6E221ABD66009DA493 /* CircularStd-Book.ttf */; };
-		EB265B15221ABD66009DA493 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB265A6F221ABD66009DA493 /* CircularStd-Bold.ttf */; };
 		EB265B16221ABD66009DA493 /* Localization.json in Resources */ = {isa = PBXBuildFile; fileRef = EB265A71221ABD66009DA493 /* Localization.json */; };
 		EB265B17221ABD66009DA493 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A72221ABD66009DA493 /* Localization.swift */; };
 		EB265B1C221ADE14009DA493 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1B221ADE14009DA493 /* Chat.swift */; };
@@ -364,11 +360,7 @@
 		EB265A66221ABD66009DA493 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB265A67221ABD66009DA493 /* HedvigColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HedvigColors.swift; sourceTree = "<group>"; };
 		EB265A69221ABD66009DA493 /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
-		EB265A6B221ABD66009DA493 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Light.ttf"; sourceTree = "<group>"; };
-		EB265A6C221ABD66009DA493 /* SoRay-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SoRay-ExtraBold.ttf"; sourceTree = "<group>"; };
 		EB265A6D221ABD66009DA493 /* HedvigFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HedvigFonts.swift; sourceTree = "<group>"; };
-		EB265A6E221ABD66009DA493 /* CircularStd-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Book.ttf"; sourceTree = "<group>"; };
-		EB265A6F221ABD66009DA493 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.ttf"; sourceTree = "<group>"; };
 		EB265A71221ABD66009DA493 /* Localization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Localization.json; sourceTree = "<group>"; };
 		EB265A72221ABD66009DA493 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		EB265B1B221ADE14009DA493 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -1015,11 +1007,7 @@
 		EB265A6A221ABD66009DA493 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				EB265A6B221ABD66009DA493 /* Merriweather-Light.ttf */,
-				EB265A6C221ABD66009DA493 /* SoRay-ExtraBold.ttf */,
 				EB265A6D221ABD66009DA493 /* HedvigFonts.swift */,
-				EB265A6E221ABD66009DA493 /* CircularStd-Book.ttf */,
-				EB265A6F221ABD66009DA493 /* CircularStd-Bold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1121,8 +1109,6 @@
 			files = (
 				EB265AFF221ABD66009DA493 /* MarketingStories.graphql in Resources */,
 				55A1D9ED211DB2FA00547027 /* GoogleService-Info.plist in Resources */,
-				EB265B12221ABD66009DA493 /* SoRay-ExtraBold.ttf in Resources */,
-				EB265B11221ABD66009DA493 /* Merriweather-Light.ttf in Resources */,
 				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
 				EB265B00221ABD66009DA493 /* MemberId.graphql in Resources */,
 				544ED67F4B9649438F02FDD3 /* CircularStd-Bold.ttf in Resources */,
@@ -1148,8 +1134,6 @@
 				EB265AF9221ABD66009DA493 /* UpdateEmail.graphql in Resources */,
 				EB265AFC221ABD66009DA493 /* MyInfo.graphql in Resources */,
 				EB265B16221ABD66009DA493 /* Localization.json in Resources */,
-				EB265B15221ABD66009DA493 /* CircularStd-Bold.ttf in Resources */,
-				EB265B14221ABD66009DA493 /* CircularStd-Book.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
