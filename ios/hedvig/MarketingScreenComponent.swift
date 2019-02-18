@@ -30,7 +30,7 @@ struct MarketingScreenComponent {
             })
 
             navigationController.present(marketingPresentation)
-            
+
             if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
                 statusBar.setValue(UIColor.white, forKey: "foregroundColor")
             }

@@ -11,7 +11,7 @@ import Flow
 import Foundation
 
 struct RCTApolloClient {
-    static func getClient() -> Future<ApolloClient> {
+    static func getClient() -> Future<(ApolloClient, ApolloStore)> {
         let environment = HedvigApolloEnvironmentConfig(
             endpointURL: URL(string: ReactNativeConfig.env(for: "GRAPHQL_URL"))!,
             wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!
@@ -44,7 +44,7 @@ struct RCTApolloClient {
         }
 
         // we get a black screen flicker without the delay
-        let clientFuture = token.flatMap { token -> Future<ApolloClient> in
+        let clientFuture = token.flatMap { token -> Future<(ApolloClient, ApolloStore)> in
             guard let token = token else {
                 let initClient = HedvigApolloClient.shared.initClient(environment: environment)
 
@@ -71,8 +71,9 @@ struct RCTApolloClient {
             )
         }
 
-        clientFuture.onValue { client in
+        clientFuture.onValue { client, store in
             HedvigApolloClient.shared.client = client
+            HedvigApolloClient.shared.store = store
         }
 
         return clientFuture

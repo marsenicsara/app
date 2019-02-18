@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 viewController.debugPresentationTitle,
                 screenClass: String(describing: mirror.subjectType)
             )
-            
+
             if viewController.debugPresentationTitle == "LoggedIn" {
                 Analytics.setUserProperty("true", forName: "isMember")
             }
@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             jsCodeLocation = CodePush.bundleURL()
         #endif
 
-        RCTApolloClient.getClient().delay(by: 0.05).onValue { client in
+        RCTApolloClient.getClient().delay(by: 0.05).onValue { client, _ in
             ReactNativeNavigation.bootstrapBrownField(
                 jsCodeLocation,
                 launchOptions: launchOptions,

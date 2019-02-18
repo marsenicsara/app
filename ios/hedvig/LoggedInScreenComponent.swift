@@ -12,15 +12,13 @@ import Foundation
 import Presentation
 
 struct LoggedInScreenComponent {
-    static func register(client: ApolloClient) {
+    static func register(client _: ApolloClient) {
         ReactNativeNavigation.registerExternalComponent("loggedInScreen") { (_, _) -> UIViewController? in
 
             var resultingViewController: UIViewController?
 
-            RCTApolloClient.getClient().onValue({ client in
-                let loggedIn = LoggedIn(
-                    client: client
-                )
+            RCTApolloClient.getClient().onValue({ _ in
+                let loggedIn = LoggedIn()
 
                 let (viewController, disposable) = loggedIn.materialize()
 
