@@ -100,6 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 forBundleRoot: "index",
                 fallbackResource: nil
             )
+            hasLoadedCallbacker?.callAll()
         #else
             jsCodeLocation = CodePush.bundleURL()
         #endif

@@ -1,9 +1,16 @@
-import { NativeEventEmitter, NativeModules, AsyncStorage, Platform } from 'react-native';
+import {
+  NativeEventEmitter,
+  NativeModules,
+  AsyncStorage,
+  Platform,
+} from 'react-native';
 
 import { SEEN_MARKETING_CAROUSEL_KEY } from 'src/constants';
 import { chatScreen } from './screens/chat';
 
 import { Navigation } from 'react-native-navigation';
+import { Store } from 'src/setupApp';
+import { chatActions } from 'hedvig-redux';
 
 export const setupNativeRouting = () => {
   const nativeRoutingEvents = new NativeEventEmitter(
@@ -15,8 +22,21 @@ export const setupNativeRouting = () => {
     if (Platform.OS === 'ios') {
       Navigation.push(event.componentId, chatScreen(event.marketingResult));
     } else if (Platform.OS === 'android') {
-      Navigation.setStackRoot(event.componentId, chatScreen(event.marketingResult))
+      Navigation.setStackRoot(
+        event.componentId,
+        chatScreen(event.marketingResult),
+      );
     }
+  });
+
+  nativeRoutingEvents.addListener('NativeRoutingOpenFreeTextChat', () => {
+    Store.dispatch(
+      chatActions.apiAndNavigateToChat({
+        method: 'POST',
+        url: '/v2/app/fabTrigger/CHAT',
+        SUCCESS: 'INITIATED_CHAT_MAIN',
+      }),
+    );
   });
 };
 

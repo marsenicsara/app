@@ -83,7 +83,6 @@
 		EB265AB5221ABD66009DA493 /* MyCoinsured.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2659FF221ABD66009DA493 /* MyCoinsured.swift */; };
 		EB265AB6221ABD66009DA493 /* CoinsuredComingSoonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A01221ABD66009DA493 /* CoinsuredComingSoonText.swift */; };
 		EB265AB7221ABD66009DA493 /* BubbleLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A03221ABD66009DA493 /* BubbleLoading.swift */; };
-		EB265AB8221ABD66009DA493 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A05221ABD66009DA493 /* Chat.swift */; };
 		EB265AB9221ABD66009DA493 /* ChatPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A06221ABD66009DA493 /* ChatPresentationStyle.swift */; };
 		EB265ABA221ABD66009DA493 /* DelayedDisposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A08221ABD66009DA493 /* DelayedDisposer.swift */; };
 		EB265ABB221ABD66009DA493 /* ActivityBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A09221ABD66009DA493 /* ActivityBarButton.swift */; };
@@ -177,6 +176,8 @@
 		EB265B15221ABD66009DA493 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB265A6F221ABD66009DA493 /* CircularStd-Bold.ttf */; };
 		EB265B16221ABD66009DA493 /* Localization.json in Resources */ = {isa = PBXBuildFile; fileRef = EB265A71221ABD66009DA493 /* Localization.json */; };
 		EB265B17221ABD66009DA493 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A72221ABD66009DA493 /* Localization.swift */; };
+		EB265B1C221ADE14009DA493 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1B221ADE14009DA493 /* Chat.swift */; };
+		EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */; };
 		EB4695BC220050520004C75D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695BB220050520004C75D /* Dashboard.swift */; };
 		EB4695BE220051BF0004C75D /* Pods-Hedvig-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */; };
 		EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695CD220083800004C75D /* RCTApolloClient.swift */; };
@@ -277,7 +278,6 @@
 		EB2659FF221ABD66009DA493 /* MyCoinsured.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCoinsured.swift; sourceTree = "<group>"; };
 		EB265A01221ABD66009DA493 /* CoinsuredComingSoonText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinsuredComingSoonText.swift; sourceTree = "<group>"; };
 		EB265A03221ABD66009DA493 /* BubbleLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleLoading.swift; sourceTree = "<group>"; };
-		EB265A05221ABD66009DA493 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		EB265A06221ABD66009DA493 /* ChatPresentationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPresentationStyle.swift; sourceTree = "<group>"; };
 		EB265A08221ABD66009DA493 /* DelayedDisposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayedDisposer.swift; sourceTree = "<group>"; };
 		EB265A09221ABD66009DA493 /* ActivityBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityBarButton.swift; sourceTree = "<group>"; };
@@ -371,6 +371,8 @@
 		EB265A6F221ABD66009DA493 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.ttf"; sourceTree = "<group>"; };
 		EB265A71221ABD66009DA493 /* Localization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Localization.json; sourceTree = "<group>"; };
 		EB265A72221ABD66009DA493 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		EB265B1B221ADE14009DA493 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeRouting.swift; sourceTree = "<group>"; };
 		EB3A235521A57EE4007F52B6 /* hedvig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hedvig-Bridging-Header.h"; sourceTree = "<group>"; };
 		EB4695BB220050520004C75D /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-Hedvig-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -458,12 +460,14 @@
 				B563865B1DB96A5E00A0598C /* Supporting */,
 				559CCAF12121B42C0080C272 /* staging.xcconfig */,
 				559CCAF22121B4620080C272 /* release.xcconfig */,
+				EB265B1B221ADE14009DA493 /* Chat.swift */,
 				EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */,
 				EBECC26721B92E4800716BEA /* NativeRouting.m */,
 				EBECC26521B9230000716BEA /* NativeRouting.swift */,
 				EB4695BB220050520004C75D /* Dashboard.swift */,
 				EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */,
 				EB4695CD220083800004C75D /* RCTApolloClient.swift */,
+				EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */,
 			);
 			path = hedvig;
 			sourceTree = "<group>";
@@ -823,7 +827,6 @@
 		EB265A04221ABD66009DA493 /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
-				EB265A05221ABD66009DA493 /* Chat.swift */,
 				EB265A06221ABD66009DA493 /* ChatPresentationStyle.swift */,
 			);
 			path = ChatScreen;
@@ -1271,6 +1274,7 @@
 				EB265AA9221ABD66009DA493 /* CharityHeader.swift in Sources */,
 				EB265A9E221ABD66009DA493 /* MyInfoState.swift in Sources */,
 				EB265AEC221ABD66009DA493 /* ActivityView.swift in Sources */,
+				EB265B1C221ADE14009DA493 /* Chat.swift in Sources */,
 				EB265AD9221ABD66009DA493 /* UIViewController+Viewable.swift in Sources */,
 				EB265AA0221ABD66009DA493 /* MonthlyPaymentCircle.swift in Sources */,
 				EB265AE7221ABD66009DA493 /* TableViewFormStyle.swift in Sources */,
@@ -1281,7 +1285,6 @@
 				EB265A95221ABD66009DA493 /* InsuranceCertificateRow.swift in Sources */,
 				EB265AA6221ABD66009DA493 /* DirectDebitResult.swift in Sources */,
 				EB265A99221ABD66009DA493 /* PhoneNumberRow.swift in Sources */,
-				EB265AB8221ABD66009DA493 /* Chat.swift in Sources */,
 				EB265AC6221ABD66009DA493 /* Button.swift in Sources */,
 				EB265AF4221ABD66009DA493 /* AnimationStyle.swift in Sources */,
 				EB265A80221ABD66009DA493 /* HappyAvatar.swift in Sources */,
@@ -1307,6 +1310,7 @@
 				EB265A87221ABD66009DA493 /* SkipToPreviousButton.swift in Sources */,
 				EB265AB5221ABD66009DA493 /* MyCoinsured.swift in Sources */,
 				EB265A9F221ABD66009DA493 /* DeductibleCircle.swift in Sources */,
+				EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */,
 				EB265A9D221ABD66009DA493 /* MyInfo.swift in Sources */,
 				EB265AA8221ABD66009DA493 /* MyHome.swift in Sources */,
 				EB265A86221ABD66009DA493 /* SkipToNextButton.swift in Sources */,

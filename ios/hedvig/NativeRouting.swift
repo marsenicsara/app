@@ -27,7 +27,7 @@ class NativeRouting: RCTEventEmitter {
     }
 
     override func supportedEvents() -> [String]! {
-        return ["NativeRoutingMarketingResult", "NativeRoutingAppHasLoaded"]
+        return ["NativeRoutingMarketingResult", "NativeRoutingAppHasLoaded", "NativeRoutingOpenFreeTextChat"]
     }
 
     func sendMarketingResult(marketingResult: MarketingResult) {
@@ -47,6 +47,10 @@ class NativeRouting: RCTEventEmitter {
                 "componentId": componentId
             ])
         }
+    }
+
+    func sendOpenFreeTextChat() {
+        sendEvent(withName: "NativeRoutingOpenFreeTextChat", body: [])
     }
 
     @objc func appHasLoaded() {
