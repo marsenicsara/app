@@ -6,11 +6,9 @@ import { Image, StyleSheet } from 'react-native';
 import { FloatingAction } from '@hedviginsurance/react-native-floating-action';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Parallel, Spring } from 'animated-react-native-components';
-import { Navigation } from 'react-native-navigation';
 
 import { Delayed } from 'src/components/Delayed';
 import { AnimatedView } from 'src/components/AnimatedPrimitives';
-import { NavigationEvents } from '../../../navigation/events';
 
 import { chatActions } from '../../../../hedvig-redux';
 import FabAction from '../components/FabAction';
@@ -25,12 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AnimationWrapper = ({
-  children,
-  show,
-  onNavigationCommand,
-  onGlobalEvent,
-}) => {
+const AnimationWrapper = ({ children, show }) => {
   switch (Platform.OS) {
     case 'ios': {
       return (
@@ -39,10 +32,6 @@ const AnimationWrapper = ({
           mountChildrenAfter={500}
           unmountChildrenAfter={0}
         >
-          <NavigationEvents
-            onNavigationCommand={onNavigationCommand}
-            onGlobalEvent={onGlobalEvent}
-          />
           <Parallel>
             <Spring
               initialValue={0}
@@ -120,33 +109,6 @@ class FloatingActionButton extends React.Component {
     this.setState({ fabOpen: false });
   };
 
-  onNavigationCommand = async (name) => {
-    if (name === 'setRoot') {
-      Navigation.dismissOverlay(this.props.componentId);
-    }
-
-    if (name === 'showModal') {
-      this.setState({
-        show: false,
-        modalStackIndex: this.state.modalStackIndex + 1,
-      });
-    }
-    if (name === 'dismissModal') {
-      if (this.state.modalStackIndex === 1) {
-        setTimeout(
-          () => this.setState({ show: true, modalStackIndex: 0 }),
-          250,
-        );
-      } else {
-        this.setState({ modalStackIndex: this.state.modalStackIndex - 1 });
-      }
-    }
-  };
-
-  onGlobalEvent = ({ name }) => {
-    this.onNavigationCommand(name);
-  };
-
   render() {
     const { fabActions } = this.props;
 
@@ -161,11 +123,7 @@ class FloatingActionButton extends React.Component {
             }}
           />
         ) : null}
-        <AnimationWrapper
-          show={this.state.show}
-          onNavigationCommand={this.onNavigationCommand}
-          onGlobalEvent={this.onGlobalEvent}
-        >
+        <AnimationWrapper show={this.state.show}>
           <FloatingAction
             ref={(ref) => (this.fabRef = ref)}
             color="#651eff"
