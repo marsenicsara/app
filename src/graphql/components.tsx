@@ -10,16 +10,19 @@
 
 export type DateTime = any;
 
+/** A String-representation of `java.time.LocalDate`, ex:  `"2018-09-26"` */
 export type LocalDate = any;
+
+export type Object = any;
 
 export type Uuid = any;
 
-/** The `Upload` scalar type represents a file upload promise that resolves an object containing `stream`, `filename`, `mimetype` and `encoding`. */
+/** The `Upload` scalar type represents a file upload. */
 export type Upload = any;
 
 export type Url = any;
 
-/** The `Long` scalar type represents non-fractional signed whole numeric values.Long can represent values between -(2^63) and 2^63 - 1. */
+/** The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
 export type Long = any;
 
 // ====================================================
@@ -32,12 +35,32 @@ export interface Node {
   id: string;
 }
 
+export interface MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+}
+
+export interface MessageBodyChoicesCore {
+  type: string;
+
+  value: string;
+
+  text: string;
+
+  selected: boolean;
+}
+
 // ====================================================
 // Types
 // ====================================================
 
 export interface Query {
   languages: Language[];
+
+  marketingStories: MarketingStory[];
 
   insurance: Insurance;
 
@@ -54,6 +77,24 @@ export interface Query {
   file: File;
 
   directDebitStatus: DirectDebitStatus;
+
+  messages: Message[];
+
+  currentChatResponse?: ChatResponse | null;
+
+  chatState: ChatState;
+
+  avatars?: Avatar[] | null;
+
+  dontPanicPing: string;
+
+  dontPanicSession?: DontPanicSession | null;
+
+  bankAccount?: BankAccount | null;
+
+  chargeDate: LocalDate;
+
+  registerAccountProcessingStatus: RegisterAccountProcessingStatus;
 }
 
 export interface Language extends Node {
@@ -110,6 +151,8 @@ export interface Key extends Node {
   perilTitle?: Peril | null;
 
   perilDescription?: Peril | null;
+
+  description?: string | null;
 }
 
 export interface PerilCategory {
@@ -130,6 +173,50 @@ export interface Peril {
   imageUrl?: string | null;
 
   description?: string | null;
+}
+
+export interface MarketingStory extends Node {
+  status: Status;
+
+  id: string;
+
+  createdAt: DateTime;
+
+  updatedAt: DateTime;
+
+  asset?: Asset | null;
+
+  duration?: number | null;
+
+  importance?: number | null;
+
+  backgroundColor: HedvigColor;
+}
+
+export interface Asset extends Node {
+  status: Status;
+
+  id: string;
+
+  createdAt: DateTime;
+
+  updatedAt: DateTime;
+
+  handle: string;
+
+  fileName: string;
+
+  height?: number | null;
+
+  mimeType?: string | null;
+
+  size?: number | null;
+
+  width?: number | null;
+
+  assetMarketingStory?: MarketingStory[] | null;
+  /** Get the url for the asset with provided transformations applied. */
+  url: string;
 }
 
 export interface Insurance {
@@ -191,9 +278,15 @@ export interface CollectStatus {
 }
 
 export interface Member {
+  id?: string | null;
+
   firstName?: string | null;
 
   lastName?: string | null;
+
+  email?: string | null;
+
+  phoneNumber?: string | null;
 }
 
 export interface Gif {
@@ -205,6 +298,224 @@ export interface File {
   signedUrl: string;
   /** S3 key that can be used to retreive new signed urls in the future. */
   key: string;
+}
+
+export interface Message {
+  globalId: string;
+
+  id: string;
+
+  body: MessageBody;
+
+  header: MessageHeader;
+}
+
+export interface MessageBodySingleSelect extends MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+
+  choices?: MessageBodyChoices[] | null;
+}
+
+export interface MessageBodyChoicesUndefined extends MessageBodyChoicesCore {
+  type: string;
+
+  value: string;
+
+  text: string;
+
+  selected: boolean;
+}
+
+export interface MessageBodyChoicesSelection extends MessageBodyChoicesCore {
+  type: string;
+
+  value: string;
+
+  text: string;
+
+  selected: boolean;
+
+  clearable?: boolean | null;
+}
+
+export interface MessageBodyChoicesLink extends MessageBodyChoicesCore {
+  type: string;
+
+  value: string;
+
+  text: string;
+
+  selected: boolean;
+
+  view?: MessageBodyChoicesLinkView | null;
+
+  appUrl?: string | null;
+
+  webUrl?: string | null;
+}
+
+export interface MessageBodyMultipleSelect extends MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+
+  choices?: MessageBodyChoices[] | null;
+}
+
+export interface MessageBodyText extends MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+}
+
+export interface MessageBodyNumber extends MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+}
+
+export interface MessageBodyAudio extends MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+
+  url?: string | null;
+}
+
+export interface MessageBodyBankIdCollect extends MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+
+  referenceId?: string | null;
+}
+
+export interface MessageBodyFile extends MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+
+  key?: string | null;
+
+  mimeType?: string | null;
+}
+
+export interface MessageBodyParagraph extends MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+}
+
+export interface MessageBodyUndefined extends MessageBodyCore {
+  type: string;
+
+  id: string;
+
+  text: string;
+}
+
+export interface MessageHeader {
+  messageId: string;
+
+  fromMyself: boolean;
+
+  timeStamp: string;
+
+  richTextChatCompatible: boolean;
+
+  editAllowed: boolean;
+
+  shouldRequestPushNotifications: boolean;
+
+  pollingInterval: number;
+
+  loadingIndicator?: string | null;
+}
+
+export interface ChatResponse {
+  globalId: string;
+
+  id: string;
+
+  body?: MessageBody | null;
+
+  header?: MessageHeader | null;
+}
+
+export interface ChatState {
+  ongoingClaim: boolean;
+
+  showOfferScreen: boolean;
+
+  onboardingDone: boolean;
+}
+
+export interface Avatar {
+  name: string;
+
+  URL: string;
+
+  width: number;
+
+  height: number;
+
+  duration: number;
+
+  data?: Object | null;
+}
+
+export interface DontPanicSession {
+  id: string;
+
+  name: string;
+
+  lastName?: string | null;
+
+  email?: string | null;
+
+  currentInsurer?: string | null;
+
+  chatMessages: DontPanicChatMessage[];
+}
+
+export interface DontPanicChatMessage {
+  id: string;
+
+  who: string;
+
+  text: string;
+
+  session: DontPanicSession;
+
+  isHedvig: boolean;
+
+  type: string;
+}
+
+export interface BankAccount {
+  bankName: string;
+
+  descriptor: string;
+
+  directDebitStatus?: DirectDebitStatus | null;
 }
 
 export interface Mutation {
@@ -226,7 +537,29 @@ export interface Mutation {
 
   startDirectDebitRegistration: Url;
 
+  sendChatTextResponse: boolean;
+
+  sendChatSingleSelectResponse: boolean;
+
   sendChatFileResponse: boolean;
+
+  sendChatAudioResponse: boolean;
+
+  resetConversation: boolean;
+
+  editLastResponse: boolean;
+
+  updateEmail: Member;
+
+  updatePhoneNumber: Member;
+
+  createDontPanicSession: DontPanicSession;
+
+  addDontPanicChatMessage: DontPanicChatMessage;
+
+  registerDirectDebit: DirectDebitResponse;
+
+  cancelDirectDebitRequest: CancelDirectDebitStatus;
 }
 
 export interface SessionInformation {
@@ -235,10 +568,22 @@ export interface SessionInformation {
   memberId: string;
 }
 
+export interface DirectDebitResponse {
+  url: string;
+
+  orderId: string;
+}
+
 export interface Subscription {
   offer?: OfferEvent | null;
 
   signStatus?: SignEvent | null;
+
+  messages?: Message[] | null;
+
+  currentChatResponse?: ChatResponse | null;
+
+  chatState: ChatState;
 }
 
 export interface OfferEvent {
@@ -249,30 +594,6 @@ export interface OfferEvent {
 
 export interface SignEvent {
   status?: SignStatus | null;
-}
-
-export interface Asset extends Node {
-  status: Status;
-
-  id: string;
-
-  createdAt: DateTime;
-
-  updatedAt: DateTime;
-
-  handle: string;
-
-  fileName: string;
-
-  height?: number | null;
-
-  mimeType?: string | null;
-
-  size?: number | null;
-
-  width?: number | null;
-  /** Get the url for the asset with provided transformations applied. */
-  url: string;
 }
 
 export interface Color extends Node {
@@ -461,20 +782,30 @@ export interface PerilCategoryEdge {
 export interface AggregatePerilCategory {
   count: number;
 }
+/** A connection to a list of items. */
+export interface MarketingStoryConnection {
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** A list of edges. */
+  edges: MarketingStoryEdge[];
+
+  aggregate: AggregateMarketingStory;
+}
+/** An edge in a connection. */
+export interface MarketingStoryEdge {
+  /** The item at the end of the edge. */
+  node: MarketingStory;
+  /** A cursor for use in pagination. */
+  cursor: string;
+}
+
+export interface AggregateMarketingStory {
+  count: number;
+}
 
 export interface BatchPayload {
   /** The number of nodes that have been affected by the Batch operation. */
   count: Long;
-}
-
-export interface AssetSubscriptionPayload {
-  mutation: MutationType;
-
-  node?: Asset | null;
-
-  updatedFields?: string[] | null;
-
-  previousValues?: AssetPreviousValues | null;
 }
 
 export interface AssetPreviousValues {
@@ -499,6 +830,24 @@ export interface AssetPreviousValues {
   width?: number | null;
 }
 
+export interface AssetSubscriptionPayload {
+  mutation: MutationType;
+
+  node?: Asset | null;
+
+  updatedFields?: string[] | null;
+
+  previousValues?: AssetPreviousValues | null;
+}
+
+export interface ColorPreviousValues {
+  id: string;
+
+  createdAt: DateTime;
+
+  updatedAt: DateTime;
+}
+
 export interface ColorSubscriptionPayload {
   mutation: MutationType;
 
@@ -509,7 +858,55 @@ export interface ColorSubscriptionPayload {
   previousValues?: ColorPreviousValues | null;
 }
 
-export interface ColorPreviousValues {
+export interface KeyPreviousValues {
+  status: Status;
+
+  id: string;
+
+  createdAt: DateTime;
+
+  updatedAt: DateTime;
+
+  value: string;
+
+  description?: string | null;
+}
+
+export interface KeySubscriptionPayload {
+  mutation: MutationType;
+
+  node?: Key | null;
+
+  updatedFields?: string[] | null;
+
+  previousValues?: KeyPreviousValues | null;
+}
+
+export interface LanguagePreviousValues {
+  status: Status;
+
+  id: string;
+
+  createdAt: DateTime;
+
+  updatedAt: DateTime;
+
+  code: string;
+
+  name: string;
+}
+
+export interface LanguageSubscriptionPayload {
+  mutation: MutationType;
+
+  node?: Language | null;
+
+  updatedFields?: string[] | null;
+
+  previousValues?: LanguagePreviousValues | null;
+}
+
+export interface LocationPreviousValues {
   id: string;
 
   createdAt: DateTime;
@@ -527,25 +924,7 @@ export interface LocationSubscriptionPayload {
   previousValues?: LocationPreviousValues | null;
 }
 
-export interface LocationPreviousValues {
-  id: string;
-
-  createdAt: DateTime;
-
-  updatedAt: DateTime;
-}
-
-export interface LanguageSubscriptionPayload {
-  mutation: MutationType;
-
-  node?: Language | null;
-
-  updatedFields?: string[] | null;
-
-  previousValues?: LanguagePreviousValues | null;
-}
-
-export interface LanguagePreviousValues {
+export interface MarketingStoryPreviousValues {
   status: Status;
 
   id: string;
@@ -554,22 +933,46 @@ export interface LanguagePreviousValues {
 
   updatedAt: DateTime;
 
-  code: string;
+  duration?: number | null;
+
+  importance?: number | null;
+
+  backgroundColor: HedvigColor;
+}
+
+export interface MarketingStorySubscriptionPayload {
+  mutation: MutationType;
+
+  node?: MarketingStory | null;
+
+  updatedFields?: string[] | null;
+
+  previousValues?: MarketingStoryPreviousValues | null;
+}
+
+export interface PerilCategoryPreviousValues {
+  status: Status;
+
+  id: string;
+
+  createdAt: DateTime;
+
+  updatedAt: DateTime;
 
   name: string;
 }
 
-export interface KeySubscriptionPayload {
+export interface PerilCategorySubscriptionPayload {
   mutation: MutationType;
 
-  node?: Key | null;
+  node?: PerilCategory | null;
 
   updatedFields?: string[] | null;
 
-  previousValues?: KeyPreviousValues | null;
+  previousValues?: PerilCategoryPreviousValues | null;
 }
 
-export interface KeyPreviousValues {
+export interface PerilPreviousValues {
   status: Status;
 
   id: string;
@@ -577,18 +980,16 @@ export interface KeyPreviousValues {
   createdAt: DateTime;
 
   updatedAt: DateTime;
-
-  value: string;
 }
 
-export interface TranslationSubscriptionPayload {
+export interface PerilSubscriptionPayload {
   mutation: MutationType;
 
-  node?: Translation | null;
+  node?: Peril | null;
 
   updatedFields?: string[] | null;
 
-  previousValues?: TranslationPreviousValues | null;
+  previousValues?: PerilPreviousValues | null;
 }
 
 export interface TranslationPreviousValues {
@@ -605,46 +1006,14 @@ export interface TranslationPreviousValues {
   text: string;
 }
 
-export interface PerilSubscriptionPayload {
+export interface TranslationSubscriptionPayload {
   mutation: MutationType;
 
-  node?: Peril | null;
+  node?: Translation | null;
 
   updatedFields?: string[] | null;
 
-  previousValues?: PerilPreviousValues | null;
-}
-
-export interface PerilPreviousValues {
-  status: Status;
-
-  id: string;
-
-  createdAt: DateTime;
-
-  updatedAt: DateTime;
-}
-
-export interface PerilCategorySubscriptionPayload {
-  mutation: MutationType;
-
-  node?: PerilCategory | null;
-
-  updatedFields?: string[] | null;
-
-  previousValues?: PerilCategoryPreviousValues | null;
-}
-
-export interface PerilCategoryPreviousValues {
-  status: Status;
-
-  id: string;
-
-  createdAt: DateTime;
-
-  updatedAt: DateTime;
-
-  name: string;
+  previousValues?: TranslationPreviousValues | null;
 }
 
 // ====================================================
@@ -1011,6 +1380,34 @@ export interface KeyWhereInput {
   /** All values not ending with the given string. */
   value_not_ends_with?: string | null;
 
+  description?: string | null;
+  /** All values that are not equal to given value. */
+  description_not?: string | null;
+  /** All values that are contained in given list. */
+  description_in?: string[] | null;
+  /** All values that are not contained in given list. */
+  description_not_in?: string[] | null;
+  /** All values less than the given value. */
+  description_lt?: string | null;
+  /** All values less than or equal the given value. */
+  description_lte?: string | null;
+  /** All values greater than the given value. */
+  description_gt?: string | null;
+  /** All values greater than or equal the given value. */
+  description_gte?: string | null;
+  /** All values containing the given string. */
+  description_contains?: string | null;
+  /** All values not containing the given string. */
+  description_not_contains?: string | null;
+  /** All values starting with the given string. */
+  description_starts_with?: string | null;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: string | null;
+  /** All values ending with the given string. */
+  description_ends_with?: string | null;
+  /** All values not ending with the given string. */
+  description_not_ends_with?: string | null;
+
   translations_every?: TranslationWhereInput | null;
 
   translations_some?: TranslationWhereInput | null;
@@ -1224,56 +1621,123 @@ export interface PerilWhereInput {
   descriptionKey?: KeyWhereInput | null;
 }
 
-export interface CampaignInput {
-  source?: string | null;
+export interface MarketingStoryWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: MarketingStoryWhereInput[] | null;
+  /** Logical OR on all given filters. */
+  OR?: MarketingStoryWhereInput[] | null;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: MarketingStoryWhereInput[] | null;
 
-  medium?: string | null;
+  status?: Status | null;
+  /** All values that are not equal to given value. */
+  status_not?: Status | null;
+  /** All values that are contained in given list. */
+  status_in?: Status[] | null;
+  /** All values that are not contained in given list. */
+  status_not_in?: Status[] | null;
 
-  term?: string | null;
+  id?: string | null;
+  /** All values that are not equal to given value. */
+  id_not?: string | null;
+  /** All values that are contained in given list. */
+  id_in?: string[] | null;
+  /** All values that are not contained in given list. */
+  id_not_in?: string[] | null;
+  /** All values less than the given value. */
+  id_lt?: string | null;
+  /** All values less than or equal the given value. */
+  id_lte?: string | null;
+  /** All values greater than the given value. */
+  id_gt?: string | null;
+  /** All values greater than or equal the given value. */
+  id_gte?: string | null;
+  /** All values containing the given string. */
+  id_contains?: string | null;
+  /** All values not containing the given string. */
+  id_not_contains?: string | null;
+  /** All values starting with the given string. */
+  id_starts_with?: string | null;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: string | null;
+  /** All values ending with the given string. */
+  id_ends_with?: string | null;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: string | null;
 
-  content?: string | null;
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
 
-  name?: string | null;
-}
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
 
-export interface OfferInput {
-  firstName: string;
+  duration?: number | null;
+  /** All values that are not equal to given value. */
+  duration_not?: number | null;
+  /** All values that are contained in given list. */
+  duration_in?: number[] | null;
+  /** All values that are not contained in given list. */
+  duration_not_in?: number[] | null;
+  /** All values less than the given value. */
+  duration_lt?: number | null;
+  /** All values less than or equal the given value. */
+  duration_lte?: number | null;
+  /** All values greater than the given value. */
+  duration_gt?: number | null;
+  /** All values greater than or equal the given value. */
+  duration_gte?: number | null;
 
-  lastName: string;
+  importance?: number | null;
+  /** All values that are not equal to given value. */
+  importance_not?: number | null;
+  /** All values that are contained in given list. */
+  importance_in?: number[] | null;
+  /** All values that are not contained in given list. */
+  importance_not_in?: number[] | null;
+  /** All values less than the given value. */
+  importance_lt?: number | null;
+  /** All values less than or equal the given value. */
+  importance_lte?: number | null;
+  /** All values greater than the given value. */
+  importance_gt?: number | null;
+  /** All values greater than or equal the given value. */
+  importance_gte?: number | null;
 
-  age: number;
+  backgroundColor?: HedvigColor | null;
+  /** All values that are not equal to given value. */
+  backgroundColor_not?: HedvigColor | null;
+  /** All values that are contained in given list. */
+  backgroundColor_in?: HedvigColor[] | null;
+  /** All values that are not contained in given list. */
+  backgroundColor_not_in?: HedvigColor[] | null;
 
-  address: string;
-
-  postalNumber: string;
-
-  city?: string | null;
-
-  insuranceType: InsuranceType;
-
-  squareMeters: number;
-
-  personsInHousehold: number;
-
-  previousInsurer?: string | null;
-}
-
-export interface SignInput {
-  personalNumber: string;
-
-  email: string;
-}
-
-export interface ChatResponseFileInput {
-  globalId: string;
-
-  body: ChatResponseBodyFileInput;
-}
-
-export interface ChatResponseBodyFileInput {
-  key: string;
-
-  mimeType: string;
+  asset?: AssetWhereInput | null;
 }
 
 export interface AssetWhereInput {
@@ -1483,6 +1947,12 @@ export interface AssetWhereInput {
   width_gt?: number | null;
   /** All values greater than or equal the given value. */
   width_gte?: number | null;
+
+  assetMarketingStory_every?: MarketingStoryWhereInput | null;
+
+  assetMarketingStory_some?: MarketingStoryWhereInput | null;
+
+  assetMarketingStory_none?: MarketingStoryWhereInput | null;
 }
 /** Transformations for Assets */
 export interface AssetTransformationInput {
@@ -1515,6 +1985,88 @@ export interface DocumentTransformationInput {
 export interface DocumentOutputInput {
   /** Transforms a document into a desired file type.See this matrix for format support:PDF:	jpg, odp, ods, odt, png, svg, txt, and webpDOC:	docx, html, jpg, odt, pdf, png, svg, txt, and webpDOCX:	doc, html, jpg, odt, pdf, png, svg, txt, and webpODT:	doc, docx, html, jpg, pdf, png, svg, txt, and webpXLS:	jpg, pdf, ods, png, svg, xlsx, and webpXLSX:	jpg, pdf, ods, png, svg, xls, and webpODS:	jpg, pdf, png, xls, svg, xlsx, and webpPPT:	jpg, odp, pdf, png, svg, pptx, and webpPPTX:	jpg, odp, pdf, png, svg, ppt, and webpODP:	jpg, pdf, png, ppt, svg, pptx, and webpBMP:	jpg, odp, ods, odt, pdf, png, svg, and webpGIF:	jpg, odp, ods, odt, pdf, png, svg, and webpJPG:	jpg, odp, ods, odt, pdf, png, svg, and webpPNG:	jpg, odp, ods, odt, pdf, png, svg, and webpWEBP:	jpg, odp, ods, odt, pdf, png, svg, and webpTIFF:	jpg, odp, ods, odt, pdf, png, svg, and webpAI:	    jpg, odp, ods, odt, pdf, png, svg, and webpPSD:	jpg, odp, ods, odt, pdf, png, svg, and webpSVG:	jpg, odp, ods, odt, pdf, png, and webpHTML:	jpg, odt, pdf, svg, txt, and webpTXT:	jpg, html, odt, pdf, svg, and webp */
   format?: DocumentFileTypes | null;
+}
+
+export interface CampaignInput {
+  source?: string | null;
+
+  medium?: string | null;
+
+  term?: string | null;
+
+  content?: string | null;
+
+  name?: string | null;
+}
+
+export interface OfferInput {
+  firstName: string;
+
+  lastName: string;
+
+  age: number;
+
+  address: string;
+
+  postalNumber: string;
+
+  city?: string | null;
+
+  insuranceType: InsuranceType;
+
+  squareMeters: number;
+
+  personsInHousehold: number;
+
+  previousInsurer?: string | null;
+}
+
+export interface SignInput {
+  personalNumber: string;
+
+  email: string;
+}
+
+export interface ChatResponseTextInput {
+  globalId: string;
+
+  body: ChatResponseBodyTextInput;
+}
+
+export interface ChatResponseBodyTextInput {
+  text: string;
+}
+
+export interface ChatResponseSingleSelectInput {
+  globalId: string;
+
+  body: ChatResponseBodySingleSelectInput;
+}
+
+export interface ChatResponseBodySingleSelectInput {
+  selectedValue: string;
+}
+
+export interface ChatResponseFileInput {
+  globalId: string;
+
+  body: ChatResponseBodyFileInput;
+}
+
+export interface ChatResponseBodyFileInput {
+  key: string;
+
+  mimeType: string;
+}
+
+export interface ChatResponseAudioInput {
+  globalId: string;
+
+  body: ChatResponseBodyAudioInput;
+}
+
+export interface ChatResponseBodyAudioInput {
+  url: string;
 }
 
 export interface ColorWhereInput {
@@ -1697,6 +2249,10 @@ export interface PerilCategoryWhereUniqueInput {
   name?: string | null;
 }
 
+export interface MarketingStoryWhereUniqueInput {
+  id?: string | null;
+}
+
 export interface AssetCreateInput {
   status?: Status | null;
 
@@ -1711,6 +2267,24 @@ export interface AssetCreateInput {
   size?: number | null;
 
   width?: number | null;
+
+  assetMarketingStory?: MarketingStoryCreateManyWithoutAssetInput | null;
+}
+
+export interface MarketingStoryCreateManyWithoutAssetInput {
+  create?: MarketingStoryCreateWithoutAssetInput[] | null;
+
+  connect?: MarketingStoryWhereUniqueInput[] | null;
+}
+
+export interface MarketingStoryCreateWithoutAssetInput {
+  status?: Status | null;
+
+  duration?: number | null;
+
+  importance?: number | null;
+
+  backgroundColor: HedvigColor;
 }
 
 export interface LanguageCreateInput {
@@ -1749,6 +2323,8 @@ export interface KeyCreateWithoutTranslationsInput {
   status?: Status | null;
 
   value: string;
+
+  description?: string | null;
 
   perilCategoryTitle?: PerilCategoryCreateOneWithoutTitleKeyInput | null;
 
@@ -1799,6 +2375,8 @@ export interface KeyCreateWithoutPerilTitleInput {
   status?: Status | null;
 
   value: string;
+
+  description?: string | null;
 
   translations?: TranslationCreateManyWithoutKeyInput | null;
 
@@ -1866,6 +2444,8 @@ export interface KeyCreateWithoutPerilCategoryTitleInput {
 
   value: string;
 
+  description?: string | null;
+
   translations?: TranslationCreateManyWithoutKeyInput | null;
 
   perilCategoryDescription?: PerilCategoryCreateOneWithoutDescriptionKeyInput | null;
@@ -1916,6 +2496,8 @@ export interface KeyCreateWithoutPerilCategoryDescriptionInput {
 
   value: string;
 
+  description?: string | null;
+
   translations?: TranslationCreateManyWithoutKeyInput | null;
 
   perilCategoryTitle?: PerilCategoryCreateOneWithoutTitleKeyInput | null;
@@ -1950,6 +2532,8 @@ export interface KeyCreateWithoutPerilDescriptionInput {
 
   value: string;
 
+  description?: string | null;
+
   translations?: TranslationCreateManyWithoutKeyInput | null;
 
   perilCategoryTitle?: PerilCategoryCreateOneWithoutTitleKeyInput | null;
@@ -1963,6 +2547,8 @@ export interface KeyCreateInput {
   status?: Status | null;
 
   value: string;
+
+  description?: string | null;
 
   translations?: TranslationCreateManyWithoutKeyInput | null;
 
@@ -2009,6 +2595,40 @@ export interface PerilCategoryCreateInput {
   descriptionKey?: KeyCreateOneWithoutPerilCategoryDescriptionInput | null;
 }
 
+export interface MarketingStoryCreateInput {
+  status?: Status | null;
+
+  duration?: number | null;
+
+  importance?: number | null;
+
+  backgroundColor: HedvigColor;
+
+  asset?: AssetCreateOneWithoutAssetMarketingStoryInput | null;
+}
+
+export interface AssetCreateOneWithoutAssetMarketingStoryInput {
+  create?: AssetCreateWithoutAssetMarketingStoryInput | null;
+
+  connect?: AssetWhereUniqueInput | null;
+}
+
+export interface AssetCreateWithoutAssetMarketingStoryInput {
+  status?: Status | null;
+
+  handle: string;
+
+  fileName: string;
+
+  height?: number | null;
+
+  mimeType?: string | null;
+
+  size?: number | null;
+
+  width?: number | null;
+}
+
 export interface AssetUpdateInput {
   status?: Status | null;
 
@@ -2023,6 +2643,185 @@ export interface AssetUpdateInput {
   size?: number | null;
 
   width?: number | null;
+
+  assetMarketingStory?: MarketingStoryUpdateManyWithoutAssetInput | null;
+}
+
+export interface MarketingStoryUpdateManyWithoutAssetInput {
+  create?: MarketingStoryCreateWithoutAssetInput[] | null;
+
+  connect?: MarketingStoryWhereUniqueInput[] | null;
+
+  set?: MarketingStoryWhereUniqueInput[] | null;
+
+  disconnect?: MarketingStoryWhereUniqueInput[] | null;
+
+  delete?: MarketingStoryWhereUniqueInput[] | null;
+
+  update?: MarketingStoryUpdateWithWhereUniqueWithoutAssetInput[] | null;
+
+  updateMany?: MarketingStoryUpdateManyWithWhereNestedInput[] | null;
+
+  deleteMany?: MarketingStoryScalarWhereInput[] | null;
+
+  upsert?: MarketingStoryUpsertWithWhereUniqueWithoutAssetInput[] | null;
+}
+
+export interface MarketingStoryUpdateWithWhereUniqueWithoutAssetInput {
+  where: MarketingStoryWhereUniqueInput;
+
+  data: MarketingStoryUpdateWithoutAssetDataInput;
+}
+
+export interface MarketingStoryUpdateWithoutAssetDataInput {
+  status?: Status | null;
+
+  duration?: number | null;
+
+  importance?: number | null;
+
+  backgroundColor?: HedvigColor | null;
+}
+
+export interface MarketingStoryUpdateManyWithWhereNestedInput {
+  where: MarketingStoryScalarWhereInput;
+
+  data: MarketingStoryUpdateManyDataInput;
+}
+
+export interface MarketingStoryScalarWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: MarketingStoryScalarWhereInput[] | null;
+  /** Logical OR on all given filters. */
+  OR?: MarketingStoryScalarWhereInput[] | null;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: MarketingStoryScalarWhereInput[] | null;
+
+  status?: Status | null;
+  /** All values that are not equal to given value. */
+  status_not?: Status | null;
+  /** All values that are contained in given list. */
+  status_in?: Status[] | null;
+  /** All values that are not contained in given list. */
+  status_not_in?: Status[] | null;
+
+  id?: string | null;
+  /** All values that are not equal to given value. */
+  id_not?: string | null;
+  /** All values that are contained in given list. */
+  id_in?: string[] | null;
+  /** All values that are not contained in given list. */
+  id_not_in?: string[] | null;
+  /** All values less than the given value. */
+  id_lt?: string | null;
+  /** All values less than or equal the given value. */
+  id_lte?: string | null;
+  /** All values greater than the given value. */
+  id_gt?: string | null;
+  /** All values greater than or equal the given value. */
+  id_gte?: string | null;
+  /** All values containing the given string. */
+  id_contains?: string | null;
+  /** All values not containing the given string. */
+  id_not_contains?: string | null;
+  /** All values starting with the given string. */
+  id_starts_with?: string | null;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: string | null;
+  /** All values ending with the given string. */
+  id_ends_with?: string | null;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: string | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  duration?: number | null;
+  /** All values that are not equal to given value. */
+  duration_not?: number | null;
+  /** All values that are contained in given list. */
+  duration_in?: number[] | null;
+  /** All values that are not contained in given list. */
+  duration_not_in?: number[] | null;
+  /** All values less than the given value. */
+  duration_lt?: number | null;
+  /** All values less than or equal the given value. */
+  duration_lte?: number | null;
+  /** All values greater than the given value. */
+  duration_gt?: number | null;
+  /** All values greater than or equal the given value. */
+  duration_gte?: number | null;
+
+  importance?: number | null;
+  /** All values that are not equal to given value. */
+  importance_not?: number | null;
+  /** All values that are contained in given list. */
+  importance_in?: number[] | null;
+  /** All values that are not contained in given list. */
+  importance_not_in?: number[] | null;
+  /** All values less than the given value. */
+  importance_lt?: number | null;
+  /** All values less than or equal the given value. */
+  importance_lte?: number | null;
+  /** All values greater than the given value. */
+  importance_gt?: number | null;
+  /** All values greater than or equal the given value. */
+  importance_gte?: number | null;
+
+  backgroundColor?: HedvigColor | null;
+  /** All values that are not equal to given value. */
+  backgroundColor_not?: HedvigColor | null;
+  /** All values that are contained in given list. */
+  backgroundColor_in?: HedvigColor[] | null;
+  /** All values that are not contained in given list. */
+  backgroundColor_not_in?: HedvigColor[] | null;
+}
+
+export interface MarketingStoryUpdateManyDataInput {
+  status?: Status | null;
+
+  duration?: number | null;
+
+  importance?: number | null;
+
+  backgroundColor?: HedvigColor | null;
+}
+
+export interface MarketingStoryUpsertWithWhereUniqueWithoutAssetInput {
+  where: MarketingStoryWhereUniqueInput;
+
+  update: MarketingStoryUpdateWithoutAssetDataInput;
+
+  create: MarketingStoryCreateWithoutAssetInput;
 }
 
 export interface LanguageUpdateInput {
@@ -2040,11 +2839,17 @@ export interface TranslationUpdateManyWithoutLanguageInput {
 
   connect?: TranslationWhereUniqueInput[] | null;
 
+  set?: TranslationWhereUniqueInput[] | null;
+
   disconnect?: TranslationWhereUniqueInput[] | null;
 
   delete?: TranslationWhereUniqueInput[] | null;
 
   update?: TranslationUpdateWithWhereUniqueWithoutLanguageInput[] | null;
+
+  updateMany?: TranslationUpdateManyWithWhereNestedInput[] | null;
+
+  deleteMany?: TranslationScalarWhereInput[] | null;
 
   upsert?: TranslationUpsertWithWhereUniqueWithoutLanguageInput[] | null;
 }
@@ -2084,6 +2889,8 @@ export interface KeyUpdateWithoutTranslationsDataInput {
 
   value?: string | null;
 
+  description?: string | null;
+
   perilCategoryTitle?: PerilCategoryUpdateOneWithoutTitleKeyInput | null;
 
   perilCategoryDescription?: PerilCategoryUpdateOneWithoutDescriptionKeyInput | null;
@@ -2122,11 +2929,17 @@ export interface PerilUpdateManyWithoutPerilCategoryInput {
 
   connect?: PerilWhereUniqueInput[] | null;
 
+  set?: PerilWhereUniqueInput[] | null;
+
   disconnect?: PerilWhereUniqueInput[] | null;
 
   delete?: PerilWhereUniqueInput[] | null;
 
   update?: PerilUpdateWithWhereUniqueWithoutPerilCategoryInput[] | null;
+
+  updateMany?: PerilUpdateManyWithWhereNestedInput[] | null;
+
+  deleteMany?: PerilScalarWhereInput[] | null;
 
   upsert?: PerilUpsertWithWhereUniqueWithoutPerilCategoryInput[] | null;
 }
@@ -2164,6 +2977,8 @@ export interface KeyUpdateWithoutPerilTitleDataInput {
 
   value?: string | null;
 
+  description?: string | null;
+
   translations?: TranslationUpdateManyWithoutKeyInput | null;
 
   perilCategoryTitle?: PerilCategoryUpdateOneWithoutTitleKeyInput | null;
@@ -2178,11 +2993,17 @@ export interface TranslationUpdateManyWithoutKeyInput {
 
   connect?: TranslationWhereUniqueInput[] | null;
 
+  set?: TranslationWhereUniqueInput[] | null;
+
   disconnect?: TranslationWhereUniqueInput[] | null;
 
   delete?: TranslationWhereUniqueInput[] | null;
 
   update?: TranslationUpdateWithWhereUniqueWithoutKeyInput[] | null;
+
+  updateMany?: TranslationUpdateManyWithWhereNestedInput[] | null;
+
+  deleteMany?: TranslationScalarWhereInput[] | null;
 
   upsert?: TranslationUpsertWithWhereUniqueWithoutKeyInput[] | null;
 }
@@ -2229,6 +3050,133 @@ export interface LanguageUpsertWithoutTranslationsInput {
   update: LanguageUpdateWithoutTranslationsDataInput;
 
   create: LanguageCreateWithoutTranslationsInput;
+}
+
+export interface TranslationUpdateManyWithWhereNestedInput {
+  where: TranslationScalarWhereInput;
+
+  data: TranslationUpdateManyDataInput;
+}
+
+export interface TranslationScalarWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: TranslationScalarWhereInput[] | null;
+  /** Logical OR on all given filters. */
+  OR?: TranslationScalarWhereInput[] | null;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: TranslationScalarWhereInput[] | null;
+
+  status?: Status | null;
+  /** All values that are not equal to given value. */
+  status_not?: Status | null;
+  /** All values that are contained in given list. */
+  status_in?: Status[] | null;
+  /** All values that are not contained in given list. */
+  status_not_in?: Status[] | null;
+
+  id?: string | null;
+  /** All values that are not equal to given value. */
+  id_not?: string | null;
+  /** All values that are contained in given list. */
+  id_in?: string[] | null;
+  /** All values that are not contained in given list. */
+  id_not_in?: string[] | null;
+  /** All values less than the given value. */
+  id_lt?: string | null;
+  /** All values less than or equal the given value. */
+  id_lte?: string | null;
+  /** All values greater than the given value. */
+  id_gt?: string | null;
+  /** All values greater than or equal the given value. */
+  id_gte?: string | null;
+  /** All values containing the given string. */
+  id_contains?: string | null;
+  /** All values not containing the given string. */
+  id_not_contains?: string | null;
+  /** All values starting with the given string. */
+  id_starts_with?: string | null;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: string | null;
+  /** All values ending with the given string. */
+  id_ends_with?: string | null;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: string | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  project?: Project | null;
+  /** All values that are not equal to given value. */
+  project_not?: Project | null;
+  /** All values that are contained in given list. */
+  project_in?: Project[] | null;
+  /** All values that are not contained in given list. */
+  project_not_in?: Project[] | null;
+
+  text?: string | null;
+  /** All values that are not equal to given value. */
+  text_not?: string | null;
+  /** All values that are contained in given list. */
+  text_in?: string[] | null;
+  /** All values that are not contained in given list. */
+  text_not_in?: string[] | null;
+  /** All values less than the given value. */
+  text_lt?: string | null;
+  /** All values less than or equal the given value. */
+  text_lte?: string | null;
+  /** All values greater than the given value. */
+  text_gt?: string | null;
+  /** All values greater than or equal the given value. */
+  text_gte?: string | null;
+  /** All values containing the given string. */
+  text_contains?: string | null;
+  /** All values not containing the given string. */
+  text_not_contains?: string | null;
+  /** All values starting with the given string. */
+  text_starts_with?: string | null;
+  /** All values not starting with the given string. */
+  text_not_starts_with?: string | null;
+  /** All values ending with the given string. */
+  text_ends_with?: string | null;
+  /** All values not ending with the given string. */
+  text_not_ends_with?: string | null;
+}
+
+export interface TranslationUpdateManyDataInput {
+  status?: Status | null;
+
+  project?: Project | null;
+
+  text?: string | null;
 }
 
 export interface TranslationUpsertWithWhereUniqueWithoutKeyInput {
@@ -2281,6 +3229,8 @@ export interface KeyUpdateWithoutPerilCategoryTitleDataInput {
   status?: Status | null;
 
   value?: string | null;
+
+  description?: string | null;
 
   translations?: TranslationUpdateManyWithoutKeyInput | null;
 
@@ -2356,6 +3306,8 @@ export interface KeyUpdateWithoutPerilCategoryDescriptionDataInput {
 
   value?: string | null;
 
+  description?: string | null;
+
   translations?: TranslationUpdateManyWithoutKeyInput | null;
 
   perilCategoryTitle?: PerilCategoryUpdateOneWithoutTitleKeyInput | null;
@@ -2424,6 +3376,8 @@ export interface KeyUpdateWithoutPerilDescriptionDataInput {
 
   value?: string | null;
 
+  description?: string | null;
+
   translations?: TranslationUpdateManyWithoutKeyInput | null;
 
   perilCategoryTitle?: PerilCategoryUpdateOneWithoutTitleKeyInput | null;
@@ -2463,6 +3417,93 @@ export interface KeyUpsertWithoutPerilTitleInput {
   create: KeyCreateWithoutPerilTitleInput;
 }
 
+export interface PerilUpdateManyWithWhereNestedInput {
+  where: PerilScalarWhereInput;
+
+  data: PerilUpdateManyDataInput;
+}
+
+export interface PerilScalarWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: PerilScalarWhereInput[] | null;
+  /** Logical OR on all given filters. */
+  OR?: PerilScalarWhereInput[] | null;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: PerilScalarWhereInput[] | null;
+
+  status?: Status | null;
+  /** All values that are not equal to given value. */
+  status_not?: Status | null;
+  /** All values that are contained in given list. */
+  status_in?: Status[] | null;
+  /** All values that are not contained in given list. */
+  status_not_in?: Status[] | null;
+
+  id?: string | null;
+  /** All values that are not equal to given value. */
+  id_not?: string | null;
+  /** All values that are contained in given list. */
+  id_in?: string[] | null;
+  /** All values that are not contained in given list. */
+  id_not_in?: string[] | null;
+  /** All values less than the given value. */
+  id_lt?: string | null;
+  /** All values less than or equal the given value. */
+  id_lte?: string | null;
+  /** All values greater than the given value. */
+  id_gt?: string | null;
+  /** All values greater than or equal the given value. */
+  id_gte?: string | null;
+  /** All values containing the given string. */
+  id_contains?: string | null;
+  /** All values not containing the given string. */
+  id_not_contains?: string | null;
+  /** All values starting with the given string. */
+  id_starts_with?: string | null;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: string | null;
+  /** All values ending with the given string. */
+  id_ends_with?: string | null;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: string | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+}
+
+export interface PerilUpdateManyDataInput {
+  status?: Status | null;
+}
+
 export interface PerilUpsertWithWhereUniqueWithoutPerilCategoryInput {
   where: PerilWhereUniqueInput;
 
@@ -2495,6 +3536,8 @@ export interface KeyUpdateInput {
   status?: Status | null;
 
   value?: string | null;
+
+  description?: string | null;
 
   translations?: TranslationUpdateManyWithoutKeyInput | null;
 
@@ -2541,6 +3584,114 @@ export interface PerilCategoryUpdateInput {
   descriptionKey?: KeyUpdateOneWithoutPerilCategoryDescriptionInput | null;
 }
 
+export interface MarketingStoryUpdateInput {
+  status?: Status | null;
+
+  duration?: number | null;
+
+  importance?: number | null;
+
+  backgroundColor?: HedvigColor | null;
+
+  asset?: AssetUpdateOneWithoutAssetMarketingStoryInput | null;
+}
+
+export interface AssetUpdateOneWithoutAssetMarketingStoryInput {
+  create?: AssetCreateWithoutAssetMarketingStoryInput | null;
+
+  connect?: AssetWhereUniqueInput | null;
+
+  disconnect?: boolean | null;
+
+  delete?: boolean | null;
+
+  update?: AssetUpdateWithoutAssetMarketingStoryDataInput | null;
+
+  upsert?: AssetUpsertWithoutAssetMarketingStoryInput | null;
+}
+
+export interface AssetUpdateWithoutAssetMarketingStoryDataInput {
+  status?: Status | null;
+
+  handle?: string | null;
+
+  fileName?: string | null;
+
+  height?: number | null;
+
+  mimeType?: string | null;
+
+  size?: number | null;
+
+  width?: number | null;
+}
+
+export interface AssetUpsertWithoutAssetMarketingStoryInput {
+  update: AssetUpdateWithoutAssetMarketingStoryDataInput;
+
+  create: AssetCreateWithoutAssetMarketingStoryInput;
+}
+
+export interface AssetUpdateManyMutationInput {
+  status?: Status | null;
+
+  handle?: string | null;
+
+  fileName?: string | null;
+
+  height?: number | null;
+
+  mimeType?: string | null;
+
+  size?: number | null;
+
+  width?: number | null;
+}
+
+export interface LanguageUpdateManyMutationInput {
+  status?: Status | null;
+
+  code?: string | null;
+
+  name?: string | null;
+}
+
+export interface KeyUpdateManyMutationInput {
+  status?: Status | null;
+
+  value?: string | null;
+
+  description?: string | null;
+}
+
+export interface TranslationUpdateManyMutationInput {
+  status?: Status | null;
+
+  project?: Project | null;
+
+  text?: string | null;
+}
+
+export interface PerilUpdateManyMutationInput {
+  status?: Status | null;
+}
+
+export interface PerilCategoryUpdateManyMutationInput {
+  status?: Status | null;
+
+  name?: string | null;
+}
+
+export interface MarketingStoryUpdateManyMutationInput {
+  status?: Status | null;
+
+  duration?: number | null;
+
+  importance?: number | null;
+
+  backgroundColor?: HedvigColor | null;
+}
+
 export interface AssetSubscriptionWhereInput {
   /** Logical AND on all given filters. */
   AND?: AssetSubscriptionWhereInput[] | null;
@@ -2579,13 +3730,13 @@ export interface ColorSubscriptionWhereInput {
   node?: ColorWhereInput | null;
 }
 
-export interface LocationSubscriptionWhereInput {
+export interface KeySubscriptionWhereInput {
   /** Logical AND on all given filters. */
-  AND?: LocationSubscriptionWhereInput[] | null;
+  AND?: KeySubscriptionWhereInput[] | null;
   /** Logical OR on all given filters. */
-  OR?: LocationSubscriptionWhereInput[] | null;
+  OR?: KeySubscriptionWhereInput[] | null;
   /** Logical NOT on all given filters combined by AND. */
-  NOT?: LocationSubscriptionWhereInput[] | null;
+  NOT?: KeySubscriptionWhereInput[] | null;
   /** The subscription event gets dispatched when it's listed in mutation_in */
   mutation_in?: MutationType[] | null;
   /** The subscription event gets only dispatched when one of the updated fields names is included in this list */
@@ -2595,7 +3746,7 @@ export interface LocationSubscriptionWhereInput {
   /** The subscription event gets only dispatched when some of the field names included in this list have been updated */
   updatedFields_contains_some?: string[] | null;
 
-  node?: LocationWhereInput | null;
+  node?: KeyWhereInput | null;
 }
 
 export interface LanguageSubscriptionWhereInput {
@@ -2617,13 +3768,13 @@ export interface LanguageSubscriptionWhereInput {
   node?: LanguageWhereInput | null;
 }
 
-export interface KeySubscriptionWhereInput {
+export interface LocationSubscriptionWhereInput {
   /** Logical AND on all given filters. */
-  AND?: KeySubscriptionWhereInput[] | null;
+  AND?: LocationSubscriptionWhereInput[] | null;
   /** Logical OR on all given filters. */
-  OR?: KeySubscriptionWhereInput[] | null;
+  OR?: LocationSubscriptionWhereInput[] | null;
   /** Logical NOT on all given filters combined by AND. */
-  NOT?: KeySubscriptionWhereInput[] | null;
+  NOT?: LocationSubscriptionWhereInput[] | null;
   /** The subscription event gets dispatched when it's listed in mutation_in */
   mutation_in?: MutationType[] | null;
   /** The subscription event gets only dispatched when one of the updated fields names is included in this list */
@@ -2633,16 +3784,16 @@ export interface KeySubscriptionWhereInput {
   /** The subscription event gets only dispatched when some of the field names included in this list have been updated */
   updatedFields_contains_some?: string[] | null;
 
-  node?: KeyWhereInput | null;
+  node?: LocationWhereInput | null;
 }
 
-export interface TranslationSubscriptionWhereInput {
+export interface MarketingStorySubscriptionWhereInput {
   /** Logical AND on all given filters. */
-  AND?: TranslationSubscriptionWhereInput[] | null;
+  AND?: MarketingStorySubscriptionWhereInput[] | null;
   /** Logical OR on all given filters. */
-  OR?: TranslationSubscriptionWhereInput[] | null;
+  OR?: MarketingStorySubscriptionWhereInput[] | null;
   /** Logical NOT on all given filters combined by AND. */
-  NOT?: TranslationSubscriptionWhereInput[] | null;
+  NOT?: MarketingStorySubscriptionWhereInput[] | null;
   /** The subscription event gets dispatched when it's listed in mutation_in */
   mutation_in?: MutationType[] | null;
   /** The subscription event gets only dispatched when one of the updated fields names is included in this list */
@@ -2652,26 +3803,7 @@ export interface TranslationSubscriptionWhereInput {
   /** The subscription event gets only dispatched when some of the field names included in this list have been updated */
   updatedFields_contains_some?: string[] | null;
 
-  node?: TranslationWhereInput | null;
-}
-
-export interface PerilSubscriptionWhereInput {
-  /** Logical AND on all given filters. */
-  AND?: PerilSubscriptionWhereInput[] | null;
-  /** Logical OR on all given filters. */
-  OR?: PerilSubscriptionWhereInput[] | null;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: PerilSubscriptionWhereInput[] | null;
-  /** The subscription event gets dispatched when it's listed in mutation_in */
-  mutation_in?: MutationType[] | null;
-  /** The subscription event gets only dispatched when one of the updated fields names is included in this list */
-  updatedFields_contains?: string | null;
-  /** The subscription event gets only dispatched when all of the field names included in this list have been updated */
-  updatedFields_contains_every?: string[] | null;
-  /** The subscription event gets only dispatched when some of the field names included in this list have been updated */
-  updatedFields_contains_some?: string[] | null;
-
-  node?: PerilWhereInput | null;
+  node?: MarketingStoryWhereInput | null;
 }
 
 export interface PerilCategorySubscriptionWhereInput {
@@ -2693,6 +3825,44 @@ export interface PerilCategorySubscriptionWhereInput {
   node?: PerilCategoryWhereInput | null;
 }
 
+export interface PerilSubscriptionWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: PerilSubscriptionWhereInput[] | null;
+  /** Logical OR on all given filters. */
+  OR?: PerilSubscriptionWhereInput[] | null;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: PerilSubscriptionWhereInput[] | null;
+  /** The subscription event gets dispatched when it's listed in mutation_in */
+  mutation_in?: MutationType[] | null;
+  /** The subscription event gets only dispatched when one of the updated fields names is included in this list */
+  updatedFields_contains?: string | null;
+  /** The subscription event gets only dispatched when all of the field names included in this list have been updated */
+  updatedFields_contains_every?: string[] | null;
+  /** The subscription event gets only dispatched when some of the field names included in this list have been updated */
+  updatedFields_contains_some?: string[] | null;
+
+  node?: PerilWhereInput | null;
+}
+
+export interface TranslationSubscriptionWhereInput {
+  /** Logical AND on all given filters. */
+  AND?: TranslationSubscriptionWhereInput[] | null;
+  /** Logical OR on all given filters. */
+  OR?: TranslationSubscriptionWhereInput[] | null;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: TranslationSubscriptionWhereInput[] | null;
+  /** The subscription event gets dispatched when it's listed in mutation_in */
+  mutation_in?: MutationType[] | null;
+  /** The subscription event gets only dispatched when one of the updated fields names is included in this list */
+  updatedFields_contains?: string | null;
+  /** The subscription event gets only dispatched when all of the field names included in this list have been updated */
+  updatedFields_contains_every?: string[] | null;
+  /** The subscription event gets only dispatched when some of the field names included in this list have been updated */
+  updatedFields_contains_some?: string[] | null;
+
+  node?: TranslationWhereInput | null;
+}
+
 // ====================================================
 // Arguments
 // ====================================================
@@ -2712,11 +3882,29 @@ export interface LanguagesQueryArgs {
 
   last?: number | null;
 }
+export interface MarketingStoriesQueryArgs {
+  where?: MarketingStoryWhereInput | null;
+
+  orderBy?: MarketingStoryOrderByInput | null;
+
+  skip?: number | null;
+
+  after?: string | null;
+
+  before?: string | null;
+
+  first?: number | null;
+
+  last?: number | null;
+}
 export interface GifsQueryArgs {
   query: string;
 }
 export interface FileQueryArgs {
   key: string;
+}
+export interface DontPanicSessionQueryArgs {
+  id: string;
 }
 export interface TranslationsLanguageArgs {
   where?: TranslationWhereInput | null;
@@ -2733,12 +3921,6 @@ export interface TranslationsLanguageArgs {
 
   last?: number | null;
 }
-export interface LanguageTranslationArgs {
-  where?: LanguageWhereInput | null;
-}
-export interface KeyTranslationArgs {
-  where?: KeyWhereInput | null;
-}
 export interface TranslationsKeyArgs {
   where?: TranslationWhereInput | null;
 
@@ -2754,17 +3936,23 @@ export interface TranslationsKeyArgs {
 
   last?: number | null;
 }
-export interface PerilCategoryTitleKeyArgs {
-  where?: PerilCategoryWhereInput | null;
+export interface AssetMarketingStoryAssetArgs {
+  where?: MarketingStoryWhereInput | null;
+
+  orderBy?: MarketingStoryOrderByInput | null;
+
+  skip?: number | null;
+
+  after?: string | null;
+
+  before?: string | null;
+
+  first?: number | null;
+
+  last?: number | null;
 }
-export interface PerilCategoryDescriptionKeyArgs {
-  where?: PerilCategoryWhereInput | null;
-}
-export interface PerilTitleKeyArgs {
-  where?: PerilWhereInput | null;
-}
-export interface PerilDescriptionKeyArgs {
-  where?: PerilWhereInput | null;
+export interface UrlAssetArgs {
+  transformation?: AssetTransformationInput | null;
 }
 export interface CreateSessionMutationArgs {
   campaign?: CampaignInput | null;
@@ -2783,11 +3971,54 @@ export interface UploadFileMutationArgs {
 export interface SelectCashbackOptionMutationArgs {
   id: string;
 }
+export interface SendChatTextResponseMutationArgs {
+  input: ChatResponseTextInput;
+}
+export interface SendChatSingleSelectResponseMutationArgs {
+  input: ChatResponseSingleSelectInput;
+}
 export interface SendChatFileResponseMutationArgs {
   input: ChatResponseFileInput;
 }
-export interface UrlAssetArgs {
-  transformation?: AssetTransformationInput | null;
+export interface SendChatAudioResponseMutationArgs {
+  input: ChatResponseAudioInput;
+}
+export interface UpdateEmailMutationArgs {
+  input: string;
+}
+export interface UpdatePhoneNumberMutationArgs {
+  input: string;
+}
+export interface CreateDontPanicSessionMutationArgs {
+  name: string;
+
+  lastName?: string | null;
+
+  email?: string | null;
+
+  currentInsurer?: string | null;
+}
+export interface AddDontPanicChatMessageMutationArgs {
+  sessionId: string;
+
+  who: string;
+
+  text: string;
+
+  isHedvig: boolean;
+
+  hedvigsSecret?: string | null;
+
+  type?: string | null;
+}
+export interface MessagesSubscriptionArgs {
+  mostRecentTimestamp: string;
+}
+export interface CurrentChatResponseSubscriptionArgs {
+  mostRecentTimestamp: string;
+}
+export interface ChatStateSubscriptionArgs {
+  mostRecentTimestamp: string;
 }
 
 // ====================================================
@@ -2837,6 +4068,63 @@ export enum TranslationOrderByInput {
   text_DESC = 'text_DESC',
 }
 
+export enum HedvigColor {
+  Pink = 'Pink',
+  Turquoise = 'Turquoise',
+  Purple = 'Purple',
+  DarkPurple = 'DarkPurple',
+  BlackPurple = 'BlackPurple',
+  DarkGray = 'DarkGray',
+  LightGray = 'LightGray',
+  White = 'White',
+  Black = 'Black',
+  OffBlack = 'OffBlack',
+  OffWhite = 'OffWhite',
+}
+
+export enum MarketingStoryOrderByInput {
+  status_ASC = 'status_ASC',
+  status_DESC = 'status_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  updatedAt_ASC = 'updatedAt_ASC',
+  updatedAt_DESC = 'updatedAt_DESC',
+  duration_ASC = 'duration_ASC',
+  duration_DESC = 'duration_DESC',
+  importance_ASC = 'importance_ASC',
+  importance_DESC = 'importance_DESC',
+  backgroundColor_ASC = 'backgroundColor_ASC',
+  backgroundColor_DESC = 'backgroundColor_DESC',
+}
+
+export enum ImageFit {
+  clip = 'clip',
+  crop = 'crop',
+  scale = 'scale',
+  max = 'max',
+}
+
+export enum DocumentFileTypes {
+  jpg = 'jpg',
+  odp = 'odp',
+  ods = 'ods',
+  odt = 'odt',
+  png = 'png',
+  svg = 'svg',
+  txt = 'txt',
+  webp = 'webp',
+  docx = 'docx',
+  html = 'html',
+  pdf = 'pdf',
+  doc = 'doc',
+  xlsx = 'xlsx',
+  xls = 'xls',
+  pptx = 'pptx',
+  ppt = 'ppt',
+}
+
 export enum InsuranceStatus {
   PENDING = 'PENDING',
   ACTIVE = 'ACTIVE',
@@ -2866,8 +4154,29 @@ export enum SignState {
 }
 
 export enum DirectDebitStatus {
-  NEEDS_SETUP = 'NEEDS_SETUP',
   ACTIVE = 'ACTIVE',
+  PENDING = 'PENDING',
+  NEEDS_SETUP = 'NEEDS_SETUP',
+}
+
+export enum MessageBodyChoicesLinkView {
+  OFFER = 'OFFER',
+  DASHBOARD = 'DASHBOARD',
+}
+
+export enum RegisterAccountProcessingStatus {
+  NOT_INITIATED = 'NOT_INITIATED',
+  INITIATED = 'INITIATED',
+  REQUESTED = 'REQUESTED',
+  IN_PROGRESS = 'IN_PROGRESS',
+  CONFIRMED = 'CONFIRMED',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum CancelDirectDebitStatus {
+  ACCEPTED = 'ACCEPTED',
+  DECLINED_MISSING_TOKEN = 'DECLINED_MISSING_TOKEN',
+  DECLINED_MISSING_REQUEST = 'DECLINED_MISSING_REQUEST',
 }
 
 export enum OfferStatus {
@@ -2909,32 +4218,6 @@ export enum AssetOrderByInput {
   width_DESC = 'width_DESC',
 }
 
-export enum ImageFit {
-  clip = 'clip',
-  crop = 'crop',
-  scale = 'scale',
-  max = 'max',
-}
-
-export enum DocumentFileTypes {
-  jpg = 'jpg',
-  odp = 'odp',
-  ods = 'ods',
-  odt = 'odt',
-  png = 'png',
-  svg = 'svg',
-  txt = 'txt',
-  webp = 'webp',
-  docx = 'docx',
-  html = 'html',
-  pdf = 'pdf',
-  doc = 'doc',
-  xlsx = 'xlsx',
-  xls = 'xls',
-  pptx = 'pptx',
-  ppt = 'ppt',
-}
-
 export enum ColorOrderByInput {
   id_ASC = 'id_ASC',
   id_DESC = 'id_DESC',
@@ -2964,6 +4247,8 @@ export enum KeyOrderByInput {
   updatedAt_DESC = 'updatedAt_DESC',
   value_ASC = 'value_ASC',
   value_DESC = 'value_DESC',
+  description_ASC = 'description_ASC',
+  description_DESC = 'description_DESC',
 }
 
 export enum PerilCategoryOrderByInput {
@@ -2984,6 +4269,35 @@ export enum MutationType {
   UPDATED = 'UPDATED',
   DELETED = 'DELETED',
 }
+
+export enum Locale {
+  EN = 'EN',
+}
+
+export enum CacheControlScope {
+  PUBLIC = 'PUBLIC',
+  PRIVATE = 'PRIVATE',
+}
+
+// ====================================================
+// Unions
+// ====================================================
+
+export type MessageBody =
+  | MessageBodySingleSelect
+  | MessageBodyMultipleSelect
+  | MessageBodyText
+  | MessageBodyNumber
+  | MessageBodyAudio
+  | MessageBodyBankIdCollect
+  | MessageBodyFile
+  | MessageBodyParagraph
+  | MessageBodyUndefined;
+
+export type MessageBodyChoices =
+  | MessageBodyChoicesUndefined
+  | MessageBodyChoicesSelection
+  | MessageBodyChoicesLink;
 
 // ====================================================
 // END: Typescript template
@@ -3008,7 +4322,7 @@ export type MessagesVariables = {};
 export type MessagesQuery = {
   __typename?: 'Query';
 
-  directDebitStatus: DirectDebitStatus;
+  registerAccountProcessingStatus: RegisterAccountProcessingStatus;
 };
 
 export type NewOfferVariables = {};
@@ -3169,7 +4483,7 @@ export function SendChatFileResponseHOC<
 }
 export const MessagesDocument = gql`
   query Messages {
-    directDebitStatus
+    registerAccountProcessingStatus
   }
 `;
 export class MessagesComponent extends React.Component<
