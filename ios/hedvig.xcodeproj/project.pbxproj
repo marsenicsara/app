@@ -453,6 +453,7 @@
 				EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */,
 				B56386481DB9693800A0598C /* AppDelegate.swift */,
 				B56386501DB9693800A0598C /* Assets.xcassets */,
+				EB433C95221D49C1000156D4 /* LaunchScreen.storyboard */,
 				B563865B1DB96A5E00A0598C /* Supporting */,
 				559CCAF12121B42C0080C272 /* staging.xcconfig */,
 				559CCAF22121B4620080C272 /* release.xcconfig */,
@@ -472,7 +473,6 @@
 			isa = PBXGroup;
 			children = (
 				B563865C1DB96A5E00A0598C /* Info.plist */,
-				EB433C95221D49C1000156D4 /* LaunchScreen.storyboard */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
