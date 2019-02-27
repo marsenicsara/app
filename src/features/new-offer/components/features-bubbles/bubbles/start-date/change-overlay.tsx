@@ -14,6 +14,7 @@ import { Navigation } from 'react-native-navigation';
 import { Header } from 'src/components/draggable-overlay/header';
 import { Spacing } from 'src/components/Spacing';
 import DatePicker from 'react-native-date-picker';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const OverlayContent = styled(View)({
   justifyContent: 'center',
@@ -91,34 +92,53 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
   >
     {(handleClose) => (
       <>
-        <Header
-          title={'Ändra startdatum'}
-          onCloseClick={handleClose}
-          restartButton={false}
-          backgroundColor={colors.OFF_WHITE}
-          textColor={colors.OFF_BLACK_DARK}
-          buttonColor={colors.DARK_GRAY}
-        />
+        <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_TITLE">
+          {(text) => (
+            <Header
+              title={text}
+              onCloseClick={handleClose}
+              restartButton={false}
+              backgroundColor={colors.OFF_WHITE}
+              textColor={colors.OFF_BLACK_DARK}
+              buttonColor={colors.DARK_GRAY}
+            />
+          )}
+        </TranslationsConsumer>
+
         <OverlayContent>
-          <Heading>
-            Vilket datum vill du att din hemförsäkring ska aktiveras?
-          </Heading>
+          <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_HEADING">
+            {(text) => <Heading>{text}</Heading>}
+          </TranslationsConsumer>
           <StartDatePicker date={new Date()} locale="sv" mode="date" />
           <Spacing height={40} />
           <Row>
-            <ConfirmButton>
-              <ConfirmButtonText>Välj datum</ConfirmButtonText>
-            </ConfirmButton>
+            <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_CONFIRM">
+              {(text) => (
+                <ConfirmButton>
+                  <ConfirmButtonText>{text}</ConfirmButtonText>
+                </ConfirmButton>
+              )}
+            </TranslationsConsumer>
           </Row>
           <Spacing height={22} />
           <Row>
-            <ResetButton>
-              <ResetButtonText>
-                {insuredAtOtherCompany
-                  ? 'När min bindningstid går ut'
-                  : 'Aktivera idag'}
-              </ResetButtonText>
-            </ResetButton>
+            {insuredAtOtherCompany ? (
+              <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_RESET_SWITCHER">
+                {(text) => (
+                  <ResetButton>
+                    <ResetButtonText>{text}</ResetButtonText>
+                  </ResetButton>
+                )}
+              </TranslationsConsumer>
+            ) : (
+              <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_RESET_NEW">
+                {(text) => (
+                  <ResetButton>
+                    <ResetButtonText>{text}</ResetButtonText>
+                  </ResetButton>
+                )}
+              </TranslationsConsumer>
+            )}
           </Row>
         </OverlayContent>
       </>

@@ -51,25 +51,29 @@ export const StartDate: React.SFC<StartDateProps> = ({
       <Spacing height={2.5} />
       {insuredAtOtherCompany ? <Switcher /> : <New />}
       <Spacing height={10} />
-      <ChangeButton
-        onPress={() => {
-          Navigation.showOverlay({
-            component: {
-              name: CHANGE_START_DATE_COMPONENT.name,
-              options: {
-                layout: {
-                  backgroundColor: 'transparent',
+      <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_BUTTON">
+        {(text) => (
+          <ChangeButton
+            onPress={() => {
+              Navigation.showOverlay({
+                component: {
+                  name: CHANGE_START_DATE_COMPONENT.name,
+                  options: {
+                    layout: {
+                      backgroundColor: 'transparent',
+                    },
+                  },
+                  passProps: {
+                    insuredAtOtherCompany,
+                  },
                 },
-              },
-              passProps: {
-                insuredAtOtherCompany,
-              },
-            },
-          });
-        }}
-      >
-        <ChangeButtonText>Ändra</ChangeButtonText>
-      </ChangeButton>
+              });
+            }}
+          >
+            <ChangeButtonText>{text}</ChangeButtonText>
+          </ChangeButton>
+        )}
+      </TranslationsConsumer>
     </Bubble>
   </BubbleAnimation>
 );
