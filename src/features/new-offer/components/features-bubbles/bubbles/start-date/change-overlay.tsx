@@ -126,7 +126,14 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
               <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_HEADING">
                 {(text) => <Heading>{text}</Heading>}
               </TranslationsConsumer>
-              <StartDatePicker date={date} locale="sv" mode="date" />
+              <StartDatePicker
+                date={date}
+                locale="sv"
+                mode="date"
+                onDateChange={(date: Date) => {
+                  setDate(date);
+                }}
+              />
               <Spacing height={40} />
               <Row>
                 <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_CONFIRM">
@@ -142,7 +149,11 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
                 {insuredAtOtherCompany ? (
                   <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_RESET_SWITCHER">
                     {(text) => (
-                      <ResetButton>
+                      <ResetButton
+                        onPress={() => {
+                          handleClose();
+                        }}
+                      >
                         <ResetButtonText>{text}</ResetButtonText>
                       </ResetButton>
                     )}
@@ -152,7 +163,7 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
                     {(text) => (
                       <ResetButton
                         onPress={() => {
-                          setDate(new Date());
+                          handleClose();
                         }}
                       >
                         <ResetButtonText>{text}</ResetButtonText>
