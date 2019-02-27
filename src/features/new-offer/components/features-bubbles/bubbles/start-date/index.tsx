@@ -19,7 +19,7 @@ export const StartDate: React.SFC<StartDateProps> = ({
   insuredAtOtherCompany,
 }) => (
   <BubbleAnimation delay={0}>
-    <Bubble width={130} height={130} backgroundColor={colors.GREEN}>
+    <Bubble width={150} height={150} backgroundColor={colors.PURPLE}>
       <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_TITLE">
         {(text) => <Title>{text}</Title>}
       </TranslationsConsumer>
