@@ -15,6 +15,7 @@ import { Header } from 'src/components/draggable-overlay/header';
 import { Spacing } from 'src/components/Spacing';
 import DatePicker from 'react-native-date-picker';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { Container, ActionMap } from 'constate';
 
 const OverlayContent = styled(View)({
   justifyContent: 'center',
@@ -77,6 +78,20 @@ const ResetButtonText = styled(Text)({
   lineHeight: 20,
 });
 
+interface State {
+  date: Date;
+}
+
+interface Actions {
+  setDate: (date: Date) => void;
+}
+
+const actions: ActionMap<State, Actions> = {
+  setDate: (date) => () => ({
+    date,
+  }),
+};
+
 interface ChangeOverlayProps {
   componentId: string;
   insuredAtOtherCompany: boolean;
@@ -86,62 +101,70 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
   componentId,
   insuredAtOtherCompany,
 }) => (
-  <DraggableOverlay
-    heightPercentage={70}
-    onClose={() => Navigation.dismissOverlay(componentId)}
-  >
-    {(handleClose) => (
-      <>
-        <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_TITLE">
-          {(text) => (
-            <Header
-              title={text}
-              onCloseClick={handleClose}
-              restartButton={false}
-              backgroundColor={colors.OFF_WHITE}
-              textColor={colors.OFF_BLACK_DARK}
-              buttonColor={colors.DARK_GRAY}
-            />
-          )}
-        </TranslationsConsumer>
-
-        <OverlayContent>
-          <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_HEADING">
-            {(text) => <Heading>{text}</Heading>}
-          </TranslationsConsumer>
-          <StartDatePicker date={new Date()} locale="sv" mode="date" />
-          <Spacing height={40} />
-          <Row>
-            <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_CONFIRM">
+  <Container actions={actions} initialState={{ date: new Date() }}>
+    {({ date, setDate }) => (
+      <DraggableOverlay
+        heightPercentage={70}
+        onClose={() => Navigation.dismissOverlay(componentId)}
+      >
+        {(handleClose) => (
+          <>
+            <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_TITLE">
               {(text) => (
-                <ConfirmButton>
-                  <ConfirmButtonText>{text}</ConfirmButtonText>
-                </ConfirmButton>
+                <Header
+                  title={text}
+                  onCloseClick={handleClose}
+                  restartButton={false}
+                  backgroundColor={colors.OFF_WHITE}
+                  textColor={colors.OFF_BLACK_DARK}
+                  buttonColor={colors.DARK_GRAY}
+                />
               )}
             </TranslationsConsumer>
-          </Row>
-          <Spacing height={22} />
-          <Row>
-            {insuredAtOtherCompany ? (
-              <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_RESET_SWITCHER">
-                {(text) => (
-                  <ResetButton>
-                    <ResetButtonText>{text}</ResetButtonText>
-                  </ResetButton>
-                )}
+
+            <OverlayContent>
+              <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_HEADING">
+                {(text) => <Heading>{text}</Heading>}
               </TranslationsConsumer>
-            ) : (
-              <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_RESET_NEW">
-                {(text) => (
-                  <ResetButton>
-                    <ResetButtonText>{text}</ResetButtonText>
-                  </ResetButton>
+              <StartDatePicker date={date} locale="sv" mode="date" />
+              <Spacing height={40} />
+              <Row>
+                <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_CONFIRM">
+                  {(text) => (
+                    <ConfirmButton>
+                      <ConfirmButtonText>{text}</ConfirmButtonText>
+                    </ConfirmButton>
+                  )}
+                </TranslationsConsumer>
+              </Row>
+              <Spacing height={22} />
+              <Row>
+                {insuredAtOtherCompany ? (
+                  <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_RESET_SWITCHER">
+                    {(text) => (
+                      <ResetButton>
+                        <ResetButtonText>{text}</ResetButtonText>
+                      </ResetButton>
+                    )}
+                  </TranslationsConsumer>
+                ) : (
+                  <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_RESET_NEW">
+                    {(text) => (
+                      <ResetButton
+                        onPress={() => {
+                          setDate(new Date());
+                        }}
+                      >
+                        <ResetButtonText>{text}</ResetButtonText>
+                      </ResetButton>
+                    )}
+                  </TranslationsConsumer>
                 )}
-              </TranslationsConsumer>
-            )}
-          </Row>
-        </OverlayContent>
-      </>
+              </Row>
+            </OverlayContent>
+          </>
+        )}
+      </DraggableOverlay>
     )}
-  </DraggableOverlay>
+  </Container>
 );
