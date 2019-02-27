@@ -11,6 +11,7 @@ import {
 import styled from '@sampettersson/primitives';
 import { colors, fonts } from '@hedviginsurance/brand';
 import { Navigation } from 'react-native-navigation';
+import { Header } from 'src/components/draggable-overlay/header';
 
 const OverlayContent = styled(View)({
   paddingLeft: 30,
@@ -43,6 +44,14 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
   >
     {(handleClose) => (
       <>
+        <Header
+          title={'Ändra startdatum'}
+          onCloseClick={handleClose}
+          restartButton={false}
+          backgroundColor={colors.OFF_WHITE}
+          textColor={colors.OFF_BLACK_DARK}
+          buttonColor={colors.DARK_GRAY}
+        />
         <OverlayContent>
           <Heading>Ändra</Heading>
         </OverlayContent>
