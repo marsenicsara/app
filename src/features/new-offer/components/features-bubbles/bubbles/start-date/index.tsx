@@ -44,13 +44,14 @@ export const StartDate: React.SFC<StartDateProps> = ({
   insuredAtOtherCompany,
 }) => (
   <BubbleAnimation delay={0}>
-    <Bubble width={150} height={150} backgroundColor={colors.PURPLE}>
+    <Bubble width={160} height={160} backgroundColor={colors.PURPLE}>
+      <Spacing height={12.5} />
       <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_TITLE">
         {(text) => <Title>{text}</Title>}
       </TranslationsConsumer>
       <Spacing height={2.5} />
       {insuredAtOtherCompany ? <Switcher /> : <New />}
-      <Spacing height={10} />
+      <Spacing height={20} />
       <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_BUTTON">
         {(text) => (
           <ChangeButton
