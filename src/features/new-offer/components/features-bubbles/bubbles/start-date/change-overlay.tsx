@@ -41,8 +41,10 @@ const StartDatePicker = styled(DatePicker)({
 });
 
 const ConfirmButton = styled(TouchableOpacity)({
-  width: 146,
-  height: 50,
+  paddingTop: 14,
+  paddingRight: 32,
+  paddingBottom: 14,
+  paddingLeft: 32,
   backgroundColor: colors.PURPLE,
   borderRadius: 25,
   alignItems: 'center',
@@ -57,12 +59,14 @@ const ConfirmButtonText = styled(Text)({
 });
 
 const ResetButton = styled(TouchableOpacity)({
-  width: 200,
-  height: 32,
   backgroundColor: colors.LIGHT_GRAY,
   borderRadius: 24,
   alignItems: 'center',
   justifyContent: 'center',
+  paddingTop: 7,
+  paddingRight: 12,
+  paddingBottom: 7,
+  paddingLeft: 12,
 });
 
 const ResetButtonText = styled(Text)({
@@ -74,10 +78,12 @@ const ResetButtonText = styled(Text)({
 
 interface ChangeOverlayProps {
   componentId: string;
+  insuredAtOtherCompany: boolean;
 }
 
 export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
   componentId,
+  insuredAtOtherCompany,
 }) => (
   <DraggableOverlay
     heightPercentage={70}
@@ -97,7 +103,7 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
           <Heading>
             Vilket datum vill du att din hemförsäkring ska aktiveras?
           </Heading>
-          <StartDatePicker date={new Date()} />
+          <StartDatePicker date={new Date()} locale="sv" mode="date" />
           <Spacing height={40} />
           <Row>
             <ConfirmButton>
@@ -107,7 +113,11 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
           <Spacing height={22} />
           <Row>
             <ResetButton>
-              <ResetButtonText>När min bindningstid går ut</ResetButtonText>
+              <ResetButtonText>
+                {insuredAtOtherCompany
+                  ? 'När min bindningstid går ut'
+                  : 'Aktivera idag'}
+              </ResetButtonText>
             </ResetButton>
           </Row>
         </OverlayContent>

@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
+import { TouchableOpacity } from 'react-native';
+import styled from '@sampettersson/primitives';
+import color from 'color';
+import { Text } from 'react-native';
 
 import { Bubble } from '../../bubble';
 import { BubbleAnimation } from '../../bubble-animation';
@@ -11,9 +15,26 @@ import { Title } from '../common/title';
 import { Switcher } from './switcher';
 import { New } from './new';
 
-import { ChangeButton, ChangeButtonText } from './change-button';
 import { Navigation } from 'react-native-navigation';
 import { CHANGE_START_DATE_COMPONENT } from 'src/navigation/components/change-start-date';
+
+const ChangeButton = styled(TouchableOpacity)({
+  paddingTop: 4,
+  paddingRight: 8,
+  paddingBottom: 4,
+  paddingLeft: 8,
+  backgroundColor: color(colors.WHITE).alpha(0.8),
+  borderRadius: 13,
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+const ChangeButtonText = styled(Text)({
+  fontFamily: fonts.CIRCULAR,
+  color: colors.OFF_BLACK_DARK,
+  fontSize: 14,
+  lineHeight: 18,
+});
 
 interface StartDateProps {
   insuredAtOtherCompany: boolean;
@@ -39,6 +60,9 @@ export const StartDate: React.SFC<StartDateProps> = ({
                 layout: {
                   backgroundColor: 'transparent',
                 },
+              },
+              passProps: {
+                insuredAtOtherCompany,
               },
             },
           });
