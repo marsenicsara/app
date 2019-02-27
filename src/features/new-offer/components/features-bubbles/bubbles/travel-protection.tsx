@@ -9,7 +9,7 @@ import { Title } from './common/title';
 
 export const TravelProtection = () => (
   <BubbleAnimation delay={100}>
-    <Bubble width={120} height={120} backgroundColor={colors.TURQUOISE}>
+    <Bubble width={125} height={125} backgroundColor={colors.TURQUOISE}>
       <TranslationsConsumer textKey="OFFER_BUBBLES_TRAVEL_PROTECTION_TITLE">
         {(text) => <Title>{text}</Title>}
       </TranslationsConsumer>
