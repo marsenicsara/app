@@ -5,10 +5,7 @@ import { Message, MessageType } from './Message';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { PAYMENT_SCREEN } from 'src/navigation/screens/payment';
 
-import {
-  MessagesComponent,
-  RegisterAccountProcessingStatus,
-} from 'src/graphql/components';
+import { MessagesComponent, DirectDebitStatus } from 'src/graphql/components';
 
 export const Messages: React.SFC = () => (
   <MessagesComponent>
@@ -16,10 +13,7 @@ export const Messages: React.SFC = () => (
       loading || error || data === undefined ? null : (
         <>
           <Message
-            visible={
-              data.registerAccountProcessingStatus ===
-              RegisterAccountProcessingStatus.NOT_INITIATED
-            }
+            visible={data.directDebitStatus === DirectDebitStatus.NEEDS_SETUP}
             message={
               <TranslationsConsumer textKey="TRUSTLY_PAYMENT_SETUP_MESSAGE">
                 {(t) => t}

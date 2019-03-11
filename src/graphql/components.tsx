@@ -25,6 +25,9 @@ export type Url = any;
 /** The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
 export type Long = any;
 
+/** Custom scalar representing a Slate rich text AST */
+export type RichTextAst = any;
+
 // ====================================================
 // Interfaces
 // ====================================================
@@ -64,7 +67,7 @@ export interface Query {
 
   insurance: Insurance;
 
-  cashback: Cashback;
+  cashback?: Cashback | null;
 
   cashbackOptions: Cashback[];
 
@@ -75,8 +78,6 @@ export interface Query {
   gifs: Gif[];
 
   file: File;
-
-  directDebitStatus: DirectDebitStatus;
 
   messages: Message[];
 
@@ -94,17 +95,21 @@ export interface Query {
 
   chargeDate: LocalDate;
 
+  nextChargeDate?: LocalDate | null;
+
   registerAccountProcessingStatus: RegisterAccountProcessingStatus;
+
+  directDebitStatus: DirectDebitStatus;
 }
 
 export interface Language extends Node {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   translations?: Translation[] | null;
 
@@ -116,11 +121,11 @@ export interface Language extends Node {
 export interface Translation extends Node {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   language?: Language | null;
 
@@ -134,11 +139,11 @@ export interface Translation extends Node {
 export interface Key extends Node {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   value: string;
 
@@ -178,11 +183,11 @@ export interface Peril {
 export interface MarketingStory extends Node {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   asset?: Asset | null;
 
@@ -196,11 +201,11 @@ export interface MarketingStory extends Node {
 export interface Asset extends Node {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   handle: string;
 
@@ -208,11 +213,11 @@ export interface Asset extends Node {
 
   height?: number | null;
 
-  mimeType?: string | null;
+  width?: number | null;
 
   size?: number | null;
 
-  width?: number | null;
+  mimeType?: string | null;
 
   assetMarketingStory?: MarketingStory[] | null;
   /** Get the url for the asset with provided transformations applied. */
@@ -597,19 +602,19 @@ export interface SignEvent {
 }
 
 export interface Color extends Node {
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 }
 
 export interface Location extends Node {
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 }
 /** A connection to a list of items. */
 export interface AssetConnection {
@@ -811,11 +816,11 @@ export interface BatchPayload {
 export interface AssetPreviousValues {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   handle: string;
 
@@ -823,11 +828,11 @@ export interface AssetPreviousValues {
 
   height?: number | null;
 
-  mimeType?: string | null;
+  width?: number | null;
 
   size?: number | null;
 
-  width?: number | null;
+  mimeType?: string | null;
 }
 
 export interface AssetSubscriptionPayload {
@@ -841,11 +846,11 @@ export interface AssetSubscriptionPayload {
 }
 
 export interface ColorPreviousValues {
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 }
 
 export interface ColorSubscriptionPayload {
@@ -861,11 +866,11 @@ export interface ColorSubscriptionPayload {
 export interface KeyPreviousValues {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   value: string;
 
@@ -885,11 +890,11 @@ export interface KeySubscriptionPayload {
 export interface LanguagePreviousValues {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   code: string;
 
@@ -907,11 +912,11 @@ export interface LanguageSubscriptionPayload {
 }
 
 export interface LocationPreviousValues {
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 }
 
 export interface LocationSubscriptionPayload {
@@ -927,11 +932,11 @@ export interface LocationSubscriptionPayload {
 export interface MarketingStoryPreviousValues {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   duration?: number | null;
 
@@ -953,11 +958,11 @@ export interface MarketingStorySubscriptionPayload {
 export interface PerilCategoryPreviousValues {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   name: string;
 }
@@ -975,11 +980,11 @@ export interface PerilCategorySubscriptionPayload {
 export interface PerilPreviousValues {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 }
 
 export interface PerilSubscriptionPayload {
@@ -992,14 +997,22 @@ export interface PerilSubscriptionPayload {
   previousValues?: PerilPreviousValues | null;
 }
 
+export interface RichText {
+  raw?: RichTextAst | null;
+
+  html?: string | null;
+
+  markdown?: string | null;
+}
+
 export interface TranslationPreviousValues {
   status: Status;
 
-  id: string;
+  updatedAt: DateTime;
 
   createdAt: DateTime;
 
-  updatedAt: DateTime;
+  id: string;
 
   project?: Project | null;
 
@@ -1036,6 +1049,38 @@ export interface LanguageWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -1063,38 +1108,6 @@ export interface LanguageWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 
   code?: string | null;
   /** All values that are not equal to given value. */
@@ -1175,6 +1188,38 @@ export interface TranslationWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -1202,38 +1247,6 @@ export interface TranslationWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 
   project?: Project | null;
   /** All values that are not equal to given value. */
@@ -1292,6 +1305,38 @@ export interface KeyWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -1319,38 +1364,6 @@ export interface KeyWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 
   value?: string | null;
   /** All values that are not equal to given value. */
@@ -1439,6 +1452,38 @@ export interface PerilCategoryWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -1466,38 +1511,6 @@ export interface PerilCategoryWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 
   name?: string | null;
   /** All values that are not equal to given value. */
@@ -1554,6 +1567,38 @@ export interface PerilWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -1581,38 +1626,6 @@ export interface PerilWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 
   perilCategory?: PerilCategoryWhereInput | null;
 
@@ -1637,6 +1650,38 @@ export interface MarketingStoryWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -1664,38 +1709,6 @@ export interface MarketingStoryWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 
   duration?: number | null;
   /** All values that are not equal to given value. */
@@ -1756,6 +1769,38 @@ export interface AssetWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -1783,38 +1828,6 @@ export interface AssetWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 
   handle?: string | null;
   /** All values that are not equal to given value. */
@@ -1888,6 +1901,38 @@ export interface AssetWhereInput {
   /** All values greater than or equal the given value. */
   height_gte?: number | null;
 
+  width?: number | null;
+  /** All values that are not equal to given value. */
+  width_not?: number | null;
+  /** All values that are contained in given list. */
+  width_in?: number[] | null;
+  /** All values that are not contained in given list. */
+  width_not_in?: number[] | null;
+  /** All values less than the given value. */
+  width_lt?: number | null;
+  /** All values less than or equal the given value. */
+  width_lte?: number | null;
+  /** All values greater than the given value. */
+  width_gt?: number | null;
+  /** All values greater than or equal the given value. */
+  width_gte?: number | null;
+
+  size?: number | null;
+  /** All values that are not equal to given value. */
+  size_not?: number | null;
+  /** All values that are contained in given list. */
+  size_in?: number[] | null;
+  /** All values that are not contained in given list. */
+  size_not_in?: number[] | null;
+  /** All values less than the given value. */
+  size_lt?: number | null;
+  /** All values less than or equal the given value. */
+  size_lte?: number | null;
+  /** All values greater than the given value. */
+  size_gt?: number | null;
+  /** All values greater than or equal the given value. */
+  size_gte?: number | null;
+
   mimeType?: string | null;
   /** All values that are not equal to given value. */
   mimeType_not?: string | null;
@@ -1915,38 +1960,6 @@ export interface AssetWhereInput {
   mimeType_ends_with?: string | null;
   /** All values not ending with the given string. */
   mimeType_not_ends_with?: string | null;
-
-  size?: number | null;
-  /** All values that are not equal to given value. */
-  size_not?: number | null;
-  /** All values that are contained in given list. */
-  size_in?: number[] | null;
-  /** All values that are not contained in given list. */
-  size_not_in?: number[] | null;
-  /** All values less than the given value. */
-  size_lt?: number | null;
-  /** All values less than or equal the given value. */
-  size_lte?: number | null;
-  /** All values greater than the given value. */
-  size_gt?: number | null;
-  /** All values greater than or equal the given value. */
-  size_gte?: number | null;
-
-  width?: number | null;
-  /** All values that are not equal to given value. */
-  width_not?: number | null;
-  /** All values that are contained in given list. */
-  width_in?: number[] | null;
-  /** All values that are not contained in given list. */
-  width_not_in?: number[] | null;
-  /** All values less than the given value. */
-  width_lt?: number | null;
-  /** All values less than or equal the given value. */
-  width_lte?: number | null;
-  /** All values greater than the given value. */
-  width_gt?: number | null;
-  /** All values greater than or equal the given value. */
-  width_gte?: number | null;
 
   assetMarketingStory_every?: MarketingStoryWhereInput | null;
 
@@ -2077,6 +2090,38 @@ export interface ColorWhereInput {
   /** Logical NOT on all given filters combined by AND. */
   NOT?: ColorWhereInput[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -2104,38 +2149,6 @@ export interface ColorWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 }
 
 export interface LocationWhereInput {
@@ -2146,6 +2159,38 @@ export interface LocationWhereInput {
   /** Logical NOT on all given filters combined by AND. */
   NOT?: LocationWhereInput[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -2173,38 +2218,6 @@ export interface LocationWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 }
 
 export interface AssetWhereUniqueInput {
@@ -2262,11 +2275,11 @@ export interface AssetCreateInput {
 
   height?: number | null;
 
-  mimeType?: string | null;
+  width?: number | null;
 
   size?: number | null;
 
-  width?: number | null;
+  mimeType?: string | null;
 
   assetMarketingStory?: MarketingStoryCreateManyWithoutAssetInput | null;
 }
@@ -2622,11 +2635,11 @@ export interface AssetCreateWithoutAssetMarketingStoryInput {
 
   height?: number | null;
 
-  mimeType?: string | null;
+  width?: number | null;
 
   size?: number | null;
 
-  width?: number | null;
+  mimeType?: string | null;
 }
 
 export interface AssetUpdateInput {
@@ -2638,11 +2651,11 @@ export interface AssetUpdateInput {
 
   height?: number | null;
 
-  mimeType?: string | null;
+  width?: number | null;
 
   size?: number | null;
 
-  width?: number | null;
+  mimeType?: string | null;
 
   assetMarketingStory?: MarketingStoryUpdateManyWithoutAssetInput | null;
 }
@@ -2705,6 +2718,38 @@ export interface MarketingStoryScalarWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -2732,38 +2777,6 @@ export interface MarketingStoryScalarWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 
   duration?: number | null;
   /** All values that are not equal to given value. */
@@ -3074,6 +3087,38 @@ export interface TranslationScalarWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -3101,38 +3146,6 @@ export interface TranslationScalarWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 
   project?: Project | null;
   /** All values that are not equal to given value. */
@@ -3439,6 +3452,38 @@ export interface PerilScalarWhereInput {
   /** All values that are not contained in given list. */
   status_not_in?: Status[] | null;
 
+  updatedAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  updatedAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  updatedAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  updatedAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: DateTime | null;
+
+  createdAt?: DateTime | null;
+  /** All values that are not equal to given value. */
+  createdAt_not?: DateTime | null;
+  /** All values that are contained in given list. */
+  createdAt_in?: DateTime[] | null;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: DateTime[] | null;
+  /** All values less than the given value. */
+  createdAt_lt?: DateTime | null;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: DateTime | null;
+  /** All values greater than the given value. */
+  createdAt_gt?: DateTime | null;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: DateTime | null;
+
   id?: string | null;
   /** All values that are not equal to given value. */
   id_not?: string | null;
@@ -3466,38 +3511,6 @@ export interface PerilScalarWhereInput {
   id_ends_with?: string | null;
   /** All values not ending with the given string. */
   id_not_ends_with?: string | null;
-
-  createdAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  createdAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  createdAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  createdAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  createdAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: DateTime | null;
-
-  updatedAt?: DateTime | null;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: DateTime | null;
-  /** All values that are contained in given list. */
-  updatedAt_in?: DateTime[] | null;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: DateTime[] | null;
-  /** All values less than the given value. */
-  updatedAt_lt?: DateTime | null;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: DateTime | null;
-  /** All values greater than the given value. */
-  updatedAt_gt?: DateTime | null;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: DateTime | null;
 }
 
 export interface PerilUpdateManyDataInput {
@@ -3619,11 +3632,11 @@ export interface AssetUpdateWithoutAssetMarketingStoryDataInput {
 
   height?: number | null;
 
-  mimeType?: string | null;
+  width?: number | null;
 
   size?: number | null;
 
-  width?: number | null;
+  mimeType?: string | null;
 }
 
 export interface AssetUpsertWithoutAssetMarketingStoryInput {
@@ -3641,11 +3654,11 @@ export interface AssetUpdateManyMutationInput {
 
   height?: number | null;
 
-  mimeType?: string | null;
+  width?: number | null;
 
   size?: number | null;
 
-  width?: number | null;
+  mimeType?: string | null;
 }
 
 export interface LanguageUpdateManyMutationInput {
@@ -4033,20 +4046,22 @@ export enum Status {
 
 export enum Project {
   Web = 'Web',
-  App = 'App',
   WebOnboarding = 'WebOnboarding',
+  App = 'App',
   All = 'All',
+  Android = 'Android',
+  IOS = 'IOS',
 }
 
 export enum LanguageOrderByInput {
   status_ASC = 'status_ASC',
   status_DESC = 'status_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
   updatedAt_ASC = 'updatedAt_ASC',
   updatedAt_DESC = 'updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
   code_ASC = 'code_ASC',
   code_DESC = 'code_DESC',
   name_ASC = 'name_ASC',
@@ -4056,12 +4071,12 @@ export enum LanguageOrderByInput {
 export enum TranslationOrderByInput {
   status_ASC = 'status_ASC',
   status_DESC = 'status_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
   updatedAt_ASC = 'updatedAt_ASC',
   updatedAt_DESC = 'updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
   project_ASC = 'project_ASC',
   project_DESC = 'project_DESC',
   text_ASC = 'text_ASC',
@@ -4085,12 +4100,12 @@ export enum HedvigColor {
 export enum MarketingStoryOrderByInput {
   status_ASC = 'status_ASC',
   status_DESC = 'status_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
   updatedAt_ASC = 'updatedAt_ASC',
   updatedAt_DESC = 'updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
   duration_ASC = 'duration_ASC',
   duration_DESC = 'duration_DESC',
   importance_ASC = 'importance_ASC',
@@ -4153,15 +4168,15 @@ export enum SignState {
   COMPLETED = 'COMPLETED',
 }
 
+export enum MessageBodyChoicesLinkView {
+  OFFER = 'OFFER',
+  DASHBOARD = 'DASHBOARD',
+}
+
 export enum DirectDebitStatus {
   ACTIVE = 'ACTIVE',
   PENDING = 'PENDING',
   NEEDS_SETUP = 'NEEDS_SETUP',
-}
-
-export enum MessageBodyChoicesLinkView {
-  OFFER = 'OFFER',
-  DASHBOARD = 'DASHBOARD',
 }
 
 export enum RegisterAccountProcessingStatus {
@@ -4187,64 +4202,64 @@ export enum OfferStatus {
 export enum PerilOrderByInput {
   status_ASC = 'status_ASC',
   status_DESC = 'status_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
   updatedAt_ASC = 'updatedAt_ASC',
   updatedAt_DESC = 'updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
 }
 
 export enum AssetOrderByInput {
   status_ASC = 'status_ASC',
   status_DESC = 'status_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
   updatedAt_ASC = 'updatedAt_ASC',
   updatedAt_DESC = 'updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
   handle_ASC = 'handle_ASC',
   handle_DESC = 'handle_DESC',
   fileName_ASC = 'fileName_ASC',
   fileName_DESC = 'fileName_DESC',
   height_ASC = 'height_ASC',
   height_DESC = 'height_DESC',
-  mimeType_ASC = 'mimeType_ASC',
-  mimeType_DESC = 'mimeType_DESC',
-  size_ASC = 'size_ASC',
-  size_DESC = 'size_DESC',
   width_ASC = 'width_ASC',
   width_DESC = 'width_DESC',
+  size_ASC = 'size_ASC',
+  size_DESC = 'size_DESC',
+  mimeType_ASC = 'mimeType_ASC',
+  mimeType_DESC = 'mimeType_DESC',
 }
 
 export enum ColorOrderByInput {
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
   updatedAt_ASC = 'updatedAt_ASC',
   updatedAt_DESC = 'updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
 }
 
 export enum LocationOrderByInput {
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
   updatedAt_ASC = 'updatedAt_ASC',
   updatedAt_DESC = 'updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
 }
 
 export enum KeyOrderByInput {
   status_ASC = 'status_ASC',
   status_DESC = 'status_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
   updatedAt_ASC = 'updatedAt_ASC',
   updatedAt_DESC = 'updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
   value_ASC = 'value_ASC',
   value_DESC = 'value_DESC',
   description_ASC = 'description_ASC',
@@ -4254,12 +4269,12 @@ export enum KeyOrderByInput {
 export enum PerilCategoryOrderByInput {
   status_ASC = 'status_ASC',
   status_DESC = 'status_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
   updatedAt_ASC = 'updatedAt_ASC',
   updatedAt_DESC = 'updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
   name_ASC = 'name_ASC',
   name_DESC = 'name_DESC',
 }
@@ -4322,7 +4337,7 @@ export type MessagesVariables = {};
 export type MessagesQuery = {
   __typename?: 'Query';
 
-  registerAccountProcessingStatus: RegisterAccountProcessingStatus;
+  directDebitStatus: DirectDebitStatus;
 };
 
 export type NewOfferVariables = {};
@@ -4483,7 +4498,7 @@ export function SendChatFileResponseHOC<
 }
 export const MessagesDocument = gql`
   query Messages {
-    registerAccountProcessingStatus
+    directDebitStatus
   }
 `;
 export class MessagesComponent extends React.Component<
