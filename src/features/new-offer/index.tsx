@@ -125,10 +125,8 @@ const bounceScrollView = () => {
 
 export const NewOffer: React.SFC = () => (
   <NewOfferComponent>
-    {({ data, loading, error }) => {
-      console.log(data);
-
-      return loading || error ? null : (
+    {({ data, loading, error }) =>
+      loading || error ? null : (
         <>
           <AnimationValueProvider initialValue={0}>
             {({ animatedValue }) => (
@@ -186,7 +184,7 @@ export const NewOffer: React.SFC = () => (
             )}
           </TranslationsConsumer>
         </>
-      );
-    }}
+      )
+    }
   </NewOfferComponent>
 );
