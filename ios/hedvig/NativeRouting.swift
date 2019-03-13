@@ -18,7 +18,7 @@ struct MarketingResultEventBody: Encodable {
 class NativeRouting: RCTEventEmitter {
     let appHasLoadedCallbacker: Callbacker<Void>
     let appHasLoadedSignal: Signal<Void>
-    var componentIds: Array<(componentId: String, componentName: String)> = []
+    var componentIds: [(componentId: String, componentName: String)] = []
 
     override init() {
         appHasLoadedCallbacker = Callbacker<Void>()

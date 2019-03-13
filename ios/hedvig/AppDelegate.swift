@@ -12,6 +12,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let bag = DisposeBag()
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     var splashWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    private let applicationWillTerminateCallbacker = Callbacker<Void>()
+    let applicationWillTerminateSignal: Signal<Void>
+
+    override init() {
+        applicationWillTerminateSignal = applicationWillTerminateCallbacker.signal()
+        super.init()
+    }
 
     func application(
         _: UIApplication,
@@ -26,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             if viewController.debugPresentationTitle == "LoggedIn" {
                 Analytics.setUserProperty("true", forName: "isMember")
+            }
+        }
+
+        alertActionWasPressed = { _, title in
+            if let localizationKey = title.localizationKey?.toString() {
+                Analytics.logEvent("alert_action_tap_\(localizationKey)", parameters: [:])
             }
         }
 
@@ -126,6 +139,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MarketingScreenComponent.register(client: client)
             LoggedInScreenComponent.register(client: client)
         }
+    }
+
+    func applicationWillTerminate(_: UIApplication) {
+        applicationWillTerminateCallbacker.callAll()
     }
 
     func logout() {
