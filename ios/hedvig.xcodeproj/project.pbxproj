@@ -173,11 +173,21 @@
 		EB265B17221ABD66009DA493 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265A72221ABD66009DA493 /* Localization.swift */; };
 		EB265B1C221ADE14009DA493 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1B221ADE14009DA493 /* Chat.swift */; };
 		EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */; };
-		EB265B26221B0A8A009DA493 /* MyPaymentQuery+isSwitching.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B25221B0A8A009DA493 /* MyPaymentQuery+isSwitching.swift */; };
 		EB433C96221D49C1000156D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB433C95221D49C1000156D4 /* LaunchScreen.storyboard */; };
 		EB4695BC220050520004C75D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695BB220050520004C75D /* Dashboard.swift */; };
 		EB4695BE220051BF0004C75D /* Pods-Hedvig-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */; };
 		EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695CD220083800004C75D /* RCTApolloClient.swift */; };
+		EBD5C9522238F9F70049A78A /* UIApplication+AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C9512238F9F70049A78A /* UIApplication+AppDelegate.swift */; };
+		EBD5C9542238FEB50049A78A /* WKWebView+OpenBankId.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C9532238FEB50049A78A /* WKWebView+OpenBankId.swift */; };
+		EBD5C95B22390F690049A78A /* ReviewAppRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C95722390F690049A78A /* ReviewAppRow.swift */; };
+		EBD5C95C22390F690049A78A /* FeedbackHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C95822390F690049A78A /* FeedbackHeader.swift */; };
+		EBD5C95D22390F690049A78A /* ReportBugRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C95922390F690049A78A /* ReportBugRow.swift */; };
+		EBD5C95E22390F690049A78A /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C95A22390F690049A78A /* Feedback.swift */; };
+		EBD5C96022390F990049A78A /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C95F22390F990049A78A /* MailView.swift */; };
+		EBD5C96222390FA50049A78A /* MFMailComposeViewController+Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C96122390FA50049A78A /* MFMailComposeViewController+Signal.swift */; };
+		EBD5C96422390FB30049A78A /* BackgroundWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C96322390FB20049A78A /* BackgroundWithLabel.swift */; };
+		EBD5C96622390FDA0049A78A /* FeedbackRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C96522390FDA0049A78A /* FeedbackRow.swift */; };
+		EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */; };
 		EBD675FA21FF4F0F00050E86 /* LoggedInScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
 		EBECC26621B9230000716BEA /* NativeRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC26521B9230000716BEA /* NativeRouting.swift */; };
@@ -366,13 +376,23 @@
 		EB265A72221ABD66009DA493 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		EB265B1B221ADE14009DA493 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeRouting.swift; sourceTree = "<group>"; };
-		EB265B25221B0A8A009DA493 /* MyPaymentQuery+isSwitching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyPaymentQuery+isSwitching.swift"; sourceTree = "<group>"; };
 		EB3A235521A57EE4007F52B6 /* hedvig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hedvig-Bridging-Header.h"; sourceTree = "<group>"; };
 		EB433C95221D49C1000156D4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB4695BB220050520004C75D /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-Hedvig-acknowledgements.plist"; sourceTree = "<group>"; };
 		EB4695CD220083800004C75D /* RCTApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTApolloClient.swift; sourceTree = "<group>"; };
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD5C9512238F9F70049A78A /* UIApplication+AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+AppDelegate.swift"; sourceTree = "<group>"; };
+		EBD5C9532238FEB50049A78A /* WKWebView+OpenBankId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+OpenBankId.swift"; sourceTree = "<group>"; };
+		EBD5C95722390F690049A78A /* ReviewAppRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAppRow.swift; sourceTree = "<group>"; };
+		EBD5C95822390F690049A78A /* FeedbackHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackHeader.swift; sourceTree = "<group>"; };
+		EBD5C95922390F690049A78A /* ReportBugRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportBugRow.swift; sourceTree = "<group>"; };
+		EBD5C95A22390F690049A78A /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		EBD5C95F22390F990049A78A /* MailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		EBD5C96122390FA50049A78A /* MFMailComposeViewController+Signal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MFMailComposeViewController+Signal.swift"; sourceTree = "<group>"; };
+		EBD5C96322390FB20049A78A /* BackgroundWithLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundWithLabel.swift; sourceTree = "<group>"; };
+		EBD5C96522390FDA0049A78A /* FeedbackRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackRow.swift; sourceTree = "<group>"; };
+		EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDirectDebitStatus.swift; sourceTree = "<group>"; };
 		EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC26521B9230000716BEA /* NativeRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeRouting.swift; sourceTree = "<group>"; };
@@ -464,6 +484,7 @@
 				EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */,
 				EB4695CD220083800004C75D /* RCTApolloClient.swift */,
 				EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */,
+				EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */,
 			);
 			path = hedvig;
 			sourceTree = "<group>";
@@ -618,6 +639,7 @@
 			children = (
 				EB2659C5221ABD66009DA493 /* ProfileSection.swift */,
 				EB2659C6221ABD66009DA493 /* LogoutSection.swift */,
+				EBD5C96522390FDA0049A78A /* FeedbackRow.swift */,
 				EB2659C7221ABD66009DA493 /* MyPaymentRow.swift */,
 				EB2659C8221ABD66009DA493 /* MyCoinsuredRow.swift */,
 				EB2659C9221ABD66009DA493 /* MyCharityRow.swift */,
@@ -633,6 +655,7 @@
 		EB2659D0221ABD66009DA493 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				EBD5C95522390F690049A78A /* FeedbackScreen */,
 				EB2659D1221ABD66009DA493 /* MyInfo */,
 				EB2659DB221ABD66009DA493 /* MyPayment */,
 				EB2659E8221ABD66009DA493 /* MyHome */,
@@ -831,6 +854,7 @@
 		EB265A07221ABD66009DA493 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
+				EBD5C95F22390F990049A78A /* MailView.swift */,
 				EB265A08221ABD66009DA493 /* DelayedDisposer.swift */,
 				EB265A09221ABD66009DA493 /* ActivityBarButton.swift */,
 				EB265A0A221ABD66009DA493 /* Viewables */,
@@ -850,6 +874,7 @@
 		EB265A0A221ABD66009DA493 /* Viewables */ = {
 			isa = PBXGroup;
 			children = (
+				EBD5C96322390FB20049A78A /* BackgroundWithLabel.swift */,
 				EB265A0B221ABD66009DA493 /* MultilineLabel.swift */,
 				EB265A0C221ABD66009DA493 /* CircleLabel.swift */,
 				EB265A0D221ABD66009DA493 /* ButtonSection.swift */,
@@ -869,6 +894,7 @@
 		EB265A18221ABD66009DA493 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EBD5C96122390FA50049A78A /* MFMailComposeViewController+Signal.swift */,
 				EB265A19221ABD66009DA493 /* UIWebView+Signal.swift */,
 				EB265A1A221ABD66009DA493 /* Callbacker+Signal.swift */,
 				EB265A1B221ABD66009DA493 /* Result+Success.swift */,
@@ -885,12 +911,14 @@
 				EB265A2A221ABD66009DA493 /* UIViewController+Viewable.swift */,
 				EB265A2B221ABD66009DA493 /* Disposable+Array.swift */,
 				EB265A2C221ABD66009DA493 /* UIWindow+Presentation.swift */,
+				EBD5C9512238F9F70049A78A /* UIApplication+AppDelegate.swift */,
 				EB265A2D221ABD66009DA493 /* ApolloClient+NetworkErrorMessage.swift */,
 				EB265A2E221ABD66009DA493 /* ApolloStore+Update.swift */,
 				EB265A2F221ABD66009DA493 /* UITabBarController+Presentation.swift */,
 				EB265A30221ABD66009DA493 /* FormView+Viewable.swift */,
 				EB265A31221ABD66009DA493 /* UIViewController+Previewing.swift */,
 				EB265A32221ABD66009DA493 /* WKWebView+Signal.swift */,
+				EBD5C9532238FEB50049A78A /* WKWebView+OpenBankId.swift */,
 				EB265A33221ABD66009DA493 /* CollectionKit+ScrollTo.swift */,
 				EB265A34221ABD66009DA493 /* String+Translation.swift */,
 				EB265A35221ABD66009DA493 /* DeviceKit+RoundedCorners.swift */,
@@ -956,7 +984,6 @@
 			isa = PBXGroup;
 			children = (
 				EB265A4E221ABD66009DA493 /* AuthorizationToken.swift */,
-				EB265B24221B0A8A009DA493 /* Extensions */,
 				EB265A4F221ABD66009DA493 /* GraphQL */,
 				EB265A60221ABD66009DA493 /* schema.json */,
 				EB265A61221ABD66009DA493 /* API.swift */,
@@ -1026,12 +1053,24 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
-		EB265B24221B0A8A009DA493 /* Extensions */ = {
+		EBD5C95522390F690049A78A /* FeedbackScreen */ = {
 			isa = PBXGroup;
 			children = (
-				EB265B25221B0A8A009DA493 /* MyPaymentQuery+isSwitching.swift */,
+				EBD5C95622390F690049A78A /* Viewables */,
+				EBD5C95A22390F690049A78A /* Feedback.swift */,
 			);
-			path = Extensions;
+			name = FeedbackScreen;
+			path = hedvig/ugglan/Src/Screens/ProfileScreen/Screens/FeedbackScreen;
+			sourceTree = SOURCE_ROOT;
+		};
+		EBD5C95622390F690049A78A /* Viewables */ = {
+			isa = PBXGroup;
+			children = (
+				EBD5C95722390F690049A78A /* ReviewAppRow.swift */,
+				EBD5C95822390F690049A78A /* FeedbackHeader.swift */,
+				EBD5C95922390F690049A78A /* ReportBugRow.swift */,
+			);
+			path = Viewables;
 			sourceTree = "<group>";
 		};
 		EBECC1A621B811F400716BEA /* ugglan */ = {
@@ -1233,10 +1272,12 @@
 				EB265AEA221ABD66009DA493 /* FieldStyle.swift in Sources */,
 				EB265AE0221ABD66009DA493 /* UIViewController+Previewing.swift in Sources */,
 				EB265ABF221ABD66009DA493 /* CircleLabelWithSubLabel.swift in Sources */,
+				EBD5C9542238FEB50049A78A /* WKWebView+OpenBankId.swift in Sources */,
 				EB265AD2221ABD66009DA493 /* UIView+RelativeFrame.swift in Sources */,
 				EB265A8A221ABD66009DA493 /* MarketingStoryIndicator.swift in Sources */,
 				EB265A82221ABD66009DA493 /* End.swift in Sources */,
 				EB265A7A221ABD66009DA493 /* MarketingEndScreen.swift in Sources */,
+				EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */,
 				EB265AB3221ABD66009DA493 /* Licenses.swift in Sources */,
 				EB265A8F221ABD66009DA493 /* MyPaymentRow.swift in Sources */,
 				EB265ACE221ABD66009DA493 /* SectionView+Viewable.swift in Sources */,
@@ -1248,8 +1289,11 @@
 				EB265A84221ABD66009DA493 /* StoriesCollection.swift in Sources */,
 				EB265AAB221ABD66009DA493 /* CharityPicker.swift in Sources */,
 				EB265AC4221ABD66009DA493 /* CircleLabelSmall.swift in Sources */,
+				EBD5C9522238F9F70049A78A /* UIApplication+AppDelegate.swift in Sources */,
 				EB265A90221ABD66009DA493 /* MyCoinsuredRow.swift in Sources */,
 				EB265A8E221ABD66009DA493 /* LogoutSection.swift in Sources */,
+				EBD5C96022390F990049A78A /* MailView.swift in Sources */,
+				EBD5C95D22390F690049A78A /* ReportBugRow.swift in Sources */,
 				EB265ABA221ABD66009DA493 /* DelayedDisposer.swift in Sources */,
 				EB265B17221ABD66009DA493 /* Localization.swift in Sources */,
 				EB265A96221ABD66009DA493 /* HomeRow.swift in Sources */,
@@ -1267,6 +1311,7 @@
 				EB265AF6221ABD66009DA493 /* SpringAnimationStyle.swift in Sources */,
 				EB265A7F221ABD66009DA493 /* StoriesIndicator.swift in Sources */,
 				EB265B0A221ABD66009DA493 /* API.swift in Sources */,
+				EBD5C96222390FA50049A78A /* MFMailComposeViewController+Signal.swift in Sources */,
 				EB265ACA221ABD66009DA493 /* Callbacker+Signal.swift in Sources */,
 				EB265A98221ABD66009DA493 /* EmailRow.swift in Sources */,
 				EB265AA9221ABD66009DA493 /* CharityHeader.swift in Sources */,
@@ -1317,6 +1362,7 @@
 				EB265AD3221ABD66009DA493 /* UIBarButtonItem+UIView.swift in Sources */,
 				EB265A79221ABD66009DA493 /* MarketingStoryVideoCell.swift in Sources */,
 				EB265A77221ABD66009DA493 /* MarketingPresentationStyle.swift in Sources */,
+				EBD5C95C22390F690049A78A /* FeedbackHeader.swift in Sources */,
 				EB265AE3221ABD66009DA493 /* String+Translation.swift in Sources */,
 				EB265AE8221ABD66009DA493 /* DefaultStyling.swift in Sources */,
 				EB265AA7221ABD66009DA493 /* AddressCircle.swift in Sources */,
@@ -1327,7 +1373,9 @@
 				EB265A92221ABD66009DA493 /* AboutRow.swift in Sources */,
 				EB265ADA221ABD66009DA493 /* Disposable+Array.swift in Sources */,
 				EB265A94221ABD66009DA493 /* OtherSection.swift in Sources */,
+				EBD5C96422390FB30049A78A /* BackgroundWithLabel.swift in Sources */,
 				EB265AD4221ABD66009DA493 /* Localization+CurrentLanguage.swift in Sources */,
+				EBD5C96622390FDA0049A78A /* FeedbackRow.swift in Sources */,
 				EB265A7E221ABD66009DA493 /* ExistingMemberButton.swift in Sources */,
 				EB265AD5221ABD66009DA493 /* UIScrollView+RefreshControl.swift in Sources */,
 				EB265AB6221ABD66009DA493 /* CoinsuredComingSoonText.swift in Sources */,
@@ -1359,11 +1407,12 @@
 				EB265ABB221ABD66009DA493 /* ActivityBarButton.swift in Sources */,
 				EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */,
 				EB4695BC220050520004C75D /* Dashboard.swift in Sources */,
-				EB265B26221B0A8A009DA493 /* MyPaymentQuery+isSwitching.swift in Sources */,
+				EBD5C95B22390F690049A78A /* ReviewAppRow.swift in Sources */,
 				EB265AE1221ABD66009DA493 /* WKWebView+Signal.swift in Sources */,
 				EB265A91221ABD66009DA493 /* MyCharityRow.swift in Sources */,
 				EB265A78221ABD66009DA493 /* MarketingStoryImageCell.swift in Sources */,
 				EB265ADF221ABD66009DA493 /* FormView+Viewable.swift in Sources */,
+				EBD5C95E22390F690049A78A /* Feedback.swift in Sources */,
 				EB265AAD221ABD66009DA493 /* CharityOption.swift in Sources */,
 				EBECC26821B92E4800716BEA /* NativeRouting.m in Sources */,
 				EB265AA5221ABD66009DA493 /* DirectDebitSetup.swift in Sources */,

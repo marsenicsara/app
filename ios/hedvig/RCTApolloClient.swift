@@ -27,7 +27,7 @@ struct RCTApolloClient {
                     if response1.count > 0 {
                         var response2 = response1[0] as! [Any]
 
-                        if (response2.count) > 1 {
+                        if response2.count > 1 {
                             if let string = response2[1] as? String {
                                 value = string
                             }

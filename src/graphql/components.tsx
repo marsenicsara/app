@@ -79,8 +79,6 @@ export interface Query {
 
   file: File;
 
-  directDebitStatus: DirectDebitStatus;
-
   messages: Message[];
 
   currentChatResponse?: ChatResponse | null;
@@ -100,6 +98,8 @@ export interface Query {
   nextChargeDate?: LocalDate | null;
 
   registerAccountProcessingStatus: RegisterAccountProcessingStatus;
+
+  directDebitStatus: DirectDebitStatus;
 }
 
 export interface Language extends Node {
@@ -4177,15 +4177,15 @@ export enum SignState {
   COMPLETED = 'COMPLETED',
 }
 
+export enum MessageBodyChoicesLinkView {
+  OFFER = 'OFFER',
+  DASHBOARD = 'DASHBOARD',
+}
+
 export enum DirectDebitStatus {
   ACTIVE = 'ACTIVE',
   PENDING = 'PENDING',
   NEEDS_SETUP = 'NEEDS_SETUP',
-}
-
-export enum MessageBodyChoicesLinkView {
-  OFFER = 'OFFER',
-  DASHBOARD = 'DASHBOARD',
 }
 
 export enum RegisterAccountProcessingStatus {
@@ -4346,7 +4346,7 @@ export type MessagesVariables = {};
 export type MessagesQuery = {
   __typename?: 'Query';
 
-  registerAccountProcessingStatus: RegisterAccountProcessingStatus;
+  directDebitStatus: DirectDebitStatus;
 };
 
 export type NewOfferVariables = {};
@@ -4515,7 +4515,7 @@ export function SendChatFileResponseHOC<
 }
 export const MessagesDocument = gql`
   query Messages {
-    registerAccountProcessingStatus
+    directDebitStatus
   }
 `;
 export class MessagesComponent extends React.Component<

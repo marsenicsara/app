@@ -24,36 +24,37 @@ PODS:
   - DoubleConversion (1.1.6)
   - DynamicColor (4.0.3)
   - Fabric (1.7.13)
-  - Firebase/Core (5.16.0):
+  - Firebase/Core (5.18.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.5.0)
-  - Firebase/CoreOnly (5.16.0):
-    - FirebaseCore (= 5.2.0)
-  - Firebase/Messaging (5.16.0):
+    - FirebaseAnalytics (= 5.7.0)
+  - Firebase/CoreOnly (5.18.0):
+    - FirebaseCore (= 5.3.1)
+  - Firebase/Messaging (5.18.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (= 3.3.0)
-  - FirebaseAnalytics (5.5.0):
-    - FirebaseCore (~> 5.2)
-    - FirebaseInstanceID (~> 3.4)
-    - GoogleAppMeasurement (= 5.5.0)
+    - FirebaseMessaging (= 3.3.2)
+  - FirebaseAnalytics (5.7.0):
+    - FirebaseCore (~> 5.3)
+    - FirebaseInstanceID (~> 3.6)
+    - GoogleAppMeasurement (= 5.7.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseAnalyticsInterop (1.1.0)
-  - FirebaseCore (5.2.0):
+  - FirebaseAnalyticsInterop (1.2.0)
+  - FirebaseCore (5.3.1):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseInstanceID (3.4.0):
+  - FirebaseInstanceID (3.7.0):
     - FirebaseCore (~> 5.2)
-    - GoogleUtilities/Environment (~> 5.3)
-    - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseMessaging (3.3.0):
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/UserDefaults (~> 5.2)
+  - FirebaseMessaging (3.3.2):
     - FirebaseAnalyticsInterop (~> 1.1)
     - FirebaseCore (~> 5.2)
-    - FirebaseInstanceID (~> 3.4)
-    - GoogleUtilities/Environment (~> 5.2)
-    - GoogleUtilities/Reachability (~> 5.2)
+    - FirebaseInstanceID (~> 3.6)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/Reachability (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
     - Protobuf (~> 3.1)
   - FLAnimatedImage (1.0.12)
   - FlowFeedback (1.0.1):
@@ -72,7 +73,7 @@ PODS:
     - FlowFramework (~> 1.3)
     - PresentationFramework (~> 1.1)
   - glog (0.3.5)
-  - GoogleAppMeasurement (5.5.0):
+  - GoogleAppMeasurement (5.7.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
@@ -98,7 +99,7 @@ PODS:
     - GoogleUtilities/Logger
   - JWT (3.0.0-beta.11):
     - Base64 (~> 1.1.2)
-  - lottie-ios (2.5.2)
+  - lottie-ios (2.5.3)
   - lottie-react-native (2.5.8):
     - lottie-ios
     - React
@@ -109,7 +110,7 @@ PODS:
   - nanopb/encode (0.3.901)
   - PresentationFramework (1.3.0):
     - FlowFramework (>= 1.3)
-  - Protobuf (3.6.1)
+  - Protobuf (3.7.0)
   - React (0.57.41):
     - React/Core (= 0.57.41)
   - react-native-blur (0.8.0):
@@ -209,8 +210,8 @@ PODS:
     - React/Core
   - RNSVG (7.0.3):
     - React
-  - SDWebImage/Core (4.4.4)
-  - SDWebImage/GIF (4.4.4):
+  - SDWebImage/Core (4.4.6)
+  - SDWebImage/GIF (4.4.6):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
   - Sentry (4.0.1):
@@ -222,9 +223,9 @@ PODS:
   - SnapKit (4.0.1)
   - SSZipArchive (2.1.4)
   - Starscream (3.0.6)
-  - SwiftFormat/CLI (0.37.5)
-  - SwiftGen (6.0.2)
-  - SwiftLint (0.30.1)
+  - SwiftFormat/CLI (0.39.5)
+  - SwiftGen (6.1.0)
+  - SwiftLint (0.31.0)
   - "UICollectionView+AnimatedScroll (1.0.4)"
   - yoga (0.57.41.React)
 
@@ -405,10 +406,10 @@ CHECKOUT OPTIONS:
     :commit: 883eb86dc541d940080337f877ab8a9c29204d4b
     :git: https://github.com/hedviginsurance/flow.git
   FormFramework:
-    :commit: 1b5f3d845b8ebfd67b8d25504d21a986097775fc
+    :commit: 7f2307a38ae6e25b3ab97e3a847a83eb904d70fb
     :git: https://github.com/hedviginsurance/form.git
   PresentationFramework:
-    :commit: a809c2d89f05ba537810d28278cd641ddf1cccde
+    :commit: 379fee439c1e5fc40743446be3f3a3013002d62f
     :git: https://github.com/hedviginsurance/presentation.git
   "UICollectionView+AnimatedScroll":
     :commit: b5a5e2b7f95713e74c0bfb623a99429b0489fa1f
@@ -428,26 +429,26 @@ SPEC CHECKSUMS:
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   DynamicColor: bf19b33fe404c59a68e64af95cc6b017346e7e75
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
-  Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
-  FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
-  FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
-  FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
-  FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
-  FirebaseMessaging: acbd51fe1a172bf29abaaa6e93a60f98bbf8e4f9
+  Firebase: 02f3281965c075426141a0ce1277e9de6649cab9
+  FirebaseAnalytics: 23851fe602c872130a2c5c55040b302120346cc2
+  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
+  FirebaseCore: 52f851b30e11360f1e67cf04b1edfebf0a47a2d3
+  FirebaseInstanceID: bd6fc5a258884e206fd5c474ebe4f5b00e21770e
+  FirebaseMessaging: d740150547f7686b33799f6489f5b69a4706631b
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FlowFeedback: 41fe84846ceaeca0cbf02a922222cc8b862986c0
   FlowFramework: 4d85bf59082c36c107229396ae67981717ca1e76
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   FormFramework: e9eccd44f3d875e5f67ad8696a8e2bb4cd0e9b7d
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
-  GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
+  GoogleAppMeasurement: 6cf307834da065863f9faf4c0de0a936d81dd832
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
-  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   lottie-react-native: db4bd75685428c4ad0ec2f913145abff3d38b640
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PresentationFramework: 1bcdf1fe215edb2ceccf5197dd5dfcbce878bdf5
-  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-blur: c35c1f6c2c76db7108bde7ed343bd2b01d64e0c0
   react-native-branch: 8988998ef912c6373dc39a24e4638f02a1268265
@@ -469,15 +470,15 @@ SPEC CHECKSUMS:
   RNGestureHandler: 968e4453152673aedcbbb7c1ada6700c214cea7a
   RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
-  SDWebImage: c00ec18ab25d10e5ffac109b0f78d1b4341c9691
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   Sentry: a38f7879924c02239e121b19d993d23bdd1684db
   SentryReactNative: d476259b21060a59dc637a29a40d60f0aac09cf7
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
-  SwiftFormat: a92d2a20cc8ffd0cbcc6a850a09945cf190f8ce5
-  SwiftGen: e5b047067aa84082826a0c4f1c4c2ddc95bcf74c
-  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
+  SwiftFormat: 082b6ee68dbf8ba1bee9e8cd508ddb094f535fbb
+  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
+  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   "UICollectionView+AnimatedScroll": b5dc2786f0a0bc778c0c6ca36c5904e46a4463d2
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 

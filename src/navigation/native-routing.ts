@@ -11,6 +11,7 @@ import { chatScreen } from './screens/chat';
 import { Navigation } from 'react-native-navigation';
 import { Store } from 'src/setupApp';
 import { chatActions } from 'hedvig-redux';
+import { client } from 'src/graphql/client';
 
 export const setupNativeRouting = () => {
   const nativeRoutingEvents = new NativeEventEmitter(
@@ -27,6 +28,10 @@ export const setupNativeRouting = () => {
         chatScreen(event.marketingResult),
       );
     }
+  });
+
+  nativeRoutingEvents.addListener('NativeRoutingClearDirectDebitStatus', () => {
+    client.reFetchObservableQueries();
   });
 
   nativeRoutingEvents.addListener('NativeRoutingOpenFreeTextChat', () => {
