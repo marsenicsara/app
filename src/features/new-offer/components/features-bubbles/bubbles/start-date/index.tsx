@@ -18,6 +18,9 @@ import { New } from './new';
 import { Navigation } from 'react-native-navigation';
 import { CHANGE_START_DATE_COMPONENT } from 'src/navigation/components/change-start-date';
 
+import { Container, ActionMap } from 'constate';
+import { Subtitle } from '../common/subtitle';
+
 const ChangeButton = styled(TouchableOpacity)({
   paddingTop: 4,
   paddingRight: 8,
@@ -36,45 +39,77 @@ const ChangeButtonText = styled(Text)({
   lineHeight: 18,
 });
 
+interface State {
+  date: Date | null;
+}
+
+interface Actions {
+  setDate: (date: Date | null) => void;
+}
+
+const actions: ActionMap<State, Actions> = {
+  setDate: (date) => () => ({
+    date,
+  }),
+};
+
 interface StartDateProps {
   insuredAtOtherCompany: boolean;
+  requestedStartDate: string;
 }
 
 export const StartDate: React.SFC<StartDateProps> = ({
   insuredAtOtherCompany,
+  requestedStartDate,
 }) => (
-  <BubbleAnimation delay={0}>
-    <Bubble width={160} height={160} backgroundColor={colors.PURPLE}>
-      <Spacing height={12.5} />
-      <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_TITLE">
-        {(text) => <Title>{text}</Title>}
-      </TranslationsConsumer>
-      <Spacing height={2.5} />
-      {insuredAtOtherCompany ? <Switcher /> : <New />}
-      <Spacing height={20} />
-      <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_BUTTON">
-        {(text) => (
-          <ChangeButton
-            onPress={() => {
-              Navigation.showOverlay({
-                component: {
-                  name: CHANGE_START_DATE_COMPONENT.name,
-                  options: {
-                    layout: {
-                      backgroundColor: 'transparent',
+  <Container actions={actions} initialState={{ date: null }}>
+    {({ date, setDate }) => (
+      <BubbleAnimation delay={0}>
+        <Bubble width={160} height={160} backgroundColor={colors.PURPLE}>
+          <Spacing height={12.5} />
+          <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_TITLE">
+            {(text) => <Title>{text}</Title>}
+          </TranslationsConsumer>
+          <Spacing height={2.5} />
+          {requestedStartDate !== null ? (
+            <Subtitle>
+              {new Date(requestedStartDate).toLocaleDateString('sv-SE')}
+            </Subtitle>
+          ) : date != null ? (
+            <Subtitle>{date.toLocaleDateString('sv-SE')}</Subtitle>
+          ) : insuredAtOtherCompany ? (
+            <Switcher />
+          ) : (
+            <New />
+          )}
+          <Spacing height={20} />
+          <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_BUTTON">
+            {(text) => (
+              <ChangeButton
+                onPress={() => {
+                  Navigation.showOverlay({
+                    component: {
+                      name: CHANGE_START_DATE_COMPONENT.name,
+                      options: {
+                        layout: {
+                          backgroundColor: 'transparent',
+                        },
+                      },
+                      passProps: {
+                        insuredAtOtherCompany,
+                        date,
+                        setDate,
+                      },
                     },
-                  },
-                  passProps: {
-                    insuredAtOtherCompany,
-                  },
-                },
-              });
-            }}
-          >
-            <ChangeButtonText>{text}</ChangeButtonText>
-          </ChangeButton>
-        )}
-      </TranslationsConsumer>
-    </Bubble>
-  </BubbleAnimation>
+                  });
+                }}
+              >
+                <ChangeButtonText>{text}</ChangeButtonText>
+              </ChangeButton>
+            )}
+          </TranslationsConsumer>
+        </Bubble>
+      </BubbleAnimation>
+    )}
+  </Container>
 );

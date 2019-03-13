@@ -23,6 +23,7 @@ const Container = styled(View)({
 interface FeaturesBubblesProps {
   personsInHousehold: number;
   insuredAtOtherCompany: boolean;
+  requestedStartDate: string;
   type: InsuranceType;
   onPress: () => void;
 }
@@ -30,6 +31,7 @@ interface FeaturesBubblesProps {
 export const FeaturesBubbles: React.SFC<FeaturesBubblesProps> = ({
   personsInHousehold,
   insuredAtOtherCompany,
+  requestedStartDate,
   type,
   onPress,
 }) => (
@@ -44,7 +46,10 @@ export const FeaturesBubbles: React.SFC<FeaturesBubblesProps> = ({
             <BindingPeriod />
           </Position>
           <Position top={120} left="45%">
-            <StartDate insuredAtOtherCompany={insuredAtOtherCompany} />
+            <StartDate
+              insuredAtOtherCompany={insuredAtOtherCompany}
+              requestedStartDate={requestedStartDate}
+            />
           </Position>
           <Position top={25} left="47%">
             {type === InsuranceType.BRF ? <OwnedAddon /> : <TravelProtection />}

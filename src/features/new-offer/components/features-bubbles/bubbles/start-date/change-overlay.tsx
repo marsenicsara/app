@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { isIphoneX } from 'react-native-iphone-x-helper';
 import { DraggableOverlay } from 'src/components/draggable-overlay';
 import {
   Dimensions,
@@ -16,6 +15,14 @@ import { Spacing } from 'src/components/Spacing';
 import DatePicker from 'react-native-date-picker';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { Container, ActionMap } from 'constate';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+
+const REQUEST_START_DATE_MUTATION = gql`
+  mutation requestStartDate($requestedStartDate: LocalDate!) {
+    requestStartDate(requestedStartDate: $requestedStartDate)
+  }
+`;
 
 const OverlayContent = styled(View)({
   justifyContent: 'center',
@@ -79,30 +86,37 @@ const ResetButtonText = styled(Text)({
 });
 
 interface State {
-  date: Date;
+  datePickerDate: Date;
 }
 
 interface Actions {
-  setDate: (date: Date) => void;
+  setDatePickerDate: (date: Date) => void;
 }
 
 const actions: ActionMap<State, Actions> = {
-  setDate: (date) => () => ({
-    date,
+  setDatePickerDate: (datePickerDate) => () => ({
+    datePickerDate,
   }),
 };
 
 interface ChangeOverlayProps {
   componentId: string;
   insuredAtOtherCompany: boolean;
+  date: Date;
+  setDate: (date: Date | null) => void;
 }
 
 export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
   componentId,
   insuredAtOtherCompany,
+  date,
+  setDate,
 }) => (
-  <Container actions={actions} initialState={{ date: new Date() }}>
-    {({ date, setDate }) => (
+  <Container
+    actions={actions}
+    initialState={{ datePickerDate: date != null ? date : new Date() }}
+  >
+    {({ datePickerDate, setDatePickerDate }) => (
       <DraggableOverlay
         heightPercentage={70}
         onClose={() => Navigation.dismissOverlay(componentId)}
@@ -127,51 +141,65 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
                 {(text) => <Heading>{text}</Heading>}
               </TranslationsConsumer>
               <StartDatePicker
-                date={date}
+                date={datePickerDate}
                 locale="sv"
                 mode="date"
                 onDateChange={(date: Date) => {
-                  setDate(date);
+                  setDatePickerDate(date);
                 }}
               />
               <Spacing height={40} />
-              <Row>
-                <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_CONFIRM">
-                  {(text) => (
-                    <ConfirmButton>
-                      <ConfirmButtonText>{text}</ConfirmButtonText>
-                    </ConfirmButton>
-                  )}
-                </TranslationsConsumer>
-              </Row>
-              <Spacing height={22} />
-              <Row>
-                {insuredAtOtherCompany ? (
-                  <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_RESET_SWITCHER">
-                    {(text) => (
-                      <ResetButton
-                        onPress={() => {
-                          handleClose();
-                        }}
+              <Mutation mutation={REQUEST_START_DATE_MUTATION}>
+                {(mutate) => (
+                  <>
+                    <Row>
+                      <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_CONFIRM">
+                        {(text) => (
+                          <ConfirmButton
+                            onPress={() => {
+                              mutate({
+                                variables: {
+                                  requestedStartDate: datePickerDate.toISOString(),
+                                },
+                              });
+                              setDate(datePickerDate);
+                              handleClose();
+                            }}
+                          >
+                            <ConfirmButtonText>{text}</ConfirmButtonText>
+                          </ConfirmButton>
+                        )}
+                      </TranslationsConsumer>
+                    </Row>
+                    <Spacing height={22} />
+                    <Row>
+                      <TranslationsConsumer
+                        textKey={
+                          insuredAtOtherCompany
+                            ? 'OFFER_BUBBLES_START_DATE_CHANGE_RESET_SWITCHER'
+                            : 'OFFER_BUBBLES_START_DATE_CHANGE_RESET_NEW'
+                        }
                       >
-                        <ResetButtonText>{text}</ResetButtonText>
-                      </ResetButton>
-                    )}
-                  </TranslationsConsumer>
-                ) : (
-                  <TranslationsConsumer textKey="OFFER_BUBBLES_START_DATE_CHANGE_RESET_NEW">
-                    {(text) => (
-                      <ResetButton
-                        onPress={() => {
-                          handleClose();
-                        }}
-                      >
-                        <ResetButtonText>{text}</ResetButtonText>
-                      </ResetButton>
-                    )}
-                  </TranslationsConsumer>
+                        {(text) => (
+                          <ResetButton
+                            onPress={() => {
+                              mutate({
+                                variables: {
+                                  requestedStartDate: null,
+                                },
+                              });
+                              setDate(null);
+                              handleClose();
+                            }}
+                          >
+                            <ResetButtonText>{text}</ResetButtonText>
+                          </ResetButton>
+                        )}
+                      </TranslationsConsumer>
+                    </Row>
+                  </>
                 )}
-              </Row>
+              </Mutation>
             </OverlayContent>
           </>
         )}
