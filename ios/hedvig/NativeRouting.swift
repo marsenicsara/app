@@ -18,7 +18,7 @@ struct MarketingResultEventBody: Encodable {
 class NativeRouting: RCTEventEmitter {
     let appHasLoadedCallbacker: Callbacker<Void>
     let appHasLoadedSignal: Signal<Void>
-    var componentIds: Array<(componentId: String, componentName: String)> = []
+    var componentIds: [(componentId: String, componentName: String)] = []
 
     override init() {
         appHasLoadedCallbacker = Callbacker<Void>()
@@ -27,7 +27,12 @@ class NativeRouting: RCTEventEmitter {
     }
 
     override func supportedEvents() -> [String]! {
-        return ["NativeRoutingMarketingResult", "NativeRoutingAppHasLoaded", "NativeRoutingOpenFreeTextChat"]
+        return [
+            "NativeRoutingMarketingResult",
+            "NativeRoutingAppHasLoaded",
+            "NativeRoutingOpenFreeTextChat",
+            "NativeRoutingClearDirectDebitStatus"
+        ]
     }
 
     func sendMarketingResult(marketingResult: MarketingResult) {
@@ -47,6 +52,10 @@ class NativeRouting: RCTEventEmitter {
                 "componentId": componentId
             ])
         }
+    }
+
+    func sendClearDirectDebitStatus() {
+        sendEvent(withName: "NativeRoutingClearDirectDebitStatus", body: [])
     }
 
     func sendOpenFreeTextChat() {
