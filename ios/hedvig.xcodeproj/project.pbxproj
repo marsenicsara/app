@@ -188,6 +188,7 @@
 		EBD5C96222390FA50049A78A /* MFMailComposeViewController+Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C96122390FA50049A78A /* MFMailComposeViewController+Signal.swift */; };
 		EBD5C96422390FB30049A78A /* BackgroundWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C96322390FB20049A78A /* BackgroundWithLabel.swift */; };
 		EBD5C96622390FDA0049A78A /* FeedbackRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C96522390FDA0049A78A /* FeedbackRow.swift */; };
+		EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */; };
 		EBD675FA21FF4F0F00050E86 /* LoggedInScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
 		EBECC26621B9230000716BEA /* NativeRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC26521B9230000716BEA /* NativeRouting.swift */; };
@@ -392,6 +393,7 @@
 		EBD5C96122390FA50049A78A /* MFMailComposeViewController+Signal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MFMailComposeViewController+Signal.swift"; sourceTree = "<group>"; };
 		EBD5C96322390FB20049A78A /* BackgroundWithLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundWithLabel.swift; sourceTree = "<group>"; };
 		EBD5C96522390FDA0049A78A /* FeedbackRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackRow.swift; sourceTree = "<group>"; };
+		EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDirectDebitStatus.swift; sourceTree = "<group>"; };
 		EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC26521B9230000716BEA /* NativeRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeRouting.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */,
 				EB4695CD220083800004C75D /* RCTApolloClient.swift */,
 				EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */,
+				EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */,
 			);
 			path = hedvig;
 			sourceTree = "<group>";
@@ -1275,6 +1278,7 @@
 				EB265A8A221ABD66009DA493 /* MarketingStoryIndicator.swift in Sources */,
 				EB265A82221ABD66009DA493 /* End.swift in Sources */,
 				EB265A7A221ABD66009DA493 /* MarketingEndScreen.swift in Sources */,
+				EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */,
 				EB265AB3221ABD66009DA493 /* Licenses.swift in Sources */,
 				EB265A8F221ABD66009DA493 /* MyPaymentRow.swift in Sources */,
 				EB265ACE221ABD66009DA493 /* SectionView+Viewable.swift in Sources */,
