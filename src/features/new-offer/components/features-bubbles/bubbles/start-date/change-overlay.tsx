@@ -142,6 +142,7 @@ export const ChangeOverlay: React.SFC<ChangeOverlayProps> = ({
               </TranslationsConsumer>
               <StartDatePicker
                 date={datePickerDate}
+                minimumDate={new Date()}
                 locale="sv"
                 mode="date"
                 onDateChange={(date: Date) => {
