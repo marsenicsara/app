@@ -19,7 +19,7 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const REQUEST_START_DATE_MUTATION = gql`
-  mutation requestStartDate($requestedStartDate: LocalDate!) {
+  mutation requestStartDate($requestedStartDate: LocalDate) {
     requestStartDate(requestedStartDate: $requestedStartDate)
   }
 `;
