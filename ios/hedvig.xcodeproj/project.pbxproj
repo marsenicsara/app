@@ -178,6 +178,14 @@
 		EB4695BC220050520004C75D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695BB220050520004C75D /* Dashboard.swift */; };
 		EB4695BE220051BF0004C75D /* Pods-Hedvig-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */; };
 		EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695CD220083800004C75D /* RCTApolloClient.swift */; };
+		EBD3EA74223FC58B00D4374A /* RemoteConfigContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA73223FC58B00D4374A /* RemoteConfigContainer.swift */; };
+		EBD3EA7C223FC5A700D4374A /* Referrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA76223FC5A700D4374A /* Referrals.swift */; };
+		EBD3EA7D223FC5A700D4374A /* ReferralsOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA78223FC5A700D4374A /* ReferralsOffer.swift */; };
+		EBD3EA7E223FC5A700D4374A /* ReferralsTermsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA79223FC5A700D4374A /* ReferralsTermsRow.swift */; };
+		EBD3EA7F223FC5A700D4374A /* ReferralsIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA7A223FC5A700D4374A /* ReferralsIllustration.swift */; };
+		EBD3EA80223FC5A700D4374A /* ReferralsTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA7B223FC5A700D4374A /* ReferralsTitle.swift */; };
+		EBD3EA82223FC5D300D4374A /* ReferralRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA81223FC5D300D4374A /* ReferralRow.swift */; };
+		EBD3EA84223FC7B700D4374A /* ReferralRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA83223FC7B700D4374A /* ReferralRow.swift */; };
 		EBD5C9522238F9F70049A78A /* UIApplication+AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C9512238F9F70049A78A /* UIApplication+AppDelegate.swift */; };
 		EBD5C9542238FEB50049A78A /* WKWebView+OpenBankId.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C9532238FEB50049A78A /* WKWebView+OpenBankId.swift */; };
 		EBD5C95B22390F690049A78A /* ReviewAppRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C95722390F690049A78A /* ReviewAppRow.swift */; };
@@ -383,6 +391,14 @@
 		EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-Hedvig-acknowledgements.plist"; sourceTree = "<group>"; };
 		EB4695CD220083800004C75D /* RCTApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTApolloClient.swift; sourceTree = "<group>"; };
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD3EA73223FC58B00D4374A /* RemoteConfigContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfigContainer.swift; sourceTree = "<group>"; };
+		EBD3EA76223FC5A700D4374A /* Referrals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Referrals.swift; sourceTree = "<group>"; };
+		EBD3EA78223FC5A700D4374A /* ReferralsOffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralsOffer.swift; sourceTree = "<group>"; };
+		EBD3EA79223FC5A700D4374A /* ReferralsTermsRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralsTermsRow.swift; sourceTree = "<group>"; };
+		EBD3EA7A223FC5A700D4374A /* ReferralsIllustration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralsIllustration.swift; sourceTree = "<group>"; };
+		EBD3EA7B223FC5A700D4374A /* ReferralsTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralsTitle.swift; sourceTree = "<group>"; };
+		EBD3EA81223FC5D300D4374A /* ReferralRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralRow.swift; sourceTree = "<group>"; };
+		EBD3EA83223FC7B700D4374A /* ReferralRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralRow.swift; sourceTree = "<group>"; };
 		EBD5C9512238F9F70049A78A /* UIApplication+AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+AppDelegate.swift"; sourceTree = "<group>"; };
 		EBD5C9532238FEB50049A78A /* WKWebView+OpenBankId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+OpenBankId.swift"; sourceTree = "<group>"; };
 		EBD5C95722390F690049A78A /* ReviewAppRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAppRow.swift; sourceTree = "<group>"; };
@@ -638,6 +654,7 @@
 		EB2659C4221ABD66009DA493 /* Viewables */ = {
 			isa = PBXGroup;
 			children = (
+				EBD3EA81223FC5D300D4374A /* ReferralRow.swift */,
 				EB2659C5221ABD66009DA493 /* ProfileSection.swift */,
 				EB2659C6221ABD66009DA493 /* LogoutSection.swift */,
 				EBD5C96522390FDA0049A78A /* FeedbackRow.swift */,
@@ -647,6 +664,7 @@
 				EB2659CA221ABD66009DA493 /* AboutRow.swift */,
 				EB2659CB221ABD66009DA493 /* MyInfoRow.swift */,
 				EB2659CC221ABD66009DA493 /* OtherSection.swift */,
+				EBD3EA83223FC7B700D4374A /* ReferralRow.swift */,
 				EB2659CD221ABD66009DA493 /* InsuranceCertificateRow.swift */,
 				EB2659CE221ABD66009DA493 /* HomeRow.swift */,
 			);
@@ -656,6 +674,7 @@
 		EB2659D0221ABD66009DA493 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				EBD3EA75223FC5A700D4374A /* Referrals */,
 				EBD5C95522390F690049A78A /* FeedbackScreen */,
 				EB2659D1221ABD66009DA493 /* MyInfo */,
 				EB2659DB221ABD66009DA493 /* MyPayment */,
@@ -984,6 +1003,7 @@
 		EB265A4D221ABD66009DA493 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				EBD3EA73223FC58B00D4374A /* RemoteConfigContainer.swift */,
 				EB265A4E221ABD66009DA493 /* AuthorizationToken.swift */,
 				EB265A4F221ABD66009DA493 /* GraphQL */,
 				EB265A60221ABD66009DA493 /* schema.json */,
@@ -1052,6 +1072,26 @@
 				EB265A72221ABD66009DA493 /* Localization.swift */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		EBD3EA75223FC5A700D4374A /* Referrals */ = {
+			isa = PBXGroup;
+			children = (
+				EBD3EA76223FC5A700D4374A /* Referrals.swift */,
+				EBD3EA77223FC5A700D4374A /* Viewables */,
+			);
+			path = Referrals;
+			sourceTree = "<group>";
+		};
+		EBD3EA77223FC5A700D4374A /* Viewables */ = {
+			isa = PBXGroup;
+			children = (
+				EBD3EA78223FC5A700D4374A /* ReferralsOffer.swift */,
+				EBD3EA79223FC5A700D4374A /* ReferralsTermsRow.swift */,
+				EBD3EA7A223FC5A700D4374A /* ReferralsIllustration.swift */,
+				EBD3EA7B223FC5A700D4374A /* ReferralsTitle.swift */,
+			);
+			path = Viewables;
 			sourceTree = "<group>";
 		};
 		EBD5C95522390F690049A78A /* FeedbackScreen */ = {
@@ -1204,12 +1244,14 @@
 				"${PODS_ROOT}/AcknowList/Resources/AcknowList.bundle",
 				"${PODS_ROOT}/Apollo/scripts/check-and-run-apollo-cli.sh",
 				"${PODS_ROOT}/Apollo/scripts/check-and-run-apollo-codegen.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AcknowList.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/check-and-run-apollo-cli.sh",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/check-and-run-apollo-codegen.sh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1349,6 +1391,7 @@
 				EB265A9B221ABD66009DA493 /* NameCircle.swift in Sources */,
 				EB265AE9221ABD66009DA493 /* SectionStyle.swift in Sources */,
 				EB265ABE221ABD66009DA493 /* ButtonSection.swift in Sources */,
+				EBD3EA7C223FC5A700D4374A /* Referrals.swift in Sources */,
 				EB265AF0221ABD66009DA493 /* CellForRow.swift in Sources */,
 				EB265AEF221ABD66009DA493 /* TranslationsRepo.swift in Sources */,
 				EB265A87221ABD66009DA493 /* SkipToPreviousButton.swift in Sources */,
@@ -1357,6 +1400,7 @@
 				EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */,
 				EB265A9D221ABD66009DA493 /* MyInfo.swift in Sources */,
 				EB265AA8221ABD66009DA493 /* MyHome.swift in Sources */,
+				EBD3EA82223FC5D300D4374A /* ReferralRow.swift in Sources */,
 				EB265A86221ABD66009DA493 /* SkipToNextButton.swift in Sources */,
 				EB265AAF221ABD66009DA493 /* MemberIdRow.swift in Sources */,
 				EB265AEB221ABD66009DA493 /* ButtonStyle.swift in Sources */,
@@ -1369,6 +1413,7 @@
 				EB265AA7221ABD66009DA493 /* AddressCircle.swift in Sources */,
 				EB265ADE221ABD66009DA493 /* UITabBarController+Presentation.swift in Sources */,
 				EB265A85221ABD66009DA493 /* LoadingIndicator.swift in Sources */,
+				EBD3EA80223FC5A700D4374A /* ReferralsTitle.swift in Sources */,
 				EB265AC8221ABD66009DA493 /* DynamicString.swift in Sources */,
 				EB265AE4221ABD66009DA493 /* DeviceKit+RoundedCorners.swift in Sources */,
 				EB265A92221ABD66009DA493 /* AboutRow.swift in Sources */,
@@ -1381,6 +1426,7 @@
 				EB265AD5221ABD66009DA493 /* UIScrollView+RefreshControl.swift in Sources */,
 				EB265AB6221ABD66009DA493 /* CoinsuredComingSoonText.swift in Sources */,
 				B56386491DB9693800A0598C /* AppDelegate.swift in Sources */,
+				EBD3EA84223FC7B700D4374A /* ReferralRow.swift in Sources */,
 				EB265AF5221ABD66009DA493 /* SharedElement.swift in Sources */,
 				EB265B0B221ABD66009DA493 /* HedvigApolloClient.swift in Sources */,
 				EB265AC0221ABD66009DA493 /* PDFViewer.swift in Sources */,
@@ -1391,6 +1437,8 @@
 				EB265AB2221ABD66009DA493 /* License.swift in Sources */,
 				EB265A75221ABD66009DA493 /* LoggedIn.swift in Sources */,
 				EB265A8D221ABD66009DA493 /* ProfileSection.swift in Sources */,
+				EBD3EA7F223FC5A700D4374A /* ReferralsIllustration.swift in Sources */,
+				EBD3EA7E223FC5A700D4374A /* ReferralsTermsRow.swift in Sources */,
 				EB265AE5221ABD66009DA493 /* UIColor+Image.swift in Sources */,
 				EB265ADD221ABD66009DA493 /* ApolloStore+Update.swift in Sources */,
 				EB265A88221ABD66009DA493 /* MarketingStoryIndicatorCell.swift in Sources */,
@@ -1406,8 +1454,10 @@
 				EB265AC2221ABD66009DA493 /* Spacing.swift in Sources */,
 				EB265AE2221ABD66009DA493 /* CollectionKit+ScrollTo.swift in Sources */,
 				EB265ABB221ABD66009DA493 /* ActivityBarButton.swift in Sources */,
+				EBD3EA7D223FC5A700D4374A /* ReferralsOffer.swift in Sources */,
 				EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */,
 				EB4695BC220050520004C75D /* Dashboard.swift in Sources */,
+				EBD3EA74223FC58B00D4374A /* RemoteConfigContainer.swift in Sources */,
 				EBD5C95B22390F690049A78A /* ReviewAppRow.swift in Sources */,
 				EB265AE1221ABD66009DA493 /* WKWebView+Signal.swift in Sources */,
 				EB265A91221ABD66009DA493 /* MyCharityRow.swift in Sources */,

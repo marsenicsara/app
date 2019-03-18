@@ -1,6 +1,7 @@
 import Apollo
 import CommonCrypto
 import Firebase
+import FirebaseRemoteConfig
 import Flow
 import Form
 import Foundation
@@ -119,6 +120,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
 
         RCTApolloClient.getClient().delay(by: 0.05).onValue { client, _ in
+            let remoteConfig = RemoteConfig.remoteConfig()
+
+            HedvigApolloClient.shared.remoteConfig = remoteConfig
+
             ReactNativeNavigation.bootstrapBrownField(
                 jsCodeLocation,
                 launchOptions: launchOptions,
@@ -132,7 +137,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
 
-            self.bag += nativeRouting.appHasLoadedSignal.onValue({ _ in
+            let remoteConfigHasLoadedCallbacker = Callbacker<Void>()
+            let remoteConfigHasLoadedSignal = remoteConfigHasLoadedCallbacker.signal()
+
+            remoteConfig.fetch { _, _ in
+                remoteConfig.activateFetched()
+                remoteConfigHasLoadedCallbacker.callAll()
+            }
+
+            self.bag += merge(
+                nativeRouting.appHasLoadedSignal,
+                remoteConfigHasLoadedSignal
+            ).onValue({ _ in
                 hasLoadedCallbacker?.callAll()
             })
 
