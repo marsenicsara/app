@@ -80,6 +80,12 @@ class NativeRouting: RCTEventEmitter {
                 $0.data?.member.id
             }.onValue { memberId in
                 let db = Firestore.firestore()
+                
+                Analytics.logEvent("referrals_sign", parameters: [
+                    "invitedByMemberId": invitedByMemberId,
+                    "memberId": memberId,
+                    "incentive": incentive
+                ])
 
                 db.collection("referrals").addDocument(data: [
                     "invitedByMemberId": invitedByMemberId,

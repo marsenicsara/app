@@ -74,6 +74,13 @@ struct RCTApolloClient {
         clientFuture.onValue { client, store in
             HedvigApolloClient.shared.client = client
             HedvigApolloClient.shared.store = store
+            
+            
+            client.fetch(query: MemberIdQuery()).onValue { response in
+                if let memberId = response.data?.member.id {
+                    Analytics.setUserProperty(memberId, forName: "member_id")
+                }
+            }
         }
 
         return clientFuture

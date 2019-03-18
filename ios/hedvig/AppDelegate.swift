@@ -192,6 +192,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let incentive = queryItems?.filter({ item in item.name == "incentive" }).first?.value else {
             return false
         }
+        
+        Analytics.logEvent("referrals_open", parameters: [
+            "invitedByMemberId": invitedByMemberId,
+            "incentive": incentive
+        ])
 
         UserDefaults.standard.set(invitedByMemberId, forKey: "referral_invitedByMemberId")
         UserDefaults.standard.set(incentive, forKey: "referral_incentive")
@@ -214,7 +219,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_: UIApplication, continue userActivity: NSUserActivity, restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void) -> BooleanLiteralType {
         DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { dynamicLink, _ in
-            print("handling link", dynamicLink)
             _ = self.handleDynamicLink(dynamicLink)
         }
 
