@@ -184,7 +184,6 @@
 		EBD3EA7E223FC5A700D4374A /* ReferralsTermsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA79223FC5A700D4374A /* ReferralsTermsRow.swift */; };
 		EBD3EA7F223FC5A700D4374A /* ReferralsIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA7A223FC5A700D4374A /* ReferralsIllustration.swift */; };
 		EBD3EA80223FC5A700D4374A /* ReferralsTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA7B223FC5A700D4374A /* ReferralsTitle.swift */; };
-		EBD3EA82223FC5D300D4374A /* ReferralRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA81223FC5D300D4374A /* ReferralRow.swift */; };
 		EBD3EA84223FC7B700D4374A /* ReferralRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3EA83223FC7B700D4374A /* ReferralRow.swift */; };
 		EBD5C9522238F9F70049A78A /* UIApplication+AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C9512238F9F70049A78A /* UIApplication+AppDelegate.swift */; };
 		EBD5C9542238FEB50049A78A /* WKWebView+OpenBankId.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C9532238FEB50049A78A /* WKWebView+OpenBankId.swift */; };
@@ -397,7 +396,6 @@
 		EBD3EA79223FC5A700D4374A /* ReferralsTermsRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralsTermsRow.swift; sourceTree = "<group>"; };
 		EBD3EA7A223FC5A700D4374A /* ReferralsIllustration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralsIllustration.swift; sourceTree = "<group>"; };
 		EBD3EA7B223FC5A700D4374A /* ReferralsTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralsTitle.swift; sourceTree = "<group>"; };
-		EBD3EA81223FC5D300D4374A /* ReferralRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralRow.swift; sourceTree = "<group>"; };
 		EBD3EA83223FC7B700D4374A /* ReferralRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralRow.swift; sourceTree = "<group>"; };
 		EBD5C9512238F9F70049A78A /* UIApplication+AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+AppDelegate.swift"; sourceTree = "<group>"; };
 		EBD5C9532238FEB50049A78A /* WKWebView+OpenBankId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+OpenBankId.swift"; sourceTree = "<group>"; };
@@ -654,7 +652,6 @@
 		EB2659C4221ABD66009DA493 /* Viewables */ = {
 			isa = PBXGroup;
 			children = (
-				EBD3EA81223FC5D300D4374A /* ReferralRow.swift */,
 				EB2659C5221ABD66009DA493 /* ProfileSection.swift */,
 				EB2659C6221ABD66009DA493 /* LogoutSection.swift */,
 				EBD5C96522390FDA0049A78A /* FeedbackRow.swift */,
@@ -1400,7 +1397,6 @@
 				EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */,
 				EB265A9D221ABD66009DA493 /* MyInfo.swift in Sources */,
 				EB265AA8221ABD66009DA493 /* MyHome.swift in Sources */,
-				EBD3EA82223FC5D300D4374A /* ReferralRow.swift in Sources */,
 				EB265A86221ABD66009DA493 /* SkipToNextButton.swift in Sources */,
 				EB265AAF221ABD66009DA493 /* MemberIdRow.swift in Sources */,
 				EB265AEB221ABD66009DA493 /* ButtonStyle.swift in Sources */,
