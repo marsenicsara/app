@@ -19,6 +19,7 @@ class NativeRouting: RCTEventEmitter {
     let appHasLoadedCallbacker: Callbacker<Void>
     let appHasLoadedSignal: Signal<Void>
     var componentIds: [(componentId: String, componentName: String)] = []
+    let bag = DisposeBag()
 
     override init() {
         appHasLoadedCallbacker = Callbacker<Void>()
@@ -74,9 +75,7 @@ class NativeRouting: RCTEventEmitter {
             forKey: "referral_incentive"
         ) else { return }
 
-        let bag = DisposeBag()
-
-        bag += HedvigApolloClient.shared.client?.fetch(query: MemberIdQuery()).valueSignal.compactMap {
+        bag += HedvigApolloClient.shared.client!.fetch(query: MemberIdQuery()).valueSignal.compactMap {
             $0.data?.member.id
         }.onValue { memberId in
             let db = Firestore.firestore()
@@ -86,8 +85,8 @@ class NativeRouting: RCTEventEmitter {
                 "memberId": memberId,
                 "incentive": incentive,
                 "timestamp": Date().timeIntervalSince1970
-            ]) { _ in
-                bag.dispose()
+            ]) { error in
+                print(error)
             }
         }
     }
