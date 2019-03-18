@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 remoteConfigHasLoadedCallbacker.callAll()
             }
 
-            self.bag += merge(
+            self.bag += combineLatest(
                 nativeRouting.appHasLoadedSignal,
                 remoteConfigHasLoadedSignal
             ).onValue({ _ in
