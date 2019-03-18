@@ -75,18 +75,19 @@ class NativeRouting: RCTEventEmitter {
             forKey: "referral_incentive"
         ) else { return }
 
-        bag += HedvigApolloClient.shared.client!.fetch(query: MemberIdQuery()).valueSignal.compactMap {
-            $0.data?.member.id
-        }.onValue { memberId in
-            let db = Firestore.firestore()
+        RCTApolloClient.getClient().onValue { client, _ in
+            self.bag += client.fetch(query: MemberIdQuery()).valueSignal.compactMap {
+                $0.data?.member.id
+            }.onValue { memberId in
+                let db = Firestore.firestore()
 
-            db.collection("referrals").addDocument(data: [
-                "invitedByMemberId": invitedByMemberId,
-                "memberId": memberId,
-                "incentive": incentive,
-                "timestamp": Date().timeIntervalSince1970
-            ]) { error in
-                print(error)
+                db.collection("referrals").addDocument(data: [
+                    "invitedByMemberId": invitedByMemberId,
+                    "memberId": memberId,
+                    "incentive": incentive,
+                    "timestamp": Date().timeIntervalSince1970
+                ]) { _ in
+                }
             }
         }
     }
