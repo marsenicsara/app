@@ -66,6 +66,32 @@ class NativeRouting: RCTEventEmitter {
         appHasLoadedCallbacker.callAll()
     }
 
+    @objc func userDidSign() {
+        guard let invitedByMemberId = UserDefaults.standard.string(
+            forKey: "referral_invitedByMemberId"
+        ) else { return }
+        guard let incentive = UserDefaults.standard.string(
+            forKey: "referral_incentive"
+        ) else { return }
+
+        let bag = DisposeBag()
+
+        bag += HedvigApolloClient.shared.client?.fetch(query: MemberIdQuery()).valueSignal.compactMap {
+            $0.data?.member.id
+        }.onValue { memberId in
+            let db = Firestore.firestore()
+
+            db.collection("referrals").addDocument(data: [
+                "invitedByMemberId": invitedByMemberId,
+                "memberId": memberId,
+                "incentive": incentive,
+                "timestamp": Date().timeIntervalSince1970
+            ]) { _ in
+                bag.dispose()
+            }
+        }
+    }
+
     @objc func registerExternalComponentId(_ componentId: String, componentName componentNameString: String) {
         componentIds.append((componentId: componentId, componentName: componentNameString))
     }

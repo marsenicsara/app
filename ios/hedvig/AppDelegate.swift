@@ -181,7 +181,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RNFirebaseMessaging.instance().didRegister(notificationSettings)
     }
 
+    func handleDynamicLink(_ dynamicLink: DynamicLink?) -> Bool {
+        guard let dynamicLink = dynamicLink else { return false }
+        guard let deepLink = dynamicLink.url else { return false }
+        let queryItems = URLComponents(url: deepLink, resolvingAgainstBaseURL: true)?.queryItems
+        guard let invitedByMemberId = queryItems?.filter({ item in item.name == "invitedby" }).first?.value else {
+            return false
+        }
+        guard let incentive = queryItems?.filter({ item in item.name == "incentive" }).first?.value else {
+            return false
+        }
+
+        UserDefaults.standard.set(invitedByMemberId, forKey: "referral_invitedByMemberId")
+        UserDefaults.standard.set(incentive, forKey: "referral_incentive")
+
+        return true
+    }
+
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> BooleanLiteralType {
+        if DynamicLinks.dynamicLinks().shouldHandleDynamicLink(fromCustomSchemeURL: url) {
+            let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url)
+            return handleDynamicLink(dynamicLink)
+        }
+
         if !RNBranch.branch.application(app, open: url, options: options) {
             return true
         }

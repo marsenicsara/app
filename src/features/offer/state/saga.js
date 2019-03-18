@@ -8,6 +8,7 @@ import { BANKID_SIGN, BANKID_SIGN_COMPLETE } from '../../bankid/actions';
 import { OFFER_CHECKOUT } from './actions';
 
 import { getChatLayout } from 'src/navigation/layouts/chatLayout';
+import { userDidSign } from 'src/navigation/native-routing';
 
 const handleCheckout = function*() {
   yield put({ type: BANKID_SIGN });
@@ -18,6 +19,8 @@ const handleCheckout = function*() {
   yield put(chatActions.getMessages({ intent }));
 
   Navigation.setRoot(getChatLayout());
+
+  userDidSign();
 
   yield put({
     type: TRACK_OFFER_SIGNED,
