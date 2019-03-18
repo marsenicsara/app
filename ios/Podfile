@@ -46,6 +46,7 @@ target 'hedvig' do
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Firestore'
   pod 'Firebase/DynamicLinks'
+  pod 'Firebase/Performance'
   pod 'Fabric', '~> 1.7.11'
   pod 'Crashlytics', '~> 3.10.7'
   pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
