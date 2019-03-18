@@ -185,7 +185,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let dynamicLink = dynamicLink else { return false }
         guard let deepLink = dynamicLink.url else { return false }
         let queryItems = URLComponents(url: deepLink, resolvingAgainstBaseURL: true)?.queryItems
-        guard let invitedByMemberId = queryItems?.filter({ item in item.name == "invitedby" }).first?.value else {
+
+        guard let invitedByMemberId = queryItems?.filter({ item in item.name == "invitedBy" }).first?.value else {
             return false
         }
         guard let incentive = queryItems?.filter({ item in item.name == "incentive" }).first?.value else {
@@ -212,10 +213,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_: UIApplication, continue userActivity: NSUserActivity, restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void) -> BooleanLiteralType {
-        DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamicLink, error) in
-            self.handleDynamicLink(dynamicLink)
+        DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { dynamicLink, _ in
+            print("handling link", dynamicLink)
+            _ = self.handleDynamicLink(dynamicLink)
         }
-        
+
         return RNBranch.continue(userActivity)
     }
 }
