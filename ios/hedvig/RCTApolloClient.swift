@@ -78,7 +78,7 @@ struct RCTApolloClient {
             
             client.fetch(query: MemberIdQuery()).onValue { response in
                 if let memberId = response.data?.member.id {
-                    Analytics.setUserProperty(memberId, forName: "member_id")
+                    Analytics.setUserID(memberId)
                 }
             }
         }
