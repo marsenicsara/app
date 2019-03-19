@@ -24,8 +24,8 @@ android {
         applicationId project.env.get('APP_ID')
         minSdkVersion 19
         multiDexEnabled true
-        versionCode 42
-        versionName '2.6.1'
+        versionCode 43
+        versionName '2.6.2'
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
 
         resValue "string", "build_config_package", "com.hedvig.app"

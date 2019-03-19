@@ -49,6 +49,10 @@ export const appHasLoaded = () => {
   NativeModules.NativeRouting.appHasLoaded();
 };
 
+export const userDidSign = () => {
+  NativeModules.NativeRouting.userDidSign();
+};
+
 export const registerExternalComponentId = (
   componentId: String,
   componentName: String,

@@ -19,6 +19,7 @@ class NativeRouting: RCTEventEmitter {
     let appHasLoadedCallbacker: Callbacker<Void>
     let appHasLoadedSignal: Signal<Void>
     var componentIds: [(componentId: String, componentName: String)] = []
+    let bag = DisposeBag()
 
     override init() {
         appHasLoadedCallbacker = Callbacker<Void>()
@@ -64,6 +65,37 @@ class NativeRouting: RCTEventEmitter {
 
     @objc func appHasLoaded() {
         appHasLoadedCallbacker.callAll()
+    }
+
+    @objc func userDidSign() {
+        guard let invitedByMemberId = UserDefaults.standard.string(
+            forKey: "referral_invitedByMemberId"
+        ) else { return }
+        guard let incentive = UserDefaults.standard.string(
+            forKey: "referral_incentive"
+        ) else { return }
+
+        RCTApolloClient.getClient().onValue { client, _ in
+            self.bag += client.fetch(query: MemberIdQuery()).valueSignal.compactMap {
+                $0.data?.member.id
+            }.onValue { memberId in
+                let db = Firestore.firestore()
+                
+                Analytics.logEvent("referrals_sign", parameters: [
+                    "invitedByMemberId": invitedByMemberId,
+                    "memberId": memberId,
+                    "incentive": incentive
+                ])
+
+                db.collection("referrals").addDocument(data: [
+                    "invitedByMemberId": invitedByMemberId,
+                    "memberId": memberId,
+                    "incentive": incentive,
+                    "timestamp": Date().timeIntervalSince1970
+                ]) { _ in
+                }
+            }
+        }
     }
 
     @objc func registerExternalComponentId(_ componentId: String, componentName componentNameString: String) {
