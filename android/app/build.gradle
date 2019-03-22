@@ -7,7 +7,7 @@ import com.android.build.OutputFile
 
 project.ext.react = [
         entryFile           : "index.js",
-        bundleInStaging     : true,
+        bundleInStaging     : false,
         devDisabledInStaging: true
 ]
 
