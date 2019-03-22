@@ -6,12 +6,16 @@ import android.support.v4.app.Fragment;
 
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
+import com.apollographql.apollo.ApolloClient;
 import com.brentvatne.react.ReactVideoPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.hedvig.app.components.LogoComponentCreator;
+import com.hedvig.app.components.MarketingScreenComponentCreator;
+import com.hedvig.app.components.ProfileScreenComponentCreator;
 import com.horcrux.svg.SvgPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -38,6 +42,7 @@ import dagger.android.support.HasSupportFragmentInjector;
 import io.branch.referral.Branch;
 import io.branch.rnbranch.RNBranchPackage;
 import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 import io.sentry.RNSentryPackage;
@@ -47,6 +52,9 @@ public class MainApplication extends NavigationApplication implements HasSupport
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentInjector;
+
+    @Inject
+    ApolloClient apolloClient;
 
     @Override
     protected ReactNativeHost createReactNativeHost() {
@@ -93,11 +101,12 @@ public class MainApplication extends NavigationApplication implements HasSupport
                 new RNFirebasePackage(),
                 new RNFirebaseNotificationsPackage(),
                 new RNFirebaseMessagingPackage(),
+                new RNFirebaseAnalyticsPackage(),
                 new RNBranchPackage(),
                 new ReactNativeAudioPackage(),
                 new AnalyticsPackage(),
                 new LottiePackage(),
-                new NativeRoutingPackage()
+                new NativeRoutingPackage(apolloClient)
         );
     }
 
@@ -114,17 +123,18 @@ public class MainApplication extends NavigationApplication implements HasSupport
 
     @Override
     public void onCreate() {
-        super.onCreate();
-        Branch.getAutoInstance(this);
-        SoLoader.init(this, false);
-        Timber.plant(new Timber.DebugTree());
         DaggerApplicationComponent
                 .builder()
                 .application(this)
                 .build()
                 .inject(this);
+        super.onCreate();
+        Branch.getAutoInstance(this);
+        SoLoader.init(this, false);
+        Timber.plant(new Timber.DebugTree());
         registerExternalComponent("marketingScreen", new MarketingScreenComponentCreator());
         registerExternalComponent("logo", new LogoComponentCreator());
+        registerExternalComponent("profileScreen", new ProfileScreenComponentCreator());
     }
 
     @Override
