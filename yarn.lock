@@ -775,10 +775,10 @@
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.9.tgz#82896c9405c81a29b66b454849ae9ca26a2ae959"
   integrity sha512-21TCQ2717SQqf+kJ54psf7B60uusmI69wu0l56o5BeU3MVuM9tYTc5T10T8/pleZQNskdODpAcutKLcHca+pIA==
 
-"@hedviginsurance/react-native-navigation@2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-navigation/-/react-native-navigation-2.1.4.tgz#5a53844c83bbf19de740b6c1a92a3017ae8bc942"
-  integrity sha512-E3AU4VdW6FKMNokXiHYL3ZgmhJ8mZJ4sEka6hmJ0ipamczG7IxCwSW1EVF+x05bQRwwg1TzxRgGGUUFJS+N4TA==
+"@hedviginsurance/react-native-navigation@2.1.6":
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-navigation/-/react-native-navigation-2.1.6.tgz#8dc01489502cf832eb1bb75e03d0d7b00b581ad9"
+  integrity sha512-7KwsyYZFH0j9R/bkX1vd4YSv8hN4ez5Q7TCX81e295C7SzTAV38UWuSvIEo7IA/jkixBsnqs7Pqs7fIQ2phTNw==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"
