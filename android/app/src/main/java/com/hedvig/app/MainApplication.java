@@ -30,6 +30,8 @@ import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 
+import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -131,7 +133,11 @@ public class MainApplication extends NavigationApplication implements HasSupport
         super.onCreate();
         Branch.getAutoInstance(this);
         SoLoader.init(this, false);
-        Timber.plant(new Timber.DebugTree());
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        } else {
+            Timber.plant(new CrashlyticsLogExceptionTree());
+        }
         registerExternalComponent("marketingScreen", new MarketingScreenComponentCreator());
         registerExternalComponent("logo", new LogoComponentCreator());
         registerExternalComponent("profileScreen", new ProfileScreenComponentCreator());
