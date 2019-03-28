@@ -99,7 +99,6 @@ dependencies {
     implementation project(':react-native-audio')
     implementation project(':react-native-analytics-segment-io')
     implementation project(':lottie-react-native')
-    implementation project(':react-native-code-push')
 
     // React-Native-Navigation
     implementation project(':react-native-navigation')

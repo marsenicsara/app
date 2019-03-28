@@ -3,6 +3,7 @@ package com.hedvig.app;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
@@ -21,7 +22,6 @@ import com.imagepicker.ImagePickerPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.leo_pharma.analytics.AnalyticsPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.microsoft.codepush.react.CodePush;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
@@ -32,10 +32,12 @@ import com.zmxv.RNSound.RNSoundPackage;
 
 import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
@@ -70,12 +72,6 @@ public class MainApplication extends NavigationApplication implements HasSupport
             protected String getJSMainModuleName() {
                 return "index";
             }
-
-            @Nullable
-            @Override
-            protected String getJSBundleFile() {
-                return CodePush.getJSBundleFile();
-            }
         };
     }
 
@@ -97,7 +93,6 @@ public class MainApplication extends NavigationApplication implements HasSupport
                 new SvgPackage(),
                 new ReactNativeConfigPackage(),
                 new RNFetchBlobPackage(),
-                new CodePush(BuildConfig.CODE_PUSH_ANDROID_DEPLOYMENT_KEY, getApplicationContext(), isDebug()),
                 new RNSoundPackage(),
                 new RNSentryPackage(),
                 new RNFirebasePackage(),
@@ -133,7 +128,7 @@ public class MainApplication extends NavigationApplication implements HasSupport
         super.onCreate();
         Branch.getAutoInstance(this);
         SoLoader.init(this, false);
-        if (BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG || BuildConfig.BUILD_TYPE.equals("staging")) {
             Timber.plant(new Timber.DebugTree());
         } else {
             Timber.plant(new CrashlyticsLogExceptionTree());
