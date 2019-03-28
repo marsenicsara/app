@@ -128,7 +128,8 @@ public class MainApplication extends NavigationApplication implements HasSupport
         super.onCreate();
         Branch.getAutoInstance(this);
         SoLoader.init(this, false);
-        if (BuildConfig.DEBUG || BuildConfig.BUILD_TYPE.equals("staging")) {
+        // TODO Remove this probably? Or figure out a better solve for the problem
+        if (BuildConfig.DEBUG || BuildConfig.APP_ID.equals("com.hedvig.test.app")) {
             Timber.plant(new Timber.DebugTree());
         } else {
             Timber.plant(new CrashlyticsLogExceptionTree());
