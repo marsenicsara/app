@@ -51,6 +51,12 @@ public class ApplicationModule {
     }
 
     @Provides
+    @Named("VERSION_NUMBER")
+    String versionNumber() {
+        return BuildConfig.VERSION_NAME;
+    }
+
+    @Provides
     @Nullable
     Logger apolloLogger() {
         return null;
