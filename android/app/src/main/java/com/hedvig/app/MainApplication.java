@@ -3,21 +3,25 @@ package com.hedvig.app;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
+import com.apollographql.apollo.ApolloClient;
 import com.brentvatne.react.ReactVideoPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.hedvig.app.components.LogoComponentCreator;
+import com.hedvig.app.components.MarketingScreenComponentCreator;
+import com.hedvig.app.components.ProfileScreenComponentCreator;
 import com.horcrux.svg.SvgPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.leo_pharma.analytics.AnalyticsPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.microsoft.codepush.react.CodePush;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
@@ -26,10 +30,14 @@ import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 
+import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
@@ -38,6 +46,7 @@ import dagger.android.support.HasSupportFragmentInjector;
 import io.branch.referral.Branch;
 import io.branch.rnbranch.RNBranchPackage;
 import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 import io.sentry.RNSentryPackage;
@@ -47,6 +56,9 @@ public class MainApplication extends NavigationApplication implements HasSupport
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentInjector;
+
+    @Inject
+    ApolloClient apolloClient;
 
     @Override
     protected ReactNativeHost createReactNativeHost() {
@@ -59,12 +71,6 @@ public class MainApplication extends NavigationApplication implements HasSupport
             @Override
             protected String getJSMainModuleName() {
                 return "index";
-            }
-
-            @Nullable
-            @Override
-            protected String getJSBundleFile() {
-                return CodePush.getJSBundleFile();
             }
         };
     }
@@ -87,17 +93,17 @@ public class MainApplication extends NavigationApplication implements HasSupport
                 new SvgPackage(),
                 new ReactNativeConfigPackage(),
                 new RNFetchBlobPackage(),
-                new CodePush(BuildConfig.CODE_PUSH_ANDROID_DEPLOYMENT_KEY, getApplicationContext(), isDebug()),
                 new RNSoundPackage(),
                 new RNSentryPackage(),
                 new RNFirebasePackage(),
                 new RNFirebaseNotificationsPackage(),
                 new RNFirebaseMessagingPackage(),
+                new RNFirebaseAnalyticsPackage(),
                 new RNBranchPackage(),
                 new ReactNativeAudioPackage(),
                 new AnalyticsPackage(),
                 new LottiePackage(),
-                new NativeRoutingPackage()
+                new NativeRoutingPackage(apolloClient)
         );
     }
 
@@ -114,17 +120,23 @@ public class MainApplication extends NavigationApplication implements HasSupport
 
     @Override
     public void onCreate() {
-        super.onCreate();
-        Branch.getAutoInstance(this);
-        SoLoader.init(this, false);
-        Timber.plant(new Timber.DebugTree());
         DaggerApplicationComponent
                 .builder()
                 .application(this)
                 .build()
                 .inject(this);
+        super.onCreate();
+        Branch.getAutoInstance(this);
+        SoLoader.init(this, false);
+        // TODO Remove this probably? Or figure out a better solve for the problem
+        if (BuildConfig.DEBUG || BuildConfig.APP_ID.equals("com.hedvig.test.app")) {
+            Timber.plant(new Timber.DebugTree());
+        } else {
+            Timber.plant(new CrashlyticsLogExceptionTree());
+        }
         registerExternalComponent("marketingScreen", new MarketingScreenComponentCreator());
         registerExternalComponent("logo", new LogoComponentCreator());
+        registerExternalComponent("profileScreen", new ProfileScreenComponentCreator());
     }
 
     @Override

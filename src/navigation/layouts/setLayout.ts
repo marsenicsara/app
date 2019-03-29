@@ -38,6 +38,7 @@ export const setLayout = ({
     },
     layout: {
       backgroundColor: 'white',
+      orientation: ['portrait']
     },
   });
 

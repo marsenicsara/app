@@ -99,7 +99,6 @@ dependencies {
     implementation project(':react-native-audio')
     implementation project(':react-native-analytics-segment-io')
     implementation project(':lottie-react-native')
-    implementation project(':react-native-code-push')
 
     // React-Native-Navigation
     implementation project(':react-native-navigation')
@@ -108,10 +107,10 @@ dependencies {
     // Firebase
     implementation project(':react-native-firebase')
     implementation 'com.google.android.gms:play-services-base:15.0.1'
-    implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-messaging:17.3.0'
     implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
-    releaseImplementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
+    releaseImplementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+    stagingImplementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
 
     // Segment
     implementation 'com.google.android.gms:play-services-ads:15.0.1'
@@ -128,6 +127,8 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    implementation 'net.ypresto.timbertreeutils:timbertreeutils:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

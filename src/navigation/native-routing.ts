@@ -12,6 +12,8 @@ import { Navigation } from 'react-native-navigation';
 import { Store } from 'src/setupApp';
 import { chatActions } from 'hedvig-redux';
 import { client } from 'src/graphql/client';
+import { deleteToken } from 'src/graphql/context';
+import { getMarketingLayout } from './layouts/marketingLayout';
 
 export const setupNativeRouting = () => {
   const nativeRoutingEvents = new NativeEventEmitter(
@@ -43,6 +45,24 @@ export const setupNativeRouting = () => {
       }),
     );
   });
+
+  if (Platform.OS === 'android') {
+    nativeRoutingEvents.addListener('NativeRoutingLogout', () => {
+      deleteToken();
+      Store.dispatch({ type: 'DELETE_TOKEN' })
+      Store.dispatch({ type: 'DELETE_TRACKING_ID' })
+      Store.dispatch({ type: 'AUTHENTICATE' })
+      AsyncStorage.multiRemove([
+        '@hedvig:alreadySeenMarketingCarousel',
+        '@hedvig:token'
+      ])
+        .then(() => client.clearStore())
+        .then(() => {
+          // @ts-ignore
+          Navigation.setRoot(getMarketingLayout());
+        })
+    });
+  }
 };
 
 export const appHasLoaded = () => {

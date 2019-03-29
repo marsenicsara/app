@@ -775,10 +775,10 @@
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.9.tgz#82896c9405c81a29b66b454849ae9ca26a2ae959"
   integrity sha512-21TCQ2717SQqf+kJ54psf7B60uusmI69wu0l56o5BeU3MVuM9tYTc5T10T8/pleZQNskdODpAcutKLcHca+pIA==
 
-"@hedviginsurance/react-native-navigation@2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-navigation/-/react-native-navigation-2.1.4.tgz#5a53844c83bbf19de740b6c1a92a3017ae8bc942"
-  integrity sha512-E3AU4VdW6FKMNokXiHYL3ZgmhJ8mZJ4sEka6hmJ0ipamczG7IxCwSW1EVF+x05bQRwwg1TzxRgGGUUFJS+N4TA==
+"@hedviginsurance/react-native-navigation@2.1.7":
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-navigation/-/react-native-navigation-2.1.7.tgz#0517628681374d5de5105c3158f1a2c7762c6347"
+  integrity sha512-H93UbnphQm5JdFRuR+WY9euWGE0cpKjt83AR11vn6AE8su4Eka0IE+vzHbPakXqz4+b/wt+y/XpbavcvsdtSBQ==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"
@@ -2197,6 +2197,39 @@ babel-preset-fbjs@^3.0.1:
   integrity sha512-Fc0t7v8T1tBwv5AVyDDZEnS3T7OQ97qV0XawVZg1ouarlM9xCHL994C5tU8TBIKPk3yZXG+SaEM1YQcx/yLlcg==
   dependencies:
     "@babel/plugin-check-constants" "^7.0.0-beta.38"
+    "@babel/plugin-proposal-class-properties" "^7.0.0"
+    "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
+    "@babel/plugin-syntax-class-properties" "^7.0.0"
+    "@babel/plugin-syntax-flow" "^7.0.0"
+    "@babel/plugin-syntax-jsx" "^7.0.0"
+    "@babel/plugin-syntax-object-rest-spread" "^7.0.0"
+    "@babel/plugin-transform-arrow-functions" "^7.0.0"
+    "@babel/plugin-transform-block-scoped-functions" "^7.0.0"
+    "@babel/plugin-transform-block-scoping" "^7.0.0"
+    "@babel/plugin-transform-classes" "^7.0.0"
+    "@babel/plugin-transform-computed-properties" "^7.0.0"
+    "@babel/plugin-transform-destructuring" "^7.0.0"
+    "@babel/plugin-transform-flow-strip-types" "^7.0.0"
+    "@babel/plugin-transform-for-of" "^7.0.0"
+    "@babel/plugin-transform-function-name" "^7.0.0"
+    "@babel/plugin-transform-literals" "^7.0.0"
+    "@babel/plugin-transform-member-expression-literals" "^7.0.0"
+    "@babel/plugin-transform-modules-commonjs" "^7.0.0"
+    "@babel/plugin-transform-object-super" "^7.0.0"
+    "@babel/plugin-transform-parameters" "^7.0.0"
+    "@babel/plugin-transform-property-literals" "^7.0.0"
+    "@babel/plugin-transform-react-display-name" "^7.0.0"
+    "@babel/plugin-transform-react-jsx" "^7.0.0"
+    "@babel/plugin-transform-shorthand-properties" "^7.0.0"
+    "@babel/plugin-transform-spread" "^7.0.0"
+    "@babel/plugin-transform-template-literals" "^7.0.0"
+    babel-plugin-syntax-trailing-function-commas "^7.0.0-beta.0"
+
+babel-preset-fbjs@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-fbjs/-/babel-preset-fbjs-3.2.0.tgz#c0e6347d3e0379ed84b3c2434d3467567aa05297"
+  integrity sha512-5Jo+JeWiVz2wHUUyAlvb/sSYnXNig9r+HqGAOSfh5Fzxp7SnAaR/tEGRJ1ZX7C77kfk82658w6R5Z+uPATTD9g==
+  dependencies:
     "@babel/plugin-proposal-class-properties" "^7.0.0"
     "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
     "@babel/plugin-syntax-class-properties" "^7.0.0"
@@ -4128,6 +4161,22 @@ fbjs-scripts@^0.8.1:
     ansi-colors "^1.0.1"
     babel-core "^6.7.2"
     babel-preset-fbjs "^2.1.2"
+    core-js "^2.4.1"
+    cross-spawn "^5.1.0"
+    fancy-log "^1.3.2"
+    object-assign "^4.0.1"
+    plugin-error "^0.1.2"
+    semver "^5.1.0"
+    through2 "^2.0.0"
+
+fbjs-scripts@^1.0.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/fbjs-scripts/-/fbjs-scripts-1.2.0.tgz#069a0c0634242d10031c6460ef1fccefcdae8b27"
+  integrity sha512-5krZ8T0Bf8uky0abPoCLrfa7Orxd8UH4Qq8hRUF2RZYNMu+FmEOrBc7Ib3YVONmxTXTlLAvyrrdrVmksDb2OqQ==
+  dependencies:
+    "@babel/core" "^7.0.0"
+    ansi-colors "^1.0.1"
+    babel-preset-fbjs "^3.2.0"
     core-js "^2.4.1"
     cross-spawn "^5.1.0"
     fancy-log "^1.3.2"
@@ -8212,6 +8261,14 @@ react-devtools-core@^3.4.0:
     shell-quote "^1.6.1"
     ws "^3.3.1"
 
+react-devtools-core@^3.4.2:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-3.6.1.tgz#51af81ceada65209bbccb8b547a01187cd1cbf04"
+  integrity sha512-I/LSX+tpeTrGKaF1wXSfJ/kP+6iaP2JfshEjW8LtQBdz6c6HhzOJtjZXhqOUrAdysuey8M1/JgPY1flSVVt8Ig==
+  dependencies:
+    shell-quote "^1.6.1"
+    ws "^3.3.1"
+
 react-dom@16.4.2:
   version "16.4.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.2.tgz#4afed569689f2c561d2b8da0b819669c38a0bda4"
@@ -8540,10 +8597,10 @@ react-native-web@^0.3.2:
     react-art "^16.2.0"
     react-timer-mixin "^0.13.3"
 
-react-native@0.57.4:
-  version "0.57.4"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.57.4.tgz#cb7ba78e8be420737868fa9a97caa897a534c893"
-  integrity sha512-gvGyKZrf6seuo6jM/Do85mbz+//ugPNk8d9dyzF4Nmi8sMDXIkMxuXxqsjERxp1DyXn63mdWr+Lc6XqrIr0YiQ==
+react-native@0.57.7:
+  version "0.57.7"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.57.7.tgz#5b3af1c43366c41d8d8d2540fea8ce590060bca1"
+  integrity sha512-mdNibV6NblH8gbbcWjLjH6lVOkrXuCiIi+RQ+6e2QlrOIJVsKC216VvBhHsvdDIRO94v1qD8LMnTYlBY09qzQQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     absolute-path "^0.0.0"
@@ -8561,7 +8618,7 @@ react-native@0.57.4:
     escape-string-regexp "^1.0.5"
     event-target-shim "^1.0.5"
     fbjs "^1.0.0"
-    fbjs-scripts "^0.8.1"
+    fbjs-scripts "^1.0.0"
     fs-extra "^1.0.0"
     glob "^7.1.1"
     graceful-fs "^4.1.3"
@@ -8585,7 +8642,7 @@ react-native@0.57.4:
     promise "^7.1.1"
     prop-types "^15.5.8"
     react-clone-referenced-element "^1.0.1"
-    react-devtools-core "^3.4.0"
+    react-devtools-core "^3.4.2"
     react-timer-mixin "^0.13.2"
     regenerator-runtime "^0.11.0"
     rimraf "^2.5.4"
