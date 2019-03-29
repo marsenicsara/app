@@ -105,7 +105,8 @@ public class NativeRoutingModule extends ReactContextBaseJavaModule {
             FirebaseFirestore
                     .getInstance()
                     .collection("referrals")
-                    .add(referralParameters).addOnSuccessListener((document) -> {
+                    .add(referralParameters)
+                    .addOnSuccessListener((document) -> {
                         Timber.i("Successfully saved referral!");
                     })
                     .addOnFailureListener((error) -> {
@@ -150,7 +151,6 @@ public class NativeRoutingModule extends ReactContextBaseJavaModule {
     }
 
     private class MarketingBroadcastReceiver extends BroadcastReceiver {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             sendMarketingResult(((MarketingFragment.MarketingResult) intent.getSerializableExtra("type")));
@@ -158,7 +158,6 @@ public class NativeRoutingModule extends ReactContextBaseJavaModule {
     }
 
     private class ProfileBroadcastReceiver extends BroadcastReceiver {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getStringExtra("action");
@@ -179,5 +178,4 @@ public class NativeRoutingModule extends ReactContextBaseJavaModule {
             }
         }
     }
-
 }
