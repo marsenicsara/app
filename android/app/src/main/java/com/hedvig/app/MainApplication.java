@@ -3,7 +3,6 @@ package com.hedvig.app;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
@@ -31,9 +30,6 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 
 import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
