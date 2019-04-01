@@ -13,6 +13,7 @@ import android.util.Pair;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.rx2.Rx2Apollo;
 import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -23,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.hedvig.android.owldroid.graphql.MemberIdQuery;
 import com.hedvig.android.owldroid.ui.marketing.MarketingFragment;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,25 +34,43 @@ import java.util.List;
 import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
-public class NativeRoutingModule extends ReactContextBaseJavaModule {
+public class NativeRoutingModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
     private final ApolloClient apolloClient;
-    private List<Pair<String, String>> componentIds;
+    private HashMap<String, String> componentIds2 = new HashMap<>();
+
+    private final MarketingBroadcastReceiver marketingBroadcastReceiver = new MarketingBroadcastReceiver();
+    private final ProfileBroadcastReceiver profileBroadcastReceiver = new ProfileBroadcastReceiver();
+
+    private LocalBroadcastManager localBroadcastManager;
 
     NativeRoutingModule(ReactApplicationContext reactContext, ApolloClient apolloClient) {
         super(reactContext);
         this.apolloClient = apolloClient;
-        this.componentIds = new ArrayList<>();
-        MarketingBroadcastReceiver marketingBroadcastReceiver = new MarketingBroadcastReceiver();
-        ProfileBroadcastReceiver profileBroadcastReceiver = new ProfileBroadcastReceiver();
 
-        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(reactContext);
-        localBroadcastManager.registerReceiver(marketingBroadcastReceiver, new IntentFilter("marketingResult"));
-        localBroadcastManager.registerReceiver(profileBroadcastReceiver, new IntentFilter("profileNavigation"));
+        localBroadcastManager = LocalBroadcastManager.getInstance(reactContext);
+        reactContext.addLifecycleEventListener(this);
     }
 
     @Override
     public String getName() {
         return "NativeRouting";
+    }
+
+    @Override
+    public void onHostResume() {
+        localBroadcastManager.registerReceiver(marketingBroadcastReceiver, new IntentFilter("marketingResult"));
+        localBroadcastManager.registerReceiver(profileBroadcastReceiver, new IntentFilter("profileNavigation"));
+    }
+
+    @Override
+    public void onHostPause() {
+        localBroadcastManager.unregisterReceiver(marketingBroadcastReceiver);
+        localBroadcastManager.unregisterReceiver(profileBroadcastReceiver);
+    }
+
+    @Override
+    public void onHostDestroy() {
+
     }
 
     @ReactMethod
@@ -58,7 +79,7 @@ public class NativeRoutingModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void registerExternalComponentId(String componentId, String componentName) {
-        componentIds.add(new Pair<>(componentId, componentName));
+        componentIds2.put(componentName, componentId);
     }
 
     @ReactMethod
@@ -117,16 +138,10 @@ public class NativeRoutingModule extends ReactContextBaseJavaModule {
 
     }
 
-    private void sendMarketingResult(MarketingFragment.MarketingResult marketingResult) {
+    private void sendMarketingResult(@NotNull MarketingFragment.MarketingResult marketingResult) {
         WritableMap message = Arguments.createMap();
         message.putString("marketingResult", marketingResult.toString());
-        String componentId = null;
-        for (Pair<String, String> p : componentIds) {
-            if (p.second.equals("marketingScreen")) {
-                componentId = p.first;
-                break;
-            }
-        }
+        String componentId = componentIds2.get("marketingScreen");
         if (componentId == null) {
             throw new RuntimeException("Marketing Screen not registered in NativeRoutingModule");
         }

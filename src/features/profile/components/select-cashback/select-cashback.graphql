@@ -1,7 +1,0 @@
-mutation SelectCashbackOption($id: ID!) {
-    selectCashbackOption(id: $id) {
-        id
-        name
-        imageUrl
-    }
-}

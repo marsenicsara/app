@@ -3,6 +3,7 @@ import {
   NativeModules,
   AsyncStorage,
   Platform,
+  EmitterSubscription,
 } from 'react-native';
 
 import { SEEN_MARKETING_CAROUSEL_KEY } from 'src/constants';
@@ -15,12 +16,20 @@ import { client } from 'src/graphql/client';
 import { deleteToken } from 'src/graphql/context';
 import { getMarketingLayout } from './layouts/marketingLayout';
 
+let openFreeTextChatListener: EmitterSubscription | null = null;
+let clearDirectDebitStatusListener: EmitterSubscription | null = null;
+let marketingResultListener: EmitterSubscription | null = null;
+let logoutListener: EmitterSubscription | null = null;
+
 export const setupNativeRouting = () => {
   const nativeRoutingEvents = new NativeEventEmitter(
     NativeModules.NativeRouting,
   );
 
-  nativeRoutingEvents.addListener('NativeRoutingMarketingResult', (event) => {
+  if (marketingResultListener !== null) {
+    marketingResultListener.remove();
+  }
+  marketingResultListener = nativeRoutingEvents.addListener('NativeRoutingMarketingResult', (event) => {
     AsyncStorage.setItem(SEEN_MARKETING_CAROUSEL_KEY, 'true');
     if (Platform.OS === 'ios') {
       Navigation.push(event.componentId, chatScreen(event.marketingResult));
@@ -32,11 +41,17 @@ export const setupNativeRouting = () => {
     }
   });
 
-  nativeRoutingEvents.addListener('NativeRoutingClearDirectDebitStatus', () => {
+  if (clearDirectDebitStatusListener !== null) {
+    clearDirectDebitStatusListener.remove();
+  }
+  clearDirectDebitStatusListener = nativeRoutingEvents.addListener('NativeRoutingClearDirectDebitStatus', () => {
     client.reFetchObservableQueries();
   });
 
-  nativeRoutingEvents.addListener('NativeRoutingOpenFreeTextChat', () => {
+  if (openFreeTextChatListener !== null) {
+    openFreeTextChatListener.remove();
+  }
+  openFreeTextChatListener = nativeRoutingEvents.addListener('NativeRoutingOpenFreeTextChat', () => {
     Store.dispatch(
       chatActions.apiAndNavigateToChat({
         method: 'POST',
@@ -47,7 +62,10 @@ export const setupNativeRouting = () => {
   });
 
   if (Platform.OS === 'android') {
-    nativeRoutingEvents.addListener('NativeRoutingLogout', () => {
+    if (logoutListener !== null) {
+      logoutListener.remove()
+    }
+    logoutListener = nativeRoutingEvents.addListener('NativeRoutingLogout', () => {
       deleteToken();
       Store.dispatch({ type: 'DELETE_TOKEN' })
       Store.dispatch({ type: 'DELETE_TRACKING_ID' })
