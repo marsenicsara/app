@@ -1,8 +1,6 @@
 import { Platform } from 'react-native';
 
 import { DASHBOARD_SCREEN } from '../screens/dashboard';
-import { PROFILE_SCREEN } from '../screens/profile';
-import { FAB_COMPONENT } from '../components/fab';
 
 export const getMainLayout = () =>
   Platform.OS === 'ios'

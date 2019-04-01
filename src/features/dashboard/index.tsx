@@ -6,8 +6,6 @@ import {
   ScrollView,
   View,
   Text,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
 } from 'react-native';
 
 import { Loader } from 'src/components/Loader';

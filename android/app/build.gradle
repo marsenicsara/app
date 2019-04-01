@@ -25,7 +25,7 @@ android {
         minSdkVersion 19
         multiDexEnabled true
         versionCode 43
-        versionName '2.7.1'
+        versionName '2.7.2'
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
 
         resValue "string", "build_config_package", "com.hedvig.app"
@@ -117,6 +117,8 @@ dependencies {
     implementation 'com.segment.analytics.android:analytics:4.2.6'
     implementation 'com.android.support:multidex:1.0.3'
     // compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
+
+    implementation 'io.branch.sdk.android:library:3.1.1'
 
     // Animated GIF support
     implementation 'com.facebook.fresco:animated-gif:1.11.0'
