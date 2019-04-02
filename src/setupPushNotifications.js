@@ -39,6 +39,7 @@ export const setupPushNotifications = () => {
         .then(() => {
           notification.android.setChannelId(channel.channelId);
           notification.android.setAutoCancel(true);
+          notification.android.setSmallIcon('shell_notification_icon');
           firebase.notifications().displayNotification(notification);
         });
     } else {
