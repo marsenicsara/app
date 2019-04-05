@@ -29,7 +29,7 @@ android {
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
 
         resValue "string", "build_config_package", "com.hedvig.app"
-
+        vectorDrawables.useSupportLibrary = true
         ndk {
             abiFilters 'armeabi-v7a', 'x86'
         }
