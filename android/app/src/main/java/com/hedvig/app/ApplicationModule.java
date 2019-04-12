@@ -5,6 +5,9 @@ import android.content.Context;
 
 import com.apollographql.apollo.Logger;
 import com.apollographql.apollo.internal.ApolloLogger;
+import com.facebook.react.ReactInstanceManager;
+import com.facebook.react.common.LifecycleState;
+import com.facebook.react.shell.MainReactPackage;
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 import com.hedvig.android.owldroid.util.react.AsyncStorageNativeReader;
@@ -22,49 +25,65 @@ import okhttp3.logging.HttpLoggingInterceptor;
 @Module
 public class ApplicationModule {
     @Provides
-    Application application(MainApplication application) {
+    static Application application(MainApplication application) {
         return application;
     }
 
     @Provides
-    @Singleton
-    Context context(Application application) {
+    static Context context(Application application) {
         return application.getBaseContext();
     }
 
     @Provides
-    @Singleton
-    SimpleCache simpleCache(Context context) {
+    static SimpleCache simpleCache(Context context) {
         return new SimpleCache(new File(context.getCacheDir(), "hedvig_story_video_cache"), new LeastRecentlyUsedCacheEvictor(10 * 1024 * 1024));
     }
 
     @Provides
-    @Singleton
-    AsyncStorageNativeReader asyncStorageNativeReader(Context context) {
+    static AsyncStorageNativeReader asyncStorageNativeReader(Context context) {
         return new AsyncStorageNativeReaderImpl(context);
     }
 
     @Provides
     @Named("GRAPHQL_URL")
-    String graphqlUrl() {
+    static String graphqlUrl() {
         return BuildConfig.GRAPHQL_URL;
     }
 
     @Provides
     @Named("VERSION_NUMBER")
-    String versionNumber() {
+    static String versionNumber() {
         return BuildConfig.VERSION_NAME;
     }
 
     @Provides
+    @Named("APPLICATION_ID")
+    static String applicationId() {
+        return BuildConfig.APPLICATION_ID;
+    }
+
+    @Provides
     @Nullable
-    Logger apolloLogger() {
+    static Logger apolloLogger() {
         return null;
     }
 
     @Provides
     @Nullable
-    HttpLoggingInterceptor httpLoggingInterceptor() {
+    static HttpLoggingInterceptor httpLoggingInterceptor() {
         return null;
     }
+
+    @Provides
+    static ReactInstanceManager reactInstanceManager(MainApplication application) {
+        return ReactInstanceManager
+                .builder()
+                .setApplication(application)
+                .setJSMainModulePath("androidtest")
+                .addPackage(new MainReactPackage())
+                .setInitialLifecycleState(LifecycleState.RESUMED)
+                .setUseDeveloperSupport(true)
+                .build();
+    }
+
 }
