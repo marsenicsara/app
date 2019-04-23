@@ -67,57 +67,58 @@ interface SignButtonProps {
 export const SignButton: React.SFC<SignButtonProps> = ({
   scrollAnimatedValue,
 }) => (
-  <AnimationValueListener
-    testValue={(value) => value >= Dimensions.get('window').height * 0.5}
-    animatedValue={scrollAnimatedValue}
-  >
-    {(isActive) => (
-      <>
-        <NavigationEvents>
-          {(triggerEvent: (event: { id: string }) => void) => (
-            <Update<boolean>
-              was={() => {
-                if (isActive) {
-                  triggerEvent({ id: 'HideSignButton' });
-                } else {
-                  triggerEvent({ id: 'ShowSignButton' });
-                }
-              }}
-              watched={isActive}
-            >
-              {null}
-            </Update>
-          )}
-        </NavigationEvents>
-        <Parallel>
-          <Spring
-            toValue={isActive ? 0 : 100}
-            initialValue={100}
-            config={{ bounciness: 10, velocity: 2 }}
-          >
-            {(animatedValue) => (
-              <BounceUpView animatedValue={animatedValue}>
-                <NavigationEvents>
-                  {(triggerEvent: (event: { id: string }) => void) => (
-                    <ButtonContainer
-                      onPress={() =>
-                        triggerEvent({
-                          id: 'SignButtonPressed',
-                        })
-                      }
-                    >
-                      <TranslationsConsumer textKey="OFFER_SIGN_BUTTON">
-                        {(text) => <GetText>{text}</GetText>}
-                      </TranslationsConsumer>
-                      <BankID width={20} height={20} />
-                    </ButtonContainer>
-                  )}
-                </NavigationEvents>
-              </BounceUpView>
+    <AnimationValueListener
+      testValue={(value) => value >= Dimensions.get('window').height * 0.5}
+      animatedValue={scrollAnimatedValue}
+    >
+      {(isActive) => (
+        <>
+          <NavigationEvents>
+            {(triggerEvent: (event: { id: string }) => void) => (
+              <Update<boolean>
+                was={() => {
+                  console.log("REACTTEG Sign button triggerEvent" + isActive);
+                  if (isActive) {
+                    triggerEvent({ id: 'HideSignButton' });
+                  } else {
+                    triggerEvent({ id: 'ShowSignButton' });
+                  }
+                }}
+                watched={isActive}
+              >
+                {null}
+              </Update>
             )}
-          </Spring>
-        </Parallel>
-      </>
-    )}
-  </AnimationValueListener>
-);
+          </NavigationEvents>
+          <Parallel>
+            <Spring
+              toValue={isActive ? 0 : 100}
+              initialValue={100}
+              config={{ bounciness: 10, velocity: 2 }}
+            >
+              {(animatedValue) => (
+                <BounceUpView animatedValue={animatedValue}>
+                  <NavigationEvents>
+                    {(triggerEvent: (event: { id: string }) => void) => (
+                      <ButtonContainer
+                        onPress={() =>
+                          triggerEvent({
+                            id: 'SignButtonPressed',
+                          })
+                        }
+                      >
+                        <TranslationsConsumer textKey="OFFER_SIGN_BUTTON">
+                          {(text) => <GetText>{text}</GetText>}
+                        </TranslationsConsumer>
+                        <BankID width={20} height={20} />
+                      </ButtonContainer>
+                    )}
+                  </NavigationEvents>
+                </BounceUpView>
+              )}
+            </Spring>
+          </Parallel>
+        </>
+      )}
+    </AnimationValueListener>
+  );

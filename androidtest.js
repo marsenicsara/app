@@ -1,10 +1,12 @@
-import React from 'react';
 import { AppRegistry, View, Text } from 'react-native';
+import Chat from './src/features/chat/Chat';
+import { NewOffer } from './src/features/new-offer';
+import { HOC } from './AndroidTestApp';
 
-const Chat = () => (
-  <View>
-    <Text>Hello Chat</Text>
-  </View>
-);
+const WrappedChat = HOC(Chat);
 
-AppRegistry.registerComponent('Chat', () => Chat);
+AppRegistry.registerComponent('Chat', () => WrappedChat);
+
+const WrappedOffer = HOC(NewOffer);
+
+AppRegistry.registerComponent('Offer', () => WrappedOffer);

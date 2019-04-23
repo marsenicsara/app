@@ -71,7 +71,8 @@ const FeaturesContainer = styled(AnimatedView)(
   }),
 );
 
-const getScrollHandler = (animatedValue: Animated.Value) =>
+const getScrollHandler = (animatedValue: Animated.Value) => {
+  console.log("REACTTEG getScrollHandler animatedValue " + animatedValue);
   Animated.event(
     [
       {
@@ -86,6 +87,8 @@ const getScrollHandler = (animatedValue: Animated.Value) =>
       useNativeDriver: true,
     },
   );
+
+}
 
 interface ScrollToParams {
   x: number;
@@ -128,9 +131,11 @@ export const NewOffer: React.SFC = () => (
     {({ data, loading, error }) =>
       loading || error ? null : (
         <>
+          {console.log("REACTTEG 1")}
           <AnimationValueProvider initialValue={0}>
             {({ animatedValue }) => (
               <>
+                {console.log("REACTTEG animatedValue: " + animatedValue)}
                 {Platform.OS === 'android' && (
                   <AndroidHeader subtitle={data!.insurance.address!} />
                 )}

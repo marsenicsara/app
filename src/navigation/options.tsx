@@ -47,28 +47,30 @@ export const NavigationOptions: React.SFC<NavigationOptionsProps> = ({
   children = null,
   options,
 }) => (
-    <NavigationContext.Consumer>
-      {({ componentId = '' }) => {
-        return (
-          <Mount on={() => Navigation.mergeOptions(componentId, options)}>
-            {Platform.OS === 'ios' && (
-              <Update
-                was={() => Navigation.mergeOptions(componentId, options)}
-                watched={options}
-              >
-                {children}
-              </Update>
-            )}
-            {Platform.OS === 'android' && (
-              <UpdateDeepEquals
-                was={() => Navigation.mergeOptions(componentId, options)}
-                watched={options}
-              >
-                {children}
-              </UpdateDeepEquals>
-            )}
-          </Mount>
-        );
-      }}
-    </NavigationContext.Consumer>
+    Platform.OS === "android" ? <>{children}</> : (
+      <NavigationContext.Consumer>
+        {({ componentId = '' }) => {
+          return (
+            <Mount on={() => Navigation.mergeOptions(componentId, options)}>
+              {Platform.OS === 'ios' && (
+                <Update
+                  was={() => Navigation.mergeOptions(componentId, options)}
+                  watched={options}
+                >
+                  {children}
+                </Update>
+              )}
+              {Platform.OS === 'android' && (
+                <UpdateDeepEquals
+                  was={() => Navigation.mergeOptions(componentId, options)}
+                  watched={options}
+                >
+                  {children}
+                </UpdateDeepEquals>
+              )}
+            </Mount>
+          );
+        }}
+      </NavigationContext.Consumer>
+    )
   );

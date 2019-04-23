@@ -11,7 +11,7 @@ import { OFFER_CHECKOUT } from './actions';
 import { getChatLayout } from 'src/navigation/layouts/chatLayout';
 import { userDidSign } from 'src/navigation/native-routing';
 
-const Analytics = firebase.analytics();
+//const Analytics = firebase.analytics();
 
 const handleCheckout = function*() {
   yield put({ type: BANKID_SIGN });
@@ -25,11 +25,11 @@ const handleCheckout = function*() {
 
   userDidSign();
 
-  Analytics.logEvent('ecommerce_purchase', {
-    transaction_id: analytics.orderId,
-    value: insurance.currentTotalPrice,
-    currency: 'SEK',
-  });
+  //Analytics.logEvent('ecommerce_purchase', {
+  //  transaction_id: analytics.orderId,
+  //  value: insurance.currentTotalPrice,
+  //  currency: 'SEK',
+  //});
 
   yield put({
     type: TRACK_OFFER_SIGNED,
