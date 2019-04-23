@@ -9,7 +9,6 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
-import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactFragmentActivity;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -56,6 +55,18 @@ public class MainActivity extends ReactFragmentActivity {
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        getReactInstanceManager().onHostPause(this);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        getReactInstanceManager().onHostResume(this, this);
+        super.onResume();
     }
 
     @Override

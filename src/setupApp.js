@@ -67,23 +67,24 @@ import {
 let SentryInstance = Sentry;
 let ravenMiddleware;
 
-if (!__DEV__) {
-  const environment =
-    Config.ENVIRONMENT === 'production' ? 'production' : 'test';
-
-  SentryInstance.config(Config.SENTRY_DSN, {
-    environment,
-    deactivateStacktraceMerging: false,
-  }).install();
-
-  ravenMiddleware = createRavenMiddleware(SentryInstance, {
-    stateTransformer: (state) => ({ user: state.user.currentUser }),
-  });
-} else {
-  SentryInstance = {
-    captureException: (e) => console.error(e), // eslint-disable-line no-console
-  };
-}
+// TODO Revert this
+//if (!__DEV__) {
+//  const environment =
+//    Config.ENVIRONMENT === 'production' ? 'production' : 'test';
+//
+//  SentryInstance.config(Config.SENTRY_DSN, {
+//    environment,
+//    deactivateStacktraceMerging: false,
+//  }).install();
+//
+//  ravenMiddleware = createRavenMiddleware(SentryInstance, {
+//    stateTransformer: (state) => ({ user: state.user.currentUser }),
+//  });
+//} else {
+SentryInstance = {
+  captureException: (e) => console.error(e), // eslint-disable-line no-console
+};
+//}
 
 const eventsMap = {
   'Navigation/NAVIGATE': trackScreenView(({ payload: { screenName } }) => ({

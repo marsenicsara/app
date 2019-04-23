@@ -131,11 +131,9 @@ export const NewOffer: React.SFC = () => (
     {({ data, loading, error }) =>
       loading || error ? null : (
         <>
-          {console.log("REACTTEG 1")}
           <AnimationValueProvider initialValue={0}>
             {({ animatedValue }) => (
               <>
-                {console.log("REACTTEG animatedValue: " + animatedValue)}
                 {Platform.OS === 'android' && (
                   <AndroidHeader subtitle={data!.insurance.address!} />
                 )}

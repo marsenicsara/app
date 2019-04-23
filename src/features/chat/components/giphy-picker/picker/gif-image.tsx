@@ -1,15 +1,15 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 import { colors } from '@hedviginsurance/brand';
-import FastImage from 'react-native-fast-image';
+//import FastImage from 'react-native-fast-image';
 
 import { createImageProgress } from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 
 import { GiphyPoweredBy } from '../../GiphyPoweredBy';
 
-const Image = createImageProgress(FastImage);
+//const Image = createImageProgress(FastImage);
 
 const Box = styled(View)({
   paddingLeft: 10,

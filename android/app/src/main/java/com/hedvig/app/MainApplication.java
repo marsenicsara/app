@@ -1,5 +1,6 @@
 package com.hedvig.app;
 
+import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
@@ -8,14 +9,12 @@ import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.apollographql.apollo.ApolloClient;
 import com.brentvatne.react.ReactVideoPackage;
-import com.dylanvann.fastimage.FastImageViewPackage;
+//import com.dylanvann.fastimage.FastImageViewPackage;
+import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.hedvig.app.components.LogoComponentCreator;
-import com.hedvig.app.components.MarketingScreenComponentCreator;
-import com.hedvig.app.components.ProfileScreenComponentCreator;
 import com.hedvig.app.starter.ActivityStarterReactPackage;
 import com.horcrux.svg.SvgPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -23,8 +22,6 @@ import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.leo_pharma.analytics.AnalyticsPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
-import com.reactnativenavigation.NavigationApplication;
-import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.rnfs.RNFSPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -49,7 +46,7 @@ import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 import io.sentry.RNSentryPackage;
 import timber.log.Timber;
 
-public class MainApplication extends NavigationApplication implements HasSupportFragmentInjector {
+public class MainApplication extends Application implements ReactApplication, HasSupportFragmentInjector {
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentInjector;
@@ -59,57 +56,47 @@ public class MainApplication extends NavigationApplication implements HasSupport
 
     private final ReactNativeHost mReactNativeHost = createReactNativeHost();
 
-    @Override
     protected ReactNativeHost createReactNativeHost() {
-        return new NavigationReactNativeHost(this) {
+        return new ReactNativeHost(this) {
             @Override
             public boolean getUseDeveloperSupport() {
-                return isDebug();
+                return BuildConfig.DEBUG;
+            }
+
+            @Override
+            protected List<ReactPackage> getPackages() {
+                return Arrays.asList(
+                        new ActivityStarterReactPackage(),
+                        new MainReactPackage(),
+                        new ReactNativeDocumentPicker(),
+                        //new FastImageViewPackage(),
+                        new ImagePickerPackage(),
+                        new RNFSPackage(),
+                        new ReactVideoPackage(),
+                        new RNGestureHandlerPackage(),
+                        new RNDeviceInfo(),
+                        new SvgPackage(),
+                        new ReactNativeConfigPackage(),
+                        new RNFetchBlobPackage(),
+                        new RNSoundPackage(),
+                        new RNSentryPackage(),
+                        new RNFirebasePackage(),
+                        new RNFirebaseNotificationsPackage(),
+                        new RNFirebaseMessagingPackage(),
+                        new RNFirebaseAnalyticsPackage(),
+                        new RNBranchPackage(),
+                        new ReactNativeAudioPackage(),
+                        new AnalyticsPackage(),
+                        new LottiePackage(),
+                        new NativeRoutingPackage(apolloClient)
+                );
             }
 
             @Override
             protected String getJSMainModuleName() {
-                return "index";
+                return "androidtest";
             }
         };
-    }
-
-    @Override
-    public boolean isDebug() {
-        return BuildConfig.DEBUG;
-    }
-
-    protected List<ReactPackage> getPackages() {
-        return Arrays.asList(
-                new ActivityStarterReactPackage(),
-                new MainReactPackage(),
-                new ReactNativeDocumentPicker(),
-                new FastImageViewPackage(),
-                new ImagePickerPackage(),
-                new RNFSPackage(),
-                new ReactVideoPackage(),
-                new RNGestureHandlerPackage(),
-                new RNDeviceInfo(),
-                new SvgPackage(),
-                new ReactNativeConfigPackage(),
-                new RNFetchBlobPackage(),
-                new RNSoundPackage(),
-                new RNSentryPackage(),
-                new RNFirebasePackage(),
-                new RNFirebaseNotificationsPackage(),
-                new RNFirebaseMessagingPackage(),
-                new RNFirebaseAnalyticsPackage(),
-                new RNBranchPackage(),
-                new ReactNativeAudioPackage(),
-                new AnalyticsPackage(),
-                new LottiePackage(),
-                new NativeRoutingPackage(apolloClient)
-        );
-    }
-
-    @Override
-    public List<ReactPackage> createAdditionalReactPackages() {
-        return getPackages();
     }
 
     @Override
@@ -139,9 +126,6 @@ public class MainApplication extends NavigationApplication implements HasSupport
         } else {
             Timber.plant(new CrashlyticsLogExceptionTree());
         }
-        registerExternalComponent("marketingScreen", new MarketingScreenComponentCreator());
-        registerExternalComponent("logo", new LogoComponentCreator());
-        registerExternalComponent("profileScreen", new ProfileScreenComponentCreator());
     }
 
     @Override

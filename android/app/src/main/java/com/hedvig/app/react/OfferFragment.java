@@ -24,8 +24,8 @@ import timber.log.Timber;
 
 public class OfferFragment extends Fragment implements DefaultHardwareBackBtnHandler {
 
-    @Inject
-    public ReactInstanceManager reactInstanceManager;
+    // @Inject
+    // public ReactInstanceManager reactInstanceManager;
 
 
     ReactRootView mReactRootView;
@@ -41,21 +41,8 @@ public class OfferFragment extends Fragment implements DefaultHardwareBackBtnHan
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ReactRootView reactRootView = new ReactRootView(requireContext());
         mReactRootView = reactRootView;
-        reactRootView.startReactApplication(reactInstanceManager, "Offer", getArguments());
+        reactRootView.startReactApplication(getReactInstanceManager(), "Offer", getArguments());
         return reactRootView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Timber.i("activityHunt onResume");
-        reactInstanceManager.onHostResume(getActivity(), (DefaultHardwareBackBtnHandler) getActivity());
-    }
-
-    @Override
-    public void onPause() {
-        reactInstanceManager.onHostPause(getActivity());
-        super.onPause();
     }
 
     @Override
@@ -65,14 +52,18 @@ public class OfferFragment extends Fragment implements DefaultHardwareBackBtnHan
             mReactRootView.unmountReactApplication();
             mReactRootView = null;
         }
-        if (reactInstanceManager.getLifecycleState() != LifecycleState.RESUMED) {
-            reactInstanceManager.onHostDestroy(getActivity());
+        if (getReactInstanceManager().getLifecycleState() != LifecycleState.RESUMED) {
+            getReactInstanceManager().onHostDestroy(getActivity());
             getReactNativeHost().clear();
         }
     }
 
     protected ReactNativeHost getReactNativeHost() {
         return ((ReactApplication) getActivity().getApplication()).getReactNativeHost();
+    }
+
+    ReactInstanceManager getReactInstanceManager() {
+        return getReactNativeHost().getReactInstanceManager();
     }
 
     @Override

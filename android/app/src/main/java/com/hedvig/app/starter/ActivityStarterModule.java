@@ -1,23 +1,15 @@
 package com.hedvig.app.starter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.annotation.NonNull;
-
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import androidx.navigation.Navigation;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
-import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.CatalystInstance;
-import com.facebook.react.bridge.Promise;
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.WritableNativeArray;
-import com.hedvig.app.MainActivity;
+import com.facebook.react.bridge.*;
 import com.hedvig.app.MainApplication;
-
-import androidx.navigation.Navigation;
+import com.hedvig.app.react.OfferChatOverlayFragment;
 import timber.log.Timber;
 
 class ActivityStarterModule extends ReactContextBaseJavaModule {
@@ -38,6 +30,13 @@ class ActivityStarterModule extends ReactContextBaseJavaModule {
         if (activity != null) {
             Navigation.findNavController(activity, com.hedvig.app.common.R.id.rootNavigationHost).navigate(com.hedvig.app.common.R.id.action_chatFragment_to_offerFragment);
         }
+    }
+
+    @ReactMethod
+    void showOfferChatOverlay() {
+        OfferChatOverlayFragment offerChatOverlayFragment = new OfferChatOverlayFragment();
+        FragmentManager fragmentManager = ((FragmentActivity) getReactApplicationContext().getCurrentActivity()).getSupportFragmentManager();
+        offerChatOverlayFragment.show(fragmentManager, "OfferChatOverlay");
     }
 
     @ReactMethod

@@ -24,7 +24,6 @@ import {
 
 import { Message } from './types';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
-import { BackButton } from 'src/components/BackButton';
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 import { PixelRatio } from 'react-native';
 
