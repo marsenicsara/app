@@ -16,6 +16,7 @@ import com.facebook.soloader.SoLoader;
 import com.hedvig.app.components.LogoComponentCreator;
 import com.hedvig.app.components.MarketingScreenComponentCreator;
 import com.hedvig.app.components.ProfileScreenComponentCreator;
+import com.hedvig.app.starter.ActivityStarterReactPackage;
 import com.horcrux.svg.SvgPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -56,6 +57,8 @@ public class MainApplication extends NavigationApplication implements HasSupport
     @Inject
     ApolloClient apolloClient;
 
+    private final ReactNativeHost mReactNativeHost = createReactNativeHost();
+
     @Override
     protected ReactNativeHost createReactNativeHost() {
         return new NavigationReactNativeHost(this) {
@@ -78,6 +81,7 @@ public class MainApplication extends NavigationApplication implements HasSupport
 
     protected List<ReactPackage> getPackages() {
         return Arrays.asList(
+                new ActivityStarterReactPackage(),
                 new MainReactPackage(),
                 new ReactNativeDocumentPicker(),
                 new FastImageViewPackage(),
@@ -112,6 +116,11 @@ public class MainApplication extends NavigationApplication implements HasSupport
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return mReactNativeHost;
     }
 
     @Override

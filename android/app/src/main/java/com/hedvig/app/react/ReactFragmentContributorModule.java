@@ -1,5 +1,7 @@
 package com.hedvig.app.react;
 
+import com.hedvig.app.MainActivity;
+
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -9,5 +11,8 @@ public abstract class ReactFragmentContributorModule {
     abstract ChatFragment contributeChatFragment();
 
     @ContributesAndroidInjector
-    abstract ReactTestActivity contributeReactTestActivity();
+    abstract OfferFragment contributeOfferFragment();
+
+    @ContributesAndroidInjector
+    abstract MainActivity contributeReactTestActivity();
 }

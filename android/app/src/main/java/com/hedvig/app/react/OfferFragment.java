@@ -2,7 +2,10 @@ package com.hedvig.app.react;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +17,16 @@ import com.facebook.react.ReactRootView;
 import com.facebook.react.common.LifecycleState;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 
+import javax.inject.Inject;
+
 import dagger.android.support.AndroidSupportInjection;
 import timber.log.Timber;
 
-import javax.inject.Inject;
-
-public class ChatFragment extends Fragment implements DefaultHardwareBackBtnHandler {
+public class OfferFragment extends Fragment implements DefaultHardwareBackBtnHandler {
 
     @Inject
-    ReactInstanceManager reactInstanceManager;
+    public ReactInstanceManager reactInstanceManager;
+
 
     ReactRootView mReactRootView;
 
@@ -32,11 +36,12 @@ public class ChatFragment extends Fragment implements DefaultHardwareBackBtnHand
         AndroidSupportInjection.inject(this);
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ReactRootView reactRootView = new ReactRootView(requireContext());
         mReactRootView = reactRootView;
-        reactRootView.startReactApplication(reactInstanceManager, "Chat", getArguments());
+        reactRootView.startReactApplication(reactInstanceManager, "Offer", getArguments());
         return reactRootView;
     }
 
@@ -72,8 +77,7 @@ public class ChatFragment extends Fragment implements DefaultHardwareBackBtnHand
 
     @Override
     public void invokeDefaultOnBackPressed() {
-        if (getActivity() != null) {
-            getActivity().onBackPressed();
-        }
+        FragmentActivity activity = getActivity();
+        if (activity != null) activity.onBackPressed();
     }
 }
