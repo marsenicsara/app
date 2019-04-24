@@ -4,12 +4,17 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+
 import androidx.navigation.Navigation;
+
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.bridge.*;
+import com.hedvig.android.owldroid.ui.dashboard.PerilBottomSheet;
+import com.hedvig.android.owldroid.ui.dashboard.PerilIcon;
 import com.hedvig.app.MainApplication;
 import com.hedvig.app.react.OfferChatOverlayFragment;
+
 import timber.log.Timber;
 
 class ActivityStarterModule extends ReactContextBaseJavaModule {
@@ -35,8 +40,17 @@ class ActivityStarterModule extends ReactContextBaseJavaModule {
     @ReactMethod
     void showOfferChatOverlay() {
         OfferChatOverlayFragment offerChatOverlayFragment = new OfferChatOverlayFragment();
-        FragmentManager fragmentManager = ((FragmentActivity) getReactApplicationContext().getCurrentActivity()).getSupportFragmentManager();
+        FragmentManager fragmentManager = getFragmentManager();
         offerChatOverlayFragment.show(fragmentManager, "OfferChatOverlay");
+    }
+
+    @ReactMethod
+    void showPerilOverlay(@NonNull String subject, @NonNull String iconId, @NonNull String title, @NonNull String description) {
+        PerilBottomSheet.Companion.newInstance(subject, PerilIcon.INSTANCE.from(iconId), title, description).show(getFragmentManager(), "perilSheet");
+    }
+
+    private FragmentManager getFragmentManager() {
+        return ((FragmentActivity) getReactApplicationContext().getCurrentActivity()).getSupportFragmentManager();
     }
 
     @ReactMethod
