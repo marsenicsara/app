@@ -26,7 +26,6 @@ android {
         multiDexEnabled true
         versionCode 43
         versionName '2.7.3'
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
 
         resValue "string", "build_config_package", "com.hedvig.app"
         vectorDrawables.useSupportLibrary = true
@@ -101,14 +100,10 @@ dependencies {
     implementation project(':lottie-react-native')
 
     // React-Native-Navigation
-    implementation project(':react-native-navigation')
     implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
 
     // Firebase
-    implementation project(':react-native-firebase')
     implementation 'com.google.android.gms:play-services-base:16.1.0'
-    implementation 'com.google.firebase:firebase-messaging:17.5.0'
-    implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
     releaseImplementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
     stagingImplementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
 

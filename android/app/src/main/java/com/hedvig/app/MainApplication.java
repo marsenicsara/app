@@ -1,6 +1,7 @@
 package com.hedvig.app;
 
 import android.app.Application;
+import android.app.Service;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,8 @@ import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 
+import dagger.android.HasServiceInjector;
+import io.invertase.firebase.RNFirebasePackage;
 import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree;
 
 import java.util.Arrays;
@@ -39,17 +42,16 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import io.branch.referral.Branch;
 import io.branch.rnbranch.RNBranchPackage;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
-import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
-import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 import io.sentry.RNSentryPackage;
 import timber.log.Timber;
 
-public class MainApplication extends Application implements ReactApplication, HasSupportFragmentInjector {
+public class MainApplication extends Application implements ReactApplication, HasSupportFragmentInjector, HasServiceInjector {
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentInjector;
+
+    @Inject
+    DispatchingAndroidInjector<Service> serviceInjector;
 
     @Inject
     ApolloClient apolloClient;
@@ -80,11 +82,8 @@ public class MainApplication extends Application implements ReactApplication, Ha
                         new RNFetchBlobPackage(),
                         new RNSoundPackage(),
                         new RNSentryPackage(),
-                        new RNFirebasePackage(),
-                        new RNFirebaseNotificationsPackage(),
-                        new RNFirebaseMessagingPackage(),
-                        new RNFirebaseAnalyticsPackage(),
                         new RNBranchPackage(),
+                        new RNFirebasePackage(),
                         new ReactNativeAudioPackage(),
                         new AnalyticsPackage(),
                         new LottiePackage(),
@@ -132,4 +131,7 @@ public class MainApplication extends Application implements ReactApplication, Ha
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentInjector;
     }
+
+    @Override
+    public AndroidInjector<Service> serviceInjector() { return serviceInjector; }
 }

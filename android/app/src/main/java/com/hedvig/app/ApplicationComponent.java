@@ -13,7 +13,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
-@Component(modules = { AndroidSupportInjectionModule.class, ApplicationModule.class, OwldroidModule.class, ViewModelModule.class, FragmentContributorModule.class, ReactFragmentContributorModule.class })
+@Component(modules = { AndroidSupportInjectionModule.class, ApplicationModule.class, OwldroidModule.class, ViewModelModule.class, FragmentContributorModule.class, ReactFragmentContributorModule.class, ServiceContributorModule.class })
 public interface ApplicationComponent extends AndroidInjector<MainApplication> {
     @Override
     void inject(MainApplication mainApplication);
