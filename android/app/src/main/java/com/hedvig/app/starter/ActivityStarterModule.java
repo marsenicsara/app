@@ -31,7 +31,6 @@ class ActivityStarterModule extends ReactContextBaseJavaModule {
     @ReactMethod
     void navigateToOfferFromChat() {
         Activity activity = getReactApplicationContext().getCurrentActivity();
-        Timber.i("activityHunt findNavController will run: " + (activity != null));
         if (activity != null) {
             Navigation.findNavController(activity, com.hedvig.app.common.R.id.rootNavigationHost).navigate(com.hedvig.app.common.R.id.action_chatFragment_to_offerFragment);
         }
@@ -40,8 +39,7 @@ class ActivityStarterModule extends ReactContextBaseJavaModule {
     @ReactMethod
     void showOfferChatOverlay() {
         OfferChatOverlayFragment offerChatOverlayFragment = new OfferChatOverlayFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        offerChatOverlayFragment.show(fragmentManager, "OfferChatOverlay");
+        offerChatOverlayFragment.show(getFragmentManager(), "OfferChatOverlay");
     }
 
     @ReactMethod

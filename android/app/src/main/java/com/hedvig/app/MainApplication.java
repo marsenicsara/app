@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
@@ -125,6 +126,8 @@ public class MainApplication extends Application implements ReactApplication, Ha
         } else {
             Timber.plant(new CrashlyticsLogExceptionTree());
         }
+
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
     @Override

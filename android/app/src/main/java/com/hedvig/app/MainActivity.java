@@ -9,6 +9,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactFragmentActivity;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;

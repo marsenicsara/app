@@ -15,4 +15,7 @@ public abstract class ReactFragmentContributorModule {
 
     @ContributesAndroidInjector
     abstract MainActivity contributeReactTestActivity();
+
+    @ContributesAndroidInjector
+    abstract OfferChatOverlayFragment contributeOfferChatOverlayFragment();
 }
