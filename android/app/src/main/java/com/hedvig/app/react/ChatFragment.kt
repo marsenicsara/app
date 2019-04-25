@@ -13,6 +13,7 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
+import com.hedvig.app.utils.triggerRestart
 
 import dagger.android.support.AndroidSupportInjection
 

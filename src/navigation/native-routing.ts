@@ -60,28 +60,33 @@ export const setupNativeRouting = () => {
       }),
     );
   });
-
-  if (Platform.OS === 'android') {
-    if (logoutListener !== null) {
-      logoutListener.remove()
-    }
-    logoutListener = nativeRoutingEvents.addListener('NativeRoutingLogout', () => {
-      deleteToken();
-      Store.dispatch({ type: 'DELETE_TOKEN' })
-      Store.dispatch({ type: 'DELETE_TRACKING_ID' })
-      Store.dispatch({ type: 'AUTHENTICATE' })
-      AsyncStorage.multiRemove([
-        '@hedvig:alreadySeenMarketingCarousel',
-        '@hedvig:token'
-      ])
-        .then(() => client.clearStore())
-        .then(() => {
-          // @ts-ignore
-          Navigation.setRoot(getMarketingLayout());
-        })
-    });
-  }
 };
+
+export const setupAndroidNativeRouting = () => {
+  console.log("setupAndroidNativeRouting lool");
+
+  const nativeRoutingEvents = new NativeEventEmitter(
+    NativeModules.NativeRouting,
+  );
+
+  if (logoutListener !== null) {
+    logoutListener.remove()
+  }
+  logoutListener = nativeRoutingEvents.addListener('NativeRoutingLogout', () => {
+    deleteToken();
+    Store.dispatch({ type: 'DELETE_TOKEN' })
+    Store.dispatch({ type: 'DELETE_TRACKING_ID' })
+    Store.dispatch({ type: 'AUTHENTICATE' })
+    AsyncStorage.multiRemove([
+      '@hedvig:alreadySeenMarketingCarousel',
+      '@hedvig:token'
+    ])
+      .then(() => client.clearStore())
+      .then(() => {
+        NativeModules.ActivityStarter.restartApplication()
+      })
+  })
+}
 
 export const appHasLoaded = () => {
   NativeModules.NativeRouting.appHasLoaded();

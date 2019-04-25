@@ -1,23 +1,29 @@
 package com.hedvig.app.starter
 
-import android.app.Activity
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 
 import androidx.navigation.Navigation
 
-import com.facebook.react.ReactInstanceManager
-import com.facebook.react.ReactNativeHost
 import com.facebook.react.bridge.*
 import com.hedvig.android.owldroid.ui.dashboard.PerilBottomSheet
 import com.hedvig.android.owldroid.ui.dashboard.PerilIcon
 import com.hedvig.app.MainApplication
 import com.hedvig.app.react.OfferChatOverlayFragment
+import com.hedvig.app.utils.triggerRestart
+
 
 internal class ActivityStarterModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
     private val fragmentManager: FragmentManager
         get() = (reactApplicationContext.currentActivity as FragmentActivity).supportFragmentManager
+
+    private val navController by lazy {
+        reactApplicationContext.currentActivity?.let {
+            Navigation.findNavController(it, com.hedvig.app.common.R.id.rootNavigationHost)
+        }
+            ?: throw RuntimeException("Trying to reactApplicationContext.currentActivity but it is null")
+    }
 
     override fun getName(): String {
         return "ActivityStarter"
@@ -61,6 +67,10 @@ internal class ActivityStarterModule(reactContext: ReactApplicationContext) : Re
         PerilBottomSheet.newInstance(subject, PerilIcon.from(iconId), title, description)
             .show(fragmentManager, "perilSheet")
     }
+
+    @ReactMethod
+    fun restartApplication() =
+        reactApplicationContext.currentActivity?.triggerRestart()
 
     @ReactMethod
     fun getActivityName(callback: Callback) {

@@ -33,6 +33,7 @@ import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.hedvig.android.owldroid.graphql.LogoutMutation
 import com.hedvig.android.owldroid.util.extensions.localBroadcastManager
+import com.hedvig.android.owldroid.util.newBroadcastReceiver
 import com.hedvig.app.NativeRoutingModule
 import com.hedvig.app.R
 
@@ -57,6 +58,8 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
+
+    private var broadcastReceiver: BroadcastReceiver? = null
 
     override fun getTheme(): Int {
         return R.style.DialogTheme
@@ -134,21 +137,14 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
         )
     }
 
-    private fun loggedout() {
-        Timber.i("logged out >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-
-        val resetLogoutIntent = Intent(NativeRoutingModule.ON_BOARDING_INTENT_FILER)
-        resetLogoutIntent.putExtra("action", "logout")
-        Timber.i("OnBoardingBroadcastReceiver sendBroadcast")
-        localBroadcastManager.sendBroadcast(resetLogoutIntent)
-        dismiss()
-        Navigation.findNavController(requireActivity(), com.hedvig.app.common.R.id.rootNavigationHost).popBackStack()
-    }
+    private fun loggedout() =
+        localBroadcastManager.sendBroadcast(Intent(NativeRoutingModule.ON_BOARDING_INTENT_FILER).also {
+            it.putExtra("action", "logout")
+        })
 
     override fun onPause() {
         super.onPause()
         compositeDisposable.clear()
-        Timber.i("Pause!")
     }
 
     override fun onDestroy() {
