@@ -19,13 +19,15 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hedvig.android.owldroid.graphql.MemberIdQuery
 import com.hedvig.android.owldroid.ui.marketing.MarketingFragment
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
 
 import java.util.Date
 import java.util.HashMap
 
 import timber.log.Timber
 
-class NativeRoutingModule internal constructor(
+class NativeRoutingModule constructor(
     reactContext: ReactApplicationContext,
     private val apolloClient: ApolloClient
 ) : ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
@@ -35,14 +37,14 @@ class NativeRoutingModule internal constructor(
     private val profileBroadcastReceiver = ProfileBroadcastReceiver()
     private val onboardingBroadcastReceiver = OnBoardingBroadcastReceiver()
 
-    private val localBroadcastManager: LocalBroadcastManager
+    private val localBroadcastManager = LocalBroadcastManager.getInstance(reactContext)
 
     private val deviceEventEmitter: DeviceEventManagerModule.RCTDeviceEventEmitter
         get() = reactApplicationContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
 
-    init {
+    private val compositeDisposable = CompositeDisposable()
 
-        localBroadcastManager = LocalBroadcastManager.getInstance(reactContext)
+    init {
         reactContext.addLifecycleEventListener(this)
     }
 
@@ -87,14 +89,14 @@ class NativeRoutingModule internal constructor(
         }
 
         val memberIdQuery = MemberIdQuery()
-        val disposer =
+        compositeDisposable +=
             Rx2Apollo.from(apolloClient.query(memberIdQuery)).subscribe({ response ->
                 val data = response.data()
                 if (data == null) {
                     Timber.e("Data was null when trying to accredit referral")
                     return@subscribe
                 }
-                val member = data!!.member()
+                val member = data.member()
                 val memberId = member.id()
                 if (memberId == null) {
                     Timber.e("memberId was null when trying to accredit referral")
@@ -120,7 +122,7 @@ class NativeRoutingModule internal constructor(
                     .getInstance()
                     .collection("referrals")
                     .add(referralParameters)
-                    .addOnSuccessListener { document -> Timber.i("Successfully saved referral!") }
+                    .addOnSuccessListener { Timber.i("Successfully saved referral!") }
                     .addOnFailureListener { error -> Timber.e(error, "Failed to save referral") }
 
             }, { error -> Timber.e(error, "Failed to load memberId for referral") })

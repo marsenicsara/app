@@ -7,6 +7,7 @@ import android.support.v4.app.NotificationManagerCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import androidx.navigation.findNavController
 
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
@@ -14,6 +15,7 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.hedvig.android.owldroid.util.NavigationAnalytics
 import io.branch.rnbranch.RNBranchModule
 
 class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
@@ -65,6 +67,8 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.root_navigation_host)
+
+        findNavController(R.id.rootNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
 
         val application = application as MainApplication
         val reactNativeHost = application.reactNativeHost

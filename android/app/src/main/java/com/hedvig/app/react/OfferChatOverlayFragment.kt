@@ -104,7 +104,7 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
         closeDialogButton.setOnClickListener { v -> dismiss() }
 
         val resetButton = dialogView.findViewById<ImageView>(R.id.resetChatButton)
-        resetButton.setOnClickListener { v ->
+        resetButton.setOnClickListener {
             val dialog = Dialog(requireContext())
             val resetDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.reset_onboarding_dialog, null)
             dialog.window!!.setBackgroundDrawable(
@@ -116,8 +116,8 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
             dialog.setContentView(resetDialogView)
 
             resetDialogView.findViewById<View>(R.id.chatResetDialogNegativeButton)
-                .setOnClickListener { view -> dialog.dismiss() }
-            resetDialogView.findViewById<View>(R.id.chatResetDialogPositiveButton).setOnClickListener { view ->
+                .setOnClickListener { dialog.dismiss() }
+            resetDialogView.findViewById<View>(R.id.chatResetDialogPositiveButton).setOnClickListener {
                 dialog.dismiss()
                 logout()
             }
@@ -129,8 +129,8 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
     private fun logout() {
         compositeDisposable.add(
             Rx2Apollo.from(apolloClient.mutate(LogoutMutation())).subscribe(
-                { data -> loggedout() },
-                { e -> })
+                { loggedout() },
+                { Timber.e(it) })
         )
     }
 
