@@ -7,18 +7,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.facebook.react.ReactFragmentActivity;
+import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.devsupport.interfaces.DevOptionHandler;
 import com.facebook.react.devsupport.interfaces.DevSupportManager;
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import io.branch.rnbranch.RNBranchModule;
 
-public class MainActivity extends ReactFragmentActivity {
+public class MainActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
     @Override
     protected void onStart() {
         super.onStart();
@@ -69,6 +71,14 @@ public class MainActivity extends ReactFragmentActivity {
         super.onResume();
     }
 
+    private ReactInstanceManager getReactInstanceManager() {
+        return getReactNativeHost().getReactInstanceManager();
+    }
+
+    private ReactNativeHost getReactNativeHost() {
+        return ((ReactApplication) getApplication()).getReactNativeHost();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,5 +102,19 @@ public class MainActivity extends ReactFragmentActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getReactNativeHost().hasInstance()) {
+            getReactInstanceManager().onBackPressed();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void invokeDefaultOnBackPressed() {
+        super.onBackPressed();
     }
 }

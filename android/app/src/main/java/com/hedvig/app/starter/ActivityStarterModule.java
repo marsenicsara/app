@@ -15,8 +15,6 @@ import com.hedvig.android.owldroid.ui.dashboard.PerilIcon;
 import com.hedvig.app.MainApplication;
 import com.hedvig.app.react.OfferChatOverlayFragment;
 
-import timber.log.Timber;
-
 class ActivityStarterModule extends ReactContextBaseJavaModule {
 
     ActivityStarterModule(ReactApplicationContext reactContext) {
@@ -31,9 +29,24 @@ class ActivityStarterModule extends ReactContextBaseJavaModule {
     @ReactMethod
     void navigateToOfferFromChat() {
         Activity activity = getReactApplicationContext().getCurrentActivity();
-        Timber.i("activityHunt findNavController will run: " + (activity != null));
         if (activity != null) {
             Navigation.findNavController(activity, com.hedvig.app.common.R.id.rootNavigationHost).navigate(com.hedvig.app.common.R.id.action_chatFragment_to_offerFragment);
+        }
+    }
+
+    @ReactMethod
+    void navigateToChatFromOffer() {
+        Activity activity = getReactApplicationContext().getCurrentActivity();
+        if (activity != null) {
+            Navigation.findNavController(activity, com.hedvig.app.common.R.id.rootNavigationHost).navigate(com.hedvig.app.common.R.id.action_offerFragment_to_chatFragment);
+        }
+    }
+
+    @ReactMethod
+    void navigateToLoggedInFromChat() {
+        Activity activity = getReactApplicationContext().getCurrentActivity();
+        if (activity != null) {
+            Navigation.findNavController(activity, com.hedvig.app.common.R.id.rootNavigationHost).navigate(com.hedvig.app.common.R.id.action_chatFragment_to_logged_in_navigation);
         }
     }
 

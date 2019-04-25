@@ -21,7 +21,11 @@ const handleCheckout = function*() {
   const { intent } = conversation;
   yield put(chatActions.getMessages({ intent }));
 
-  Navigation.setRoot(getChatLayout());
+  if (Platform.OS === 'ios') {
+    Navigation.setRoot(getChatLayout());
+  } else {
+    NativeModules.ActivityStarter.navigateToChatFromOffer();
+  }
 
   userDidSign();
 
