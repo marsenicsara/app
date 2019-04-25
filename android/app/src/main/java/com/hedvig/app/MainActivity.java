@@ -26,31 +26,23 @@ public class MainActivity extends AppCompatActivity implements DefaultHardwareBa
         super.onStart();
         RNBranchModule.initSession(getIntent().getData(), this);
 
-        FirebaseDynamicLinks
-                .getInstance()
-                .getDynamicLink(getIntent())
-                .addOnSuccessListener(pendingDynamicLinkData -> {
-                    if (pendingDynamicLinkData != null && pendingDynamicLinkData.getLink() != null) {
-                        Uri link = pendingDynamicLinkData.getLink();
-                        String referee = link.getQueryParameter("memberId");
-                        String incentive = link.getQueryParameter("incentive");
-                        if (referee != null && incentive != null) {
-                            getSharedPreferences("referrals", Context.MODE_PRIVATE)
-                                    .edit()
-                                    .putString("referee", referee)
-                                    .putString("incentive", incentive)
-                                    .apply();
+        FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent()).addOnSuccessListener(pendingDynamicLinkData -> {
+            if (pendingDynamicLinkData != null && pendingDynamicLinkData.getLink() != null) {
+                Uri link = pendingDynamicLinkData.getLink();
+                String referee = link.getQueryParameter("memberId");
+                String incentive = link.getQueryParameter("incentive");
+                if (referee != null && incentive != null) {
+                    getSharedPreferences("referrals", Context.MODE_PRIVATE).edit().putString("referee", referee)
+                            .putString("incentive", incentive).apply();
 
-                            Bundle b = new Bundle();
-                            b.putString("invitedByMemberId", referee);
-                            b.putString("incentive", incentive);
+                    Bundle b = new Bundle();
+                    b.putString("invitedByMemberId", referee);
+                    b.putString("incentive", incentive);
 
-                            FirebaseAnalytics
-                                    .getInstance(this)
-                                    .logEvent("referrals_open", b);
-                        }
-                    }
-                });
+                    FirebaseAnalytics.getInstance(this).logEvent("referrals_open", b);
+                }
+            }
+        });
     }
 
     @Override

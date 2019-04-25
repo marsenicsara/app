@@ -53,8 +53,7 @@ class ActivityStarterModule extends ReactContextBaseJavaModule {
     @ReactMethod
     void showOfferChatOverlay() {
         OfferChatOverlayFragment offerChatOverlayFragment = new OfferChatOverlayFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        offerChatOverlayFragment.show(fragmentManager, "OfferChatOverlay");
+        offerChatOverlayFragment.show(getFragmentManager(), "OfferChatOverlay");
     }
 
     @ReactMethod

@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Pair;
 
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.rx2.Rx2Apollo;
@@ -26,20 +25,22 @@ import com.hedvig.android.owldroid.ui.marketing.MarketingFragment;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
 public class NativeRoutingModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
+
+    public static final String ON_BOARDING_INTENT_FILER = "on_boarding_intent_filter";
+
     private final ApolloClient apolloClient;
     private HashMap<String, String> componentIds2 = new HashMap<>();
 
     private final MarketingBroadcastReceiver marketingBroadcastReceiver = new MarketingBroadcastReceiver();
     private final ProfileBroadcastReceiver profileBroadcastReceiver = new ProfileBroadcastReceiver();
+    private final OnBoardingBroadcastReceiver onboardingBroadcastReceiver = new OnBoardingBroadcastReceiver();
 
     private LocalBroadcastManager localBroadcastManager;
 
@@ -60,12 +61,14 @@ public class NativeRoutingModule extends ReactContextBaseJavaModule implements L
     public void onHostResume() {
         localBroadcastManager.registerReceiver(marketingBroadcastReceiver, new IntentFilter("marketingResult"));
         localBroadcastManager.registerReceiver(profileBroadcastReceiver, new IntentFilter("profileNavigation"));
+        localBroadcastManager.registerReceiver(onboardingBroadcastReceiver, new IntentFilter(ON_BOARDING_INTENT_FILER));
     }
 
     @Override
     public void onHostPause() {
         localBroadcastManager.unregisterReceiver(marketingBroadcastReceiver);
         localBroadcastManager.unregisterReceiver(profileBroadcastReceiver);
+        localBroadcastManager.unregisterReceiver(onboardingBroadcastReceiver);
     }
 
     @Override
@@ -190,6 +193,17 @@ public class NativeRoutingModule extends ReactContextBaseJavaModule implements L
                     break;
                 }
                 default: break;
+            }
+        }
+    }
+
+    private class OnBoardingBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getStringExtra("action");
+            Timber.i("OnBoardingBroadcastReceiver onReceive " + action);
+            if ("logout".equals(action)) {
+                logout();
             }
         }
     }
