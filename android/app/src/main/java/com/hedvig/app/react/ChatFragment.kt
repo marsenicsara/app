@@ -21,10 +21,10 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
 
     private var mReactRootView: ReactRootView? = null
 
-    protected val reactNativeHost: ReactNativeHost
+    private val reactNativeHost: ReactNativeHost
         get() = (activity!!.application as ReactApplication).reactNativeHost
 
-    internal val reactInstanceManager: ReactInstanceManager
+    private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
 
     override fun onAttach(context: Context?) {

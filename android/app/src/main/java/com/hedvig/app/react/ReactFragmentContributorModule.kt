@@ -8,14 +8,14 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ReactFragmentContributorModule {
     @ContributesAndroidInjector
-    internal abstract fun contributeChatFragment(): ChatFragment
+    abstract fun contributeChatFragment(): ChatFragment
 
     @ContributesAndroidInjector
-    internal abstract fun contributeOfferFragment(): OfferFragment
+    abstract fun contributeOfferFragment(): OfferFragment
 
     @ContributesAndroidInjector
-    internal abstract fun contributeMainActivity(): MainActivity
+    abstract fun contributeMainActivity(): MainActivity
 
     @ContributesAndroidInjector
-    internal abstract fun contributeOfferChatOverlayFragment(): OfferChatOverlayFragment
+    abstract fun contributeOfferChatOverlayFragment(): OfferChatOverlayFragment
 }

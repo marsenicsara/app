@@ -9,7 +9,7 @@ import com.facebook.react.uimanager.ViewManager
 import java.util.Arrays
 import java.util.Collections
 
-class NativeRoutingPackage internal constructor(private val apolloClient: ApolloClient) : ReactPackage {
+class NativeRoutingPackage constructor(private val apolloClient: ApolloClient) : ReactPackage {
 
     override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
         return Arrays.asList<NativeModule>(NativeRoutingModule(reactContext, apolloClient))
