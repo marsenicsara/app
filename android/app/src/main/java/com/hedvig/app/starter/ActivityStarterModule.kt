@@ -1,7 +1,9 @@
 package com.hedvig.app.starter
 
+import android.content.Intent
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
+import android.support.v4.content.LocalBroadcastManager
 
 import androidx.navigation.Navigation
 
@@ -9,7 +11,7 @@ import com.facebook.react.bridge.*
 import com.hedvig.android.owldroid.ui.dashboard.PerilBottomSheet
 import com.hedvig.android.owldroid.ui.dashboard.PerilIcon
 import com.hedvig.app.MainApplication
-import com.hedvig.app.react.OfferChatOverlayFragment
+import com.hedvig.app.react.offer.OfferChatOverlayFragment
 import com.hedvig.app.utils.triggerRestart
 
 
@@ -18,11 +20,12 @@ internal class ActivityStarterModule(reactContext: ReactApplicationContext) : Re
     private val fragmentManager: FragmentManager
         get() = (reactApplicationContext.currentActivity as FragmentActivity).supportFragmentManager
 
+    private val localBroadcastManager = LocalBroadcastManager.getInstance(reactContext)
+
     private val navController by lazy {
         reactApplicationContext.currentActivity?.let {
             Navigation.findNavController(it, com.hedvig.app.common.R.id.rootNavigationHost)
-        }
-            ?: throw RuntimeException("Trying to reactApplicationContext.currentActivity but it is null")
+        } ?: throw RuntimeException("Trying to reactApplicationContext.currentActivity but it is null")
     }
 
     override fun getName(): String {
@@ -73,6 +76,10 @@ internal class ActivityStarterModule(reactContext: ReactApplicationContext) : Re
         reactApplicationContext.currentActivity?.triggerRestart()
 
     @ReactMethod
+    fun reloadChat() =
+        localBroadcastManager.sendBroadcast(Intent(BROADCAST_RELOAD_CHAT))
+
+    @ReactMethod
     fun getActivityName(callback: Callback) {
         val activity = currentActivity
         if (activity != null) {
@@ -109,5 +116,9 @@ internal class ActivityStarterModule(reactContext: ReactApplicationContext) : Re
                 catalystInstance.callFunction("JavaScriptVisibleToJava", "alert", params)
             }
         }
+    }
+
+    companion object {
+        const val BROADCAST_RELOAD_CHAT = "reloadChat"
     }
 }

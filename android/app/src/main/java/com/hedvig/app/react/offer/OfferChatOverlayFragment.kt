@@ -1,16 +1,13 @@
-package com.hedvig.app.react
+package com.hedvig.app.react.offer
 
 import android.app.Dialog
-import android.content.BroadcastReceiver
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.LocalBroadcastManager
 import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -21,45 +18,40 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
 
-import androidx.navigation.Navigation
-
-import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.rx2.Rx2Apollo
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
-import com.hedvig.android.owldroid.graphql.LogoutMutation
+import com.hedvig.android.owldroid.di.ViewModelFactory
 import com.hedvig.android.owldroid.util.extensions.localBroadcastManager
-import com.hedvig.android.owldroid.util.newBroadcastReceiver
 import com.hedvig.app.NativeRoutingModule
+import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_NAME_ACTION
+import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE_LOGOUT_AND_RESTART_APPLICATION
 import com.hedvig.app.R
+import com.hedvig.app.react.chat.ChatViewModel
+import com.hedvig.app.utils.showRestartDialog
 
 import javax.inject.Inject
 
 import dagger.android.support.AndroidSupportInjection
-import io.reactivex.disposables.CompositeDisposable
-import timber.log.Timber
 
 class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler {
 
     @Inject
-    lateinit var apolloClient: ApolloClient
+    lateinit var viewModelFactory: ViewModelFactory
 
+    private lateinit var chatViewModel: ChatViewModel
     lateinit var dialogView: ViewGroup
-    private var mReactRootView: ReactRootView? = null
 
-    private val compositeDisposable = CompositeDisposable()
+    private var mReactRootView: ReactRootView? = null
 
     private val reactNativeHost: ReactNativeHost
         get() = (requireActivity().application as ReactApplication).reactNativeHost
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
-
-    private var broadcastReceiver: BroadcastReceiver? = null
 
     override fun getTheme(): Int {
         return R.style.DialogTheme
@@ -70,10 +62,18 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
         AndroidSupportInjection.inject(this)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        chatViewModel = requireActivity().run {
+            ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
+        }
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = Dialog(activity!!)
+        val dialog = Dialog(requireContext())
         dialogView = LayoutInflater.from(activity).inflate(R.layout.offer_chat_overlay_dialog, null) as ViewGroup
-        dialog.window!!.requestFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(dialogView)
         return dialog
     }
@@ -86,11 +86,10 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
         wm.defaultDisplay.getMetrics(metrics)
         val heightPixels = metrics.heightPixels.toFloat()
 
-        val dialog = dialog
-        if (dialog != null) {
-            dialog.window!!.setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL)
-            dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, (heightPixels * 0.9f).toInt())
-            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        dialog?.window?.apply {
+            setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL)
+            setLayout(ViewGroup.LayoutParams.MATCH_PARENT, (heightPixels * 0.9f).toInt())
+            setBackgroundDrawable(ColorDrawable(Color.WHITE))
         }
     }
 
@@ -99,7 +98,7 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
 
         mReactRootView = ReactRootView(requireContext())
         mReactRootView!!.startReactApplication(reactInstanceManager, "OfferChat", arguments)
-        (dialogView.findViewById<View>(R.id.fragmentContainer) as FrameLayout).addView(mReactRootView)
+        (dialogView.findViewById<View>(R.id.reactViewContainer) as FrameLayout).addView(mReactRootView)
     }
 
     private fun setUpDialogTopBar(dialogView: ViewGroup) {
@@ -108,44 +107,16 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
 
         val resetButton = dialogView.findViewById<ImageView>(R.id.resetChatButton)
         resetButton.setOnClickListener {
-            val dialog = Dialog(requireContext())
-            val resetDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.reset_onboarding_dialog, null)
-            dialog.window!!.setBackgroundDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.dialog_background
-                )
-            )
-            dialog.setContentView(resetDialogView)
-
-            resetDialogView.findViewById<View>(R.id.chatResetDialogNegativeButton)
-                .setOnClickListener { dialog.dismiss() }
-            resetDialogView.findViewById<View>(R.id.chatResetDialogPositiveButton).setOnClickListener {
-                dialog.dismiss()
-                logout()
+            requireContext().showRestartDialog {
+                chatViewModel.logout { broadcastLogout() }
             }
-
-            dialog.show()
         }
     }
 
-    private fun logout() {
-        compositeDisposable.add(
-            Rx2Apollo.from(apolloClient.mutate(LogoutMutation())).subscribe(
-                { loggedout() },
-                { Timber.e(it) })
-        )
-    }
-
-    private fun loggedout() =
+    private fun broadcastLogout() =
         localBroadcastManager.sendBroadcast(Intent(NativeRoutingModule.ON_BOARDING_INTENT_FILER).also {
-            it.putExtra("action", "logout")
+            it.putExtra(NAVIGATE_ROUTING_EXTRA_NAME_ACTION, NAVIGATE_ROUTING_EXTRA_VALUE_LOGOUT_AND_RESTART_APPLICATION)
         })
-
-    override fun onPause() {
-        super.onPause()
-        compositeDisposable.clear()
-    }
 
     override fun onDestroy() {
         super.onDestroy()

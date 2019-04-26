@@ -1,8 +1,9 @@
-package com.hedvig.app.react
+package com.hedvig.app.react.offer
 
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,16 +14,18 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
-import com.hedvig.app.utils.triggerRestart
+
+import javax.inject.Inject
 
 import dagger.android.support.AndroidSupportInjection
+import timber.log.Timber
 
-class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
+class OfferFragment : Fragment(), DefaultHardwareBackBtnHandler {
 
     private var mReactRootView: ReactRootView? = null
 
     private val reactNativeHost: ReactNativeHost
-        get() = (activity!!.application as ReactApplication).reactNativeHost
+        get() = (requireActivity().application as ReactApplication).reactNativeHost
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
@@ -35,7 +38,7 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val reactRootView = ReactRootView(requireContext())
         mReactRootView = reactRootView
-        reactRootView.startReactApplication(reactInstanceManager, "Chat", arguments)
+        reactRootView.startReactApplication(reactInstanceManager, "Offer", arguments)
         return reactRootView
     }
 
@@ -52,8 +55,6 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
     }
 
     override fun invokeDefaultOnBackPressed() {
-        if (activity != null) {
-            activity!!.onBackPressed()
-        }
+        activity?.onBackPressed()
     }
 }

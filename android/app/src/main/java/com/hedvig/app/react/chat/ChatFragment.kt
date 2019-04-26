@@ -1,0 +1,114 @@
+package com.hedvig.app.react.chat
+
+import android.arch.lifecycle.ViewModelProviders
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+
+import com.facebook.react.ReactApplication
+import com.facebook.react.ReactInstanceManager
+import com.facebook.react.ReactNativeHost
+import com.facebook.react.ReactRootView
+import com.facebook.react.common.LifecycleState
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
+import com.hedvig.android.owldroid.di.ViewModelFactory
+import com.hedvig.android.owldroid.util.extensions.localBroadcastManager
+import com.hedvig.android.owldroid.util.extensions.view.remove
+import com.hedvig.android.owldroid.util.extensions.view.show
+import com.hedvig.android.owldroid.util.newBroadcastReceiver
+import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_NAME_ACTION
+import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE_RESTART_CHAT_ON_BOARDING
+import com.hedvig.app.NativeRoutingModule.Companion.ON_BOARDING_INTENT_FILER
+import com.hedvig.app.R
+import com.hedvig.app.starter.ActivityStarterModule.Companion.BROADCAST_RELOAD_CHAT
+import com.hedvig.app.utils.showRestartDialog
+
+import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_chat.*
+import kotlinx.android.synthetic.main.fragment_chat.view.*
+import javax.inject.Inject
+
+class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private lateinit var chatViewModel: ChatViewModel
+
+    private var reactRootView: ReactRootView? = null
+
+    private val reactNativeHost: ReactNativeHost
+        get() = (activity!!.application as ReactApplication).reactNativeHost
+
+    private val reactInstanceManager: ReactInstanceManager
+        get() = reactNativeHost.reactInstanceManager
+
+    private var broadcastReceiver: BroadcastReceiver? = null
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        chatViewModel = requireActivity().run {
+            ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel::class.java)
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_chat, null)
+        val reactRootView = ReactRootView(requireContext())
+        this.reactRootView = reactRootView
+        view.reactViewContainer.addView(this.reactRootView)
+        reactRootView.startReactApplication(reactInstanceManager, "Chat", arguments)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        resetChatButton.setOnClickListener {
+            requireContext().showRestartDialog {
+                loadingSpinner.show()
+                chatViewModel.logout { broadcastLogout() }
+            }
+        }
+    }
+
+    private fun broadcastLogout() {
+        broadcastReceiver = newBroadcastReceiver { _, _ ->
+            loadingSpinner.remove()
+        }.also { localBroadcastManager.registerReceiver(it, IntentFilter(BROADCAST_RELOAD_CHAT)) }
+
+        localBroadcastManager.sendBroadcast(Intent(ON_BOARDING_INTENT_FILER).also {
+            it.putExtra(NAVIGATE_ROUTING_EXTRA_NAME_ACTION, NAVIGATE_ROUTING_EXTRA_VALUE_RESTART_CHAT_ON_BOARDING)
+        })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (reactRootView != null) {
+            reactRootView!!.unmountReactApplication()
+            reactRootView = null
+        }
+        if (reactInstanceManager.lifecycleState != LifecycleState.RESUMED) {
+            reactInstanceManager.onHostDestroy(activity)
+            reactNativeHost.clear()
+        }
+    }
+
+    override fun invokeDefaultOnBackPressed() {
+        if (activity != null) {
+            activity!!.onBackPressed()
+        }
+    }
+}

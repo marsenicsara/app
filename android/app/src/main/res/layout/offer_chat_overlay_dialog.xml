@@ -15,12 +15,12 @@
 
         <ImageView
             android:id="@+id/closeChatDialog"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/chat_top_bar_button_size"
+            android:layout_height="@dimen/chat_top_bar_button_size"
             android:layout_marginStart="@dimen/base_margin_double"
             android:background="@drawable/circle_background"
             android:padding="@dimen/base_margin"
-            android:src="@mipmap/ic_expand" />
+            app:srcCompat="@mipmap/ic_expand" />
 
         <TextView
             style="@style/Headline.Medium.Negative"
@@ -36,17 +36,17 @@
 
         <ImageView
             android:id="@+id/resetChatButton"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/chat_top_bar_button_size"
+            android:layout_height="@dimen/chat_top_bar_button_size"
             android:layout_marginEnd="@dimen/base_margin_double"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/base_margin_half"
-            android:src="@mipmap/ic_restart_white" />
+            app:srcCompat="@mipmap/ic_restart_white" />
 
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/fragmentContainer"
+        android:id="@+id/reactViewContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

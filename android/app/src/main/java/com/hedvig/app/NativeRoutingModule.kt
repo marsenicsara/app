@@ -35,7 +35,7 @@ class NativeRoutingModule constructor(
 
     private val marketingBroadcastReceiver = MarketingBroadcastReceiver()
     private val profileBroadcastReceiver = ProfileBroadcastReceiver()
-    private val onboardingBroadcastReceiver = OnBoardingBroadcastReceiver()
+    private val onBoardingBroadcastReceiver = OnBoardingBroadcastReceiver()
 
     private val localBroadcastManager = LocalBroadcastManager.getInstance(reactContext)
 
@@ -55,13 +55,13 @@ class NativeRoutingModule constructor(
     override fun onHostResume() {
         localBroadcastManager.registerReceiver(marketingBroadcastReceiver, IntentFilter("marketingResult"))
         localBroadcastManager.registerReceiver(profileBroadcastReceiver, IntentFilter("profileNavigation"))
-        localBroadcastManager.registerReceiver(onboardingBroadcastReceiver, IntentFilter(ON_BOARDING_INTENT_FILER))
+        localBroadcastManager.registerReceiver(onBoardingBroadcastReceiver, IntentFilter(ON_BOARDING_INTENT_FILER))
     }
 
     override fun onHostPause() {
         localBroadcastManager.unregisterReceiver(marketingBroadcastReceiver)
         localBroadcastManager.unregisterReceiver(profileBroadcastReceiver)
-        localBroadcastManager.unregisterReceiver(onboardingBroadcastReceiver)
+        localBroadcastManager.unregisterReceiver(onBoardingBroadcastReceiver)
     }
 
     override fun onHostDestroy() {
@@ -149,6 +149,14 @@ class NativeRoutingModule constructor(
         deviceEventEmitter.emit("NativeRoutingLogout", null)
     }
 
+    private fun logoutAndRestartApplication() {
+        deviceEventEmitter.emit("NativeRoutingLogoutAndRestartApplication", null)
+    }
+
+    private fun restartChatOnBoarding() {
+        deviceEventEmitter.emit("NativeRoutingRestartChatOnBoarding", null)
+    }
+
     private inner class MarketingBroadcastReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             sendMarketingResult(intent.getSerializableExtra("type") as MarketingFragment.MarketingResult)
@@ -157,8 +165,7 @@ class NativeRoutingModule constructor(
 
     private inner class ProfileBroadcastReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            val action = intent.getStringExtra("action")
-            when (action) {
+            when (intent.getStringExtra(NAVIGATE_ROUTING_EXTRA_NAME_ACTION)) {
                 "clearDirectDebitStatus" -> {
                     clearDirectDebitStatus()
                 }
@@ -176,16 +183,20 @@ class NativeRoutingModule constructor(
 
     private inner class OnBoardingBroadcastReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            val action = intent.getStringExtra("action")
-            Timber.i("OnBoardingBroadcastReceiver onReceive $action")
-            if ("logout" == action) {
-                logout()
+            when (intent.getStringExtra(NAVIGATE_ROUTING_EXTRA_NAME_ACTION)) {
+                NAVIGATE_ROUTING_EXTRA_VALUE_LOGOUT_AND_RESTART_APPLICATION -> logoutAndRestartApplication()
+                NAVIGATE_ROUTING_EXTRA_VALUE_RESTART_CHAT_ON_BOARDING -> restartChatOnBoarding()
             }
         }
     }
 
     companion object {
 
-        val ON_BOARDING_INTENT_FILER = "on_boarding_intent_filter"
+        const val ON_BOARDING_INTENT_FILER = "on_boarding_intent_filter"
+
+        const val NAVIGATE_ROUTING_EXTRA_NAME_ACTION = "action"
+
+        const val NAVIGATE_ROUTING_EXTRA_VALUE_LOGOUT_AND_RESTART_APPLICATION = "logoutAndRestartApplication"
+        const val NAVIGATE_ROUTING_EXTRA_VALUE_RESTART_CHAT_ON_BOARDING = "restartChatOnBoarding"
     }
 }

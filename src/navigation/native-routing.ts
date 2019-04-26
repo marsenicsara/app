@@ -14,12 +14,13 @@ import { Store } from 'src/setupApp';
 import { chatActions } from 'hedvig-redux';
 import { client } from 'src/graphql/client';
 import { deleteToken } from 'src/graphql/context';
-import { getMarketingLayout } from './layouts/marketingLayout';
+import { ChatButton } from 'src/components/chat-button';
 
 let openFreeTextChatListener: EmitterSubscription | null = null;
 let clearDirectDebitStatusListener: EmitterSubscription | null = null;
 let marketingResultListener: EmitterSubscription | null = null;
-let logoutListener: EmitterSubscription | null = null;
+let logoutAndRestartApplicationListener: EmitterSubscription | null = null;
+let restartOnboardingChatListener: EmitterSubscription | null = null;
 
 export const setupNativeRouting = () => {
   const nativeRoutingEvents = new NativeEventEmitter(
@@ -63,28 +64,41 @@ export const setupNativeRouting = () => {
 };
 
 export const setupAndroidNativeRouting = () => {
-  console.log("setupAndroidNativeRouting lool");
-
   const nativeRoutingEvents = new NativeEventEmitter(
     NativeModules.NativeRouting,
   );
 
-  if (logoutListener !== null) {
-    logoutListener.remove()
+  if (logoutAndRestartApplicationListener !== null) {
+    logoutAndRestartApplicationListener.remove()
   }
-  logoutListener = nativeRoutingEvents.addListener('NativeRoutingLogout', () => {
+  if (restartOnboardingChatListener !== null) {
+    restartOnboardingChatListener.remove()
+  }
+
+  var logoutAndDeleteToken = async () => {
     deleteToken();
     Store.dispatch({ type: 'DELETE_TOKEN' })
     Store.dispatch({ type: 'DELETE_TRACKING_ID' })
     Store.dispatch({ type: 'AUTHENTICATE' })
-    AsyncStorage.multiRemove([
+    Store.dispatch(chatActions.resetConversation())
+
+    await AsyncStorage.multiRemove([
       '@hedvig:alreadySeenMarketingCarousel',
       '@hedvig:token'
-    ])
-      .then(() => client.clearStore())
-      .then(() => {
-        NativeModules.ActivityStarter.restartApplication()
-      })
+    ]);
+    return await client.clearStore();
+  }
+
+  restartOnboardingChatListener = nativeRoutingEvents.addListener('NativeRoutingRestartChatOnBoarding', () => {
+    logoutAndDeleteToken().then(() => {
+      NativeModules.ActivityStarter.reloadChat()
+    })
+  })
+
+  logoutAndRestartApplicationListener = nativeRoutingEvents.addListener('NativeRoutingLogoutAndRestartApplication', () => {
+    logoutAndDeleteToken().then(() => {
+      NativeModules.ActivityStarter.restartApplication()
+    })
   })
 }
 
