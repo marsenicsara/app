@@ -5,10 +5,12 @@ import android.content.Context
 import com.apollographql.apollo.Logger
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
+import com.hedvig.android.owldroid.util.apollo.ApolloTimberLogger
 import com.hedvig.android.owldroid.util.react.AsyncStorageNativeReader
 import dagger.Module
 import dagger.Provides
 import okhttp3.logging.HttpLoggingInterceptor
+import timber.log.Timber
 import java.io.File
 import javax.inject.Named
 
@@ -55,9 +57,19 @@ object ApplicationModule {
 
     @Provides
     @JvmStatic
-    fun apolloLogger(): Logger? = null
+    fun apolloLogger(): Logger? = if (BuildConfig.DEBUG) {
+        ApolloTimberLogger()
+    } else {
+        null
+    }
 
     @Provides
     @JvmStatic
-    fun httpLoggingInterceptor(): HttpLoggingInterceptor? = null
+    fun httpLoggingInterceptor(): HttpLoggingInterceptor? = if (BuildConfig.DEBUG) {
+        HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
+            Timber.tag("OkHttp").i(message)
+        }).setLevel(HttpLoggingInterceptor.Level.BODY)
+    } else {
+        null
+    }
 }
