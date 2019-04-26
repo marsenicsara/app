@@ -85,7 +85,6 @@ android {
 
 dependencies {
     implementation project(':react-native-document-picker')
-    //implementation project(':react-native-fast-image')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-fs')
     implementation project(':react-native-video')
@@ -102,7 +101,6 @@ dependencies {
     implementation project(':react-native-analytics-segment-io')
     implementation project(':lottie-react-native')
 
-    // React-Native-Navigation
     implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
 
     // Firebase
