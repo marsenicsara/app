@@ -18,6 +18,7 @@ import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.hedvig.android.owldroid.di.ViewModelFactory
+import com.hedvig.android.owldroid.ui.marketing.MarketingFragment
 import com.hedvig.android.owldroid.util.extensions.localBroadcastManager
 import com.hedvig.android.owldroid.util.extensions.view.remove
 import com.hedvig.android.owldroid.util.extensions.view.show
@@ -69,12 +70,24 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
         val reactRootView = ReactRootView(requireContext())
         this.reactRootView = reactRootView
         view.reactViewContainer.addView(this.reactRootView)
-        reactRootView.startReactApplication(reactInstanceManager, "Chat", arguments)
+        val reactArgs = Bundle().also {
+            it.putString(
+                ARGS_INTENT,
+                arguments?.getString(ARGS_INTENT) ?: MarketingFragment.MarketingResult.ONBOARD.toString()
+            )
+        }
+        reactRootView.startReactApplication(reactInstanceManager, "Chat", reactArgs)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        arguments?.getBoolean(ARGS_SHOW_RESTART)?.let { showRestart ->
+            if (showRestart) {
+                resetChatButton.show()
+            }
+        }
 
         resetChatButton.setOnClickListener {
             requireContext().showRestartDialog {
@@ -107,8 +120,11 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
     }
 
     override fun invokeDefaultOnBackPressed() {
-        if (activity != null) {
-            activity!!.onBackPressed()
-        }
+        activity?.onBackPressed()
+    }
+
+    companion object {
+        const val ARGS_INTENT = "intent"
+        const val ARGS_SHOW_RESTART = "show_restart"
     }
 }
