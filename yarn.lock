@@ -786,10 +786,10 @@
     react-lifecycles-compat "2.0.0"
     tslib "1.9.3"
 
-"@hedviginsurance/react-native@^0.57.41":
-  version "0.57.41"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native/-/react-native-0.57.41.tgz#39817f1f3d39f3f9f912af6d2438ee227525ed9d"
-  integrity sha512-G3rU3hDRJzadkzoANVwnGYqffw5YletzCWc1l4zuvkmTSSZ/0+dq0Ie5HxIE0ksDJYAjubxb1EnrSFAkIHbueA==
+"@hedviginsurance/react-native@^0.57.43":
+  version "0.57.43"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native/-/react-native-0.57.43.tgz#a4c1acd31e6e9d623211d53f927b37d933fa1be6"
+  integrity sha512-ZePhtoMfadjkGZBWGvgugXymGXcm1BcxFFiRfguAPp7/r0JO93U0zQRxlGg1XdnHQ8N+OFLW8CZCRSg3a49HMw==
   dependencies:
     "@babel/runtime" "^7.0.0"
     absolute-path "^0.0.0"
