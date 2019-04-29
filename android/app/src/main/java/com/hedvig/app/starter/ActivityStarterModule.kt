@@ -4,20 +4,16 @@ import android.content.Intent
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.support.v4.content.LocalBroadcastManager
-import androidx.navigation.NavDirections
 
 import androidx.navigation.Navigation
 
 import com.facebook.react.bridge.*
 import com.hedvig.android.owldroid.ui.dashboard.PerilBottomSheet
 import com.hedvig.android.owldroid.ui.dashboard.PerilIcon
-import com.hedvig.android.owldroid.ui.loggedin.LoggedInFragment
 import com.hedvig.app.MainApplication
 import com.hedvig.app.react.offer.OfferChatOverlayFragment
-import com.hedvig.app.utils.triggerRestart
-import androidx.navigation.NavOptions
-
-
+import com.hedvig.app.utils.setIsLoggedIn
+import com.hedvig.app.utils.triggerRestartCurrentActivity
 
 
 internal class ActivityStarterModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
@@ -59,6 +55,7 @@ internal class ActivityStarterModule(reactContext: ReactApplicationContext) : Re
     fun navigateToLoggedInFromChat() {
         val activity = reactApplicationContext.currentActivity
         if (activity != null) {
+            activity.setIsLoggedIn(true)
             navController
                 .navigate(com.hedvig.app.common.R.id.action_chatFragment_to_logged_in_navigation)
         }
@@ -78,7 +75,7 @@ internal class ActivityStarterModule(reactContext: ReactApplicationContext) : Re
 
     @ReactMethod
     fun restartApplication() =
-        reactApplicationContext.currentActivity?.triggerRestart()
+        reactApplicationContext.currentActivity?.triggerRestartCurrentActivity()
 
     @ReactMethod
     fun reloadChat() =

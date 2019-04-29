@@ -19,6 +19,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hedvig.android.owldroid.graphql.MemberIdQuery
 import com.hedvig.android.owldroid.ui.marketing.MarketingFragment
+import com.hedvig.app.utils.setIsLoggedIn
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 
@@ -173,7 +174,8 @@ class NativeRoutingModule constructor(
                     startChat()
                 }
                 "logout" -> {
-                    logout()
+                    context.setIsLoggedIn(false)
+                    logoutAndRestartApplication()
                 }
                 else -> {
                 }

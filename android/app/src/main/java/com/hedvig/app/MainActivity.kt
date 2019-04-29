@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
@@ -16,15 +17,11 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.android.owldroid.util.NavigationAnalytics
-import com.hedvig.android.owldroid.util.react.AsyncStorageNativeReader
-import dagger.android.AndroidInjection
+import com.hedvig.app.utils.isLoggedIn
 import io.branch.rnbranch.RNBranchModule
-import javax.inject.Inject
+import com.hedvig.app.common.R as CommonR
 
 class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
-
-    @Inject
-    lateinit var asyncStorageNativeReader: AsyncStorageNativeReader
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
@@ -72,7 +69,6 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidInjection.inject(this)
 
         val application = application as MainApplication
         val reactNativeHost = application.reactNativeHost
@@ -90,26 +86,19 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
             }
         }
 
-        val isLoggedIn = try {
-            asyncStorageNativeReader.getKey("@hedvig:token")
-            true
-        } catch (exception: Exception) {
-            false
+        setContentView(CommonR.layout.root_navigation_host)
+
+        val navHost = supportFragmentManager.findFragmentById(CommonR.id.rootNavigationHost) as NavHostFragment
+        val navController = navHost.navController
+
+        val graph = navController.navInflater.inflate(CommonR.navigation.root)
+
+        if (this.isLoggedIn()){
+            graph.startDestination = CommonR.id.logged_in_navigation
         }
+        navController.graph = graph
 
-        if (isLoggedIn) navigateToLoggedInScreen() else navigateToMarketing()
-    }
-
-    private fun navigateToLoggedInScreen() {
-        setContentView(R.layout.logged_in_navigation_host)
-
-        findNavController(R.id.loggedInNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
-    }
-
-    private fun navigateToMarketing() {
-        setContentView(R.layout.root_navigation_host)
-
-        findNavController(R.id.rootNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
+        findNavController(CommonR.id.rootNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
     }
 
     override fun onBackPressed() {

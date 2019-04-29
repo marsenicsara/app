@@ -34,5 +34,7 @@
             android:id="@+id/action_offerFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
     </fragment>
-    <include app:graph="@navigation/logged_in_navigation" />
+    <include
+
+        app:graph="@navigation/logged_in_navigation" />
 </navigation>
