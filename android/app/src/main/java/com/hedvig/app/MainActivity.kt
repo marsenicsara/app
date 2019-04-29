@@ -17,7 +17,7 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.android.owldroid.util.NavigationAnalytics
-import com.hedvig.app.utils.isLoggedIn
+import com.hedvig.android.owldroid.util.extensions.isLoggedIn
 import io.branch.rnbranch.RNBranchModule
 import com.hedvig.app.common.R as CommonR
 
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 
         val graph = navController.navInflater.inflate(CommonR.navigation.root)
 
-        if (this.isLoggedIn()){
+        if (applicationContext.isLoggedIn()) {
             graph.startDestination = CommonR.id.logged_in_navigation
         }
         navController.graph = graph

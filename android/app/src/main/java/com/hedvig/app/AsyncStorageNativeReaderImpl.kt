@@ -18,12 +18,13 @@ constructor(private val context: Context) : AsyncStorageNativeReader {
         var catalystLocalStorage: Cursor? = null
         try {
             readableDatabase = ReactDatabaseSupplier.getInstance(context).readableDatabase
-            catalystLocalStorage = readableDatabase!!.query(
+            catalystLocalStorage = readableDatabase.query(
                 "catalystLocalStorage",
                 arrayOf("key", "value"),
                 "key = ?",
                 arrayOf(key), null, null, null
             )
+
             return if (catalystLocalStorage!!.moveToFirst()) {
                 catalystLocalStorage.getString(catalystLocalStorage.getColumnIndex("value"))
             } else {
@@ -31,6 +32,17 @@ constructor(private val context: Context) : AsyncStorageNativeReader {
             }
         } finally {
             catalystLocalStorage?.close()
+            readableDatabase?.close()
+        }
+    }
+
+    override fun deleteKey(key: String) {
+        var readableDatabase: SQLiteDatabase? =
+            null
+        try {
+            readableDatabase = ReactDatabaseSupplier.getInstance(context).readableDatabase
+            readableDatabase?.delete("catalystLocalStorage", "key = ?", arrayOf(key))
+        } finally {
             readableDatabase?.close()
         }
     }

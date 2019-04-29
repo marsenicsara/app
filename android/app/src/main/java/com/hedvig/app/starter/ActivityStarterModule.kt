@@ -10,10 +10,10 @@ import androidx.navigation.Navigation
 import com.facebook.react.bridge.*
 import com.hedvig.android.owldroid.ui.dashboard.PerilBottomSheet
 import com.hedvig.android.owldroid.ui.dashboard.PerilIcon
+import com.hedvig.android.owldroid.util.extensions.setIsLoggedIn
+import com.hedvig.android.owldroid.util.extensions.triggerRestartCurrentActivity
 import com.hedvig.app.MainApplication
 import com.hedvig.app.react.offer.OfferChatOverlayFragment
-import com.hedvig.app.utils.setIsLoggedIn
-import com.hedvig.app.utils.triggerRestartCurrentActivity
 
 
 internal class ActivityStarterModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
@@ -55,7 +55,7 @@ internal class ActivityStarterModule(reactContext: ReactApplicationContext) : Re
     fun navigateToLoggedInFromChat() {
         val activity = reactApplicationContext.currentActivity
         if (activity != null) {
-            activity.setIsLoggedIn(true)
+            reactApplicationContext.setIsLoggedIn(true)
             navController
                 .navigate(com.hedvig.app.common.R.id.action_chatFragment_to_logged_in_navigation)
         }

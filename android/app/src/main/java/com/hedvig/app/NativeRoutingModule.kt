@@ -19,7 +19,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hedvig.android.owldroid.graphql.MemberIdQuery
 import com.hedvig.android.owldroid.ui.marketing.MarketingFragment
-import com.hedvig.app.utils.setIsLoggedIn
+import com.hedvig.android.owldroid.util.extensions.setIsLoggedIn
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 
@@ -138,18 +138,6 @@ class NativeRoutingModule constructor(
         deviceEventEmitter.emit("NativeRoutingMarketingResult", message)
     }
 
-    private fun clearDirectDebitStatus() {
-        deviceEventEmitter.emit("NativeRoutingClearDirectDebitStatus", null)
-    }
-
-    private fun startChat() {
-        deviceEventEmitter.emit("NativeRoutingOpenFreeTextChat", null)
-    }
-
-    private fun logout() {
-        deviceEventEmitter.emit("NativeRoutingLogout", null)
-    }
-
     private fun logoutAndRestartApplication() {
         deviceEventEmitter.emit("NativeRoutingLogoutAndRestartApplication", null)
     }
@@ -167,17 +155,8 @@ class NativeRoutingModule constructor(
     private inner class ProfileBroadcastReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.getStringExtra(NAVIGATE_ROUTING_EXTRA_NAME_ACTION)) {
-                "clearDirectDebitStatus" -> {
-                    clearDirectDebitStatus()
-                }
-                "chat" -> {
-                    startChat()
-                }
-                "logout" -> {
-                    context.setIsLoggedIn(false)
+                NAVIGATE_ROUTING_EXTRA_VALUE_LOGOUT_AND_RESTART_APPLICATION -> {
                     logoutAndRestartApplication()
-                }
-                else -> {
                 }
             }
         }
