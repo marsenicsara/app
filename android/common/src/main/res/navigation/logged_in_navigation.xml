@@ -125,7 +125,7 @@
 
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.hedvig.app.react.ChatFragment"
+        android:name="com.hedvig.app.react.chat.ChatFragment"
         android:label="ChatFragment"/>
 
     <fragment
@@ -135,7 +135,7 @@
 
         <action
             android:id="@+id/action_claimsCommonClaimFragment_to_chatFragment"
-            app:destination="@id/chatFragment"
+            app:destination="@+id/chatFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
