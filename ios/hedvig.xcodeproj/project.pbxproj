@@ -198,8 +198,28 @@
 		EB11EAFB2277047800D95365 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EA382277047700D95365 /* Icon.swift */; };
 		EB11EB012277047800D95365 /* Localization.json in Resources */ = {isa = PBXBuildFile; fileRef = EB11EA402277047700D95365 /* Localization.json */; };
 		EB11EB022277047800D95365 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EA412277047700D95365 /* Localization.swift */; };
-		EB11EB052277174B00D95365 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB042277174B00D95365 /* Dashboard.swift */; };
 		EB11EB072277209000D95365 /* HedvigFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB062277209000D95365 /* HedvigFonts.swift */; };
+		EB11EB1A227735E500D95365 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB09227735E500D95365 /* Countdown.swift */; };
+		EB11EB1B227735E500D95365 /* MyProtectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0A227735E500D95365 /* MyProtectionSection.swift */; };
+		EB11EB1C227735E500D95365 /* PaymentNeedsSetupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0B227735E500D95365 /* PaymentNeedsSetupSection.swift */; };
+		EB11EB1D227735E500D95365 /* ExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0C227735E500D95365 /* ExpandableRow.swift */; };
+		EB11EB1E227735E500D95365 /* MoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0D227735E500D95365 /* MoreInfo.swift */; };
+		EB11EB1F227735E500D95365 /* PendingInsuranceMoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0E227735E500D95365 /* PendingInsuranceMoreInfo.swift */; };
+		EB11EB20227735E500D95365 /* ChatActionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0F227735E500D95365 /* ChatActionsSection.swift */; };
+		EB11EB21227735E500D95365 /* PerilExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB10227735E500D95365 /* PerilExpandableRow.swift */; };
+		EB11EB22227735E500D95365 /* PerilCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB11227735E500D95365 /* PerilCollection.swift */; };
+		EB11EB23227735E500D95365 /* MoreInfoExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB12227735E500D95365 /* MoreInfoExpandableRow.swift */; };
+		EB11EB24227735E500D95365 /* Peril.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB13227735E500D95365 /* Peril.swift */; };
+		EB11EB25227735E500D95365 /* LargeIconTitleSubtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB14227735E500D95365 /* LargeIconTitleSubtitle.swift */; };
+		EB11EB26227735E500D95365 /* CountdownShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB15227735E500D95365 /* CountdownShapes.swift */; };
+		EB11EB27227735E500D95365 /* PerilInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB16227735E500D95365 /* PerilInformation.swift */; };
+		EB11EB28227735E500D95365 /* PendingInsurance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB17227735E500D95365 /* PendingInsurance.swift */; };
+		EB11EB29227735E600D95365 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB18227735E500D95365 /* Dashboard.swift */; };
+		EB11EB2A227735E600D95365 /* DashboardRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB19227735E500D95365 /* DashboardRouting.swift */; };
+		EB11EB2C2277360900D95365 /* MultilineLabelIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB2B2277360900D95365 /* MultilineLabelIcon.swift */; };
+		EB11EB2E2277382700D95365 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB2D2277382600D95365 /* Divider.swift */; };
+		EB11EB302277386600D95365 /* UIView+Flip.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB2F2277386600D95365 /* UIView+Flip.swift */; };
+		EB11EB322277388C00D95365 /* DateFormatter+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB312277388C00D95365 /* DateFormatter+ISO8601.swift */; };
 		EB265B1C221ADE14009DA493 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1B221ADE14009DA493 /* Chat.swift */; };
 		EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */; };
 		EB433C96221D49C1000156D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB433C95221D49C1000156D4 /* LaunchScreen.storyboard */; };
@@ -418,8 +438,28 @@
 		EB11EA382277047700D95365 /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		EB11EA402277047700D95365 /* Localization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Localization.json; sourceTree = "<group>"; };
 		EB11EA412277047700D95365 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
-		EB11EB042277174B00D95365 /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		EB11EB062277209000D95365 /* HedvigFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HedvigFonts.swift; path = Fonts/HedvigFonts.swift; sourceTree = "<group>"; };
+		EB11EB09227735E500D95365 /* Countdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
+		EB11EB0A227735E500D95365 /* MyProtectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProtectionSection.swift; sourceTree = "<group>"; };
+		EB11EB0B227735E500D95365 /* PaymentNeedsSetupSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentNeedsSetupSection.swift; sourceTree = "<group>"; };
+		EB11EB0C227735E500D95365 /* ExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableRow.swift; sourceTree = "<group>"; };
+		EB11EB0D227735E500D95365 /* MoreInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfo.swift; sourceTree = "<group>"; };
+		EB11EB0E227735E500D95365 /* PendingInsuranceMoreInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInsuranceMoreInfo.swift; sourceTree = "<group>"; };
+		EB11EB0F227735E500D95365 /* ChatActionsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatActionsSection.swift; sourceTree = "<group>"; };
+		EB11EB10227735E500D95365 /* PerilExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilExpandableRow.swift; sourceTree = "<group>"; };
+		EB11EB11227735E500D95365 /* PerilCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilCollection.swift; sourceTree = "<group>"; };
+		EB11EB12227735E500D95365 /* MoreInfoExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoExpandableRow.swift; sourceTree = "<group>"; };
+		EB11EB13227735E500D95365 /* Peril.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peril.swift; sourceTree = "<group>"; };
+		EB11EB14227735E500D95365 /* LargeIconTitleSubtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeIconTitleSubtitle.swift; sourceTree = "<group>"; };
+		EB11EB15227735E500D95365 /* CountdownShapes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownShapes.swift; sourceTree = "<group>"; };
+		EB11EB16227735E500D95365 /* PerilInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilInformation.swift; sourceTree = "<group>"; };
+		EB11EB17227735E500D95365 /* PendingInsurance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInsurance.swift; sourceTree = "<group>"; };
+		EB11EB18227735E500D95365 /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		EB11EB19227735E500D95365 /* DashboardRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardRouting.swift; sourceTree = "<group>"; };
+		EB11EB2B2277360900D95365 /* MultilineLabelIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineLabelIcon.swift; sourceTree = "<group>"; };
+		EB11EB2D2277382600D95365 /* Divider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
+		EB11EB2F2277386600D95365 /* UIView+Flip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Flip.swift"; sourceTree = "<group>"; };
+		EB11EB312277388C00D95365 /* DateFormatter+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ISO8601.swift"; sourceTree = "<group>"; };
 		EB265B1B221ADE14009DA493 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeRouting.swift; sourceTree = "<group>"; };
 		EB3A235521A57EE4007F52B6 /* hedvig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hedvig-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -501,7 +541,6 @@
 			children = (
 				EBECC1A621B811F400716BEA /* ugglan */,
 				EB3A235521A57EE4007F52B6 /* hedvig-Bridging-Header.h */,
-				EB11EB042277174B00D95365 /* Dashboard.swift */,
 				559CCAEF2121B3530080C272 /* debug.xcconfig */,
 				559CCAD6211F1AC10080C272 /* hedvig.entitlements */,
 				55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */,
@@ -665,6 +704,9 @@
 		EB11E9712277047700D95365 /* DashboardScreen */ = {
 			isa = PBXGroup;
 			children = (
+				EB11EB18227735E500D95365 /* Dashboard.swift */,
+				EB11EB19227735E500D95365 /* DashboardRouting.swift */,
+				EB11EB08227735E500D95365 /* Viewables */,
 			);
 			path = DashboardScreen;
 			sourceTree = "<group>";
@@ -964,8 +1006,10 @@
 		EB11E9CF2277047700D95365 /* Viewables */ = {
 			isa = PBXGroup;
 			children = (
+				EB11EB2D2277382600D95365 /* Divider.swift */,
 				EB11E9D02277047700D95365 /* BackgroundWithLabel.swift */,
 				EB11E9D12277047700D95365 /* MultilineLabel.swift */,
+				EB11EB2B2277360900D95365 /* MultilineLabelIcon.swift */,
 				EB11E9D22277047700D95365 /* CircleLabel.swift */,
 				EB11E9D32277047700D95365 /* DraggableOverlayHeader.swift */,
 				EB11E9D42277047700D95365 /* ButtonSection.swift */,
@@ -988,6 +1032,7 @@
 		EB11E9E32277047700D95365 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EB11EB312277388C00D95365 /* DateFormatter+ISO8601.swift */,
 				EB11E9E42277047700D95365 /* UIWebView+Signal.swift */,
 				EB11E9E52277047700D95365 /* Callbacker+Signal.swift */,
 				EB11E9E62277047700D95365 /* Result+Success.swift */,
@@ -1022,6 +1067,7 @@
 		EB11E9EB2277047700D95365 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				EB11EB2F2277386600D95365 /* UIView+Flip.swift */,
 				EB11E9EC2277047700D95365 /* UIView+RadiusMask.swift */,
 				EB11E9ED2277047700D95365 /* UIView+Viewable.swift */,
 				EB11E9EE2277047700D95365 /* UIView+addConstraint.swift */,
@@ -1138,6 +1184,28 @@
 				EB11EA412277047700D95365 /* Localization.swift */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		EB11EB08227735E500D95365 /* Viewables */ = {
+			isa = PBXGroup;
+			children = (
+				EB11EB09227735E500D95365 /* Countdown.swift */,
+				EB11EB0A227735E500D95365 /* MyProtectionSection.swift */,
+				EB11EB0B227735E500D95365 /* PaymentNeedsSetupSection.swift */,
+				EB11EB0C227735E500D95365 /* ExpandableRow.swift */,
+				EB11EB0D227735E500D95365 /* MoreInfo.swift */,
+				EB11EB0E227735E500D95365 /* PendingInsuranceMoreInfo.swift */,
+				EB11EB0F227735E500D95365 /* ChatActionsSection.swift */,
+				EB11EB10227735E500D95365 /* PerilExpandableRow.swift */,
+				EB11EB11227735E500D95365 /* PerilCollection.swift */,
+				EB11EB12227735E500D95365 /* MoreInfoExpandableRow.swift */,
+				EB11EB13227735E500D95365 /* Peril.swift */,
+				EB11EB14227735E500D95365 /* LargeIconTitleSubtitle.swift */,
+				EB11EB15227735E500D95365 /* CountdownShapes.swift */,
+				EB11EB16227735E500D95365 /* PerilInformation.swift */,
+				EB11EB17227735E500D95365 /* PendingInsurance.swift */,
+			);
+			path = Viewables;
 			sourceTree = "<group>";
 		};
 		EBECC1A621B811F400716BEA /* ugglan */ = {
@@ -1342,12 +1410,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB11EA572277047700D95365 /* MarketingStoryIndicatorCell.swift in Sources */,
+				EB11EB1E227735E500D95365 /* MoreInfo.swift in Sources */,
 				EB11EA892277047700D95365 /* CharityLogo.swift in Sources */,
+				EB11EB2C2277360900D95365 /* MultilineLabelIcon.swift in Sources */,
 				EB11EAE12277047800D95365 /* ApolloContainer.swift in Sources */,
 				EB11EAFB2277047800D95365 /* Icon.swift in Sources */,
+				EB11EB1F227735E500D95365 /* PendingInsuranceMoreInfo.swift in Sources */,
+				EB11EB2A227735E600D95365 /* DashboardRouting.swift in Sources */,
 				EB11EA6F2277047700D95365 /* MyInfo.swift in Sources */,
+				EB11EB1A227735E500D95365 /* Countdown.swift in Sources */,
 				EB11EA942277047700D95365 /* Licenses.swift in Sources */,
 				EB11EAD52277047700D95365 /* Viewable.swift in Sources */,
+				EB11EB302277386600D95365 /* UIView+Flip.swift in Sources */,
 				EB11EA612277047700D95365 /* MyCoinsuredRow.swift in Sources */,
 				EB11EACD2277047700D95365 /* UIColor+Image.swift in Sources */,
 				EB11EA972277047700D95365 /* CoinsuredComingSoonText.swift in Sources */,
@@ -1358,6 +1432,7 @@
 				EB11EA542277047700D95365 /* LoadingIndicator.swift in Sources */,
 				EB11EAB52277047700D95365 /* SectionView+Viewable.swift in Sources */,
 				EB11EAC42277047700D95365 /* WKWebView+OpenBankId.swift in Sources */,
+				EB11EB26227735E500D95365 /* CountdownShapes.swift in Sources */,
 				EB11EA502277047700D95365 /* SayHello.swift in Sources */,
 				EB11EA802277047700D95365 /* DirectDebitSetup.swift in Sources */,
 				EB11EAA42277047700D95365 /* IconRow.swift in Sources */,
@@ -1370,8 +1445,10 @@
 				EB11EA5D2277047700D95365 /* FeedbackRow.swift in Sources */,
 				EB11EAD82277047800D95365 /* CellForRow.swift in Sources */,
 				EB11EA782277047700D95365 /* ReferralsIllustration.swift in Sources */,
+				EB11EB2E2277382700D95365 /* Divider.swift in Sources */,
 				EB11EACE2277047700D95365 /* TextStyle.swift in Sources */,
 				EB11EA512277047700D95365 /* End.swift in Sources */,
+				EB11EB27227735E500D95365 /* PerilInformation.swift in Sources */,
 				EB11EAD22277047700D95365 /* FieldStyle.swift in Sources */,
 				EB11EA932277047700D95365 /* License.swift in Sources */,
 				EB11EADD2277047800D95365 /* SharedElement.swift in Sources */,
@@ -1415,13 +1492,16 @@
 				EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */,
 				EB11EACA2277047700D95365 /* CollectionKit+ScrollTo.swift in Sources */,
 				B56386491DB9693800A0598C /* AppDelegate.swift in Sources */,
+				EB11EB22227735E500D95365 /* PerilCollection.swift in Sources */,
 				EB11EAAF2277047700D95365 /* DynamicString.swift in Sources */,
 				EB11EB072277209000D95365 /* HedvigFonts.swift in Sources */,
 				EB11EA8C2277047700D95365 /* CharityPicker.swift in Sources */,
+				EB11EB1C227735E500D95365 /* PaymentNeedsSetupSection.swift in Sources */,
 				EB11EAB82277047700D95365 /* UIView+Viewable.swift in Sources */,
 				EB11EABE2277047700D95365 /* LocalizationKey+String.swift in Sources */,
 				EBECC26621B9230000716BEA /* NativeRouting.swift in Sources */,
 				EB11EAB12277047700D95365 /* Callbacker+Signal.swift in Sources */,
+				EB11EB29227735E600D95365 /* Dashboard.swift in Sources */,
 				EB11EAA02277047700D95365 /* DraggableOverlayHeader.swift in Sources */,
 				EB11EAC72277047700D95365 /* FormView+Viewable.swift in Sources */,
 				EB11EA5B2277047700D95365 /* DraggableOverlay.swift in Sources */,
@@ -1435,12 +1515,15 @@
 				EB11EAC12277047700D95365 /* Disposable+Array.swift in Sources */,
 				EB11EA692277047700D95365 /* Profile.swift in Sources */,
 				EB11EA862277047700D95365 /* CharityInformationButton.swift in Sources */,
+				EB11EB20227735E500D95365 /* ChatActionsSection.swift in Sources */,
 				EB11EA582277047700D95365 /* MarketingStory.swift in Sources */,
+				EB11EB28227735E500D95365 /* PendingInsurance.swift in Sources */,
 				EB11EAD42277047700D95365 /* ActivityView.swift in Sources */,
 				EB11EA922277047700D95365 /* About.swift in Sources */,
 				EB11EA912277047700D95365 /* LicensesRow.swift in Sources */,
 				EB11EAB02277047700D95365 /* UIWebView+Signal.swift in Sources */,
 				EB11EA762277047700D95365 /* ReferralsOffer.swift in Sources */,
+				EB11EB21227735E500D95365 /* PerilExpandableRow.swift in Sources */,
 				EB11EA7A2277047700D95365 /* DeductibleCircle.swift in Sources */,
 				EB11EAE02277047800D95365 /* RemoteConfigContainer.swift in Sources */,
 				EB11EAD62277047800D95365 /* CenterAllStackView.swift in Sources */,
@@ -1459,6 +1542,7 @@
 				EB11EAE22277047800D95365 /* AuthorizationToken.swift in Sources */,
 				EB11EA952277047700D95365 /* InsuranceCertificate.swift in Sources */,
 				EB11EA7F2277047700D95365 /* MyPayment.swift in Sources */,
+				EB11EB322277388C00D95365 /* DateFormatter+ISO8601.swift in Sources */,
 				EBECC26821B92E4800716BEA /* NativeRouting.m in Sources */,
 				EB11EA7B2277047700D95365 /* MonthlyPaymentCircle.swift in Sources */,
 				EB11EA4C2277047700D95365 /* NewMemberButton.swift in Sources */,
@@ -1471,6 +1555,7 @@
 				EB11EA522277047700D95365 /* Stories.swift in Sources */,
 				EB11EA592277047700D95365 /* MarketingStoryIndicator.swift in Sources */,
 				EB11EA6D2277047700D95365 /* NameCircle.swift in Sources */,
+				EB11EB23227735E500D95365 /* MoreInfoExpandableRow.swift in Sources */,
 				EB11EA722277047700D95365 /* FeedbackHeader.swift in Sources */,
 				EB11EA452277047700D95365 /* Launch.swift in Sources */,
 				EB11EA872277047700D95365 /* CharityInformationBody.swift in Sources */,
@@ -1478,10 +1563,10 @@
 				EB11EAD72277047800D95365 /* TranslationsRepo.swift in Sources */,
 				EB11EA9E2277047700D95365 /* MultilineLabel.swift in Sources */,
 				EB11EA562277047700D95365 /* SkipToPreviousButton.swift in Sources */,
+				EB11EB24227735E500D95365 /* Peril.swift in Sources */,
 				EB11EA622277047700D95365 /* MyCharityRow.swift in Sources */,
 				EB11EAC52277047700D95365 /* ApolloStore+Update.swift in Sources */,
 				EB11EAC92277047700D95365 /* WKWebView+Signal.swift in Sources */,
-				EB11EB052277174B00D95365 /* Dashboard.swift in Sources */,
 				EB11EA6B2277047700D95365 /* PhoneNumberRow.swift in Sources */,
 				EB11EAB42277047700D95365 /* ApolloClient+Flow.swift in Sources */,
 				EB11EAB22277047700D95365 /* Result+Success.swift in Sources */,
@@ -1490,6 +1575,7 @@
 				EB11EAA82277047700D95365 /* CachedImage.swift in Sources */,
 				EB11EA632277047700D95365 /* AboutRow.swift in Sources */,
 				EB11EA682277047700D95365 /* HomeRow.swift in Sources */,
+				EB11EB1B227735E500D95365 /* MyProtectionSection.swift in Sources */,
 				EB11EADC2277047800D95365 /* AnimationStyle.swift in Sources */,
 				EB11EA752277047700D95365 /* Referrals.swift in Sources */,
 				EB11EABA2277047700D95365 /* UIView+RelativeFrame.swift in Sources */,
@@ -1504,11 +1590,13 @@
 				EB11EACF2277047700D95365 /* TableViewFormStyle.swift in Sources */,
 				EB11EA702277047700D95365 /* MyInfoState.swift in Sources */,
 				EB11EAA52277047700D95365 /* Spacing.swift in Sources */,
+				EB11EB1D227735E500D95365 /* ExpandableRow.swift in Sources */,
 				EB11EAB32277047700D95365 /* SignalProvider+LazyBindTo.swift in Sources */,
 				EB11EA5E2277047700D95365 /* ProfileSection.swift in Sources */,
 				EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */,
 				EB11EA462277047700D95365 /* MarketingPresentationStyle.swift in Sources */,
 				EB11EA742277047700D95365 /* Feedback.swift in Sources */,
+				EB11EB25227735E500D95365 /* LargeIconTitleSubtitle.swift in Sources */,
 				EB11EA4B2277047700D95365 /* MemberActionButtons.swift in Sources */,
 				EB11EAAE2277047700D95365 /* MailView.swift in Sources */,
 			);
