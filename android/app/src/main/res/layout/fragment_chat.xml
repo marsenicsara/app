@@ -29,7 +29,7 @@
             android:layout_height="@dimen/chat_top_bar_button_size"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="@dimen/base_margin_double"
-            android:background="?attr/selectableItemBackground"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="@dimen/base_margin_half"
             android:visibility="gone"
             tools:visibility="visible"
