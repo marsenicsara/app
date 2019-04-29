@@ -1,20 +1,19 @@
 package com.hedvig.app.starter
 
+import com.apollographql.apollo.ApolloClient
 import com.facebook.react.ReactPackage
-import com.facebook.react.bridge.JavaScriptModule
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewManager
-
 import java.util.ArrayList
-import java.util.Collections
 
-class ActivityStarterReactPackage : ReactPackage {
+class ActivityStarterReactPackage(private val apolloClient: ApolloClient) : ReactPackage {
 
-    override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
+    override fun createNativeModules(
+        reactContext: ReactApplicationContext
+    ): List<NativeModule> {
         val modules = ArrayList<NativeModule>()
-        modules.add(ActivityStarterModule(reactContext))
-        //        modules.add(new EventEmitterModule(reactContext));
+        modules.add(ActivityStarterModule(reactContext, apolloClient))
         return modules
     }
 

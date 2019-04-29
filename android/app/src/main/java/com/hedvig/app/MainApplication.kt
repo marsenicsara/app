@@ -27,7 +27,6 @@ import com.rnfs.RNFSPackage
 import com.rnim.rn.audio.ReactNativeAudioPackage
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 import com.zmxv.RNSound.RNSoundPackage
-import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.HasServiceInjector
@@ -40,7 +39,8 @@ import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainApplication : Application(), ReactApplication, HasActivityInjector, HasSupportFragmentInjector, HasServiceInjector {
+class MainApplication : Application(), ReactApplication, HasActivityInjector, HasSupportFragmentInjector,
+    HasServiceInjector {
 
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
@@ -58,7 +58,7 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
         override fun getUseDeveloperSupport() = BuildConfig.DEBUG
 
         override fun getPackages() = listOf(
-            ActivityStarterReactPackage(),
+            ActivityStarterReactPackage(apolloClient),
             MainReactPackage(),
             ReactNativeDocumentPicker(),
             ImagePickerPackage(),
