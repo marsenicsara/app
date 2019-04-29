@@ -16,9 +16,15 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.android.owldroid.util.NavigationAnalytics
+import com.hedvig.android.owldroid.util.react.AsyncStorageNativeReader
+import dagger.android.AndroidInjection
 import io.branch.rnbranch.RNBranchModule
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
+
+    @Inject
+    lateinit var asyncStorageNativeReader: AsyncStorageNativeReader
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
@@ -66,9 +72,7 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.root_navigation_host)
-
-        findNavController(R.id.rootNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
+        AndroidInjection.inject(this)
 
         val application = application as MainApplication
         val reactNativeHost = application.reactNativeHost
@@ -85,6 +89,27 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
                 dialog.show()
             }
         }
+
+        val isLoggedIn = try {
+            asyncStorageNativeReader.getKey("@hedvig:token")
+            true
+        } catch (exception: Exception) {
+            false
+        }
+
+        if (isLoggedIn) navigateToLoggedInScreen() else navigateToMarketing()
+    }
+
+    private fun navigateToLoggedInScreen() {
+        setContentView(R.layout.logged_in_navigation_host)
+
+        findNavController(R.id.loggedInNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
+    }
+
+    private fun navigateToMarketing() {
+        setContentView(R.layout.root_navigation_host)
+
+        findNavController(R.id.rootNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
     }
 
     override fun onBackPressed() {

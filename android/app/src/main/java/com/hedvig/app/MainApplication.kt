@@ -1,5 +1,6 @@
 package com.hedvig.app
 
+import android.app.Activity
 import android.app.Application
 import android.app.Service
 import android.content.Context
@@ -26,7 +27,9 @@ import com.rnfs.RNFSPackage
 import com.rnim.rn.audio.ReactNativeAudioPackage
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 import com.zmxv.RNSound.RNSoundPackage
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import dagger.android.HasServiceInjector
 import dagger.android.support.HasSupportFragmentInjector
 import io.branch.referral.Branch
@@ -37,7 +40,10 @@ import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainApplication : Application(), ReactApplication, HasSupportFragmentInjector, HasServiceInjector {
+class MainApplication : Application(), ReactApplication, HasActivityInjector, HasSupportFragmentInjector, HasServiceInjector {
+
+    @Inject
+    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
@@ -103,6 +109,7 @@ class MainApplication : Application(), ReactApplication, HasSupportFragmentInjec
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
 
+    override fun activityInjector() = activityInjector
     override fun supportFragmentInjector() = fragmentInjector
     override fun serviceInjector() = serviceInjector
 }
