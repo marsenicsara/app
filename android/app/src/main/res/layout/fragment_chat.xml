@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -14,13 +15,15 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:contentDescription="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/hedvig_logo_margin_top"
-            app:srcCompat="@drawable/ic_hedvig_wordmark" />
+            app:srcCompat="@drawable/ic_hedvig_wordmark"/>
 
         <ImageView
+            android:contentDescription="@string/CHAT_RESTART_CONTENT_DESCRIPTION"
             android:id="@+id/resetChatButton"
             android:layout_width="@dimen/chat_top_bar_button_size"
             android:layout_height="@dimen/chat_top_bar_button_size"
@@ -28,7 +31,9 @@
             android:layout_marginEnd="@dimen/base_margin_double"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/base_margin_half"
-            app:srcCompat="@drawable/ic_restart_gray" />
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:srcCompat="@drawable/ic_restart_gray"/>
 
     </FrameLayout>
 
@@ -40,7 +45,7 @@
         <FrameLayout
             android:id="@+id/reactViewContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
         <include
             android:id="@+id/loadingSpinner"
@@ -48,6 +53,6 @@
             android:layout_width="@dimen/loading_spinner_height"
             android:layout_height="@dimen/loading_spinner_height"
             android:layout_gravity="center"
-            android:visibility="gone" />
+            android:visibility="gone"/>
     </FrameLayout>
 </LinearLayout>
