@@ -18,6 +18,15 @@
             app:popUpTo="@+id/loggedInFragment"/>
 
         <action
+            android:id="@+id/action_loggedInFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/loggedInFragment"/>
+
+        <action
             android:id="@+id/action_loggedInFragment_to_commonClaimsFragment"
             app:destination="@+id/claimsCommonClaimFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -34,7 +43,6 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@+id/loggedInFragment"/>
-
 
         <action
             android:id="@+id/action_loggedInFragment_to_referralFragment"
@@ -116,14 +124,41 @@
         android:label="TrustlyFragment"/>
 
     <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.hedvig.app.react.ChatFragment"
+        android:label="ChatFragment"/>
+
+    <fragment
         android:id="@+id/claimsCommonClaimFragment"
         android:name="com.hedvig.android.owldroid.ui.claims.commonclaim.CommonClaimFragment"
-        android:label="QuickActionFragment"/>
+        android:label="QuickActionFragment">
+
+        <action
+            android:id="@+id/action_claimsCommonClaimFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/claimsCommonClaimFragment"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/claimsEmergencyFragment"
         android:name="com.hedvig.android.owldroid.ui.claims.commonclaim.EmergencyFragment"
-        android:label="QuickActionFragment"/>
+        android:label="QuickActionFragment">
+
+        <action
+            android:id="@+id/action_claimsEmergencyFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/claimsEmergencyFragment"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/referralFragment"
@@ -138,7 +173,18 @@
     <fragment
         android:id="@+id/myHomeFragment"
         android:name="com.hedvig.android.owldroid.ui.profile.myhome.MyHomeFragment"
-        android:label="MyHomeFragment"/>
+        android:label="MyHomeFragment">
+
+        <action
+            android:id="@+id/action_myHomeFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/myHomeFragment"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/coinsuredFragment"
