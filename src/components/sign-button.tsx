@@ -15,6 +15,7 @@ import { Container, ActionMap } from 'constate';
 import { fonts, colors } from '@hedviginsurance/brand';
 import { AndroidOfferState } from 'src/features/new-offer/components/android-offer-state';
 import { Update } from 'react-lifecycle-components';
+import { TranslationsConsumer } from './translations/consumer';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
@@ -69,7 +70,13 @@ const ButtonView: React.SFC<{ onClick: () => void }> = ({ onClick }) => (
   <ButtonContainer
     onPress={onClick}
   >
-    <TextContainer>Signera</TextContainer>
+    <TranslationsConsumer textKey={"OFFER_BANKID_SIGN_BUTTON"}>
+      {(text) => (
+        <TextContainer>
+          {text}
+        </TextContainer>
+      )}
+    </TranslationsConsumer>
     <BankID width={15} height={15} />
   </ButtonContainer>
 )
