@@ -18,6 +18,9 @@ const handleNotificationOpened = (notificationOpen) => {
 };
 
 export const setupPushNotifications = () => {
+  if (Platform.OS === 'android') {
+    return;
+  }
   const handleNotification = (notification) => {
     const state = Store.getState();
     Store.dispatch(

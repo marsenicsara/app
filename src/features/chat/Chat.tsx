@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { View, AppState } from 'react-native';
+import { View, AppState, NativeModules, Platform } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
 import { Container, EffectMap, EffectProps } from 'constate';
@@ -24,7 +24,6 @@ import {
 
 import { Message } from './types';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
-import { BackButton } from 'src/components/BackButton';
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 import { PixelRatio } from 'react-native';
 
@@ -127,6 +126,10 @@ const getNavigationOptions = (
 };
 
 const showOffer = async (componentId: string) => {
+  if (Platform.OS === "android") {
+    NativeModules.ActivityStarter.navigateToOfferFromChat()
+    return;
+  }
   Navigation.push(componentId, NEW_OFFER_SCREEN);
 };
 
