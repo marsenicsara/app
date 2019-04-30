@@ -24,13 +24,15 @@ export const CheckoutComp: React.SFC<CheckoutProps> = ({
 }) => (
     <>
       <Mount on={() => trackOfferOpen(monthlyCost, orderId)}>{null}</Mount>
-      {Platform.OS === 'ios' ? (<NavigationEvents
-        onGlobalEvent={(event: { id: string }) => {
-          if (event.id === 'SignButtonPressed') {
-            checkout();
-          }
-        }}
-      />) : (
+      {Platform.OS === 'ios' ? (
+        <NavigationEvents
+          onGlobalEvent={(event: { id: string }) => {
+            if (event.id === 'SignButtonPressed') {
+              checkout();
+            }
+          }}
+        />
+      ) : (
           <AndroidOfferState>
             {({ isCheckingOut, setIsCheckingOut }) => (
               <Update<boolean>
