@@ -36,8 +36,11 @@ const handleCheckout = function*() {
       currency: 'SEK',
     });
   } else {
-    // TODO Pass this down to our native code where we track it ourselves
-    //NativeModules.
+    NativeModules.ActivityStarter.logEvent('ecommerce_purchase', {
+      transaction_id: analytics.orderId,
+      value: insurance.currentTotalPrice,
+      currency: 'SEK',
+    });
   }
 
   yield put({
