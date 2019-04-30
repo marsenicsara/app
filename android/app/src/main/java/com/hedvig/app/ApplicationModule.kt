@@ -53,7 +53,7 @@ object ApplicationModule {
     @Provides
     @JvmStatic
     @Named("BASE_URL")
-    fun baseUrl() = "https://graphql.dev.hedvigit.com" // TODO Fix this
+    fun baseUrl() = BuildConfig.BASE_URL
 
     @Provides
     @JvmStatic
