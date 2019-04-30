@@ -79,7 +79,7 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
             NativeRoutingPackage(apolloClient)
         )
 
-        override fun getJSMainModuleName() = "androidtest"
+        override fun getJSMainModuleName() = "index.android"
     }
 
     override fun attachBaseContext(base: Context) {
