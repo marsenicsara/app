@@ -196,7 +196,6 @@
 		EB11EAF92277047800D95365 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB11EA352277047700D95365 /* Assets.xcassets */; };
 		EB11EAFA2277047800D95365 /* HedvigColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EA362277047700D95365 /* HedvigColors.swift */; };
 		EB11EAFB2277047800D95365 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EA382277047700D95365 /* Icon.swift */; };
-		EB11EB012277047800D95365 /* Localization.json in Resources */ = {isa = PBXBuildFile; fileRef = EB11EA402277047700D95365 /* Localization.json */; };
 		EB11EB022277047800D95365 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EA412277047700D95365 /* Localization.swift */; };
 		EB11EB072277209000D95365 /* HedvigFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB062277209000D95365 /* HedvigFonts.swift */; };
 		EB11EB1A227735E500D95365 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB09227735E500D95365 /* Countdown.swift */; };
@@ -1321,7 +1320,6 @@
 				EB11EAE32277047800D95365 /* UpdateEmail.graphql in Resources */,
 				EB11EAF92277047800D95365 /* Assets.xcassets in Resources */,
 				EB11EAE82277047800D95365 /* TranslationsQuery.graphql in Resources */,
-				EB11EB012277047800D95365 /* Localization.json in Resources */,
 				EB11EAED2277047800D95365 /* UpdatePhoneNumber.graphql in Resources */,
 				EB11EAF12277047800D95365 /* Dashboard.graphql in Resources */,
 				EB11EAF42277047800D95365 /* MyPayment.graphql in Resources */,
