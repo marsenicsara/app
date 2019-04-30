@@ -1,7 +1,7 @@
 import { AppRegistry } from 'react-native';
 import Chat from './src/features/chat/Chat';
 import { NewOffer } from './src/features/new-offer';
-import { HOC } from './AndroidTestApp';
+import { HOC } from './AndroidApp';
 import OfferChat from './src/features/chat/OfferChat';
 import { setupAndroidNativeRouting } from './src/navigation/native-routing';
 
