@@ -7,13 +7,22 @@ import android.database.sqlite.SQLiteDatabase
 
 import com.facebook.react.modules.storage.ReactDatabaseSupplier
 import com.hedvig.android.owldroid.util.react.AsyncStorageNative
+import timber.log.Timber
 
 import javax.inject.Inject
 
 class AsyncStorageNativeImpl @Inject constructor(
     private val context: Context
 ) : AsyncStorageNative {
-    override fun getKey(key: String): String {
+
+    private val inMemoryCache = HashMap<String, String>()
+
+    override fun getKey(key: String): String? {
+        if (inMemoryCache.containsKey(key)) {
+            val value = inMemoryCache[key]
+            Timber.i("Cache hit: $key: $value")
+            return value
+        }
         var readableDatabase: SQLiteDatabase? =
             null
         var catalystLocalStorage: Cursor? = null
@@ -27,9 +36,11 @@ class AsyncStorageNativeImpl @Inject constructor(
             )
 
             return if (catalystLocalStorage!!.moveToFirst()) {
-                catalystLocalStorage.getString(catalystLocalStorage.getColumnIndex("value"))
+                val value = catalystLocalStorage.getString(catalystLocalStorage.getColumnIndex("value"))
+                inMemoryCache[key] = value
+                return value
             } else {
-                throw RuntimeException(String.format("Could not find key %s", key))
+                null
             }
         } finally {
             catalystLocalStorage?.close()
@@ -45,12 +56,16 @@ class AsyncStorageNativeImpl @Inject constructor(
                 put("key", key)
                 put("value", value)
             })
+            inMemoryCache[key] = value
         } finally {
             database?.close()
         }
     }
 
     override fun deleteKey(key: String) {
+        if (inMemoryCache.containsKey(key)) {
+            inMemoryCache.remove(key)
+        }
         var database: SQLiteDatabase? = null
         try {
             database = ReactDatabaseSupplier.getInstance(context).writableDatabase
