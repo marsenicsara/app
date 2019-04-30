@@ -1,9 +1,7 @@
 package com.hedvig.app.react.offer
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +13,6 @@ import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 
-import javax.inject.Inject
-
-import dagger.android.support.AndroidSupportInjection
-import timber.log.Timber
-
 class OfferFragment : Fragment(), DefaultHardwareBackBtnHandler {
 
     private var mReactRootView: ReactRootView? = null
@@ -29,11 +22,6 @@ class OfferFragment : Fragment(), DefaultHardwareBackBtnHandler {
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val reactRootView = ReactRootView(requireContext())

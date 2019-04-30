@@ -24,7 +24,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.hedvig.dev.app"
+        applicationId project.env.get('APP_ID')
         minSdkVersion 19
         multiDexEnabled true
         versionCode 43

@@ -2,22 +2,21 @@ package com.hedvig.app.react.chat
 
 import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
 import javax.inject.Inject
 
-class ChatViewModel @Inject constructor(private val chatRepository: ChatRepository) : ViewModel() {
+class ChatViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
-    private val compositeDisposable = CompositeDisposable()
+    private val disposables = CompositeDisposable()
 
     fun logout(callback: () -> Unit) {
-        compositeDisposable.add(
-            chatRepository
-                .logout()
-                .subscribe({
-                    callback()
-                }, { error ->
-                    Timber.e(error, "Failed to log out")
-                })
-        )
+        disposables += userRepository
+            .logout()
+            .subscribe({
+                callback()
+            }, { error ->
+                Timber.e(error, "Failed to log out")
+            })
     }
 }

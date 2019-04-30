@@ -6,7 +6,7 @@ import com.apollographql.apollo.Logger
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.hedvig.android.owldroid.util.apollo.ApolloTimberLogger
-import com.hedvig.android.owldroid.util.react.AsyncStorageNativeReader
+import com.hedvig.android.owldroid.util.react.AsyncStorageNative
 import dagger.Module
 import dagger.Provides
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,7 +33,7 @@ object ApplicationModule {
 
     @Provides
     @JvmStatic
-    fun asyncStorageNativeReader(context: Context): AsyncStorageNativeReader = AsyncStorageNativeReaderImpl(context)
+    fun asyncStorageNativeReader(context: Context): AsyncStorageNative = AsyncStorageNativeImpl(context)
 
     @Provides
     @JvmStatic

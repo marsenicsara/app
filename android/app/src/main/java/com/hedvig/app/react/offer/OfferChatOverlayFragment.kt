@@ -131,8 +131,6 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
     }
 
     override fun invokeDefaultOnBackPressed() {
-        if (activity != null) {
-            activity!!.onBackPressed()
-        }
+        activity?.onBackPressed()
     }
 }

@@ -34,7 +34,6 @@ class NativeRoutingModule constructor(
 ) : ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
     private val componentIds2 = HashMap<String, String>()
 
-    private val marketingBroadcastReceiver = MarketingBroadcastReceiver()
     private val profileBroadcastReceiver = ProfileBroadcastReceiver()
     private val onBoardingBroadcastReceiver = OnBoardingBroadcastReceiver()
 
@@ -54,27 +53,16 @@ class NativeRoutingModule constructor(
     }
 
     override fun onHostResume() {
-        localBroadcastManager.registerReceiver(marketingBroadcastReceiver, IntentFilter("marketingResult"))
         localBroadcastManager.registerReceiver(profileBroadcastReceiver, IntentFilter("profileNavigation"))
         localBroadcastManager.registerReceiver(onBoardingBroadcastReceiver, IntentFilter(ON_BOARDING_INTENT_FILER))
     }
 
     override fun onHostPause() {
-        localBroadcastManager.unregisterReceiver(marketingBroadcastReceiver)
         localBroadcastManager.unregisterReceiver(profileBroadcastReceiver)
         localBroadcastManager.unregisterReceiver(onBoardingBroadcastReceiver)
     }
 
     override fun onHostDestroy() {
-    }
-
-    @ReactMethod
-    fun appHasLoaded() {
-    }
-
-    @ReactMethod
-    fun registerExternalComponentId(componentId: String, componentName: String) {
-        componentIds2[componentName] = componentId
     }
 
     @ReactMethod
@@ -129,27 +117,12 @@ class NativeRoutingModule constructor(
             }, { error -> Timber.e(error, "Failed to load memberId for referral") })
     }
 
-    private fun sendMarketingResult(marketingResult: MarketingFragment.MarketingResult) {
-        val message = Arguments.createMap()
-        message.putString("marketingResult", marketingResult.toString())
-        val componentId = componentIds2["marketingScreen"]
-            ?: throw RuntimeException("Marketing Screen not registered in NativeRoutingModule")
-        message.putString("componentId", componentId)
-        deviceEventEmitter.emit("NativeRoutingMarketingResult", message)
-    }
-
     private fun logoutAndRestartApplication() {
         deviceEventEmitter.emit("NativeRoutingLogoutAndRestartApplication", null)
     }
 
     private fun restartChatOnBoarding() {
         deviceEventEmitter.emit("NativeRoutingRestartChatOnBoarding", null)
-    }
-
-    private inner class MarketingBroadcastReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            sendMarketingResult(intent.getSerializableExtra("type") as MarketingFragment.MarketingResult)
-        }
     }
 
     private inner class ProfileBroadcastReceiver : BroadcastReceiver() {

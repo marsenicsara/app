@@ -69,23 +69,6 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val application = application as MainApplication
-        val reactNativeHost = application.reactNativeHost
-        val reactInstanceManager = reactNativeHost.reactInstanceManager
-        val devSupportManager = reactInstanceManager.devSupportManager
-
-        devSupportManager.addCustomDevOption("Custom dev option") {
-            if (NotificationManagerCompat.from(this@MainActivity).areNotificationsEnabled()) {
-                Toast.makeText(this@MainActivity, "Dev opt", Toast.LENGTH_LONG).show()
-            } else {
-                val dialog = AlertDialog.Builder(this@MainActivity).create()
-                dialog.setTitle("Dev option")
-                dialog.setMessage("Dev opt")
-                dialog.show()
-            }
-        }
-
         setContentView(CommonR.layout.root_navigation_host)
 
         val navHost = supportFragmentManager.findFragmentById(CommonR.id.rootNavigationHost) as NavHostFragment

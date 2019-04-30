@@ -45,7 +45,7 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
     private var reactRootView: ReactRootView? = null
 
     private val reactNativeHost: ReactNativeHost
-        get() = (activity!!.application as ReactApplication).reactNativeHost
+        get() = (requireActivity().application as ReactApplication).reactNativeHost
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager

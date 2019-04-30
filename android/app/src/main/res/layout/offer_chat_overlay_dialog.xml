@@ -20,6 +20,7 @@
             android:layout_marginStart="@dimen/base_margin_double"
             android:background="@drawable/circle_background"
             android:padding="@dimen/base_margin"
+            android:contentDescription="@string/OFFER_CLOSE_DIALOG_CONTENT_DESCRIPTION"
             app:srcCompat="@drawable/ic_expand" />
 
         <TextView
@@ -41,6 +42,7 @@
             android:layout_marginEnd="@dimen/base_margin_double"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/base_margin_half"
+            android:contentDescription="@string/CHAT_RESTART_CONTENT_DESCRIPTION"
             app:srcCompat="@drawable/ic_restart_white" />
 
     </LinearLayout>

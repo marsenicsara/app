@@ -39,7 +39,8 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
     private val navController by lazy {
         reactApplicationContext.currentActivity?.let {
             Navigation.findNavController(it, com.hedvig.app.common.R.id.rootNavigationHost)
-        } ?: throw RuntimeException("Trying to reactApplicationContext.currentActivity but it is null")
+        }
+            ?: throw RuntimeException("Trying to reactApplicationContext.currentActivity but it is null")
     }
 
     override fun getName(): String {
@@ -106,55 +107,22 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
 
     @ReactMethod
     fun doIsLoggedInProcedure() {
-        // TODO Handle every case of the enum
         disposables += Rx2Apollo
             .from(apolloClient.query(InsuranceStatusQuery()))
             .subscribe({ response ->
                 response.data()?.insurance()?.status()?.let { status ->
-                    if (status != InsuranceStatus.PENDING) {
-                        navigateToLoggedInFromChat()
+                    when (status) {
+                        InsuranceStatus.INACTIVE,
+                        InsuranceStatus.INACTIVE_WITH_START_DATE,
+                        InsuranceStatus.ACTIVE -> navigateToLoggedInFromChat()
+                        InsuranceStatus.PENDING,
+                        InsuranceStatus.TERMINATED,
+                        InsuranceStatus.`$UNKNOWN` -> {
+                            // Let the chat take care of this
+                        }
                     }
                 }
             }, { Timber.e(it) })
-    }
-
-    @ReactMethod
-    fun getActivityName(callback: Callback) {
-        val activity = currentActivity
-        if (activity != null) {
-            callback.invoke(activity.javaClass.simpleName)
-        } else {
-            callback.invoke("No current activity")
-        }
-    }
-
-    @ReactMethod
-    fun getActivityNameAsPromise(promise: Promise) {
-        val activity = currentActivity
-        if (activity != null) {
-            promise.resolve(activity.javaClass.simpleName)
-        } else {
-            promise.reject("NO_ACTIVITY", "No current activity")
-        }
-    }
-
-    @ReactMethod
-    fun callJavaScript() {
-        val activity = currentActivity
-        if (activity != null) {
-            val application = activity.application as MainApplication
-            val reactNativeHost = application.reactNativeHost
-            val reactInstanceManager = reactNativeHost.reactInstanceManager
-            val reactContext = reactInstanceManager.currentReactContext
-
-            if (reactContext != null) {
-                val catalystInstance = reactContext.catalystInstance
-                val params = WritableNativeArray()
-                params.pushString("Hello, JavaScript!")
-
-                catalystInstance.callFunction("JavaScriptVisibleToJava", "alert", params)
-            }
-        }
     }
 
     companion object {

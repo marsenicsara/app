@@ -5,12 +5,12 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 
 import com.facebook.react.modules.storage.ReactDatabaseSupplier
-import com.hedvig.android.owldroid.util.react.AsyncStorageNativeReader
+import com.hedvig.android.owldroid.util.react.AsyncStorageNative
 
 import javax.inject.Inject
 
-class AsyncStorageNativeReaderImpl @Inject
-constructor(private val context: Context) : AsyncStorageNativeReader {
+class AsyncStorageNativeImpl @Inject
+constructor(private val context: Context) : AsyncStorageNative {
 
     override fun getKey(key: String): String {
         var readableDatabase: SQLiteDatabase? =
