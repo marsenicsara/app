@@ -9,7 +9,7 @@ apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.grad
 import com.android.build.OutputFile
 
 project.ext.react = [
-        entryFile           : "index.js",
+        entryFile           : "index.android.js",
         bundleInStaging     : true,
         devDisabledInStaging: true
 ]
