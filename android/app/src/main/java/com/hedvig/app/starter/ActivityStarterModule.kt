@@ -8,22 +8,23 @@ import android.support.v4.content.LocalBroadcastManager
 import androidx.navigation.Navigation
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.rx2.Rx2Apollo
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.LifecycleEventListener
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactContextBaseJavaModule
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.ReadableType
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.hedvig.android.owldroid.feature.dashboard.ui.PerilBottomSheet
+import com.hedvig.android.owldroid.feature.dashboard.ui.PerilIcon
 import com.hedvig.android.owldroid.graphql.InsuranceStatusQuery
 import com.hedvig.android.owldroid.type.InsuranceStatus
-import com.hedvig.android.owldroid.ui.dashboard.PerilBottomSheet
-import com.hedvig.android.owldroid.ui.dashboard.PerilIcon
 import com.hedvig.android.owldroid.util.extensions.setIsLoggedIn
 import com.hedvig.android.owldroid.util.extensions.triggerRestartCurrentActivity
-import com.hedvig.app.MainApplication
 import com.hedvig.app.react.offer.OfferChatOverlayFragment
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
-import com.facebook.react.bridge.ReadableMapKeySetIterator
-
-
 
 class ActivityStarterModule(reactContext: ReactApplicationContext, private val apolloClient: ApolloClient) :
     ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
@@ -32,7 +33,6 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
 
     private val fragmentManager: FragmentManager
         get() = (reactApplicationContext.currentActivity as FragmentActivity).supportFragmentManager
-
 
     private val firebaseAnalytics by lazy { FirebaseAnalytics.getInstance(reactApplicationContext) }
 
@@ -138,10 +138,12 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
             val key = iterator.nextKey()
             when (readableMap.getType(key)) {
                 ReadableType.Boolean -> bundle.putBoolean(key, readableMap.getBoolean(key))
-                ReadableType.Number ->  bundle.putDouble(key, readableMap.getDouble(key))
-                ReadableType.String ->  bundle.putString(key, readableMap.getString(key))
+                ReadableType.Number -> bundle.putDouble(key, readableMap.getDouble(key))
+                ReadableType.String -> bundle.putString(key, readableMap.getString(key))
                 ReadableType.Map -> bundle.putBundle(key, convertMapToBundle(readableMap.getMap(key)))
-                else -> { Timber.e("We don't cover null or array")}
+                else -> {
+                    Timber.e("We don't cover null or array")
+                }
             }
         }
         return bundle

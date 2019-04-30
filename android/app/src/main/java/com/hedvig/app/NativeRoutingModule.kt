@@ -6,10 +6,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
-
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.rx2.Rx2Apollo
-import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.LifecycleEventListener
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -18,21 +16,16 @@ import com.facebook.react.modules.core.DeviceEventManagerModule
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hedvig.android.owldroid.graphql.MemberIdQuery
-import com.hedvig.android.owldroid.ui.marketing.MarketingFragment
-import com.hedvig.android.owldroid.util.extensions.setIsLoggedIn
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
-
+import timber.log.Timber
 import java.util.Date
 import java.util.HashMap
-
-import timber.log.Timber
 
 class NativeRoutingModule constructor(
     reactContext: ReactApplicationContext,
     private val apolloClient: ApolloClient
 ) : ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
-    private val componentIds2 = HashMap<String, String>()
 
     private val profileBroadcastReceiver = ProfileBroadcastReceiver()
     private val onBoardingBroadcastReceiver = OnBoardingBroadcastReceiver()

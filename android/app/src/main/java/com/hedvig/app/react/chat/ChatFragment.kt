@@ -18,7 +18,7 @@ import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.hedvig.android.owldroid.di.ViewModelFactory
-import com.hedvig.android.owldroid.ui.marketing.MarketingFragment
+import com.hedvig.android.owldroid.feature.marketing.ui.MarketingFragment
 import com.hedvig.android.owldroid.util.extensions.localBroadcastManager
 import com.hedvig.android.owldroid.util.extensions.view.remove
 import com.hedvig.android.owldroid.util.extensions.view.show
