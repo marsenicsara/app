@@ -97,7 +97,7 @@ target 'hedvig' do
 
   post_install do |installer|
     system("cd hedvig/ugglan; ../../Pods/SwiftGen/bin/swiftgen")
-    system("cd hedvig/ugglan; /usr/local/bin/swiftTranslationsCodegen --projects '[App, IOS]' --destination 'Src/Assets/Localization/Localization.swift'")
+    system("cd hedvig/ugglan; /usr/local/bin/swiftTranslationsCodegen --swiftformat-path ../../Pods/Swiftformat/CommandLineTool/swiftformat --projects '[App, IOS]' --destination 'Src/Assets/Localization/Localization.swift'")
     system("cd hedvig/ugglan; sh scripts/update-graphql-schema.sh")
     system("CONFIGURATION=\"DEBUG\" sh Pods/Apollo/scripts/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\"  --schema=hedvig/ugglan/Src/Data/schema.json hedvig/ugglan/Src/Data/API.swift")
 
