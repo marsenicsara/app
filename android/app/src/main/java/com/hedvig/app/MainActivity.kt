@@ -2,10 +2,12 @@ package com.hedvig.app
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.NotificationManagerCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -17,7 +19,9 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.android.owldroid.util.NavigationAnalytics
+import com.hedvig.android.owldroid.util.extensions.compatColor
 import com.hedvig.android.owldroid.util.extensions.isLoggedIn
+import com.hedvig.android.owldroid.util.whenApiVersion
 import io.branch.rnbranch.RNBranchModule
 import com.hedvig.app.common.R as CommonR
 
@@ -70,6 +74,11 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(CommonR.layout.root_navigation_host)
+        //don't like this but something is setting the color to dark gray. My current guess is react native
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        whenApiVersion(Build.VERSION_CODES.M) {
+            window.statusBarColor = this.compatColor(R.color.off_white)
+        }
 
         val navHost = supportFragmentManager.findFragmentById(CommonR.id.rootNavigationHost) as NavHostFragment
         val navController = navHost.navController
@@ -80,6 +89,7 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
             graph.startDestination = CommonR.id.logged_in_navigation
         }
         navController.graph = graph
+
 
         findNavController(CommonR.id.rootNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
     }
