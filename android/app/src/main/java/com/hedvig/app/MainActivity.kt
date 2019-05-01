@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_Exponent_Light)
         super.onCreate(savedInstanceState)
         setContentView(CommonR.layout.root_navigation_host)
         //don't like this but something is setting the color to dark gray. My current guess is react native
