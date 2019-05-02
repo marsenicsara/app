@@ -24,9 +24,10 @@ export const setLayout = ({
       },
     },
     statusBar: {
-      visible: true,
+      visible: false,
       drawBehind: false,
       style: 'light',
+      backgroundColor: 'white',
     },
     bottomTab: {
       iconColor: colors.DARK_GRAY,

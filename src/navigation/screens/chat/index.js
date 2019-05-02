@@ -25,7 +25,7 @@ class ChatScreen extends React.Component {
         },
       },
       statusBar: {
-        visible: true,
+        visible: false,
         style: Platform.OS === 'android' ? 'light' : 'dark',
       },
       popGesture: false,

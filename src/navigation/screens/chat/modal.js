@@ -25,7 +25,7 @@ class ChatScreenModal extends React.Component {
         leftButtons: [CLOSE_BUTTON],
       },
       statusBar: {
-        visible: true,
+        visible: false,
         drawBehind: false,
         style: Platform.OS === 'android' ? 'light' : 'dark',
       },

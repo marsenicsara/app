@@ -3,12 +3,9 @@ package com.hedvig.app
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
-
 import com.facebook.react.modules.storage.ReactDatabaseSupplier
 import com.hedvig.android.owldroid.util.react.AsyncStorageNative
 import timber.log.Timber
-
 import javax.inject.Inject
 
 class AsyncStorageNativeImpl @Inject constructor(
@@ -23,11 +20,9 @@ class AsyncStorageNativeImpl @Inject constructor(
             Timber.i("Cache hit: $key: $value")
             return value
         }
-        var readableDatabase: SQLiteDatabase? =
-            null
         var catalystLocalStorage: Cursor? = null
         try {
-            readableDatabase = ReactDatabaseSupplier.getInstance(context).readableDatabase
+            val readableDatabase = ReactDatabaseSupplier.getInstance(context).readableDatabase
             catalystLocalStorage = readableDatabase.query(
                 TABLE,
                 arrayOf("key", "value"),
@@ -44,35 +39,28 @@ class AsyncStorageNativeImpl @Inject constructor(
             }
         } finally {
             catalystLocalStorage?.close()
-            readableDatabase?.close()
         }
     }
 
     override fun setKey(key: String, value: String) {
-        var database: SQLiteDatabase? = null
-        try {
-            database = ReactDatabaseSupplier.getInstance(context).writableDatabase
-            database?.insert(TABLE, null, ContentValues().apply {
-                put("key", key)
-                put("value", value)
-            })
-            inMemoryCache[key] = value
-        } finally {
-            database?.close()
-        }
+        val database = ReactDatabaseSupplier.getInstance(context).writableDatabase
+        database?.insert(TABLE, null, ContentValues().apply {
+            put("key", key)
+            put("value", value)
+        })
+        inMemoryCache[key] = value
     }
 
     override fun deleteKey(key: String) {
         if (inMemoryCache.containsKey(key)) {
             inMemoryCache.remove(key)
         }
-        var database: SQLiteDatabase? = null
-        try {
-            database = ReactDatabaseSupplier.getInstance(context).writableDatabase
-            database?.delete(TABLE, "key = ?", arrayOf(key))
-        } finally {
-            database?.close()
-        }
+        val database = ReactDatabaseSupplier.getInstance(context).writableDatabase
+        database?.delete(TABLE, "key = ?", arrayOf(key))
+    }
+
+    override fun close() {
+        ReactDatabaseSupplier.getInstance(context).close()
     }
 
     companion object {

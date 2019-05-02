@@ -4,14 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.NotificationManagerCompat
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+<<<<<<< HEAD
 import android.view.WindowManager
 import android.widget.Toast
+=======
+>>>>>>> refactor/feature-split
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
@@ -22,10 +22,16 @@ import com.hedvig.android.owldroid.util.NavigationAnalytics
 import com.hedvig.android.owldroid.util.extensions.compatColor
 import com.hedvig.android.owldroid.util.extensions.isLoggedIn
 import com.hedvig.android.owldroid.util.whenApiVersion
+import com.hedvig.android.owldroid.util.react.AsyncStorageNative
+import dagger.android.AndroidInjection
 import io.branch.rnbranch.RNBranchModule
+import javax.inject.Inject
 import com.hedvig.app.common.R as CommonR
 
 class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
+
+    @Inject
+    lateinit var asyncStorageNative: AsyncStorageNative
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
@@ -75,6 +81,8 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
         setTheme(R.style.Theme_Exponent_Light)
         super.onCreate(savedInstanceState)
         setContentView(CommonR.layout.root_navigation_host)
+        AndroidInjection.inject(this)
+
         //don't like this but something is setting the color to dark gray. My current guess is react native
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         whenApiVersion(Build.VERSION_CODES.M) {
@@ -105,5 +113,10 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 
     override fun invokeDefaultOnBackPressed() {
         super.onBackPressed()
+    }
+
+    override fun onDestroy() {
+        asyncStorageNative.close()
+        super.onDestroy()
     }
 }
