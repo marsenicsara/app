@@ -14,12 +14,13 @@ import { Store } from 'src/setupApp';
 import { chatActions } from 'hedvig-redux';
 import { client } from 'src/graphql/client';
 import { deleteToken } from 'src/graphql/context';
-import { getMarketingLayout } from './layouts/marketingLayout';
+import { ChatButton } from 'src/components/chat-button';
 
 let openFreeTextChatListener: EmitterSubscription | null = null;
 let clearDirectDebitStatusListener: EmitterSubscription | null = null;
 let marketingResultListener: EmitterSubscription | null = null;
-let logoutListener: EmitterSubscription | null = null;
+let logoutAndRestartApplicationListener: EmitterSubscription | null = null;
+let restartOnboardingChatListener: EmitterSubscription | null = null;
 
 export const setupNativeRouting = () => {
   const nativeRoutingEvents = new NativeEventEmitter(
@@ -60,28 +61,46 @@ export const setupNativeRouting = () => {
       }),
     );
   });
-
-  if (Platform.OS === 'android') {
-    if (logoutListener !== null) {
-      logoutListener.remove()
-    }
-    logoutListener = nativeRoutingEvents.addListener('NativeRoutingLogout', () => {
-      deleteToken();
-      Store.dispatch({ type: 'DELETE_TOKEN' })
-      Store.dispatch({ type: 'DELETE_TRACKING_ID' })
-      Store.dispatch({ type: 'AUTHENTICATE' })
-      AsyncStorage.multiRemove([
-        '@hedvig:alreadySeenMarketingCarousel',
-        '@hedvig:token'
-      ])
-        .then(() => client.clearStore())
-        .then(() => {
-          // @ts-ignore
-          Navigation.setRoot(getMarketingLayout());
-        })
-    });
-  }
 };
+
+export const setupAndroidNativeRouting = () => {
+  const nativeRoutingEvents = new NativeEventEmitter(
+    NativeModules.NativeRouting,
+  );
+
+  if (logoutAndRestartApplicationListener !== null) {
+    logoutAndRestartApplicationListener.remove()
+  }
+  if (restartOnboardingChatListener !== null) {
+    restartOnboardingChatListener.remove()
+  }
+
+  var logoutAndDeleteToken = async () => {
+    deleteToken();
+    Store.dispatch({ type: 'DELETE_TOKEN' })
+    Store.dispatch({ type: 'DELETE_TRACKING_ID' })
+    Store.dispatch({ type: 'AUTHENTICATE' })
+    Store.dispatch(chatActions.resetConversation())
+
+    await AsyncStorage.multiRemove([
+      '@hedvig:alreadySeenMarketingCarousel',
+      '@hedvig:token'
+    ]);
+    return await client.clearStore();
+  }
+
+  restartOnboardingChatListener = nativeRoutingEvents.addListener('NativeRoutingRestartChatOnBoarding', () => {
+    logoutAndDeleteToken().then(() => {
+      NativeModules.ActivityStarter.reloadChat()
+    })
+  })
+
+  logoutAndRestartApplicationListener = nativeRoutingEvents.addListener('NativeRoutingLogoutAndRestartApplication', () => {
+    logoutAndDeleteToken().then(() => {
+      NativeModules.ActivityStarter.restartApplication()
+    })
+  })
+}
 
 export const appHasLoaded = () => {
   NativeModules.NativeRouting.appHasLoaded();

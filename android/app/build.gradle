@@ -1,12 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
 project.ext.react = [
-        entryFile           : "index.js",
+        entryFile           : "index.android.js",
         bundleInStaging     : true,
         devDisabledInStaging: true
 ]
@@ -22,11 +25,10 @@ android {
 
     defaultConfig {
         applicationId project.env.get('APP_ID')
-        minSdkVersion 19
+        minSdkVersion 21
         multiDexEnabled true
         versionCode 43
         versionName '2.7.3'
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
 
         resValue "string", "build_config_package", "com.hedvig.app"
         vectorDrawables.useSupportLibrary = true
@@ -83,7 +85,6 @@ android {
 
 dependencies {
     implementation project(':react-native-document-picker')
-    implementation project(':react-native-fast-image')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-fs')
     implementation project(':react-native-video')
@@ -100,15 +101,10 @@ dependencies {
     implementation project(':react-native-analytics-segment-io')
     implementation project(':lottie-react-native')
 
-    // React-Native-Navigation
-    implementation project(':react-native-navigation')
     implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
 
     // Firebase
-    implementation project(':react-native-firebase')
     implementation 'com.google.android.gms:play-services-base:16.1.0'
-    implementation 'com.google.firebase:firebase-messaging:17.5.0'
-    implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
     releaseImplementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
     stagingImplementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
 
@@ -118,7 +114,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     // compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
 
-    implementation 'io.branch.sdk.android:library:3.1.1'
+    implementation 'io.branch.sdk.android:library:3.1.2'
 
     // Animated GIF support
     implementation 'com.facebook.fresco:animated-gif:1.11.0'
@@ -126,9 +122,9 @@ dependencies {
     implementation project(':owldroid')
     def dagger_version = "2.16"
     implementation "com.google.dagger:dagger:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
     implementation 'net.ypresto.timbertreeutils:timbertreeutils:1.0.0'
 }

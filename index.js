@@ -1,5 +1,5 @@
 import { Navigation } from 'react-native-navigation';
-import { YellowBox, UIManager } from 'react-native';
+import { YellowBox, UIManager, Platform } from 'react-native';
 
 import { HOC } from './App';
 import { setInitialLayout } from './src/navigation/layouts/initialLayout';
@@ -25,11 +25,14 @@ YellowBox.ignoreWarnings([
   'Overriding',
 ]);
 
-const registerHandler = (name, componentCreator) =>
-  Navigation.registerComponent(name, () => {
-    const innerComponent = componentCreator();
-    return HOC(innerComponent.options)(innerComponent);
-  });
+const registerHandler = (name, componentCreator) => {
+  if (Platform.OS === 'ios') {
+    return Navigation.registerComponent(name, () => {
+      const innerComponent = componentCreator();
+      return HOC(innerComponent.options)(innerComponent);
+    });
+  }
+};
 
 getNavigationConstants().then(() => {
   register(registerHandler);
