@@ -5,6 +5,7 @@ import android.content.Context
 import com.apollographql.apollo.Logger
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.hedvig.android.owldroid.util.apollo.ApolloTimberLogger
 import com.hedvig.android.owldroid.util.react.AsyncStorageNative
 import dagger.Module
@@ -23,6 +24,10 @@ object ApplicationModule {
     @Provides
     @JvmStatic
     fun context(application: Application) = application.baseContext
+
+    @Provides
+    @JvmStatic
+    fun firebaseAnalytics(context: Context) = FirebaseAnalytics.getInstance(context)
 
     @Provides
     @JvmStatic
