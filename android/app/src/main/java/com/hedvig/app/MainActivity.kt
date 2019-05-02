@@ -3,13 +3,9 @@ package com.hedvig.app
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.NotificationManagerCompat
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
@@ -18,10 +14,16 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.android.owldroid.util.NavigationAnalytics
 import com.hedvig.android.owldroid.util.extensions.isLoggedIn
+import com.hedvig.android.owldroid.util.react.AsyncStorageNative
+import dagger.android.AndroidInjection
 import io.branch.rnbranch.RNBranchModule
+import javax.inject.Inject
 import com.hedvig.app.common.R as CommonR
 
 class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
+
+    @Inject
+    lateinit var asyncStorageNative: AsyncStorageNative
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(CommonR.layout.root_navigation_host)
+        AndroidInjection.inject(this)
 
         val navHost = supportFragmentManager.findFragmentById(CommonR.id.rootNavigationHost) as NavHostFragment
         val navController = navHost.navController
@@ -94,5 +97,10 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 
     override fun invokeDefaultOnBackPressed() {
         super.onBackPressed()
+    }
+
+    override fun onDestroy() {
+        asyncStorageNative.close()
+        super.onDestroy()
     }
 }
