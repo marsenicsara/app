@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.WindowManager
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.facebook.react.ReactApplication
@@ -17,8 +16,8 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.android.owldroid.util.NavigationAnalytics
 import com.hedvig.android.owldroid.util.extensions.compatColor
 import com.hedvig.android.owldroid.util.extensions.isLoggedIn
-import com.hedvig.android.owldroid.util.whenApiVersion
 import com.hedvig.android.owldroid.util.react.AsyncStorageNative
+import com.hedvig.android.owldroid.util.whenApiVersion
 import dagger.android.AndroidInjection
 import io.branch.rnbranch.RNBranchModule
 import javax.inject.Inject
@@ -77,10 +76,8 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
         setTheme(R.style.Theme_Exponent_Light)
         super.onCreate(savedInstanceState)
         setContentView(CommonR.layout.root_navigation_host)
-        //don't like this but something is setting the color to dark gray. My current guess is react native
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         whenApiVersion(Build.VERSION_CODES.M) {
-            window.statusBarColor = this.compatColor(R.color.off_white)
+            window.statusBarColor = compatColor(R.color.off_white)
         }
         AndroidInjection.inject(this)
 
