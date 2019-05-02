@@ -172,7 +172,7 @@
 
     <fragment
         android:id="@+id/myHomeFragment"
-        android:name="com.hedvig.android.owldroid.featuer.profile.ui.myhome.MyHomeFragment"
+        android:name="com.hedvig.android.owldroid.feature.profile.ui.myhome.MyHomeFragment"
         android:label="MyHomeFragment">
 
         <action
