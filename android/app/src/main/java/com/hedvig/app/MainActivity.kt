@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
     @Inject
     lateinit var asyncStorageNative: AsyncStorageNative
 
+    @Inject
+    lateinit var firebaseAnalytics: FirebaseAnalytics
+
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
 
@@ -92,7 +95,12 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
         navController.graph = graph
 
 
-        findNavController(CommonR.id.rootNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
+        findNavController(CommonR.id.rootNavigationHost).addOnDestinationChangedListener(
+            NavigationAnalytics(
+                firebaseAnalytics,
+                this
+            )
+        )
     }
 
     override fun onBackPressed() {
