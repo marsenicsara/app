@@ -18,8 +18,10 @@ import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.hedvig.android.owldroid.di.ViewModelFactory
-import com.hedvig.android.owldroid.ui.marketing.MarketingFragment
+import com.hedvig.android.owldroid.feature.marketing.ui.MarketingFragment
+import com.hedvig.android.owldroid.util.extensions.compatColor
 import com.hedvig.android.owldroid.util.extensions.localBroadcastManager
+import com.hedvig.android.owldroid.util.extensions.statusBarColor
 import com.hedvig.android.owldroid.util.extensions.view.remove
 import com.hedvig.android.owldroid.util.extensions.view.show
 import com.hedvig.android.owldroid.util.newBroadcastReceiver
@@ -66,7 +68,7 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_chat, null)
+        val view = inflater.inflate(R.layout.fragment_chat, container, false)
         val reactRootView = ReactRootView(requireContext())
         this.reactRootView = reactRootView
         view.reactViewContainer.addView(this.reactRootView)
@@ -82,6 +84,7 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        statusBarColor = requireContext().compatColor(R.color.off_white)
 
         arguments?.getBoolean(ARGS_SHOW_RESTART)?.let { showRestart ->
             if (showRestart) {
