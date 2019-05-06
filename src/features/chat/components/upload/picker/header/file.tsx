@@ -8,6 +8,7 @@ import { UploadingAnimation } from '../uploading-animation';
 import { PickerButton } from './picker-button';
 import { Navigation } from 'react-native-navigation';
 import { FILE_PICKER_COMPONENT } from 'src/navigation/components/file-picker';
+import { Platform, NativeModules } from 'react-native';
 
 interface FileProps {
   onUpload: (url: string) => void;
@@ -19,20 +20,28 @@ export const File: React.SFC<FileProps> = ({ onUpload }) => (
       <>
         <PickerButton
           onPress={() => {
-            Navigation.showOverlay({
-              component: {
-                name: FILE_PICKER_COMPONENT.name,
-                options: {
-                  layout: {
-                    backgroundColor: 'transparent',
+            if (Platform.OS === 'ios') {
+              Navigation.showOverlay({
+                component: {
+                  name: FILE_PICKER_COMPONENT.name,
+                  options: {
+                    layout: {
+                      backgroundColor: 'transparent',
+                    },
+                  },
+                  passProps: {
+                    upload,
+                    onUpload,
                   },
                 },
-                passProps: {
-                  upload,
-                  onUpload,
-                },
-              },
-            });
+              });
+            } else {
+              NativeModules.ActivityStarter
+                .showFileUploadOverlay()
+                .then((key: string) => {
+                  onUpload(key)
+                })
+            }
           }}
         >
           <UploadingAnimation darkMode isUploading={isUploading}>

@@ -49,11 +49,7 @@ const requestCameraPermission = async () => {
 
   try {
     const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-      {
-        title: 'DUMMY',
-        message: 'Dummy',
-      },
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
     );
 
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {

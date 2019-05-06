@@ -1,7 +1,9 @@
 package com.hedvig.app
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -10,20 +12,41 @@ import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
+import com.facebook.react.modules.core.PermissionAwareActivity
+import com.facebook.react.modules.core.PermissionListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.android.owldroid.util.NavigationAnalytics
+import com.hedvig.android.owldroid.util.extensions.compatColor
 import com.hedvig.android.owldroid.util.extensions.isLoggedIn
 import com.hedvig.android.owldroid.util.react.AsyncStorageNative
+import com.hedvig.android.owldroid.util.whenApiVersion
 import dagger.android.AndroidInjection
 import io.branch.rnbranch.RNBranchModule
 import javax.inject.Inject
 import com.hedvig.app.common.R as CommonR
 
-class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
+class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, PermissionAwareActivity {
+
+    private var permissionListener: PermissionListener? = null
+
+    @TargetApi(Build.VERSION_CODES.M)
+    override fun requestPermissions(permissions: Array<String>, requestCode: Int, listener: PermissionListener?) {
+        permissionListener = listener
+        super.requestPermissions(permissions, requestCode)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (permissionListener?.onRequestPermissionsResult(requestCode, permissions, grantResults) == true) {
+            permissionListener = null
+        }
+    }
 
     @Inject
     lateinit var asyncStorageNative: AsyncStorageNative
+
+    @Inject
+    lateinit var firebaseAnalytics: FirebaseAnalytics
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
@@ -70,8 +93,12 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_Exponent_Light)
         super.onCreate(savedInstanceState)
         setContentView(CommonR.layout.root_navigation_host)
+        whenApiVersion(Build.VERSION_CODES.M) {
+            window.statusBarColor = compatColor(R.color.off_white)
+        }
         AndroidInjection.inject(this)
 
         val navHost = supportFragmentManager.findFragmentById(CommonR.id.rootNavigationHost) as NavHostFragment
@@ -84,7 +111,13 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
         }
         navController.graph = graph
 
-        findNavController(CommonR.id.rootNavigationHost).addOnDestinationChangedListener(NavigationAnalytics(this))
+
+        findNavController(CommonR.id.rootNavigationHost).addOnDestinationChangedListener(
+            NavigationAnalytics(
+                firebaseAnalytics,
+                this
+            )
+        )
     }
 
     override fun onBackPressed() {
