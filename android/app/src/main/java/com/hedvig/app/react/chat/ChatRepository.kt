@@ -29,6 +29,9 @@ class ChatRepository @Inject constructor(
         context.contentResolver.openInputStream(uri)?.into(file)
         val filename = fileService.getFileName(uri) ?: ""
         val mimeType = fileService.getMimeType(uri) ?: ""
+
+        // See https://github.com/jaydenseric/graphql-multipart-request-spec for information.
+        // TODO: Implement this in apollo-android and make a PR
         val requestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("operations", null, RequestBody.create(null, MUTATION_JSON))
