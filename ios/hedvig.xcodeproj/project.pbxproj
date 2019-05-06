@@ -82,7 +82,6 @@
 		EB11EA842277047700D95365 /* AddressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11E9AB2277047700D95365 /* AddressCircle.swift */; };
 		EB11EA852277047700D95365 /* MyHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11E9AC2277047700D95365 /* MyHome.swift */; };
 		EB11EA862277047700D95365 /* CharityInformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11E9AF2277047700D95365 /* CharityInformationButton.swift */; };
-		EB11EA872277047700D95365 /* CharityInformationBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11E9B02277047700D95365 /* CharityInformationBody.swift */; };
 		EB11EA882277047700D95365 /* CharityHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11E9B12277047700D95365 /* CharityHeader.swift */; };
 		EB11EA892277047700D95365 /* CharityLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11E9B22277047700D95365 /* CharityLogo.swift */; };
 		EB11EA8A2277047700D95365 /* SelectedCharity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11E9B32277047700D95365 /* SelectedCharity.swift */; };
@@ -239,6 +238,8 @@
 		EB11ED35227ADBDE00D95365 /* CardControllerTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED25227ADBDE00D95365 /* CardControllerTransitioningDelegate.swift */; };
 		EB11ED36227ADBDE00D95365 /* DismissCardInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED26227ADBDE00D95365 /* DismissCardInteractionController.swift */; };
 		EB11ED37227ADBDE00D95365 /* DismissCardAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED27227ADBDE00D95365 /* DismissCardAnimationController.swift */; };
+		EB11ED39227B3BB500D95365 /* TriggerClaimChat.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB11ED38227B3BB500D95365 /* TriggerClaimChat.graphql */; };
+		EB11ED3B227B3CC200D95365 /* ClaimChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED3A227B3CC200D95365 /* ClaimChat.swift */; };
 		EB265B1C221ADE14009DA493 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1B221ADE14009DA493 /* Chat.swift */; };
 		EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */; };
 		EB433C96221D49C1000156D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB433C95221D49C1000156D4 /* LaunchScreen.storyboard */; };
@@ -341,7 +342,6 @@
 		EB11E9AB2277047700D95365 /* AddressCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressCircle.swift; sourceTree = "<group>"; };
 		EB11E9AC2277047700D95365 /* MyHome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHome.swift; sourceTree = "<group>"; };
 		EB11E9AF2277047700D95365 /* CharityInformationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityInformationButton.swift; sourceTree = "<group>"; };
-		EB11E9B02277047700D95365 /* CharityInformationBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityInformationBody.swift; sourceTree = "<group>"; };
 		EB11E9B12277047700D95365 /* CharityHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityHeader.swift; sourceTree = "<group>"; };
 		EB11E9B22277047700D95365 /* CharityLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityLogo.swift; sourceTree = "<group>"; };
 		EB11E9B32277047700D95365 /* SelectedCharity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedCharity.swift; sourceTree = "<group>"; };
@@ -499,6 +499,8 @@
 		EB11ED25227ADBDE00D95365 /* CardControllerTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardControllerTransitioningDelegate.swift; sourceTree = "<group>"; };
 		EB11ED26227ADBDE00D95365 /* DismissCardInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissCardInteractionController.swift; sourceTree = "<group>"; };
 		EB11ED27227ADBDE00D95365 /* DismissCardAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissCardAnimationController.swift; sourceTree = "<group>"; };
+		EB11ED38227B3BB500D95365 /* TriggerClaimChat.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = TriggerClaimChat.graphql; sourceTree = "<group>"; };
+		EB11ED3A227B3CC200D95365 /* ClaimChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimChat.swift; sourceTree = "<group>"; };
 		EB265B1B221ADE14009DA493 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeRouting.swift; sourceTree = "<group>"; };
 		EB3A235521A57EE4007F52B6 /* hedvig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hedvig-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 				559CCAF12121B42C0080C272 /* staging.xcconfig */,
 				559CCAF22121B4620080C272 /* release.xcconfig */,
 				EB265B1B221ADE14009DA493 /* Chat.swift */,
+				EB11ED3A227B3CC200D95365 /* ClaimChat.swift */,
 				EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */,
 				EBECC26721B92E4800716BEA /* NativeRouting.m */,
 				EBECC26521B9230000716BEA /* NativeRouting.swift */,
@@ -636,6 +639,7 @@
 		EB11E94F2277047700D95365 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				EB11ED12227ADBDE00D95365 /* ClaimsScreen */,
 				EB11E9502277047700D95365 /* LoggedInScreen */,
 				EB11E9522277047700D95365 /* LaunchScreen */,
 				EB11E9542277047700D95365 /* MarketingScreen */,
@@ -942,7 +946,6 @@
 			isa = PBXGroup;
 			children = (
 				EB11E9AF2277047700D95365 /* CharityInformationButton.swift */,
-				EB11E9B02277047700D95365 /* CharityInformationBody.swift */,
 				EB11E9B12277047700D95365 /* CharityHeader.swift */,
 				EB11E9B22277047700D95365 /* CharityLogo.swift */,
 				EB11E9B32277047700D95365 /* SelectedCharity.swift */,
@@ -1017,7 +1020,6 @@
 		EB11E9C92277047700D95365 /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
-				EB11ED12227ADBDE00D95365 /* ClaimsScreen */,
 				EB11E9CB2277047700D95365 /* ChatPresentationStyle.swift */,
 			);
 			path = ChatScreen;
@@ -1196,6 +1198,7 @@
 				EB11EA2D2277047700D95365 /* MyCoinsured.graphql */,
 				EB11EA2E2277047700D95365 /* InsuranceCertificate.graphql */,
 				EB11EA2F2277047700D95365 /* MyPayment.graphql */,
+				EB11ED38227B3BB500D95365 /* TriggerClaimChat.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -1424,6 +1427,7 @@
 				559CCAF02121B3530080C272 /* debug.xcconfig in Resources */,
 				64ADFEB80E9B4CE188FF5E21 /* SoRay-ExtraBold.ttf in Resources */,
 				EB11EAF02277047800D95365 /* CreateSession.graphql in Resources */,
+				EB11ED39227B3BB500D95365 /* TriggerClaimChat.graphql in Resources */,
 				EB4695BE220051BF0004C75D /* Pods-Hedvig-acknowledgements.plist in Resources */,
 				EB11EAF22277047800D95365 /* MyCoinsured.graphql in Resources */,
 				EB11EAE32277047800D95365 /* UpdateEmail.graphql in Resources */,
@@ -1560,6 +1564,7 @@
 				EB11EB2E2277382700D95365 /* Divider.swift in Sources */,
 				EB11EACE2277047700D95365 /* TextStyle.swift in Sources */,
 				EB11EA512277047700D95365 /* End.swift in Sources */,
+				EB11ED3B227B3CC200D95365 /* ClaimChat.swift in Sources */,
 				EB11EB27227735E500D95365 /* PerilInformation.swift in Sources */,
 				EB11EAD22277047700D95365 /* FieldStyle.swift in Sources */,
 				EB11EA932277047700D95365 /* License.swift in Sources */,
@@ -1680,7 +1685,6 @@
 				EB11EB23227735E500D95365 /* MoreInfoExpandableRow.swift in Sources */,
 				EB11EA722277047700D95365 /* FeedbackHeader.swift in Sources */,
 				EB11EA452277047700D95365 /* Launch.swift in Sources */,
-				EB11EA872277047700D95365 /* CharityInformationBody.swift in Sources */,
 				EB11EAF62277047800D95365 /* API.swift in Sources */,
 				EB11EAD72277047800D95365 /* TranslationsRepo.swift in Sources */,
 				EB11EA9E2277047700D95365 /* MultilineLabel.swift in Sources */,

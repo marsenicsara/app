@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> BooleanLiteralType {
+        honestyPledgeOpenClaimsFlow = { viewController in
+            viewController.present(ClaimChat(), style: .default, options: [.prefersNavigationBarHidden(false)])
+        }
+
         viewControllerWasPresented = { viewController in
             let mirror = Mirror(reflecting: viewController)
             Analytics.setScreenName(

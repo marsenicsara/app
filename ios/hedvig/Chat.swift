@@ -18,6 +18,7 @@ extension Chat: Presentable {
         let bag = DisposeBag()
 
         let viewController = UIViewController()
+        viewController.title = "Skadeanmälan"
 
         viewController.view = RNNReactView(
             bridge: ReactNativeNavigation.getBridge(),

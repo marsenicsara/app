@@ -121,7 +121,7 @@ PODS:
   - FLAnimatedImage (1.0.12)
   - FlowFeedback (1.0.1):
     - FlowFramework (~> 1.3)
-  - FlowFramework (1.5.2)
+  - FlowFramework (1.8.0)
   - Folly (2016.10.31.00):
     - boost-for-react-native
     - DoubleConversion
@@ -306,7 +306,7 @@ PODS:
     - React
     - Sentry (~> 4.0.1)
   - SnapKit (5.0.0)
-  - SSZipArchive (2.1.5)
+  - SSZipArchive (2.2.1)
   - Starscream (3.1.0)
   - SwiftFormat/CLI (0.40.8)
   - SwiftGen (6.1.0)
@@ -509,13 +509,13 @@ CHECKOUT OPTIONS:
     :commit: 13b4fe9af8d0e4e2f140cd8622504f9e73a9129a
     :git: https://github.com/HedvigInsurance/FlowFeedback.git
   FlowFramework:
-    :commit: e37907b6649e24857bcd136f1ee4e9d79d27e5a2
+    :commit: 43849e2014bdeaabee44de0c1eb90279d313db57
     :git: https://github.com/hedviginsurance/flow.git
   FormFramework:
     :commit: 431b9d7e3f2b044fd26585de565cadeca23b9437
     :git: https://github.com/hedviginsurance/form.git
   PresentationFramework:
-    :commit: dd887e6f2029bd393d5eba58d700ac3a0fd8a9b9
+    :commit: 18c40cb6e62d7e3caceeac205b77e081526c885a
     :git: https://github.com/hedviginsurance/presentation.git
   "UICollectionView+AnimatedScroll":
     :commit: 6ff7f2dcdf0c5bff691d9f7b04d413813d011d11
@@ -551,7 +551,7 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfig: 7e11c65f0769c09bff6947997c209515058c5318
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FlowFeedback: 606ef449d02055986ce5e5cffcb9a2c9aedf869d
-  FlowFramework: 01f78ef94a7a4a26400eac609a085325417cf39b
+  FlowFramework: 457395f270178262e08efd23611a9ac9a8e9e5aa
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   FormFramework: 670ddfcf907876458c6b0d01ae1e9fd34d2ee0f5
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
@@ -593,7 +593,7 @@ SPEC CHECKSUMS:
   Sentry: a38f7879924c02239e121b19d993d23bdd1684db
   SentryReactNative: d476259b21060a59dc637a29a40d60f0aac09cf7
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
-  SSZipArchive: cefe1364104a0231268a5deb8495bdf2861f52f0
+  SSZipArchive: 8e859da2520142e09166bc9161967db296e9d02f
   Starscream: 08172b481e145289c4930cb567230fb55897cfa4
   SwiftFormat: d9e5ca1aed735164fe9d26510ec508ddb8a93598
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
