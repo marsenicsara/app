@@ -6,16 +6,10 @@ import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewManager
 
-import java.util.Arrays
-import java.util.Collections
-
 class NativeRoutingPackage constructor(private val apolloClient: ApolloClient) : ReactPackage {
 
-    override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-        return Arrays.asList<NativeModule>(NativeRoutingModule(reactContext, apolloClient))
-    }
+    override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> =
+        listOf(NativeRoutingModule(reactContext, apolloClient))
 
-    override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-        return emptyList()
-    }
+    override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> = emptyList()
 }

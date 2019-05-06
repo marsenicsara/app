@@ -1,5 +1,6 @@
 package com.hedvig.app
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -11,6 +12,8 @@ import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
+import com.facebook.react.modules.core.PermissionAwareActivity
+import com.facebook.react.modules.core.PermissionListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.android.owldroid.util.NavigationAnalytics
@@ -23,7 +26,21 @@ import io.branch.rnbranch.RNBranchModule
 import javax.inject.Inject
 import com.hedvig.app.common.R as CommonR
 
-class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
+class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, PermissionAwareActivity {
+
+    private var permissionListener: PermissionListener? = null
+
+    @TargetApi(Build.VERSION_CODES.M)
+    override fun requestPermissions(permissions: Array<String>, requestCode: Int, listener: PermissionListener?) {
+        permissionListener = listener
+        super.requestPermissions(permissions, requestCode)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (permissionListener?.onRequestPermissionsResult(requestCode, permissions, grantResults) == true) {
+            permissionListener = null
+        }
+    }
 
     @Inject
     lateinit var asyncStorageNative: AsyncStorageNative

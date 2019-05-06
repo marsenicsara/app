@@ -41,9 +41,7 @@ class NativeRoutingModule constructor(
         reactContext.addLifecycleEventListener(this)
     }
 
-    override fun getName(): String {
-        return "NativeRouting"
-    }
+    override fun getName() = "NativeRouting"
 
     override fun onHostResume() {
         localBroadcastManager.registerReceiver(profileBroadcastReceiver, IntentFilter("profileNavigation"))

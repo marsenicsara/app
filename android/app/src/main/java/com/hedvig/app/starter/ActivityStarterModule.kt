@@ -1,6 +1,9 @@
 package com.hedvig.app.starter
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
@@ -9,6 +12,7 @@ import androidx.navigation.Navigation
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.rx2.Rx2Apollo
 import com.facebook.react.bridge.LifecycleEventListener
+import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
@@ -21,6 +25,7 @@ import com.hedvig.android.owldroid.graphql.InsuranceStatusQuery
 import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.android.owldroid.util.extensions.setIsLoggedIn
 import com.hedvig.android.owldroid.util.extensions.triggerRestartCurrentActivity
+import com.hedvig.app.react.chat.UploadBottomSheet
 import com.hedvig.app.react.offer.OfferChatOverlayFragment
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -45,9 +50,15 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
             ?: throw RuntimeException("Trying to reactApplicationContext.currentActivity but it is null")
     }
 
-    override fun getName(): String {
-        return "ActivityStarter"
+    private val fileUploadBroadcastReceiver = FileUploadBroadcastReceiver()
+
+    private var fileUploadCallback: Promise? = null
+
+    init {
+        localBroadcastManager.registerReceiver(fileUploadBroadcastReceiver, IntentFilter(FILE_UPLOAD_INTENT))
     }
+
+    override fun getName() = "ActivityStarter"
 
     override fun onHostResume() {
     }
@@ -56,6 +67,7 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
     }
 
     override fun onHostDestroy() {
+        localBroadcastManager.unregisterReceiver(fileUploadBroadcastReceiver)
         disposables.dispose()
     }
 
@@ -97,6 +109,13 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
     fun showPerilOverlay(subject: String, iconId: String, title: String, description: String) {
         PerilBottomSheet.newInstance(subject, PerilIcon.from(iconId), title, description)
             .show(fragmentManager, "perilSheet")
+    }
+
+    @ReactMethod
+    fun showFileUploadOverlay(onUpload: Promise) {
+        val uploadBottomSheet = UploadBottomSheet()
+        uploadBottomSheet.show(fragmentManager, "FileUploadOverlay")
+        fileUploadCallback = onUpload
     }
 
     @ReactMethod
@@ -149,7 +168,30 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
         return bundle
     }
 
+    private inner class FileUploadBroadcastReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            when (intent.getStringExtra(FILE_UPLOAD_RESULT)) {
+                FILE_UPLOAD_SUCCESS -> {
+                    fileUploadCallback?.resolve(intent.getStringExtra(FILE_UPLOAD_KEY))
+                        ?: Timber.e("File upload successful but no callback present")
+                    fileUploadCallback = null
+                }
+                FILE_UPLOAD_ERROR -> {
+                    fileUploadCallback?.reject("E_NETWORK_ERROR", "failed to upload")
+                        ?: Timber.e("File upload failed but no callback present") // TODO improve
+                    fileUploadCallback = null
+                }
+            }
+        }
+    }
+
     companion object {
         const val BROADCAST_RELOAD_CHAT = "reloadChat"
+
+        const val FILE_UPLOAD_INTENT = "file_upload"
+        const val FILE_UPLOAD_RESULT = "file_upload_result"
+        const val FILE_UPLOAD_SUCCESS = "success"
+        const val FILE_UPLOAD_ERROR = "error"
+        const val FILE_UPLOAD_KEY = "key"
     }
 }
