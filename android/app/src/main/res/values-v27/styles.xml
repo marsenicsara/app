@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Exponent.Light.V27" parent="Theme.Exponent.Light.V23">
+        <item name="android:navigationBarColor">@color/off_white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <style name="Theme.Exponent.Light" parent="Theme.Exponent.Light.V27"/>
+</resources>

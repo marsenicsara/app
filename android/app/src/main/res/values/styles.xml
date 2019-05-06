@@ -1,13 +1,17 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-  <style name="Theme.Exponent.Light" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:fitsSystemWindows">true</item>
-    <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccentLight</item>
-    <item name="android:windowBackground">@color/white</item>
-  </style>
-  <style name="Theme.Exponent.Splash" parent="Theme.Exponent.Light">
-      <item name="android:windowBackground">@drawable/splash_background</item>
-  </style>
+<resources>
+
+    <style name="Theme.Exponent.Light.V21" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccentLight</item>
+        <item name="android:windowBackground">@color/off_white</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="Theme.Exponent.Light" parent="Theme.Exponent.Light.V21" />
+
+    <style name="Theme.Exponent.Splash" parent="Theme.Exponent.Light">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
 </resources>

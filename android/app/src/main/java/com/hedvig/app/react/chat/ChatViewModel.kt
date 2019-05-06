@@ -1,14 +1,21 @@
 package com.hedvig.app.react.chat
 
 import android.arch.lifecycle.ViewModel
+import android.net.Uri
+import com.hedvig.android.owldroid.util.LiveEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
 import javax.inject.Inject
 
-class ChatViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
+class ChatViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val chatRepository: ChatRepository
+) : ViewModel() {
 
     private val disposables = CompositeDisposable()
+    val isUploading = LiveEvent<Boolean>()
+    val fileUploadKey = LiveEvent<String>()
 
     fun logout(callback: () -> Unit) {
         disposables += userRepository
@@ -18,5 +25,19 @@ class ChatViewModel @Inject constructor(private val userRepository: UserReposito
             }, { error ->
                 Timber.e(error, "Failed to log out")
             })
+    }
+
+    fun uploadFile(uri: Uri) {
+        isUploading.value = true
+        disposables += chatRepository
+            .uploadFile(uri)
+            .subscribe({ data ->
+                data.uploadFile.key?.let { fileUploadKey.postValue(it) }
+            }, { Timber.e(it) })
+    }
+
+    override fun onCleared() {
+        disposables.dispose()
+        super.onCleared()
     }
 }
