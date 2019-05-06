@@ -23,18 +23,16 @@ struct ClaimChat {
 }
 
 extension ClaimChat: Presentable {
-    func materialize() -> (UIViewController, Disposable) {
+    func materialize() -> (UIViewController, Future<Void>) {
         let bag = DisposeBag()
 
         let viewController = UIViewController()
         viewController.title = "Skadeanmälan"
-        viewController.preferredContentSize = CGSize(width: 0, height: UIScreen.main.bounds.height - 50)
+        viewController.preferredContentSize = CGSize(width: 0, height: UIScreen.main.bounds.height - 80)
 
-        let item = UIBarButtonItem(title: "Avbryt")
-
-        bag += item.onValue { _ in
-            viewController.dismiss(animated: true, completion: nil)
-        }
+        let item = UIBarButtonItem()
+        item.image = Asset.close.image
+        item.tintColor = .darkGray
 
         viewController.navigationItem.leftBarButtonItem = item
 
@@ -68,6 +66,12 @@ extension ClaimChat: Presentable {
 
         viewController.view = view
 
-        return (viewController, bag)
+        return (viewController, Future { completion in
+            bag += item.onValue { _ in
+                completion(.success)
+            }
+
+            return DelayedDisposer(bag, delay: 1)
+        })
     }
 }

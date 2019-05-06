@@ -40,7 +40,6 @@ target 'hedvig' do
   pod 'RNAudio', :path => '../node_modules/react-native-audio'
   pod 'RNSound', :path => '../node_modules/react-native-sound'
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
-  pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'Firebase/RemoteConfig'

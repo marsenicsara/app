@@ -212,7 +212,6 @@
 		EB11EB27227735E500D95365 /* PerilInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB16227735E500D95365 /* PerilInformation.swift */; };
 		EB11EB28227735E500D95365 /* PendingInsurance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB17227735E500D95365 /* PendingInsurance.swift */; };
 		EB11EB29227735E600D95365 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB18227735E500D95365 /* Dashboard.swift */; };
-		EB11EB2A227735E600D95365 /* DashboardRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB19227735E500D95365 /* DashboardRouting.swift */; };
 		EB11EB2C2277360900D95365 /* MultilineLabelIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB2B2277360900D95365 /* MultilineLabelIcon.swift */; };
 		EB11EB2E2277382700D95365 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB2D2277382600D95365 /* Divider.swift */; };
 		EB11EB302277386600D95365 /* UIView+Flip.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB2F2277386600D95365 /* UIView+Flip.swift */; };
@@ -245,6 +244,7 @@
 		EB433C96221D49C1000156D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB433C95221D49C1000156D4 /* LaunchScreen.storyboard */; };
 		EB4695BE220051BF0004C75D /* Pods-Hedvig-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */; };
 		EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695CD220083800004C75D /* RCTApolloClient.swift */; };
+		EBCAA816228086BC003C4833 /* DashboardRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA815228086BC003C4833 /* DashboardRouting.swift */; };
 		EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */; };
 		EBD675FA21FF4F0F00050E86 /* LoggedInScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
@@ -473,7 +473,6 @@
 		EB11EB16227735E500D95365 /* PerilInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilInformation.swift; sourceTree = "<group>"; };
 		EB11EB17227735E500D95365 /* PendingInsurance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInsurance.swift; sourceTree = "<group>"; };
 		EB11EB18227735E500D95365 /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
-		EB11EB19227735E500D95365 /* DashboardRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardRouting.swift; sourceTree = "<group>"; };
 		EB11EB2B2277360900D95365 /* MultilineLabelIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineLabelIcon.swift; sourceTree = "<group>"; };
 		EB11EB2D2277382600D95365 /* Divider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
 		EB11EB2F2277386600D95365 /* UIView+Flip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Flip.swift"; sourceTree = "<group>"; };
@@ -508,6 +507,7 @@
 		EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-Hedvig-acknowledgements.plist"; sourceTree = "<group>"; };
 		EB4695CD220083800004C75D /* RCTApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTApolloClient.swift; sourceTree = "<group>"; };
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBCAA815228086BC003C4833 /* DashboardRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRouting.swift; sourceTree = "<group>"; };
 		EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDirectDebitStatus.swift; sourceTree = "<group>"; };
 		EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
@@ -597,6 +597,7 @@
 				EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */,
 				EBECC26721B92E4800716BEA /* NativeRouting.m */,
 				EBECC26521B9230000716BEA /* NativeRouting.swift */,
+				EBCAA815228086BC003C4833 /* DashboardRouting.swift */,
 				EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */,
 				EB4695CD220083800004C75D /* RCTApolloClient.swift */,
 				EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */,
@@ -748,7 +749,6 @@
 			isa = PBXGroup;
 			children = (
 				EB11EB18227735E500D95365 /* Dashboard.swift */,
-				EB11EB19227735E500D95365 /* DashboardRouting.swift */,
 				EB11EB08227735E500D95365 /* Viewables */,
 			);
 			path = DashboardScreen;
@@ -1529,7 +1529,6 @@
 				EB11EAFB2277047800D95365 /* Icon.swift in Sources */,
 				EB11EB1F227735E500D95365 /* PendingInsuranceMoreInfo.swift in Sources */,
 				EB11ED2C227ADBDE00D95365 /* ClaimsHeader.swift in Sources */,
-				EB11EB2A227735E600D95365 /* DashboardRouting.swift in Sources */,
 				EB11EA6F2277047700D95365 /* MyInfo.swift in Sources */,
 				EB11EB1A227735E500D95365 /* Countdown.swift in Sources */,
 				EB11EA942277047700D95365 /* Licenses.swift in Sources */,
@@ -1651,6 +1650,7 @@
 				EB11EA762277047700D95365 /* ReferralsOffer.swift in Sources */,
 				EB11EB21227735E500D95365 /* PerilExpandableRow.swift in Sources */,
 				EB11EA7A2277047700D95365 /* DeductibleCircle.swift in Sources */,
+				EBCAA816228086BC003C4833 /* DashboardRouting.swift in Sources */,
 				EB11ED28227ADBDE00D95365 /* Claims.swift in Sources */,
 				EB11EAE02277047800D95365 /* RemoteConfigContainer.swift in Sources */,
 				EB11EAD62277047800D95365 /* CenterAllStackView.swift in Sources */,
