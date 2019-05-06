@@ -235,7 +235,6 @@
 		EB11ED33227ADBDE00D95365 /* CommonClaimTitleAndBulletPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED22227ADBDE00D95365 /* CommonClaimTitleAndBulletPoints.swift */; };
 		EB11ED34227ADBDE00D95365 /* CardAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED24227ADBDE00D95365 /* CardAnimationController.swift */; };
 		EB11ED35227ADBDE00D95365 /* CardControllerTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED25227ADBDE00D95365 /* CardControllerTransitioningDelegate.swift */; };
-		EB11ED36227ADBDE00D95365 /* DismissCardInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED26227ADBDE00D95365 /* DismissCardInteractionController.swift */; };
 		EB11ED37227ADBDE00D95365 /* DismissCardAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED27227ADBDE00D95365 /* DismissCardAnimationController.swift */; };
 		EB11ED39227B3BB500D95365 /* TriggerClaimChat.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EB11ED38227B3BB500D95365 /* TriggerClaimChat.graphql */; };
 		EB11ED3B227B3CC200D95365 /* ClaimChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED3A227B3CC200D95365 /* ClaimChat.swift */; };
@@ -496,7 +495,6 @@
 		EB11ED22227ADBDE00D95365 /* CommonClaimTitleAndBulletPoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonClaimTitleAndBulletPoints.swift; sourceTree = "<group>"; };
 		EB11ED24227ADBDE00D95365 /* CardAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationController.swift; sourceTree = "<group>"; };
 		EB11ED25227ADBDE00D95365 /* CardControllerTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardControllerTransitioningDelegate.swift; sourceTree = "<group>"; };
-		EB11ED26227ADBDE00D95365 /* DismissCardInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissCardInteractionController.swift; sourceTree = "<group>"; };
 		EB11ED27227ADBDE00D95365 /* DismissCardAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissCardAnimationController.swift; sourceTree = "<group>"; };
 		EB11ED38227B3BB500D95365 /* TriggerClaimChat.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = TriggerClaimChat.graphql; sourceTree = "<group>"; };
 		EB11ED3A227B3CC200D95365 /* ClaimChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimChat.swift; sourceTree = "<group>"; };
@@ -1313,7 +1311,6 @@
 			children = (
 				EB11ED24227ADBDE00D95365 /* CardAnimationController.swift */,
 				EB11ED25227ADBDE00D95365 /* CardControllerTransitioningDelegate.swift */,
-				EB11ED26227ADBDE00D95365 /* DismissCardInteractionController.swift */,
 				EB11ED27227ADBDE00D95365 /* DismissCardAnimationController.swift */,
 			);
 			path = Transitions;
@@ -1689,7 +1686,6 @@
 				EB11EAD72277047800D95365 /* TranslationsRepo.swift in Sources */,
 				EB11EA9E2277047700D95365 /* MultilineLabel.swift in Sources */,
 				EB11EA562277047700D95365 /* SkipToPreviousButton.swift in Sources */,
-				EB11ED36227ADBDE00D95365 /* DismissCardInteractionController.swift in Sources */,
 				EB11EB24227735E500D95365 /* Peril.swift in Sources */,
 				EB11EA622277047700D95365 /* MyCharityRow.swift in Sources */,
 				EB11EAC52277047700D95365 /* ApolloStore+Update.swift in Sources */,

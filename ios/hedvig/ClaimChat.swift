@@ -30,11 +30,11 @@ extension ClaimChat: Presentable {
         viewController.title = "Skadeanmälan"
         viewController.preferredContentSize = CGSize(width: 0, height: UIScreen.main.bounds.height - 80)
 
-        let item = UIBarButtonItem()
-        item.image = Asset.close.image
-        item.tintColor = .darkGray
+        let closeButton = UIBarButtonItem()
+        closeButton.image = Asset.close.image
+        closeButton.tintColor = .darkGray
 
-        viewController.navigationItem.leftBarButtonItem = item
+        viewController.navigationItem.leftBarButtonItem = closeButton
 
         let view = UIView()
         view.backgroundColor = .offWhite
@@ -67,7 +67,7 @@ extension ClaimChat: Presentable {
         viewController.view = view
 
         return (viewController, Future { completion in
-            bag += item.onValue { _ in
+            bag += closeButton.onValue { _ in
                 completion(.success)
             }
 

@@ -299,12 +299,6 @@ PODS:
   - SDWebImage/GIF (4.4.6):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
-  - Sentry (4.0.1):
-    - Sentry/Core (= 4.0.1)
-  - Sentry/Core (4.0.1)
-  - SentryReactNative (0.39.0):
-    - React
-    - Sentry (~> 4.0.1)
   - SnapKit (5.0.0)
   - SSZipArchive (2.2.1)
   - Starscream (3.1.0)
@@ -376,7 +370,6 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler/ios`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
-  - SentryReactNative (from `../node_modules/react-native-sentry`)
   - SnapKit (~> 5.0.0)
   - SwiftFormat/CLI
   - SwiftGen
@@ -423,7 +416,6 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - SDWebImage
-    - Sentry
     - SnapKit
     - SSZipArchive
     - Starscream
@@ -494,8 +486,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-sound"
   RNSVG:
     :path: "../node_modules/react-native-svg"
-  SentryReactNative:
-    :path: "../node_modules/react-native-sentry"
   "UICollectionView+AnimatedScroll":
     :git: https://github.com/HedvigInsurance/UICollectionView-AnimatedScroll.git
   yoga:
@@ -590,8 +580,6 @@ SPEC CHECKSUMS:
   RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
-  Sentry: a38f7879924c02239e121b19d993d23bdd1684db
-  SentryReactNative: d476259b21060a59dc637a29a40d60f0aac09cf7
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SSZipArchive: 8e859da2520142e09166bc9161967db296e9d02f
   Starscream: 08172b481e145289c4930cb567230fb55897cfa4
@@ -601,6 +589,6 @@ SPEC CHECKSUMS:
   "UICollectionView+AnimatedScroll": 901fdefe36e1dd7a17ca567f366b22ff5da521e6
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: b7e736253b7800d7e4b2795ac5e800e447e781fc
+PODFILE CHECKSUM: d6d17aa6ab988c5f6e2f594ab2af45be31553f90
 
 COCOAPODS: 1.5.3

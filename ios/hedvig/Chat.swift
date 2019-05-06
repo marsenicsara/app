@@ -14,11 +14,27 @@ import UIKit
 struct Chat {}
 
 extension Chat: Presentable {
-    func materialize() -> (UIViewController, Disposable) {
+    func materialize() -> (UIViewController, Future<Void>) {
         let bag = DisposeBag()
 
         let viewController = UIViewController()
-        viewController.title = "Skadeanmälan"
+        viewController.preferredContentSize = CGSize(width: 0, height: UIScreen.main.bounds.height - 80)
+
+        let closeButton = UIBarButtonItem()
+        closeButton.image = Asset.close.image
+        closeButton.tintColor = .darkGray
+
+        viewController.navigationItem.leftBarButtonItem = closeButton
+
+        let titleHedvigLogo = UIImageView()
+        titleHedvigLogo.image = Asset.wordmark.image
+        titleHedvigLogo.contentMode = .scaleAspectFit
+
+        viewController.navigationItem.titleView = titleHedvigLogo
+
+        titleHedvigLogo.snp.makeConstraints { make in
+            make.width.equalTo(80)
+        }
 
         viewController.view = RNNReactView(
             bridge: ReactNativeNavigation.getBridge(),
@@ -26,6 +42,12 @@ extension Chat: Presentable {
             initialProperties: ["componentId": "1", "intent": "onboarding"]
         )
 
-        return (viewController, bag)
+        return (viewController, Future { completion in
+            bag += closeButton.onValue {
+                completion(.success)
+            }
+
+            return bag
+        })
     }
 }
