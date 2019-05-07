@@ -6,12 +6,19 @@
 //  Copyright © 2019 Hedvig AB. All rights reserved.
 //
 
+import Apollo
 import Flow
 import Form
 import Presentation
 import UIKit
 
-struct Chat {}
+struct Chat {
+    let client: ApolloClient
+
+    init(client: ApolloClient = ApolloContainer.shared.client) {
+        self.client = client
+    }
+}
 
 extension Chat: Presentable {
     func materialize() -> (UIViewController, Future<Void>) {
@@ -36,11 +43,34 @@ extension Chat: Presentable {
             make.width.equalTo(80)
         }
 
-        viewController.view = RNNReactView(
-            bridge: ReactNativeNavigation.getBridge(),
-            moduleName: "ChatScreen",
-            initialProperties: ["componentId": "1", "intent": "onboarding"]
-        )
+        let view = UIView()
+        view.backgroundColor = .offWhite
+
+        let loaderBag = bag.innerBag()
+
+        let loadingIndicator = LoadingIndicator(showAfter: 0)
+        loaderBag += view.add(loadingIndicator)
+
+        bag += client.perform(mutation: TriggerFreeTextChatMutation()).valueSignal.compactMap { $0.data?.triggerFreeTextChat }.onValue { _ in
+            let reactView = RNNReactView(
+                bridge: ReactNativeNavigation.getBridge(),
+                moduleName: "ChatScreen",
+                initialProperties: ["componentId": "1", "intent": ""]
+            )
+
+            if let reactView = reactView {
+                view.addSubview(reactView)
+                reactView.snp.makeConstraints { make in
+                    make.width.equalToSuperview()
+                    make.height.equalToSuperview()
+                    make.center.equalToSuperview()
+                }
+            }
+
+            loaderBag.dispose()
+        }
+
+        viewController.view = view
 
         return (viewController, Future { completion in
             bag += closeButton.onValue {

@@ -231,7 +231,6 @@
 		EBCAA816228086BC003C4833 /* DashboardRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA815228086BC003C4833 /* DashboardRouting.swift */; };
 		EBCAA89D2281C28E003C4833 /* MyProtectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88C2281C28D003C4833 /* MyProtectionSection.swift */; };
 		EBCAA89E2281C28E003C4833 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88D2281C28D003C4833 /* MessageBubble.swift */; };
-		EBCAA89F2281C28E003C4833 /* ChatActionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88E2281C28D003C4833 /* ChatActionsSection.swift */; };
 		EBCAA8A02281C28E003C4833 /* Peril.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88F2281C28D003C4833 /* Peril.swift */; };
 		EBCAA8A12281C28E003C4833 /* ChatPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8902281C28D003C4833 /* ChatPreview.swift */; };
 		EBCAA8A22281C28E003C4833 /* PerilExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8912281C28D003C4833 /* PerilExpandableRow.swift */; };
@@ -247,6 +246,7 @@
 		EBCAA8AC2281C28E003C4833 /* ExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA89B2281C28E003C4833 /* ExpandableRow.swift */; };
 		EBCAA8AD2281C28E003C4833 /* MoreInfoExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA89C2281C28E003C4833 /* MoreInfoExpandableRow.swift */; };
 		EBCAA8AF2281C2F2003C4833 /* UIView+LayoutSuperviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8AE2281C2F2003C4833 /* UIView+LayoutSuperviews.swift */; };
+		EBCAA8B12281DF35003C4833 /* TriggerFreeTextChat.graphql in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8B02281DF35003C4833 /* TriggerFreeTextChat.graphql */; };
 		EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */; };
 		EBD675FA21FF4F0F00050E86 /* LoggedInScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
@@ -496,7 +496,6 @@
 		EBCAA815228086BC003C4833 /* DashboardRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRouting.swift; sourceTree = "<group>"; };
 		EBCAA88C2281C28D003C4833 /* MyProtectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProtectionSection.swift; sourceTree = "<group>"; };
 		EBCAA88D2281C28D003C4833 /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
-		EBCAA88E2281C28D003C4833 /* ChatActionsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatActionsSection.swift; sourceTree = "<group>"; };
 		EBCAA88F2281C28D003C4833 /* Peril.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peril.swift; sourceTree = "<group>"; };
 		EBCAA8902281C28D003C4833 /* ChatPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPreview.swift; sourceTree = "<group>"; };
 		EBCAA8912281C28D003C4833 /* PerilExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilExpandableRow.swift; sourceTree = "<group>"; };
@@ -512,6 +511,7 @@
 		EBCAA89B2281C28E003C4833 /* ExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableRow.swift; sourceTree = "<group>"; };
 		EBCAA89C2281C28E003C4833 /* MoreInfoExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoExpandableRow.swift; sourceTree = "<group>"; };
 		EBCAA8AE2281C2F2003C4833 /* UIView+LayoutSuperviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LayoutSuperviews.swift"; sourceTree = "<group>"; };
+		EBCAA8B02281DF35003C4833 /* TriggerFreeTextChat.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = TriggerFreeTextChat.graphql; sourceTree = "<group>"; };
 		EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDirectDebitStatus.swift; sourceTree = "<group>"; };
 		EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
@@ -1204,6 +1204,7 @@
 				EB11EA2E2277047700D95365 /* InsuranceCertificate.graphql */,
 				EB11EA2F2277047700D95365 /* MyPayment.graphql */,
 				EB11ED38227B3BB500D95365 /* TriggerClaimChat.graphql */,
+				EBCAA8B02281DF35003C4833 /* TriggerFreeTextChat.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -1241,7 +1242,6 @@
 		EB11EB08227735E500D95365 /* Viewables */ = {
 			isa = PBXGroup;
 			children = (
-				EBCAA88E2281C28D003C4833 /* ChatActionsSection.swift */,
 				EBCAA8902281C28D003C4833 /* ChatPreview.swift */,
 				EBCAA8992281C28D003C4833 /* Countdown.swift */,
 				EBCAA89A2281C28E003C4833 /* CountdownShapes.swift */,
@@ -1652,7 +1652,6 @@
 				EB11EA862277047700D95365 /* CharityInformationButton.swift in Sources */,
 				EB11EA582277047700D95365 /* MarketingStory.swift in Sources */,
 				EB11EAD42277047700D95365 /* ActivityView.swift in Sources */,
-				EBCAA89F2281C28E003C4833 /* ChatActionsSection.swift in Sources */,
 				EB11EA922277047700D95365 /* About.swift in Sources */,
 				EB11ED2A227ADBDE00D95365 /* CloseButton.swift in Sources */,
 				EB11EA912277047700D95365 /* LicensesRow.swift in Sources */,
@@ -1699,6 +1698,7 @@
 				EB11EA9E2277047700D95365 /* MultilineLabel.swift in Sources */,
 				EB11EA562277047700D95365 /* SkipToPreviousButton.swift in Sources */,
 				EB11EA622277047700D95365 /* MyCharityRow.swift in Sources */,
+				EBCAA8B12281DF35003C4833 /* TriggerFreeTextChat.graphql in Sources */,
 				EB11EAC52277047700D95365 /* ApolloStore+Update.swift in Sources */,
 				EB11EAC92277047700D95365 /* WKWebView+Signal.swift in Sources */,
 				EB11EA6B2277047700D95365 /* PhoneNumberRow.swift in Sources */,

@@ -34,6 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             viewController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)])
         }
 
+        dashboardOpenFreeTextChat = { viewController in
+            let chatOverlay = DraggableOverlay(presentable: Chat())
+            viewController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)])
+        }
+
         viewControllerWasPresented = { viewController in
             let mirror = Mirror(reflecting: viewController)
             Analytics.setScreenName(

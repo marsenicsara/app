@@ -44,23 +44,22 @@ extension ClaimChat: Presentable {
         let loadingIndicator = LoadingIndicator(showAfter: 0)
         loaderBag += view.add(loadingIndicator)
 
-        let reactView = RNNReactView(
-            bridge: ReactNativeNavigation.getBridge(),
-            moduleName: "ChatScreen",
-            initialProperties: ["componentId": "1", "intent": ""]
-        )
-        reactView?.isHidden = true
-
-        view.addSubview(reactView!)
-
-        reactView?.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalToSuperview()
-            make.center.equalToSuperview()
-        }
-
         bag += client.perform(mutation: TriggerClaimChatMutation(claimTypeId: claimTypeId)).valueSignal.compactMap { $0.data?.triggerClaimChat }.onValue { _ in
-            reactView?.isHidden = false
+            let reactView = RNNReactView(
+                bridge: ReactNativeNavigation.getBridge(),
+                moduleName: "ChatScreen",
+                initialProperties: ["componentId": "1", "intent": ""]
+            )
+
+            if let reactView = reactView {
+                view.addSubview(reactView)
+                reactView.snp.makeConstraints { make in
+                    make.width.equalToSuperview()
+                    make.height.equalToSuperview()
+                    make.center.equalToSuperview()
+                }
+            }
+
             loaderBag.dispose()
         }
 
