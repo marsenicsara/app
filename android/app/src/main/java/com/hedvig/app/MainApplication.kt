@@ -22,7 +22,6 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import com.learnium.RNDeviceInfo.RNDeviceInfo
 import com.leo_pharma.analytics.AnalyticsPackage
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage
-import com.reactnativedocumentpicker.ReactNativeDocumentPicker
 import com.rnfs.RNFSPackage
 import com.rnim.rn.audio.ReactNativeAudioPackage
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
@@ -60,7 +59,6 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
         override fun getPackages() = listOf(
             ActivityStarterReactPackage(apolloClient),
             MainReactPackage(),
-            ReactNativeDocumentPicker(),
             ImagePickerPackage(),
             RNFSPackage(),
             ReactVideoPackage(),
