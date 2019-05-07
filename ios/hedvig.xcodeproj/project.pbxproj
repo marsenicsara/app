@@ -230,9 +230,7 @@
 		EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695CD220083800004C75D /* RCTApolloClient.swift */; };
 		EBCAA816228086BC003C4833 /* DashboardRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA815228086BC003C4833 /* DashboardRouting.swift */; };
 		EBCAA89D2281C28E003C4833 /* MyProtectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88C2281C28D003C4833 /* MyProtectionSection.swift */; };
-		EBCAA89E2281C28E003C4833 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88D2281C28D003C4833 /* MessageBubble.swift */; };
 		EBCAA8A02281C28E003C4833 /* Peril.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88F2281C28D003C4833 /* Peril.swift */; };
-		EBCAA8A12281C28E003C4833 /* ChatPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8902281C28D003C4833 /* ChatPreview.swift */; };
 		EBCAA8A22281C28E003C4833 /* PerilExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8912281C28D003C4833 /* PerilExpandableRow.swift */; };
 		EBCAA8A32281C28E003C4833 /* PerilCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8922281C28D003C4833 /* PerilCollection.swift */; };
 		EBCAA8A42281C28E003C4833 /* PendingInsuranceMoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8932281C28D003C4833 /* PendingInsuranceMoreInfo.swift */; };
@@ -247,6 +245,8 @@
 		EBCAA8AD2281C28E003C4833 /* MoreInfoExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA89C2281C28E003C4833 /* MoreInfoExpandableRow.swift */; };
 		EBCAA8AF2281C2F2003C4833 /* UIView+LayoutSuperviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8AE2281C2F2003C4833 /* UIView+LayoutSuperviews.swift */; };
 		EBCAA8B12281DF35003C4833 /* TriggerFreeTextChat.graphql in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8B02281DF35003C4833 /* TriggerFreeTextChat.graphql */; };
+		EBCAA8B62282255B003C4833 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8B42282255B003C4833 /* MessageBubble.swift */; };
+		EBCAA8B72282255B003C4833 /* ChatPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8B52282255B003C4833 /* ChatPreview.swift */; };
 		EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */; };
 		EBD675FA21FF4F0F00050E86 /* LoggedInScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
@@ -495,9 +495,7 @@
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBCAA815228086BC003C4833 /* DashboardRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRouting.swift; sourceTree = "<group>"; };
 		EBCAA88C2281C28D003C4833 /* MyProtectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProtectionSection.swift; sourceTree = "<group>"; };
-		EBCAA88D2281C28D003C4833 /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		EBCAA88F2281C28D003C4833 /* Peril.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peril.swift; sourceTree = "<group>"; };
-		EBCAA8902281C28D003C4833 /* ChatPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPreview.swift; sourceTree = "<group>"; };
 		EBCAA8912281C28D003C4833 /* PerilExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilExpandableRow.swift; sourceTree = "<group>"; };
 		EBCAA8922281C28D003C4833 /* PerilCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilCollection.swift; sourceTree = "<group>"; };
 		EBCAA8932281C28D003C4833 /* PendingInsuranceMoreInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInsuranceMoreInfo.swift; sourceTree = "<group>"; };
@@ -512,6 +510,8 @@
 		EBCAA89C2281C28E003C4833 /* MoreInfoExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoExpandableRow.swift; sourceTree = "<group>"; };
 		EBCAA8AE2281C2F2003C4833 /* UIView+LayoutSuperviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LayoutSuperviews.swift"; sourceTree = "<group>"; };
 		EBCAA8B02281DF35003C4833 /* TriggerFreeTextChat.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = TriggerFreeTextChat.graphql; sourceTree = "<group>"; };
+		EBCAA8B42282255B003C4833 /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		EBCAA8B52282255B003C4833 /* ChatPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPreview.swift; sourceTree = "<group>"; };
 		EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDirectDebitStatus.swift; sourceTree = "<group>"; };
 		EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
@@ -1242,12 +1242,11 @@
 		EB11EB08227735E500D95365 /* Viewables */ = {
 			isa = PBXGroup;
 			children = (
-				EBCAA8902281C28D003C4833 /* ChatPreview.swift */,
+				EBCAA8B32282255B003C4833 /* ChatPreview */,
 				EBCAA8992281C28D003C4833 /* Countdown.swift */,
 				EBCAA89A2281C28E003C4833 /* CountdownShapes.swift */,
 				EBCAA89B2281C28E003C4833 /* ExpandableRow.swift */,
 				EBCAA8942281C28D003C4833 /* LargeIconTitleSubtitle.swift */,
-				EBCAA88D2281C28D003C4833 /* MessageBubble.swift */,
 				EBCAA8962281C28D003C4833 /* MoreInfo.swift */,
 				EBCAA89C2281C28E003C4833 /* MoreInfoExpandableRow.swift */,
 				EBCAA88C2281C28D003C4833 /* MyProtectionSection.swift */,
@@ -1323,6 +1322,15 @@
 				EB11ED27227ADBDE00D95365 /* DismissCardAnimationController.swift */,
 			);
 			path = Transitions;
+			sourceTree = "<group>";
+		};
+		EBCAA8B32282255B003C4833 /* ChatPreview */ = {
+			isa = PBXGroup;
+			children = (
+				EBCAA8B42282255B003C4833 /* MessageBubble.swift */,
+				EBCAA8B52282255B003C4833 /* ChatPreview.swift */,
+			);
+			path = ChatPreview;
 			sourceTree = "<group>";
 		};
 		EBECC1A621B811F400716BEA /* ugglan */ = {
@@ -1604,6 +1612,7 @@
 				EB11ED32227ADBDE00D95365 /* CommonClaimEmergency.swift in Sources */,
 				EB11EA902277047700D95365 /* MemberIdRow.swift in Sources */,
 				EB11EAC82277047700D95365 /* UIViewController+Previewing.swift in Sources */,
+				EBCAA8B72282255B003C4833 /* ChatPreview.swift in Sources */,
 				EB11EAB92277047700D95365 /* UIView+addConstraint.swift in Sources */,
 				EB11ED31227ADBDE00D95365 /* HonestyPledge.swift in Sources */,
 				EB11ED37227ADBDE00D95365 /* DismissCardAnimationController.swift in Sources */,
@@ -1711,7 +1720,6 @@
 				EB11EA632277047700D95365 /* AboutRow.swift in Sources */,
 				EB11ED33227ADBDE00D95365 /* CommonClaimTitleAndBulletPoints.swift in Sources */,
 				EB11EA682277047700D95365 /* HomeRow.swift in Sources */,
-				EBCAA89E2281C28E003C4833 /* MessageBubble.swift in Sources */,
 				EB11EADC2277047800D95365 /* AnimationStyle.swift in Sources */,
 				EB11EA752277047700D95365 /* Referrals.swift in Sources */,
 				EB11EABA2277047700D95365 /* UIView+RelativeFrame.swift in Sources */,
@@ -1722,8 +1730,8 @@
 				EB11EADA2277047800D95365 /* TransitionStyle.swift in Sources */,
 				EB11ED2F227ADBDE00D95365 /* BulletPointTable.swift in Sources */,
 				EB11EA4D2277047700D95365 /* ExistingMemberButton.swift in Sources */,
+				EBCAA8B62282255B003C4833 /* MessageBubble.swift in Sources */,
 				EB11EA8A2277047700D95365 /* SelectedCharity.swift in Sources */,
-				EBCAA8A12281C28E003C4833 /* ChatPreview.swift in Sources */,
 				EB11EAC32277047700D95365 /* ApolloClient+NetworkErrorMessage.swift in Sources */,
 				EB11ED2B227ADBDE00D95365 /* CommonClaimsCollection.swift in Sources */,
 				EB11EAAD2277047700D95365 /* CircleIcon.swift in Sources */,
