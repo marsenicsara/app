@@ -196,21 +196,6 @@
 		EB11EAFB2277047800D95365 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EA382277047700D95365 /* Icon.swift */; };
 		EB11EB022277047800D95365 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EA412277047700D95365 /* Localization.swift */; };
 		EB11EB072277209000D95365 /* HedvigFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB062277209000D95365 /* HedvigFonts.swift */; };
-		EB11EB1A227735E500D95365 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB09227735E500D95365 /* Countdown.swift */; };
-		EB11EB1B227735E500D95365 /* MyProtectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0A227735E500D95365 /* MyProtectionSection.swift */; };
-		EB11EB1C227735E500D95365 /* PaymentNeedsSetupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0B227735E500D95365 /* PaymentNeedsSetupSection.swift */; };
-		EB11EB1D227735E500D95365 /* ExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0C227735E500D95365 /* ExpandableRow.swift */; };
-		EB11EB1E227735E500D95365 /* MoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0D227735E500D95365 /* MoreInfo.swift */; };
-		EB11EB1F227735E500D95365 /* PendingInsuranceMoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0E227735E500D95365 /* PendingInsuranceMoreInfo.swift */; };
-		EB11EB20227735E500D95365 /* ChatActionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB0F227735E500D95365 /* ChatActionsSection.swift */; };
-		EB11EB21227735E500D95365 /* PerilExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB10227735E500D95365 /* PerilExpandableRow.swift */; };
-		EB11EB22227735E500D95365 /* PerilCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB11227735E500D95365 /* PerilCollection.swift */; };
-		EB11EB23227735E500D95365 /* MoreInfoExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB12227735E500D95365 /* MoreInfoExpandableRow.swift */; };
-		EB11EB24227735E500D95365 /* Peril.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB13227735E500D95365 /* Peril.swift */; };
-		EB11EB25227735E500D95365 /* LargeIconTitleSubtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB14227735E500D95365 /* LargeIconTitleSubtitle.swift */; };
-		EB11EB26227735E500D95365 /* CountdownShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB15227735E500D95365 /* CountdownShapes.swift */; };
-		EB11EB27227735E500D95365 /* PerilInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB16227735E500D95365 /* PerilInformation.swift */; };
-		EB11EB28227735E500D95365 /* PendingInsurance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB17227735E500D95365 /* PendingInsurance.swift */; };
 		EB11EB29227735E600D95365 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB18227735E500D95365 /* Dashboard.swift */; };
 		EB11EB2C2277360900D95365 /* MultilineLabelIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB2B2277360900D95365 /* MultilineLabelIcon.swift */; };
 		EB11EB2E2277382700D95365 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11EB2D2277382600D95365 /* Divider.swift */; };
@@ -244,6 +229,24 @@
 		EB4695BE220051BF0004C75D /* Pods-Hedvig-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */; };
 		EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695CD220083800004C75D /* RCTApolloClient.swift */; };
 		EBCAA816228086BC003C4833 /* DashboardRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA815228086BC003C4833 /* DashboardRouting.swift */; };
+		EBCAA89D2281C28E003C4833 /* MyProtectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88C2281C28D003C4833 /* MyProtectionSection.swift */; };
+		EBCAA89E2281C28E003C4833 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88D2281C28D003C4833 /* MessageBubble.swift */; };
+		EBCAA89F2281C28E003C4833 /* ChatActionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88E2281C28D003C4833 /* ChatActionsSection.swift */; };
+		EBCAA8A02281C28E003C4833 /* Peril.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA88F2281C28D003C4833 /* Peril.swift */; };
+		EBCAA8A12281C28E003C4833 /* ChatPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8902281C28D003C4833 /* ChatPreview.swift */; };
+		EBCAA8A22281C28E003C4833 /* PerilExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8912281C28D003C4833 /* PerilExpandableRow.swift */; };
+		EBCAA8A32281C28E003C4833 /* PerilCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8922281C28D003C4833 /* PerilCollection.swift */; };
+		EBCAA8A42281C28E003C4833 /* PendingInsuranceMoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8932281C28D003C4833 /* PendingInsuranceMoreInfo.swift */; };
+		EBCAA8A52281C28E003C4833 /* LargeIconTitleSubtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8942281C28D003C4833 /* LargeIconTitleSubtitle.swift */; };
+		EBCAA8A62281C28E003C4833 /* PendingInsurance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8952281C28D003C4833 /* PendingInsurance.swift */; };
+		EBCAA8A72281C28E003C4833 /* MoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8962281C28D003C4833 /* MoreInfo.swift */; };
+		EBCAA8A82281C28E003C4833 /* PerilInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8972281C28D003C4833 /* PerilInformation.swift */; };
+		EBCAA8A92281C28E003C4833 /* PaymentNeedsSetupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8982281C28D003C4833 /* PaymentNeedsSetupSection.swift */; };
+		EBCAA8AA2281C28E003C4833 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8992281C28D003C4833 /* Countdown.swift */; };
+		EBCAA8AB2281C28E003C4833 /* CountdownShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA89A2281C28E003C4833 /* CountdownShapes.swift */; };
+		EBCAA8AC2281C28E003C4833 /* ExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA89B2281C28E003C4833 /* ExpandableRow.swift */; };
+		EBCAA8AD2281C28E003C4833 /* MoreInfoExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA89C2281C28E003C4833 /* MoreInfoExpandableRow.swift */; };
+		EBCAA8AF2281C2F2003C4833 /* UIView+LayoutSuperviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8AE2281C2F2003C4833 /* UIView+LayoutSuperviews.swift */; };
 		EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */; };
 		EBD675FA21FF4F0F00050E86 /* LoggedInScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
@@ -456,21 +459,6 @@
 		EB11EA402277047700D95365 /* Localization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Localization.json; sourceTree = "<group>"; };
 		EB11EA412277047700D95365 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		EB11EB062277209000D95365 /* HedvigFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HedvigFonts.swift; path = Fonts/HedvigFonts.swift; sourceTree = "<group>"; };
-		EB11EB09227735E500D95365 /* Countdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
-		EB11EB0A227735E500D95365 /* MyProtectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProtectionSection.swift; sourceTree = "<group>"; };
-		EB11EB0B227735E500D95365 /* PaymentNeedsSetupSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentNeedsSetupSection.swift; sourceTree = "<group>"; };
-		EB11EB0C227735E500D95365 /* ExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableRow.swift; sourceTree = "<group>"; };
-		EB11EB0D227735E500D95365 /* MoreInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfo.swift; sourceTree = "<group>"; };
-		EB11EB0E227735E500D95365 /* PendingInsuranceMoreInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInsuranceMoreInfo.swift; sourceTree = "<group>"; };
-		EB11EB0F227735E500D95365 /* ChatActionsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatActionsSection.swift; sourceTree = "<group>"; };
-		EB11EB10227735E500D95365 /* PerilExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilExpandableRow.swift; sourceTree = "<group>"; };
-		EB11EB11227735E500D95365 /* PerilCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilCollection.swift; sourceTree = "<group>"; };
-		EB11EB12227735E500D95365 /* MoreInfoExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoExpandableRow.swift; sourceTree = "<group>"; };
-		EB11EB13227735E500D95365 /* Peril.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peril.swift; sourceTree = "<group>"; };
-		EB11EB14227735E500D95365 /* LargeIconTitleSubtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeIconTitleSubtitle.swift; sourceTree = "<group>"; };
-		EB11EB15227735E500D95365 /* CountdownShapes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownShapes.swift; sourceTree = "<group>"; };
-		EB11EB16227735E500D95365 /* PerilInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilInformation.swift; sourceTree = "<group>"; };
-		EB11EB17227735E500D95365 /* PendingInsurance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInsurance.swift; sourceTree = "<group>"; };
 		EB11EB18227735E500D95365 /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		EB11EB2B2277360900D95365 /* MultilineLabelIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineLabelIcon.swift; sourceTree = "<group>"; };
 		EB11EB2D2277382600D95365 /* Divider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
@@ -506,6 +494,24 @@
 		EB4695CD220083800004C75D /* RCTApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTApolloClient.swift; sourceTree = "<group>"; };
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBCAA815228086BC003C4833 /* DashboardRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRouting.swift; sourceTree = "<group>"; };
+		EBCAA88C2281C28D003C4833 /* MyProtectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProtectionSection.swift; sourceTree = "<group>"; };
+		EBCAA88D2281C28D003C4833 /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		EBCAA88E2281C28D003C4833 /* ChatActionsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatActionsSection.swift; sourceTree = "<group>"; };
+		EBCAA88F2281C28D003C4833 /* Peril.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peril.swift; sourceTree = "<group>"; };
+		EBCAA8902281C28D003C4833 /* ChatPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPreview.swift; sourceTree = "<group>"; };
+		EBCAA8912281C28D003C4833 /* PerilExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilExpandableRow.swift; sourceTree = "<group>"; };
+		EBCAA8922281C28D003C4833 /* PerilCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilCollection.swift; sourceTree = "<group>"; };
+		EBCAA8932281C28D003C4833 /* PendingInsuranceMoreInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInsuranceMoreInfo.swift; sourceTree = "<group>"; };
+		EBCAA8942281C28D003C4833 /* LargeIconTitleSubtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeIconTitleSubtitle.swift; sourceTree = "<group>"; };
+		EBCAA8952281C28D003C4833 /* PendingInsurance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInsurance.swift; sourceTree = "<group>"; };
+		EBCAA8962281C28D003C4833 /* MoreInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfo.swift; sourceTree = "<group>"; };
+		EBCAA8972281C28D003C4833 /* PerilInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerilInformation.swift; sourceTree = "<group>"; };
+		EBCAA8982281C28D003C4833 /* PaymentNeedsSetupSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentNeedsSetupSection.swift; sourceTree = "<group>"; };
+		EBCAA8992281C28D003C4833 /* Countdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
+		EBCAA89A2281C28E003C4833 /* CountdownShapes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownShapes.swift; sourceTree = "<group>"; };
+		EBCAA89B2281C28E003C4833 /* ExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableRow.swift; sourceTree = "<group>"; };
+		EBCAA89C2281C28E003C4833 /* MoreInfoExpandableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoExpandableRow.swift; sourceTree = "<group>"; };
+		EBCAA8AE2281C2F2003C4833 /* UIView+LayoutSuperviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LayoutSuperviews.swift"; sourceTree = "<group>"; };
 		EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDirectDebitStatus.swift; sourceTree = "<group>"; };
 		EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
@@ -1110,6 +1116,7 @@
 		EB11E9EB2277047700D95365 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				EBCAA8AE2281C2F2003C4833 /* UIView+LayoutSuperviews.swift */,
 				EB11ED0C227ADBA400D95365 /* UIView+FrameWithoutTransform.swift */,
 				EB11EB2F2277386600D95365 /* UIView+Flip.swift */,
 				EB11E9EC2277047700D95365 /* UIView+RadiusMask.swift */,
@@ -1234,21 +1241,23 @@
 		EB11EB08227735E500D95365 /* Viewables */ = {
 			isa = PBXGroup;
 			children = (
-				EB11EB09227735E500D95365 /* Countdown.swift */,
-				EB11EB0A227735E500D95365 /* MyProtectionSection.swift */,
-				EB11EB0B227735E500D95365 /* PaymentNeedsSetupSection.swift */,
-				EB11EB0C227735E500D95365 /* ExpandableRow.swift */,
-				EB11EB0D227735E500D95365 /* MoreInfo.swift */,
-				EB11EB0E227735E500D95365 /* PendingInsuranceMoreInfo.swift */,
-				EB11EB0F227735E500D95365 /* ChatActionsSection.swift */,
-				EB11EB10227735E500D95365 /* PerilExpandableRow.swift */,
-				EB11EB11227735E500D95365 /* PerilCollection.swift */,
-				EB11EB12227735E500D95365 /* MoreInfoExpandableRow.swift */,
-				EB11EB13227735E500D95365 /* Peril.swift */,
-				EB11EB14227735E500D95365 /* LargeIconTitleSubtitle.swift */,
-				EB11EB15227735E500D95365 /* CountdownShapes.swift */,
-				EB11EB16227735E500D95365 /* PerilInformation.swift */,
-				EB11EB17227735E500D95365 /* PendingInsurance.swift */,
+				EBCAA88E2281C28D003C4833 /* ChatActionsSection.swift */,
+				EBCAA8902281C28D003C4833 /* ChatPreview.swift */,
+				EBCAA8992281C28D003C4833 /* Countdown.swift */,
+				EBCAA89A2281C28E003C4833 /* CountdownShapes.swift */,
+				EBCAA89B2281C28E003C4833 /* ExpandableRow.swift */,
+				EBCAA8942281C28D003C4833 /* LargeIconTitleSubtitle.swift */,
+				EBCAA88D2281C28D003C4833 /* MessageBubble.swift */,
+				EBCAA8962281C28D003C4833 /* MoreInfo.swift */,
+				EBCAA89C2281C28E003C4833 /* MoreInfoExpandableRow.swift */,
+				EBCAA88C2281C28D003C4833 /* MyProtectionSection.swift */,
+				EBCAA8982281C28D003C4833 /* PaymentNeedsSetupSection.swift */,
+				EBCAA8952281C28D003C4833 /* PendingInsurance.swift */,
+				EBCAA8932281C28D003C4833 /* PendingInsuranceMoreInfo.swift */,
+				EBCAA88F2281C28D003C4833 /* Peril.swift */,
+				EBCAA8922281C28D003C4833 /* PerilCollection.swift */,
+				EBCAA8912281C28D003C4833 /* PerilExpandableRow.swift */,
+				EBCAA8972281C28D003C4833 /* PerilInformation.swift */,
 			);
 			path = Viewables;
 			sourceTree = "<group>";
@@ -1519,30 +1528,31 @@
 			files = (
 				EB11EA572277047700D95365 /* MarketingStoryIndicatorCell.swift in Sources */,
 				EB11ED29227ADBDE00D95365 /* CommonClaimCard.swift in Sources */,
-				EB11EB1E227735E500D95365 /* MoreInfo.swift in Sources */,
 				EB11EA892277047700D95365 /* CharityLogo.swift in Sources */,
 				EB11EB2C2277360900D95365 /* MultilineLabelIcon.swift in Sources */,
 				EB11EAE12277047800D95365 /* ApolloContainer.swift in Sources */,
 				EB11EAFB2277047800D95365 /* Icon.swift in Sources */,
-				EB11EB1F227735E500D95365 /* PendingInsuranceMoreInfo.swift in Sources */,
 				EB11ED2C227ADBDE00D95365 /* ClaimsHeader.swift in Sources */,
+				EBCAA8AF2281C2F2003C4833 /* UIView+LayoutSuperviews.swift in Sources */,
+				EBCAA8AD2281C28E003C4833 /* MoreInfoExpandableRow.swift in Sources */,
+				EBCAA89D2281C28E003C4833 /* MyProtectionSection.swift in Sources */,
 				EB11EA6F2277047700D95365 /* MyInfo.swift in Sources */,
-				EB11EB1A227735E500D95365 /* Countdown.swift in Sources */,
 				EB11EA942277047700D95365 /* Licenses.swift in Sources */,
 				EB11EAD52277047700D95365 /* Viewable.swift in Sources */,
 				EB11EB302277386600D95365 /* UIView+Flip.swift in Sources */,
 				EB11EA612277047700D95365 /* MyCoinsuredRow.swift in Sources */,
 				EB11EACD2277047700D95365 /* UIColor+Image.swift in Sources */,
 				EB11EA972277047700D95365 /* CoinsuredComingSoonText.swift in Sources */,
+				EBCAA8A82281C28E003C4833 /* PerilInformation.swift in Sources */,
 				EB11EA662277047700D95365 /* OtherSection.swift in Sources */,
 				EB11EA812277047700D95365 /* DirectDebitResult.swift in Sources */,
 				EB11EA5F2277047700D95365 /* LogoutSection.swift in Sources */,
 				EB11EA732277047700D95365 /* ReportBugRow.swift in Sources */,
+				EBCAA8A22281C28E003C4833 /* PerilExpandableRow.swift in Sources */,
 				EB11EA542277047700D95365 /* LoadingIndicator.swift in Sources */,
 				EB11ED30227ADBDE00D95365 /* BulletPointCard.swift in Sources */,
 				EB11EAB52277047700D95365 /* SectionView+Viewable.swift in Sources */,
 				EB11EAC42277047700D95365 /* WKWebView+OpenBankId.swift in Sources */,
-				EB11EB26227735E500D95365 /* CountdownShapes.swift in Sources */,
 				EB11EA502277047700D95365 /* SayHello.swift in Sources */,
 				EB11ED11227ADBC800D95365 /* RemoteVectorIcon.swift in Sources */,
 				EB11EA802277047700D95365 /* DirectDebitSetup.swift in Sources */,
@@ -1558,16 +1568,17 @@
 				EB11EAD82277047800D95365 /* CellForRow.swift in Sources */,
 				EB11EA782277047700D95365 /* ReferralsIllustration.swift in Sources */,
 				EB11EB2E2277382700D95365 /* Divider.swift in Sources */,
+				EBCAA8A52281C28E003C4833 /* LargeIconTitleSubtitle.swift in Sources */,
 				EB11EACE2277047700D95365 /* TextStyle.swift in Sources */,
 				EB11EA512277047700D95365 /* End.swift in Sources */,
 				EB11ED3B227B3CC200D95365 /* ClaimChat.swift in Sources */,
-				EB11EB27227735E500D95365 /* PerilInformation.swift in Sources */,
 				EB11EAD22277047700D95365 /* FieldStyle.swift in Sources */,
 				EB11EA932277047700D95365 /* License.swift in Sources */,
 				EB11EADD2277047800D95365 /* SharedElement.swift in Sources */,
 				EB11EA482277047700D95365 /* MarketingStoryVideoCell.swift in Sources */,
 				EB11EABF2277047700D95365 /* UITableView+Viewable.swift in Sources */,
 				EB11EA772277047700D95365 /* ReferralsTermsRow.swift in Sources */,
+				EBCAA8AB2281C28E003C4833 /* CountdownShapes.swift in Sources */,
 				EB11EAD92277047800D95365 /* Previewable.swift in Sources */,
 				EB11EABB2277047700D95365 /* UIBarButtonItem+UIView.swift in Sources */,
 				EB11EA8F2277047700D95365 /* VersionRow.swift in Sources */,
@@ -1575,14 +1586,17 @@
 				EB11EADE2277047800D95365 /* SpringAnimationStyle.swift in Sources */,
 				EB11EA9D2277047700D95365 /* BackgroundWithLabel.swift in Sources */,
 				EB11EA602277047700D95365 /* MyPaymentRow.swift in Sources */,
+				EBCAA8AC2281C28E003C4833 /* ExpandableRow.swift in Sources */,
 				EB11ED0F227ADBAF00D95365 /* Viewable+WrappedIn.swift in Sources */,
 				EB11EA9B2277047700D95365 /* DelayedDisposer.swift in Sources */,
 				EB11EA6C2277047700D95365 /* ContactDetailsSection.swift in Sources */,
 				EB11EAA62277047700D95365 /* KeyValueRow.swift in Sources */,
+				EBCAA8A02281C28E003C4833 /* Peril.swift in Sources */,
 				EB11EAC62277047700D95365 /* UITabBarController+Presentation.swift in Sources */,
 				EB11EA652277047700D95365 /* MyInfoRow.swift in Sources */,
 				EB11EA712277047700D95365 /* ReviewAppRow.swift in Sources */,
 				EB11EA532277047700D95365 /* StoriesCollection.swift in Sources */,
+				EBCAA8A92281C28E003C4833 /* PaymentNeedsSetupSection.swift in Sources */,
 				EB11EAD02277047700D95365 /* DefaultStyling.swift in Sources */,
 				EB11EAA12277047700D95365 /* ButtonSection.swift in Sources */,
 				EB11EADB2277047800D95365 /* CoreSignal+Animation.swift in Sources */,
@@ -1610,17 +1624,17 @@
 				EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */,
 				EB11EACA2277047700D95365 /* CollectionKit+ScrollTo.swift in Sources */,
 				B56386491DB9693800A0598C /* AppDelegate.swift in Sources */,
-				EB11EB22227735E500D95365 /* PerilCollection.swift in Sources */,
 				EB11EAAF2277047700D95365 /* DynamicString.swift in Sources */,
 				EB11EB072277209000D95365 /* HedvigFonts.swift in Sources */,
 				EB11EA8C2277047700D95365 /* CharityPicker.swift in Sources */,
-				EB11EB1C227735E500D95365 /* PaymentNeedsSetupSection.swift in Sources */,
 				EB11ED0B227ADB9300D95365 /* LocalizationLocale+CurrentLocale.swift in Sources */,
 				EB11EAB82277047700D95365 /* UIView+Viewable.swift in Sources */,
 				EB11ED34227ADBDE00D95365 /* CardAnimationController.swift in Sources */,
+				EBCAA8A42281C28E003C4833 /* PendingInsuranceMoreInfo.swift in Sources */,
 				EB11EABE2277047700D95365 /* LocalizationKey+String.swift in Sources */,
 				EBECC26621B9230000716BEA /* NativeRouting.swift in Sources */,
 				EB11ED2D227ADBDE00D95365 /* EmergencyActions.swift in Sources */,
+				EBCAA8A62281C28E003C4833 /* PendingInsurance.swift in Sources */,
 				EB11EAB12277047700D95365 /* Callbacker+Signal.swift in Sources */,
 				EB11EB29227735E600D95365 /* Dashboard.swift in Sources */,
 				EB11EAA02277047700D95365 /* DraggableOverlayHeader.swift in Sources */,
@@ -1636,16 +1650,15 @@
 				EB11EAC12277047700D95365 /* Disposable+Array.swift in Sources */,
 				EB11EA692277047700D95365 /* Profile.swift in Sources */,
 				EB11EA862277047700D95365 /* CharityInformationButton.swift in Sources */,
-				EB11EB20227735E500D95365 /* ChatActionsSection.swift in Sources */,
 				EB11EA582277047700D95365 /* MarketingStory.swift in Sources */,
-				EB11EB28227735E500D95365 /* PendingInsurance.swift in Sources */,
 				EB11EAD42277047700D95365 /* ActivityView.swift in Sources */,
+				EBCAA89F2281C28E003C4833 /* ChatActionsSection.swift in Sources */,
 				EB11EA922277047700D95365 /* About.swift in Sources */,
 				EB11ED2A227ADBDE00D95365 /* CloseButton.swift in Sources */,
 				EB11EA912277047700D95365 /* LicensesRow.swift in Sources */,
 				EB11EAB02277047700D95365 /* UIWebView+Signal.swift in Sources */,
+				EBCAA8A32281C28E003C4833 /* PerilCollection.swift in Sources */,
 				EB11EA762277047700D95365 /* ReferralsOffer.swift in Sources */,
-				EB11EB21227735E500D95365 /* PerilExpandableRow.swift in Sources */,
 				EB11EA7A2277047700D95365 /* DeductibleCircle.swift in Sources */,
 				EBCAA816228086BC003C4833 /* DashboardRouting.swift in Sources */,
 				EB11ED28227ADBDE00D95365 /* Claims.swift in Sources */,
@@ -1679,19 +1692,18 @@
 				EB11EA522277047700D95365 /* Stories.swift in Sources */,
 				EB11EA592277047700D95365 /* MarketingStoryIndicator.swift in Sources */,
 				EB11EA6D2277047700D95365 /* NameCircle.swift in Sources */,
-				EB11EB23227735E500D95365 /* MoreInfoExpandableRow.swift in Sources */,
 				EB11EA722277047700D95365 /* FeedbackHeader.swift in Sources */,
 				EB11EA452277047700D95365 /* Launch.swift in Sources */,
 				EB11EAF62277047800D95365 /* API.swift in Sources */,
 				EB11EAD72277047800D95365 /* TranslationsRepo.swift in Sources */,
 				EB11EA9E2277047700D95365 /* MultilineLabel.swift in Sources */,
 				EB11EA562277047700D95365 /* SkipToPreviousButton.swift in Sources */,
-				EB11EB24227735E500D95365 /* Peril.swift in Sources */,
 				EB11EA622277047700D95365 /* MyCharityRow.swift in Sources */,
 				EB11EAC52277047700D95365 /* ApolloStore+Update.swift in Sources */,
 				EB11EAC92277047700D95365 /* WKWebView+Signal.swift in Sources */,
 				EB11EA6B2277047700D95365 /* PhoneNumberRow.swift in Sources */,
 				EB11EAB42277047700D95365 /* ApolloClient+Flow.swift in Sources */,
+				EBCAA8A72281C28E003C4833 /* MoreInfo.swift in Sources */,
 				EB11EAB22277047700D95365 /* Result+Success.swift in Sources */,
 				EB11EA4F2277047700D95365 /* HappyAvatar.swift in Sources */,
 				EB11EA672277047700D95365 /* InsuranceCertificateRow.swift in Sources */,
@@ -1699,17 +1711,19 @@
 				EB11EA632277047700D95365 /* AboutRow.swift in Sources */,
 				EB11ED33227ADBDE00D95365 /* CommonClaimTitleAndBulletPoints.swift in Sources */,
 				EB11EA682277047700D95365 /* HomeRow.swift in Sources */,
-				EB11EB1B227735E500D95365 /* MyProtectionSection.swift in Sources */,
+				EBCAA89E2281C28E003C4833 /* MessageBubble.swift in Sources */,
 				EB11EADC2277047800D95365 /* AnimationStyle.swift in Sources */,
 				EB11EA752277047700D95365 /* Referrals.swift in Sources */,
 				EB11EABA2277047700D95365 /* UIView+RelativeFrame.swift in Sources */,
 				EB11EB022277047800D95365 /* Localization.swift in Sources */,
 				EB11ED0D227ADBA600D95365 /* UIView+FrameWithoutTransform.swift in Sources */,
+				EBCAA8AA2281C28E003C4833 /* Countdown.swift in Sources */,
 				EB11EA962277047700D95365 /* MyCoinsured.swift in Sources */,
 				EB11EADA2277047800D95365 /* TransitionStyle.swift in Sources */,
 				EB11ED2F227ADBDE00D95365 /* BulletPointTable.swift in Sources */,
 				EB11EA4D2277047700D95365 /* ExistingMemberButton.swift in Sources */,
 				EB11EA8A2277047700D95365 /* SelectedCharity.swift in Sources */,
+				EBCAA8A12281C28E003C4833 /* ChatPreview.swift in Sources */,
 				EB11EAC32277047700D95365 /* ApolloClient+NetworkErrorMessage.swift in Sources */,
 				EB11ED2B227ADBDE00D95365 /* CommonClaimsCollection.swift in Sources */,
 				EB11EAAD2277047700D95365 /* CircleIcon.swift in Sources */,
@@ -1717,13 +1731,11 @@
 				EB11EACF2277047700D95365 /* TableViewFormStyle.swift in Sources */,
 				EB11EA702277047700D95365 /* MyInfoState.swift in Sources */,
 				EB11EAA52277047700D95365 /* Spacing.swift in Sources */,
-				EB11EB1D227735E500D95365 /* ExpandableRow.swift in Sources */,
 				EB11EAB32277047700D95365 /* SignalProvider+LazyBindTo.swift in Sources */,
 				EB11EA5E2277047700D95365 /* ProfileSection.swift in Sources */,
 				EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */,
 				EB11EA462277047700D95365 /* MarketingPresentationStyle.swift in Sources */,
 				EB11EA742277047700D95365 /* Feedback.swift in Sources */,
-				EB11EB25227735E500D95365 /* LargeIconTitleSubtitle.swift in Sources */,
 				EB11EA4B2277047700D95365 /* MemberActionButtons.swift in Sources */,
 				EB11EAAE2277047700D95365 /* MailView.swift in Sources */,
 			);
