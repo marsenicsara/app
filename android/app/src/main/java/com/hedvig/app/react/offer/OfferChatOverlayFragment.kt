@@ -17,7 +17,6 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
-
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
@@ -32,10 +31,8 @@ import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE
 import com.hedvig.app.R
 import com.hedvig.app.react.chat.ChatViewModel
 import com.hedvig.app.utils.showRestartDialog
-
-import javax.inject.Inject
-
 import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler {
 
@@ -103,7 +100,7 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
 
     private fun setUpDialogTopBar(dialogView: ViewGroup) {
         val closeDialogButton = dialogView.findViewById<ImageView>(R.id.closeChatDialog)
-        closeDialogButton.setOnClickListener { v -> dismiss() }
+        closeDialogButton.setOnClickListener { dismiss() }
 
         val resetButton = dialogView.findViewById<ImageView>(R.id.resetChatButton)
         resetButton.setOnClickListener {

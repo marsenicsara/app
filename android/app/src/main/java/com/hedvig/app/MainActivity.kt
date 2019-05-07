@@ -42,6 +42,11 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        reactInstanceManager.onActivityResult(this, requestCode, resultCode, data)
+    }
+
     @Inject
     lateinit var asyncStorageNative: AsyncStorageNative
 
