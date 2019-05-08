@@ -68,16 +68,24 @@ class NativeRouting: RCTEventEmitter {
         appHasLoadedCallbacker.callAll()
     }
 
-    func openChat() {
-        guard let topMostViewController = UIApplication.shared.keyWindow?.viewController, !hasOpenedChat else {
-            return
-        }
+    @objc func openChat() {
+        DispatchQueue.main.async {
+            guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController, !self.hasOpenedChat else {
+                return
+            }
 
-        hasOpenedChat = true
+            var topController = rootViewController
 
-        let chatOverlay = DraggableOverlay(presentable: Chat())
-        topMostViewController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)]).onResult { _ in
-            self.hasOpenedChat = false
+            while let newTopController = topController.presentedViewController {
+                topController = newTopController
+            }
+
+            self.hasOpenedChat = true
+
+            let chatOverlay = DraggableOverlay(presentable: Chat())
+            topController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)]).onResult { _ in
+                self.hasOpenedChat = false
+            }
         }
     }
 

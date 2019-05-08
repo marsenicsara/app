@@ -1,5 +1,5 @@
 import firebase from 'react-native-firebase';
-import { Platform } from 'react-native';
+import { Platform, NativeModules } from 'react-native';
 
 import { pushNotificationActions, chatActions } from '../hedvig-redux';
 import { openChat } from './sagas/apiAndNavigate';
