@@ -62,3 +62,4 @@ local.properties
 sentry.properties
 .sts4-cache
 *.iml
+*.li
