@@ -27,6 +27,8 @@ import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndr
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 import { PixelRatio } from 'react-native';
 
+import { colors } from '@hedviginsurance/brand';
+
 interface ChatProps {
   onboardingDone: boolean;
   isModal: boolean;
@@ -82,6 +84,11 @@ const Messages = styled(View)({
   paddingRight: 16,
 });
 
+const BackgroundView = styled(View)({
+  backgroundColor: colors.OFF_WHITE,
+  flex: 1,
+});
+
 const Response = styled(View)({
   alignItems: 'stretch',
   paddingTop: 8,
@@ -126,8 +133,8 @@ const getNavigationOptions = (
 };
 
 const showOffer = async (componentId: string) => {
-  if (Platform.OS === "android") {
-    NativeModules.ActivityStarter.navigateToOfferFromChat()
+  if (Platform.OS === 'android') {
+    NativeModules.ActivityStarter.navigateToOfferFromChat();
     return;
   }
   Navigation.push(componentId, NEW_OFFER_SCREEN);
@@ -143,15 +150,19 @@ const handleAppStateChange = (
   }
 };
 
-
-
-const KeyboardAvoidingOnAndroidIfModal: React.SFC<{ isModal: boolean }> = ({ children, isModal }) => (
+const KeyboardAvoidingOnAndroidIfModal: React.SFC<{ isModal: boolean }> = ({
+  children,
+  isModal,
+}) =>
   isModal ? (
-    <KeyboardAvoidingOnAndroid additionalPadding={PixelRatio.getPixelSizeForLayoutSize(14)}>
+    <KeyboardAvoidingOnAndroid
+      additionalPadding={PixelRatio.getPixelSizeForLayoutSize(14)}
+    >
       {children}
     </KeyboardAvoidingOnAndroid>
-  ) : <>{children}</>
-)
+  ) : (
+    <>{children}</>
+  );
 
 const Chat: React.SFC<ChatProps> = ({
   onboardingDone = false,
@@ -164,80 +175,81 @@ const Chat: React.SFC<ChatProps> = ({
   getMessages,
   resetConversation,
 }) => (
-    <Container effects={effects} initialState={initialState}>
-      {({ startPolling, stopPolling }) => (
-        <>
-          <NavigationEvents
-            onNavigationButtonPressed={(event: any) => {
-              if (event.buttonId === RESTART_BUTTON.id) {
-                resetConversation();
-              }
+  <Container effects={effects} initialState={initialState}>
+    {({ startPolling, stopPolling }) => (
+      <BackgroundView>
+        <NavigationEvents
+          onNavigationButtonPressed={(event: any) => {
+            if (event.buttonId === RESTART_BUTTON.id) {
+              resetConversation();
+            }
 
-              if (event.buttonId === CLOSE_BUTTON.id) {
-                Navigation.dismissModal(componentId);
-              }
+            if (event.buttonId === CLOSE_BUTTON.id) {
+              Navigation.dismissModal(componentId);
+            }
 
-              if (event.buttonId === GO_TO_DASHBOARD_BUTTON.id) {
-                setLayout(getMainLayout());
-              }
+            if (event.buttonId === GO_TO_DASHBOARD_BUTTON.id) {
+              setLayout(getMainLayout());
+            }
 
-              if (event.buttonId === SHOW_OFFER_BUTTON.id) {
-                showOffer(componentId);
-              }
-            }}
-          />
-          <Mount
-            on={() => {
-              getMessages(intent);
-              getAvatars();
-              AppState.addEventListener('change', (appState) => {
-                handleAppStateChange(appState, getMessages, intent);
-              });
-              startPolling(getMessages, intent);
-            }}
-          >
-            {null}
-          </Mount>
-          <Update
-            was={() => {
-              startPolling(getMessages, intent);
-            }}
-            watched={messages}
-          >
-            {null}
-          </Update>
-          <Unmount
-            on={() => {
-              AppState.addEventListener('change', (appState) => {
-                handleAppStateChange(appState, getMessages, intent);
-              });
-              stopPolling();
-            }}
-          >
-            {null}
-          </Unmount>
-
-          <NavigationOptions
-            options={getNavigationOptions(
-              onboardingDone,
-              isModal,
-              showReturnToOfferButton,
-            )}
-          >
-            <KeyboardAvoidingOnAndroidIfModal isModal={isModal}>
-              <Messages>{messages.length ? <MessageList /> : <Loader />}</Messages>
-              <Response>
-                <InputComponent
-                  showOffer={() => showOffer(componentId)}
-                  messages={messages}
-                />
-              </Response>
-            </KeyboardAvoidingOnAndroidIfModal>
-          </NavigationOptions>
-        </>
-      )}
-    </Container>
-  );
+            if (event.buttonId === SHOW_OFFER_BUTTON.id) {
+              showOffer(componentId);
+            }
+          }}
+        />
+        <Mount
+          on={() => {
+            getMessages(intent);
+            getAvatars();
+            AppState.addEventListener('change', (appState) => {
+              handleAppStateChange(appState, getMessages, intent);
+            });
+            startPolling(getMessages, intent);
+          }}
+        >
+          {null}
+        </Mount>
+        <Update
+          was={() => {
+            startPolling(getMessages, intent);
+          }}
+          watched={messages}
+        >
+          {null}
+        </Update>
+        <Unmount
+          on={() => {
+            AppState.addEventListener('change', (appState) => {
+              handleAppStateChange(appState, getMessages, intent);
+            });
+            stopPolling();
+          }}
+        >
+          {null}
+        </Unmount>
+        <NavigationOptions
+          options={getNavigationOptions(
+            onboardingDone,
+            isModal,
+            showReturnToOfferButton,
+          )}
+        >
+          <KeyboardAvoidingOnAndroidIfModal isModal={isModal}>
+            <Messages>
+              {messages.length ? <MessageList /> : <Loader />}
+            </Messages>
+            <Response>
+              <InputComponent
+                showOffer={() => showOffer(componentId)}
+                messages={messages}
+              />
+            </Response>
+          </KeyboardAvoidingOnAndroidIfModal>
+        </NavigationOptions>
+      </BackgroundView>
+    )}
+  </Container>
+);
 
 const mapStateToProps = (state: any) => {
   return {
@@ -267,7 +279,7 @@ const mapDispatchToProps = (dispatch: any) => {
           confirmButtonTitle: 'Ja',
           dismissButtonTitle: 'Nej',
           onConfirm: () => dispatch(chatActions.resetConversation()),
-          onDismiss: () => { },
+          onDismiss: () => {},
         }),
       ),
     editLastResponse: () => dispatch(chatActions.editLastResponse()),

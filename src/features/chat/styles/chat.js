@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   defaultMessageText: {
-    color: colors.BLACK_PURPLE,
+    color: colors.OFF_BLACK,
     fontSize: 16,
-    fontFamily: 'Merriweather-Light',
+    fontFamily: 'CircularStd-Book',
     textAlign: 'left',
   },
   userMessageText: {
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     paddingBottom: 12,
     paddingLeft: 12,
-    borderRadius: 8,
+    borderRadius: 20,
     maxWidth: '88%',
-    backgroundColor: colors.OFF_WHITE,
+    backgroundColor: colors.WHITE,
     marginBottom: 8,
   },
   textInputContainer: {
