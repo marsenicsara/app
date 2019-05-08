@@ -247,6 +247,7 @@
 		EBCAA8B12281DF35003C4833 /* TriggerFreeTextChat.graphql in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8B02281DF35003C4833 /* TriggerFreeTextChat.graphql */; };
 		EBCAA8B62282255B003C4833 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8B42282255B003C4833 /* MessageBubble.swift */; };
 		EBCAA8B72282255B003C4833 /* ChatPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8B52282255B003C4833 /* ChatPreview.swift */; };
+		EBCAA8BC2283135C003C4833 /* Chat+LastOpened.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8BB2283135C003C4833 /* Chat+LastOpened.swift */; };
 		EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */; };
 		EBD675FA21FF4F0F00050E86 /* LoggedInScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
@@ -512,6 +513,7 @@
 		EBCAA8B02281DF35003C4833 /* TriggerFreeTextChat.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = TriggerFreeTextChat.graphql; sourceTree = "<group>"; };
 		EBCAA8B42282255B003C4833 /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		EBCAA8B52282255B003C4833 /* ChatPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPreview.swift; sourceTree = "<group>"; };
+		EBCAA8BB2283135C003C4833 /* Chat+LastOpened.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chat+LastOpened.swift"; sourceTree = "<group>"; };
 		EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDirectDebitStatus.swift; sourceTree = "<group>"; };
 		EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
@@ -1024,6 +1026,7 @@
 		EB11E9C92277047700D95365 /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
+				EBCAA8BB2283135C003C4833 /* Chat+LastOpened.swift */,
 				EB11E9CB2277047700D95365 /* ChatPresentationStyle.swift */,
 			);
 			path = ChatScreen;
@@ -1561,6 +1564,7 @@
 				EB11ED30227ADBDE00D95365 /* BulletPointCard.swift in Sources */,
 				EB11EAB52277047700D95365 /* SectionView+Viewable.swift in Sources */,
 				EB11EAC42277047700D95365 /* WKWebView+OpenBankId.swift in Sources */,
+				EBCAA8BC2283135C003C4833 /* Chat+LastOpened.swift in Sources */,
 				EB11EA502277047700D95365 /* SayHello.swift in Sources */,
 				EB11ED11227ADBC800D95365 /* RemoteVectorIcon.swift in Sources */,
 				EB11EA802277047700D95365 /* DirectDebitSetup.swift in Sources */,

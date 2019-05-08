@@ -70,6 +70,8 @@ extension Chat: Presentable {
             loaderBag.dispose()
         }
 
+        Chat.didOpen()
+
         viewController.view = view
 
         return (viewController, Future { completion in
