@@ -37,7 +37,7 @@ class ChatViewModel @Inject constructor(
     }
 
     override fun onCleared() {
-        disposables.dispose()
+        disposables.clear()
         super.onCleared()
     }
 }

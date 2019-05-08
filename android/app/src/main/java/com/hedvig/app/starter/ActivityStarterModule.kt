@@ -68,7 +68,7 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
 
     override fun onHostDestroy() {
         localBroadcastManager.unregisterReceiver(fileUploadBroadcastReceiver)
-        disposables.dispose()
+        disposables.clear()
     }
 
     @ReactMethod
