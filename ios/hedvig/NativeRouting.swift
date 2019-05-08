@@ -20,6 +20,7 @@ class NativeRouting: RCTEventEmitter {
     let appHasLoadedSignal: Signal<Void>
     var componentIds: [(componentId: String, componentName: String)] = []
     let bag = DisposeBag()
+    var hasOpenedChat = false
 
     override init() {
         appHasLoadedCallbacker = Callbacker<Void>()
@@ -65,6 +66,19 @@ class NativeRouting: RCTEventEmitter {
 
     @objc func appHasLoaded() {
         appHasLoadedCallbacker.callAll()
+    }
+
+    func openChat() {
+        guard let topMostViewController = UIApplication.shared.keyWindow?.viewController, !hasOpenedChat else {
+            return
+        }
+
+        hasOpenedChat = true
+
+        let chatOverlay = DraggableOverlay(presentable: Chat())
+        topMostViewController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)]).onResult { _ in
+            self.hasOpenedChat = false
+        }
     }
 
     @objc func userDidSign() {

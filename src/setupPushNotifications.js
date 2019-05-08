@@ -12,6 +12,11 @@ const handleNotificationOpened = (notificationOpen) => {
 
   if (notification) {
     if (notification.data.TYPE === 'NEW_MESSAGE') {
+      if (Platform.OS == 'ios') {
+        NativeModules.NativeRouting.openChat();
+        return;
+      }
+
       setTimeout(() => openChat(), 500);
     }
   }
