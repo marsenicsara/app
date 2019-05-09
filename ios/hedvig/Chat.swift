@@ -71,7 +71,7 @@ extension Chat: Presentable {
         }
 
         Chat.didOpen()
-        
+
         bag += Disposer {
             Chat.didClose()
         }

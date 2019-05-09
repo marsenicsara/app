@@ -10,6 +10,11 @@ class ChatScreen extends React.Component {
     return {
       topBar: {
         visible: true,
+        background: {
+          color: 'white',
+          blur: true,
+        },
+        drawBehind: false,
         title: Platform.select({
           ios: {
             component: HEDVIG_LOGO_TITLE_COMPONENT,

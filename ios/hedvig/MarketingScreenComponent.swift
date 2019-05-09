@@ -27,6 +27,15 @@ struct MarketingScreenComponent {
             ).onValue { marketingResult in
                 let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
                 nativeRouting.sendMarketingResult(marketingResult: marketingResult)
+
+                if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
+                    UIView.animate(withDuration: 0.25, animations: {
+                        statusBar.setValue(
+                            UIColor.black,
+                            forKey: "foregroundColor"
+                        )
+                    })
+                }
             }
 
             navigationController.present(marketingPresentation)
