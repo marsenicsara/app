@@ -32,9 +32,9 @@ object ApplicationModule {
     @Provides
     @JvmStatic
     fun simpleCache(context: Context) = SimpleCache(
-            File(context.cacheDir, "hedvig_story_video_cache"),
-            LeastRecentlyUsedCacheEvictor((10 * 1024 * 1024).toLong())
-        )
+        File(context.cacheDir, "hedvig_story_video_cache"),
+        LeastRecentlyUsedCacheEvictor((10 * 1024 * 1024).toLong())
+    )
 
     @Provides
     @JvmStatic
@@ -62,7 +62,7 @@ object ApplicationModule {
 
     @Provides
     @JvmStatic
-    fun apolloLogger(): Logger? = if (BuildConfig.DEBUG) {
+    fun apolloLogger(): Logger? = if (BuildConfig.DEBUG || BuildConfig.APP_ID == "com.hedvig.test.app") {
         ApolloTimberLogger()
     } else {
         null
@@ -70,11 +70,12 @@ object ApplicationModule {
 
     @Provides
     @JvmStatic
-    fun httpLoggingInterceptor(): HttpLoggingInterceptor? = if (BuildConfig.DEBUG) {
-        HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
-            Timber.tag("OkHttp").i(message)
-        }).setLevel(HttpLoggingInterceptor.Level.BODY)
-    } else {
-        null
-    }
+    fun httpLoggingInterceptor(): HttpLoggingInterceptor? =
+        if (BuildConfig.DEBUG || BuildConfig.APP_ID == "com.hedvig.test.app") {
+            HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
+                Timber.tag("OkHttp").i(message)
+            }).setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            null
+        }
 }
