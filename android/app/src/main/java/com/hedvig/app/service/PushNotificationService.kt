@@ -6,44 +6,22 @@ import android.content.Context
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
-import androidx.work.Configuration
+import androidx.navigation.NavDeepLinkBuilder
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import androidx.work.WorkerFactory
-import androidx.work.WorkerParameters
-import com.apollographql.apollo.ApolloClient
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.hedvig.app.R
-import com.hedvig.app.util.react.AsyncStorageNative
 import com.hedvig.app.util.whenApiVersion
 import dagger.android.AndroidInjection
 import timber.log.Timber
-import javax.inject.Inject
 
 class PushNotificationService : FirebaseMessagingService() {
-
-    @Inject
-    lateinit var asyncStorageNative: AsyncStorageNative
-
-    @Inject
-    lateinit var apolloClient: ApolloClient
-
     override fun onCreate() {
         super.onCreate()
         AndroidInjection.inject(this)
         setupNotificationChannel()
-
-        val workerFactory = object : WorkerFactory() {
-            override fun createWorker(
-                appContext: Context,
-                workerClassName: String,
-                workerParameters: WorkerParameters
-            ) = PushNotificationWorker(appContext, workerParameters, apolloClient, asyncStorageNative)
-        }
-        WorkManager
-            .initialize(this, Configuration.Builder().setWorkerFactory(workerFactory).build())
     }
 
     override fun onNewToken(token: String) {
@@ -78,6 +56,11 @@ class PushNotificationService : FirebaseMessagingService() {
     }
 
     private fun sendChatMessageNotification() {
+        val pendingIntent = NavDeepLinkBuilder(this)
+            .setGraph(R.navigation.logged_in_navigation)
+            .setDestination(R.id.chatFragment)
+            .createPendingIntent()
+
         val notification = NotificationCompat
             .Builder(this, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_hedvig_symbol_android)
@@ -86,7 +69,7 @@ class PushNotificationService : FirebaseMessagingService() {
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setAutoCancel(true)
             .setChannelId(NOTIFICATION_CHANNEL_ID)
-            // Set an action here
+            .setContentIntent(pendingIntent)
             .build()
 
         NotificationManagerCompat

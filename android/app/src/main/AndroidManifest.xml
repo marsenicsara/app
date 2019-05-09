@@ -66,7 +66,8 @@
 
         <service
             android:name="com.hedvig.app.service.PushNotificationService"
-            android:exported="false">
+            android:exported="false"
+            android:icon="@drawable/ic_hedvig_symbol_android">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -91,7 +92,7 @@
 
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
-            android:authorities="com.hedvig.app.workmanager-init"
+            android:authorities="${applicationId}.workmanager-init"
             android:enabled="false"
             android:exported="false"
             tools:replace="android:authorities" />
