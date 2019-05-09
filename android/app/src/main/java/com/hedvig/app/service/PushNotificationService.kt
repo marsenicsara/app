@@ -37,11 +37,6 @@ class PushNotificationService : FirebaseMessagingService() {
         setupNotificationChannel()
     }
 
-    override fun onDestroy() {
-        disposables.clear()
-        super.onDestroy()
-    }
-
     override fun onNewToken(token: String) {
         Timber.i("Acquired new token: %s", token)
         if (!hasHedvigToken()) {
@@ -63,6 +58,7 @@ class PushNotificationService : FirebaseMessagingService() {
                 }
                 response.data()?.createSessionV2()?.token()?.let { hedvigToken ->
                     asyncStorageNative.setKey(HEDVIG_TOKEN, hedvigToken)
+                    Timber.i("Successfully saved hedvig token")
                     done()
                 } ?: Timber.e("createSession returned no token")
             }, { Timber.e(it) })
@@ -102,7 +98,7 @@ class PushNotificationService : FirebaseMessagingService() {
 
     private fun hasHedvigToken(): Boolean {
         try {
-            val hedvigToken = asyncStorageNative.getKey("@hedvig:token")
+            val hedvigToken = asyncStorageNative.getKey(HEDVIG_TOKEN)
             if (hedvigToken != null) {
                 return true
             }
@@ -113,6 +109,7 @@ class PushNotificationService : FirebaseMessagingService() {
     }
 
     private fun registerPushToken(pushToken: String) {
+        Timber.i("Registering push token")
         val registerPushTokenMutation = RegisterPushTokenMutation
             .builder()
             .pushToken(pushToken)
