@@ -7,6 +7,10 @@ import android.content.Context
 import android.support.multidex.MultiDex
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatDelegate
+import androidx.work.Configuration
+import androidx.work.WorkManager
+import androidx.work.WorkerFactory
+import androidx.work.WorkerParameters
 import com.RNFetchBlob.RNFetchBlobPackage
 import com.airbnb.android.react.lottie.LottiePackage
 import com.apollographql.apollo.ApolloClient
@@ -16,6 +20,8 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
 import com.hedvig.app.react.ActivityStarterReactPackage
+import com.hedvig.app.service.PushNotificationWorker
+import com.hedvig.app.util.react.AsyncStorageNative
 import com.horcrux.svg.SvgPackage
 import com.imagepicker.ImagePickerPackage
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -52,6 +58,9 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
 
     @Inject
     lateinit var apolloClient: ApolloClient
+
+    @Inject
+    lateinit var asyncStorageNative: AsyncStorageNative
 
     private val mReactNativeHost = object : ReactNativeHost(this) {
         override fun getUseDeveloperSupport() = BuildConfig.DEBUG
@@ -105,6 +114,17 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
         }
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+
+
+        val workerFactory = object : WorkerFactory() {
+            override fun createWorker(
+                appContext: Context,
+                workerClassName: String,
+                workerParameters: WorkerParameters
+            ) = PushNotificationWorker(appContext, workerParameters, apolloClient, asyncStorageNative)
+        }
+        WorkManager
+            .initialize(this, Configuration.Builder().setWorkerFactory(workerFactory).build())
     }
 
     override fun activityInjector() = activityInjector
