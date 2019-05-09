@@ -48,7 +48,7 @@
         </activity>
 
         <service
-            android:name="com.hedvig.android.owldroid.service.PushNotificationService"
+            android:name="com.hedvig.app.service.PushNotificationService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

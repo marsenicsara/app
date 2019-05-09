@@ -1,6 +1,6 @@
 package com.hedvig.app
 
-import com.hedvig.android.owldroid.service.PushNotificationService
+import com.hedvig.app.service.PushNotificationService
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

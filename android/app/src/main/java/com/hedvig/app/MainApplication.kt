@@ -15,7 +15,7 @@ import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
-import com.hedvig.app.starter.ActivityStarterReactPackage
+import com.hedvig.app.react.ActivityStarterReactPackage
 import com.horcrux.svg.SvgPackage
 import com.imagepicker.ImagePickerPackage
 import com.jakewharton.threetenabp.AndroidThreeTen
