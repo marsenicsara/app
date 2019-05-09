@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Animated, View, StyleSheet, Text, TextInput } from 'react-native';
+import {
+  Animated,
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Platform,
+} from 'react-native';
 
 import { colors } from '@hedviginsurance/brand';
 
@@ -18,6 +25,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'CircularStd-Book',
     textAlign: 'left',
+    ...Platform.select({
+      android: {
+        lineHeight: 24,
+      },
+    }),
   },
   userMessageText: {
     color: colors.WHITE,

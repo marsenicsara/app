@@ -6,31 +6,18 @@ import android.content.Context
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
-import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.rx2.Rx2Apollo
+import androidx.navigation.NavDeepLinkBuilder
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.hedvig.app.R
-import com.hedvig.android.owldroid.graphql.NewSessionMutation
-import com.hedvig.android.owldroid.graphql.RegisterPushTokenMutation
-import com.hedvig.app.util.react.AsyncStorageNative
 import com.hedvig.app.util.whenApiVersion
 import dagger.android.AndroidInjection
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
-import javax.inject.Inject
 
 class PushNotificationService : FirebaseMessagingService() {
-
-    @Inject
-    lateinit var asyncStorageNative: AsyncStorageNative
-
-    @Inject
-    lateinit var apolloClient: ApolloClient
-
-    private val disposables = CompositeDisposable()
-
     override fun onCreate() {
         super.onCreate()
         AndroidInjection.inject(this)
@@ -39,29 +26,18 @@ class PushNotificationService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         Timber.i("Acquired new token: %s", token)
-        if (!hasHedvigToken()) {
-            acquireHedvigToken {
-                registerPushToken(token)
-            }
-            return
-        }
-        registerPushToken(token)
-    }
 
-    private fun acquireHedvigToken(done: () -> Unit) {
-        disposables += Rx2Apollo
-            .from(apolloClient.mutate(NewSessionMutation()))
-            .subscribe({ response ->
-                if (response.hasErrors()) {
-                    Timber.e("Failed to register a hedvig token: %s", response.errors().toString())
-                    return@subscribe
-                }
-                response.data()?.createSessionV2()?.token()?.let { hedvigToken ->
-                    asyncStorageNative.setKey(HEDVIG_TOKEN, hedvigToken)
-                    Timber.i("Successfully saved hedvig token")
-                    done()
-                } ?: Timber.e("createSession returned no token")
-            }, { Timber.e(it) })
+        val work = OneTimeWorkRequest.Builder(PushNotificationWorker::class.java)
+            .setInputData(
+                Data.Builder()
+                    .putString(PushNotificationWorker.PUSH_TOKEN, token)
+                    .build()
+            )
+            .build()
+        WorkManager
+            .getInstance()
+            .beginWith(work)
+            .enqueue()
     }
 
     override fun onMessageReceived(p0: RemoteMessage?) {
@@ -80,6 +56,11 @@ class PushNotificationService : FirebaseMessagingService() {
     }
 
     private fun sendChatMessageNotification() {
+        val pendingIntent = NavDeepLinkBuilder(this)
+            .setGraph(R.navigation.logged_in_navigation)
+            .setDestination(R.id.chatFragment)
+            .createPendingIntent()
+
         val notification = NotificationCompat
             .Builder(this, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_hedvig_symbol_android)
@@ -88,7 +69,7 @@ class PushNotificationService : FirebaseMessagingService() {
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setAutoCancel(true)
             .setChannelId(NOTIFICATION_CHANNEL_ID)
-            // Set an action here
+            .setContentIntent(pendingIntent)
             .build()
 
         NotificationManagerCompat
@@ -96,38 +77,7 @@ class PushNotificationService : FirebaseMessagingService() {
             .notify(NOTIFICATION_ID, notification)
     }
 
-    private fun hasHedvigToken(): Boolean {
-        try {
-            val hedvigToken = asyncStorageNative.getKey(HEDVIG_TOKEN)
-            if (hedvigToken != null) {
-                return true
-            }
-        } catch (exception: Exception) {
-            Timber.e(exception)
-        }
-        return false
-    }
-
-    private fun registerPushToken(pushToken: String) {
-        Timber.i("Registering push token")
-        val registerPushTokenMutation = RegisterPushTokenMutation
-            .builder()
-            .pushToken(pushToken)
-            .build()
-
-        disposables += Rx2Apollo
-            .from(apolloClient.mutate(registerPushTokenMutation))
-            .subscribe({ response ->
-                if (response.hasErrors()) {
-                    Timber.e("Failed to register push token: %s", response.errors().toString())
-                    return@subscribe
-                }
-                Timber.i("Successfully registered push token")
-            }, { Timber.e(it, "Failed to register push token") })
-    }
-
     companion object {
-        private const val HEDVIG_TOKEN = "@hedvig:token"
         const val NOTIFICATION_CHANNEL_ID = "hedvig-push"
         const val NOTIFICATION_ID = 1 // TODO: Better logic for this
     }
