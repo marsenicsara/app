@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
+import androidx.navigation.NavDeepLinkBuilder
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
@@ -55,6 +56,11 @@ class PushNotificationService : FirebaseMessagingService() {
     }
 
     private fun sendChatMessageNotification() {
+        val pendingIntent = NavDeepLinkBuilder(this)
+            .setGraph(R.navigation.logged_in_navigation)
+            .setDestination(R.id.chatFragment)
+            .createPendingIntent()
+
         val notification = NotificationCompat
             .Builder(this, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_hedvig_symbol_android)
@@ -63,7 +69,7 @@ class PushNotificationService : FirebaseMessagingService() {
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setAutoCancel(true)
             .setChannelId(NOTIFICATION_CHANNEL_ID)
-            // Set an action here
+            .setContentIntent(pendingIntent)
             .build()
 
         NotificationManagerCompat
