@@ -63,3 +63,4 @@ sentry.properties
 .sts4-cache
 *.iml
 *.li
+*.classpath
