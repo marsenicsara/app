@@ -1,4 +1,4 @@
-package com.hedvig.app.ui.common
+package com.hedvig.app.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

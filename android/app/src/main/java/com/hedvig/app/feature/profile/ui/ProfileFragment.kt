@@ -15,7 +15,7 @@ import androidx.navigation.findNavController
 import com.hedvig.app.R
 import com.hedvig.app.di.ViewModelFactory
 import com.hedvig.android.owldroid.graphql.ProfileQuery
-import com.hedvig.app.ui.common.DirectDebitViewModel
+import com.hedvig.app.viewmodel.DirectDebitViewModel
 import com.hedvig.app.util.extensions.localBroadcastManager
 import com.hedvig.app.util.extensions.setIsLoggedIn
 import com.hedvig.app.util.extensions.setupLargeTitle

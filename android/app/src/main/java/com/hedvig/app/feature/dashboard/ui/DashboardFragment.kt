@@ -20,7 +20,7 @@ import com.hedvig.android.owldroid.graphql.DashboardQuery
 import com.hedvig.android.owldroid.type.DirectDebitStatus
 import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.android.owldroid.type.InsuranceType
-import com.hedvig.app.ui.common.DirectDebitViewModel
+import com.hedvig.app.viewmodel.DirectDebitViewModel
 import com.hedvig.app.util.extensions.addViews
 import com.hedvig.app.util.extensions.compatDrawable
 import com.hedvig.app.util.extensions.observe

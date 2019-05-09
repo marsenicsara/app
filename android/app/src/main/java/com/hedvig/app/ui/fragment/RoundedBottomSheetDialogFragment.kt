@@ -1,4 +1,4 @@
-package com.hedvig.app.ui.common
+package com.hedvig.app.ui.fragment
 
 import android.app.Dialog
 import android.os.Bundle

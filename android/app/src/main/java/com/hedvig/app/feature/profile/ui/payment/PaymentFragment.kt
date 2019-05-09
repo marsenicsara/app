@@ -17,7 +17,7 @@ import com.hedvig.app.R
 import com.hedvig.app.di.ViewModelFactory
 import com.hedvig.app.feature.profile.ui.ProfileViewModel
 import com.hedvig.android.owldroid.type.DirectDebitStatus
-import com.hedvig.app.ui.common.DirectDebitViewModel
+import com.hedvig.app.viewmodel.DirectDebitViewModel
 import com.hedvig.app.util.CustomTypefaceSpan
 import com.hedvig.app.util.extensions.*
 import com.hedvig.app.util.extensions.view.remove

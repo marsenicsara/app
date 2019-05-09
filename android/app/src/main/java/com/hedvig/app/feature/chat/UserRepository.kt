@@ -1,4 +1,4 @@
-package com.hedvig.app.react.chat
+package com.hedvig.app.feature.chat
 
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.rx2.Rx2Apollo

@@ -1,4 +1,4 @@
-package com.hedvig.app.react.chat
+package com.hedvig.app.feature.chat
 
 import android.arch.lifecycle.ViewModel
 import android.net.Uri

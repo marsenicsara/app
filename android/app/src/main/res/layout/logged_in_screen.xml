@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.hedvig.app.ui.loggedin.TabPager
+    <com.hedvig.app.feature.loggedin.TabPager
         android:id="@+id/tabContentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

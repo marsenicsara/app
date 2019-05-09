@@ -1,4 +1,4 @@
-package com.hedvig.app.react.offer
+package com.hedvig.app.feature.offer
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

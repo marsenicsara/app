@@ -11,7 +11,7 @@ import com.hedvig.app.R
 import com.hedvig.app.di.ViewModelFactory
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.ClaimsViewModel
-import com.hedvig.app.ui.common.RoundedBottomSheetDialogFragment
+import com.hedvig.app.ui.fragment.RoundedBottomSheetDialogFragment
 import com.hedvig.app.util.extensions.view.setHapticClickListener
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.bottom_sheet_honesty_pledge.*

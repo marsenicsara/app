@@ -1,4 +1,4 @@
-package com.hedvig.app.starter
+package com.hedvig.app.react
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -25,8 +25,8 @@ import com.hedvig.android.owldroid.graphql.InsuranceStatusQuery
 import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.app.util.extensions.setIsLoggedIn
 import com.hedvig.app.util.extensions.triggerRestartCurrentActivity
-import com.hedvig.app.react.chat.UploadBottomSheet
-import com.hedvig.app.react.offer.OfferChatOverlayFragment
+import com.hedvig.app.feature.chat.UploadBottomSheet
+import com.hedvig.app.feature.offer.OfferChatOverlayFragment
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber

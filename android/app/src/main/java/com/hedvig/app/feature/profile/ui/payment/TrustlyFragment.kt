@@ -17,7 +17,7 @@ import androidx.navigation.findNavController
 import com.hedvig.app.R
 import com.hedvig.app.di.ViewModelFactory
 import com.hedvig.app.feature.profile.ui.ProfileViewModel
-import com.hedvig.app.ui.common.DirectDebitViewModel
+import com.hedvig.app.viewmodel.DirectDebitViewModel
 import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.compatSetTint
 import com.hedvig.app.util.extensions.observe

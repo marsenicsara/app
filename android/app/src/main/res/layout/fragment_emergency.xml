@@ -23,7 +23,7 @@
 
             <include layout="@layout/common_claim_first_message" />
 
-            <com.hedvig.app.ui.common.HedvigCardView
+            <com.hedvig.app.ui.view.HedvigCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/base_margin"
@@ -66,9 +66,9 @@
                         tools:backgroundTint="@color/purple"
                         tools:visibility="visible" />
                 </LinearLayout>
-            </com.hedvig.app.ui.common.HedvigCardView>
+            </com.hedvig.app.ui.view.HedvigCardView>
 
-            <com.hedvig.app.ui.common.HedvigCardView
+            <com.hedvig.app.ui.view.HedvigCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/base_margin"
@@ -111,9 +111,9 @@
                         tools:backgroundTint="@color/purple"
                         tools:visibility="visible" />
                 </LinearLayout>
-            </com.hedvig.app.ui.common.HedvigCardView>
+            </com.hedvig.app.ui.view.HedvigCardView>
 
-            <com.hedvig.app.ui.common.HedvigCardView
+            <com.hedvig.app.ui.view.HedvigCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/base_margin"
@@ -158,7 +158,7 @@
                         tools:visibility="visible" />
                 </LinearLayout>
 
-            </com.hedvig.app.ui.common.HedvigCardView>
+            </com.hedvig.app.ui.view.HedvigCardView>
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

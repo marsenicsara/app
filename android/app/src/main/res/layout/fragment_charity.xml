@@ -43,7 +43,7 @@
                     android:layout_marginEnd="24dp"
                     android:contentDescription="@null"/>
 
-                <com.hedvig.app.ui.common.HedvigCardView
+                <com.hedvig.app.ui.view.HedvigCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/base_margin"
@@ -82,7 +82,7 @@
 
                     </LinearLayout>
 
-                </com.hedvig.app.ui.common.HedvigCardView>
+                </com.hedvig.app.ui.view.HedvigCardView>
 
                 <include
                     android:id="@+id/charitySelectedHowDoesItWorkButton"

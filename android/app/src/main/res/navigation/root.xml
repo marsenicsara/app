@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.hedvig.app.react.chat.ChatFragment"
+        android:name="com.hedvig.app.feature.chat.ChatFragment"
         android:label="ChatFragment">
         <action
             android:id="@+id/action_chatFragment_to_offerFragment"
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/offerFragment"
-        android:name="com.hedvig.app.react.offer.OfferFragment"
+        android:name="com.hedvig.app.feature.offer.OfferFragment"
         android:label="OfferFragment">
         <action
             android:id="@+id/action_offerFragment_to_chatFragment"

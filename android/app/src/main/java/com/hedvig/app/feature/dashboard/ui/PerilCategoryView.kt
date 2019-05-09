@@ -11,7 +11,7 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import com.bumptech.glide.Glide
 import com.hedvig.app.R
-import com.hedvig.app.ui.common.HedvigCardView
+import com.hedvig.app.ui.view.HedvigCardView
 import com.hedvig.app.util.extensions.compatDrawable
 import com.hedvig.app.util.extensions.view.animateCollapse
 import com.hedvig.app.util.extensions.view.animateExpand

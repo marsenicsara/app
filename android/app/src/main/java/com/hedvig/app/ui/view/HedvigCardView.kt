@@ -1,4 +1,4 @@
-package com.hedvig.app.ui.common
+package com.hedvig.app.ui.view
 
 import android.content.Context
 import android.graphics.Outline

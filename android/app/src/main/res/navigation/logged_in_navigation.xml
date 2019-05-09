@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loggedInFragment"
-        android:name="com.hedvig.app.ui.loggedin.LoggedInFragment">
+        android:name="com.hedvig.app.feature.loggedin.LoggedInFragment">
 
         <action
             android:id="@+id/action_dashboardFragment_to_trustlyFragment"
@@ -122,7 +122,7 @@
 
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.hedvig.app.react.chat.ChatFragment"
+        android:name="com.hedvig.app.feature.chat.ChatFragment"
         android:label="ChatFragment" />
 
     <fragment

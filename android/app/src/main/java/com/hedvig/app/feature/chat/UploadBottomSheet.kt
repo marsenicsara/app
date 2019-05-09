@@ -1,4 +1,4 @@
-package com.hedvig.app.react.chat
+package com.hedvig.app.feature.chat
 
 import android.app.Activity
 import android.app.Dialog
@@ -9,14 +9,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import com.hedvig.app.di.ViewModelFactory
-import com.hedvig.app.ui.common.RoundedBottomSheetDialogFragment
+import com.hedvig.app.ui.fragment.RoundedBottomSheetDialogFragment
 import com.hedvig.app.util.extensions.localBroadcastManager
 import com.hedvig.app.util.extensions.observe
 import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.setHapticClickListener
 import com.hedvig.app.util.extensions.view.show
 import com.hedvig.app.R
-import com.hedvig.app.starter.ActivityStarterModule
+import com.hedvig.app.react.ActivityStarterModule
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.file_upload_dialog.*
 import javax.inject.Inject

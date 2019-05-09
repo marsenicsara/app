@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.annotation.DrawableRes
 import android.view.LayoutInflater
 import com.hedvig.app.R
-import com.hedvig.app.ui.common.RoundedBottomSheetDialogFragment
+import com.hedvig.app.ui.fragment.RoundedBottomSheetDialogFragment
 import com.hedvig.app.util.extensions.compatDrawable
 import kotlinx.android.synthetic.main.peril_bottom_sheet.*
 

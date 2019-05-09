@@ -1,4 +1,4 @@
-package com.hedvig.app.ui.loggedin
+package com.hedvig.app.feature.loggedin
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

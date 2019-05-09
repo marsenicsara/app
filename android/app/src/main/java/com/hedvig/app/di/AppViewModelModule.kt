@@ -1,7 +1,7 @@
 package com.hedvig.app.di
 
 import android.arch.lifecycle.ViewModel
-import com.hedvig.app.react.chat.ChatViewModel
+import com.hedvig.app.feature.chat.ChatViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

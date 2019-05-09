@@ -6,7 +6,7 @@ import com.hedvig.app.feature.claims.ui.ClaimsViewModel
 import com.hedvig.app.feature.dashboard.ui.DashboardViewModel
 import com.hedvig.app.feature.marketing.ui.MarketingStoriesViewModel
 import com.hedvig.app.feature.profile.ui.ProfileViewModel
-import com.hedvig.app.ui.common.DirectDebitViewModel
+import com.hedvig.app.viewmodel.DirectDebitViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

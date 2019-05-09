@@ -1,4 +1,4 @@
-package com.hedvig.app.utils
+package com.hedvig.app.util
 
 import android.app.Dialog
 import android.content.Context

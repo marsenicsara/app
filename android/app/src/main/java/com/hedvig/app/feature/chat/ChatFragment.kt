@@ -1,4 +1,4 @@
-package com.hedvig.app.react.chat
+package com.hedvig.app.feature.chat
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.BroadcastReceiver
@@ -30,8 +30,8 @@ import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_NAME_
 import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE_RESTART_CHAT_ON_BOARDING
 import com.hedvig.app.NativeRoutingModule.Companion.ON_BOARDING_INTENT_FILER
 import com.hedvig.app.R
-import com.hedvig.app.starter.ActivityStarterModule.Companion.BROADCAST_RELOAD_CHAT
-import com.hedvig.app.utils.showRestartDialog
+import com.hedvig.app.react.ActivityStarterModule.Companion.BROADCAST_RELOAD_CHAT
+import com.hedvig.app.util.showRestartDialog
 
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_chat.*

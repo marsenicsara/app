@@ -1,4 +1,4 @@
-package com.hedvig.app.react.offer
+package com.hedvig.app.feature.offer
 
 import android.app.Dialog
 import android.arch.lifecycle.ViewModelProviders
@@ -29,8 +29,8 @@ import com.hedvig.app.NativeRoutingModule
 import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_NAME_ACTION
 import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE_LOGOUT_AND_RESTART_APPLICATION
 import com.hedvig.app.R
-import com.hedvig.app.react.chat.ChatViewModel
-import com.hedvig.app.utils.showRestartDialog
+import com.hedvig.app.feature.chat.ChatViewModel
+import com.hedvig.app.util.showRestartDialog
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 

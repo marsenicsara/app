@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hedvig.app.ui.common.HedvigCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hedvig.app.ui.view.HedvigCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -29,4 +29,4 @@
             android:layout_height="wrap_content"
             tools:text="Drulle" />
     </LinearLayout>
-</com.hedvig.app.ui.common.HedvigCardView>
+</com.hedvig.app.ui.view.HedvigCardView>

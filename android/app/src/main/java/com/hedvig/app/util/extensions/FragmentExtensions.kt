@@ -13,7 +13,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.hedvig.app.ui.common.RoundedBottomSheetDialogFragment
+import com.hedvig.app.ui.fragment.RoundedBottomSheetDialogFragment
 import com.hedvig.app.util.whenApiVersion
 import kotlinx.android.synthetic.main.app_bar.*
 

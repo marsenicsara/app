@@ -1,4 +1,4 @@
-package com.hedvig.app.react.chat.dto
+package com.hedvig.app.feature.chat.dto
 
 data class UploadData(
     val uploadFile: UploadFile
