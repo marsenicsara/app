@@ -248,6 +248,8 @@
 		EBCAA8B62282255B003C4833 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8B42282255B003C4833 /* MessageBubble.swift */; };
 		EBCAA8B72282255B003C4833 /* ChatPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8B52282255B003C4833 /* ChatPreview.swift */; };
 		EBCAA8BC2283135C003C4833 /* Chat+LastOpened.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8BB2283135C003C4833 /* Chat+LastOpened.swift */; };
+		EBCAA8C422843E00003C4833 /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8C322843E00003C4833 /* ChatButton.swift */; };
+		EBCAA8C622843E24003C4833 /* UIBarButtonItem+Viewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8C522843E24003C4833 /* UIBarButtonItem+Viewable.swift */; };
 		EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */; };
 		EBD675FA21FF4F0F00050E86 /* LoggedInScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
@@ -514,6 +516,8 @@
 		EBCAA8B42282255B003C4833 /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		EBCAA8B52282255B003C4833 /* ChatPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPreview.swift; sourceTree = "<group>"; };
 		EBCAA8BB2283135C003C4833 /* Chat+LastOpened.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chat+LastOpened.swift"; sourceTree = "<group>"; };
+		EBCAA8C322843E00003C4833 /* ChatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatButton.swift; sourceTree = "<group>"; };
+		EBCAA8C522843E24003C4833 /* UIBarButtonItem+Viewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Viewable.swift"; sourceTree = "<group>"; };
 		EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDirectDebitStatus.swift; sourceTree = "<group>"; };
 		EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
@@ -1057,6 +1061,7 @@
 			children = (
 				EB11EB2D2277382600D95365 /* Divider.swift */,
 				EB11E9D02277047700D95365 /* BackgroundWithLabel.swift */,
+				EBCAA8C322843E00003C4833 /* ChatButton.swift */,
 				EB11E9D12277047700D95365 /* MultilineLabel.swift */,
 				EB11EB2B2277360900D95365 /* MultilineLabelIcon.swift */,
 				EB11E9D22277047700D95365 /* CircleLabel.swift */,
@@ -1089,6 +1094,7 @@
 				EB11E9E72277047700D95365 /* SignalProvider+LazyBindTo.swift */,
 				EB11ED0A227ADB9300D95365 /* LocalizationLocale+CurrentLocale.swift */,
 				EB11E9E82277047700D95365 /* ApolloClient+Flow.swift */,
+				EBCAA8C522843E24003C4833 /* UIBarButtonItem+Viewable.swift */,
 				EB11ED0E227ADBAF00D95365 /* Viewable+WrappedIn.swift */,
 				EB11E9E92277047700D95365 /* SectionView+Viewable.swift */,
 				EB11ED08227ADB8200D95365 /* UIScrollView+ContentOffsetSignal.swift */,
@@ -1656,6 +1662,7 @@
 				EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */,
 				EB11EA842277047700D95365 /* AddressCircle.swift in Sources */,
 				EB11EA4E2277047700D95365 /* StoriesIndicator.swift in Sources */,
+				EBCAA8C422843E00003C4833 /* ChatButton.swift in Sources */,
 				EB11EA852277047700D95365 /* MyHome.swift in Sources */,
 				EB11EAFA2277047800D95365 /* HedvigColors.swift in Sources */,
 				EB11EA8B2277047700D95365 /* CharityInformation.swift in Sources */,
@@ -1666,6 +1673,7 @@
 				EB11EA582277047700D95365 /* MarketingStory.swift in Sources */,
 				EB11EAD42277047700D95365 /* ActivityView.swift in Sources */,
 				EB11EA922277047700D95365 /* About.swift in Sources */,
+				EBCAA8C622843E24003C4833 /* UIBarButtonItem+Viewable.swift in Sources */,
 				EB11ED2A227ADBDE00D95365 /* CloseButton.swift in Sources */,
 				EB11EA912277047700D95365 /* LicensesRow.swift in Sources */,
 				EB11EAB02277047700D95365 /* UIWebView+Signal.swift in Sources */,

@@ -64,9 +64,9 @@ extension ClaimChat: Presentable {
         }
 
         viewController.view = view
-        
+
         Chat.didOpen()
-        
+
         bag += Disposer {
             Chat.didClose()
         }
