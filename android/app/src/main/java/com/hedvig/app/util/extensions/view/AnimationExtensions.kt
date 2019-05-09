@@ -13,20 +13,15 @@ fun View.animateExpand(
     updateCallback: (() -> Unit)? = null,
     withOpacity: Boolean = false
 ) {
-    val targetHeight = if (this is TextView) {
-        val parentWidth = (parent as View).measuredWidth
-        measure(
-            View.MeasureSpec.makeMeasureSpec(parentWidth, View.MeasureSpec.EXACTLY),
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        (measuredHeight + paint.fontSpacing).toInt()
-    } else {
-        measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        measuredHeight
-    }
+    show()
+    val parentWidth = (parent as View).measuredWidth
+    measure(
+        View.MeasureSpec.makeMeasureSpec(parentWidth, View.MeasureSpec.EXACTLY),
+        ViewGroup.LayoutParams.WRAP_CONTENT
+    )
+    val targetHeight = measuredHeight + if (this is TextView) paint.fontSpacing.toInt() else 0
 
     val currentHeight = height
-    show()
     ValueAnimator.ofInt(currentHeight, targetHeight).apply {
         addUpdateListener { animation ->
             layoutParams.height = animation.animatedValue as Int

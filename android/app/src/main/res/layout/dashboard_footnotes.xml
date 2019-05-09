@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_marginStart="@dimen/base_margin_half"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_marginTop="@dimen/base_margin_triple"
@@ -25,8 +25,9 @@
             style="@style/Body.Small"
             android:layout_marginStart="@dimen/base_margin"
             android:text="@string/DASHBOARD_DEDUCTIBLE_FOOTNOTE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
@@ -50,7 +51,7 @@
             style="@style/Body.Small"
             android:layout_marginStart="@dimen/base_margin"
             android:text="@string/DASHBOARD_OWNER_FOOTNOTE"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
@@ -72,7 +73,7 @@
             android:id="@+id/totalCoverageFootnote"
             style="@style/Body.Small"
             android:layout_marginStart="@dimen/base_margin"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="@string/DASHBOARD_INSURANCE_AMOUNT_FOOTNOTE" />
 
@@ -96,9 +97,8 @@
             style="@style/Body.Small"
             android:layout_marginStart="@dimen/base_margin"
             android:text="@string/DASHBOARD_TRAVEL_FOOTNOTE"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
     </LinearLayout>
 
