@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/logged_in_navigation"
-            app:startDestination="@id/loggedInFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/logged_in_navigation"
+    app:startDestination="@id/loggedInFragment">
 
     <fragment
-        android:name="com.hedvig.android.owldroid.ui.loggedin.LoggedInFragment"
-        android:id="@+id/loggedInFragment">
+        android:id="@+id/loggedInFragment"
+        android:name="com.hedvig.android.owldroid.ui.loggedin.LoggedInFragment">
 
         <action
             android:id="@+id/action_dashboardFragment_to_trustlyFragment"
@@ -15,16 +15,15 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_chatFragment"
             app:destination="@id/chatFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_in_down"
+            app:popExitAnim="@anim/slide_in_down"
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_commonClaimsFragment"
@@ -32,7 +31,7 @@
             app:enterAnim="@anim/slide_in_up"
             app:exitAnim="@anim/slide_in_down"
             app:popExitAnim="@anim/slide_in_down"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_emergencyFragment"
@@ -40,7 +39,7 @@
             app:enterAnim="@anim/slide_in_up"
             app:exitAnim="@anim/slide_in_down"
             app:popExitAnim="@anim/slide_in_down"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_referralFragment"
@@ -49,7 +48,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/loggedInFragment"/>
+            app:popUpTo="@id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_myInfoFragment"
@@ -58,7 +57,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_myHomeFragment"
@@ -67,7 +66,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_coinsuredFragment"
@@ -76,7 +75,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_charityFragment"
@@ -85,7 +84,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_paymentFragment"
@@ -94,7 +93,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_feedbackFragment"
@@ -103,7 +102,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
         <action
             android:id="@+id/action_loggedInFragment_to_aboutAppFragment"
@@ -112,19 +111,19 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/loggedInFragment"/>
+            app:popUpTo="@+id/loggedInFragment" />
 
     </fragment>
 
     <fragment
         android:id="@+id/trustlyFragment"
         android:name="com.hedvig.android.owldroid.feature.profile.ui.payment.TrustlyFragment"
-        android:label="TrustlyFragment"/>
+        android:label="TrustlyFragment" />
 
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.hedvig.app.react.chat.ChatFragment"
-        android:label="ChatFragment"/>
+        android:label="ChatFragment" />
 
     <fragment
         android:id="@+id/claimsCommonClaimFragment"
@@ -138,7 +137,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/claimsCommonClaimFragment"/>
+            app:popUpTo="@+id/claimsCommonClaimFragment" />
 
     </fragment>
 
@@ -154,19 +153,19 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/claimsEmergencyFragment"/>
+            app:popUpTo="@+id/claimsEmergencyFragment" />
 
     </fragment>
 
     <fragment
         android:id="@+id/referralFragment"
         android:name="com.hedvig.android.owldroid.feature.profile.ui.referral.ReferralFragment"
-        android:label="ReferralFragment"/>
+        android:label="ReferralFragment" />
 
     <fragment
         android:id="@+id/myInfoFragment"
         android:name="com.hedvig.android.owldroid.feature.profile.ui.myinfo.MyInfoFragment"
-        android:label="MyInfoFragment"/>
+        android:label="MyInfoFragment" />
 
     <fragment
         android:id="@+id/myHomeFragment"
@@ -180,19 +179,19 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/myHomeFragment"/>
+            app:popUpTo="@+id/myHomeFragment" />
 
     </fragment>
 
     <fragment
         android:id="@+id/coinsuredFragment"
         android:name="com.hedvig.android.owldroid.feature.profile.ui.coinsured.CoinsuredFragment"
-        android:label="CoinsuredFragment"/>
+        android:label="CoinsuredFragment" />
 
     <fragment
         android:id="@+id/charityFragment"
         android:name="com.hedvig.android.owldroid.feature.profile.ui.charity.CharityFragment"
-        android:label="CharityFragment"/>
+        android:label="CharityFragment" />
 
     <fragment
         android:id="@+id/paymentFragment"
@@ -206,13 +205,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/paymentFragment"/>
+            app:popUpTo="@+id/paymentFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/feedbackFragment"
         android:name="com.hedvig.android.owldroid.feature.profile.ui.feedback.FeedbackFragment"
-        android:label="FeedbackFragment"/>
+        android:label="FeedbackFragment" />
 
     <fragment
         android:id="@+id/aboutAppFragment"
@@ -226,11 +225,11 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/aboutAppFragment"/>
+            app:popUpTo="@+id/aboutAppFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/licensesFragment"
         android:name="com.hedvig.android.owldroid.feature.profile.ui.aboutapp.LicensesFragment"
-        android:label="LicensesFragment"/>
+        android:label="LicensesFragment" />
 </navigation>
