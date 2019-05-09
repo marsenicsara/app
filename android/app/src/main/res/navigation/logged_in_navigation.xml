@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loggedInFragment"
-        android:name="com.hedvig.android.owldroid.ui.loggedin.LoggedInFragment">
+        android:name="com.hedvig.app.ui.loggedin.LoggedInFragment">
 
         <action
             android:id="@+id/action_dashboardFragment_to_trustlyFragment"
@@ -117,7 +117,7 @@
 
     <fragment
         android:id="@+id/trustlyFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.payment.TrustlyFragment"
+        android:name="com.hedvig.app.feature.profile.ui.payment.TrustlyFragment"
         android:label="TrustlyFragment" />
 
     <fragment
@@ -127,7 +127,7 @@
 
     <fragment
         android:id="@+id/claimsCommonClaimFragment"
-        android:name="com.hedvig.android.owldroid.feature.claims.ui.commonclaim.CommonClaimFragment"
+        android:name="com.hedvig.app.feature.claims.ui.commonclaim.CommonClaimFragment"
         android:label="QuickActionFragment">
 
         <action
@@ -143,7 +143,7 @@
 
     <fragment
         android:id="@+id/claimsEmergencyFragment"
-        android:name="com.hedvig.android.owldroid.feature.claims.ui.commonclaim.EmergencyFragment"
+        android:name="com.hedvig.app.feature.claims.ui.commonclaim.EmergencyFragment"
         android:label="QuickActionFragment">
 
         <action
@@ -159,17 +159,17 @@
 
     <fragment
         android:id="@+id/referralFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.referral.ReferralFragment"
+        android:name="com.hedvig.app.feature.profile.ui.referral.ReferralFragment"
         android:label="ReferralFragment" />
 
     <fragment
         android:id="@+id/myInfoFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.myinfo.MyInfoFragment"
+        android:name="com.hedvig.app.feature.profile.ui.myinfo.MyInfoFragment"
         android:label="MyInfoFragment" />
 
     <fragment
         android:id="@+id/myHomeFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.myhome.MyHomeFragment"
+        android:name="com.hedvig.app.feature.profile.ui.myhome.MyHomeFragment"
         android:label="MyHomeFragment">
 
         <action
@@ -185,17 +185,17 @@
 
     <fragment
         android:id="@+id/coinsuredFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.coinsured.CoinsuredFragment"
+        android:name="com.hedvig.app.feature.profile.ui.coinsured.CoinsuredFragment"
         android:label="CoinsuredFragment" />
 
     <fragment
         android:id="@+id/charityFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.charity.CharityFragment"
+        android:name="com.hedvig.app.feature.profile.ui.charity.CharityFragment"
         android:label="CharityFragment" />
 
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.payment.PaymentFragment"
+        android:name="com.hedvig.app.feature.profile.ui.payment.PaymentFragment"
         android:label="PaymentFragment">
 
         <action
@@ -210,12 +210,12 @@
 
     <fragment
         android:id="@+id/feedbackFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.feedback.FeedbackFragment"
+        android:name="com.hedvig.app.feature.profile.ui.feedback.FeedbackFragment"
         android:label="FeedbackFragment" />
 
     <fragment
         android:id="@+id/aboutAppFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.aboutapp.AboutAppFragment"
+        android:name="com.hedvig.app.feature.profile.ui.aboutapp.AboutAppFragment"
         android:label="AboutAppFragment">
 
         <action
@@ -230,6 +230,6 @@
 
     <fragment
         android:id="@+id/licensesFragment"
-        android:name="com.hedvig.android.owldroid.feature.profile.ui.aboutapp.LicensesFragment"
+        android:name="com.hedvig.app.feature.profile.ui.aboutapp.LicensesFragment"
         android:label="LicensesFragment" />
 </navigation>

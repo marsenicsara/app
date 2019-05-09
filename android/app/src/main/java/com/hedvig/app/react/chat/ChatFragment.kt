@@ -18,14 +18,14 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
-import com.hedvig.android.owldroid.di.ViewModelFactory
-import com.hedvig.android.owldroid.feature.marketing.ui.MarketingFragment
-import com.hedvig.android.owldroid.util.extensions.compatColor
-import com.hedvig.android.owldroid.util.extensions.localBroadcastManager
-import com.hedvig.android.owldroid.util.extensions.statusBarColor
-import com.hedvig.android.owldroid.util.extensions.view.remove
-import com.hedvig.android.owldroid.util.extensions.view.show
-import com.hedvig.android.owldroid.util.newBroadcastReceiver
+import com.hedvig.app.di.ViewModelFactory
+import com.hedvig.app.feature.marketing.ui.MarketingFragment
+import com.hedvig.app.util.extensions.compatColor
+import com.hedvig.app.util.extensions.localBroadcastManager
+import com.hedvig.app.util.extensions.statusBarColor
+import com.hedvig.app.util.extensions.view.remove
+import com.hedvig.app.util.extensions.view.show
+import com.hedvig.app.util.newBroadcastReceiver
 import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_NAME_ACTION
 import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE_RESTART_CHAT_ON_BOARDING
 import com.hedvig.app.NativeRoutingModule.Companion.ON_BOARDING_INTENT_FILER
@@ -55,7 +55,7 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
 
     private var broadcastReceiver: BroadcastReceiver? = null
 
-    private val navController by lazy { requireActivity().findNavController(com.hedvig.android.owldroid.R.id.rootNavigationHost) }
+    private val navController by lazy { requireActivity().findNavController(R.id.rootNavigationHost) }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)

@@ -3,8 +3,8 @@ package com.hedvig.app.react.chat
 import android.content.Context
 import android.net.Uri
 import com.google.gson.GsonBuilder
-import com.hedvig.android.owldroid.service.FileService
-import com.hedvig.android.owldroid.util.extensions.into
+import com.hedvig.app.service.FileService
+import com.hedvig.app.util.extensions.into
 import com.hedvig.app.react.chat.dto.UploadData
 import com.hedvig.app.react.chat.dto.UploadResponse
 import io.reactivex.Observable

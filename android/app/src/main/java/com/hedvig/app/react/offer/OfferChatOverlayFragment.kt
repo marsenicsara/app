@@ -23,8 +23,8 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
-import com.hedvig.android.owldroid.di.ViewModelFactory
-import com.hedvig.android.owldroid.util.extensions.localBroadcastManager
+import com.hedvig.app.di.ViewModelFactory
+import com.hedvig.app.util.extensions.localBroadcastManager
 import com.hedvig.app.NativeRoutingModule
 import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_NAME_ACTION
 import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE_LOGOUT_AND_RESTART_APPLICATION

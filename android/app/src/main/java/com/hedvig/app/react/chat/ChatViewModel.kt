@@ -2,7 +2,7 @@ package com.hedvig.app.react.chat
 
 import android.arch.lifecycle.ViewModel
 import android.net.Uri
-import com.hedvig.android.owldroid.util.LiveEvent
+import com.hedvig.app.util.LiveEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber

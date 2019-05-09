@@ -6,8 +6,8 @@ import com.apollographql.apollo.Logger
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.hedvig.android.owldroid.util.apollo.ApolloTimberLogger
-import com.hedvig.android.owldroid.util.react.AsyncStorageNative
+import com.hedvig.app.util.apollo.ApolloTimberLogger
+import com.hedvig.app.util.react.AsyncStorageNative
 import dagger.Module
 import dagger.Provides
 import okhttp3.logging.HttpLoggingInterceptor

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/marketingFragment"
-        android:name="com.hedvig.android.owldroid.feature.marketing.ui.MarketingFragment"
+        android:name="com.hedvig.app.feature.marketing.ui.MarketingFragment"
         android:label="MarketingFragment">
         <action
             android:id="@+id/action_marketingFragment_to_chatFragment"
