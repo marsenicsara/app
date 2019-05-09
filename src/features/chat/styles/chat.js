@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'CircularStd-Book',
     textAlign: 'left',
+    lineHeight: 24,
   },
   userMessageText: {
     color: colors.WHITE,
