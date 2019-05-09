@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
@@ -54,6 +55,8 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
 
     private var broadcastReceiver: BroadcastReceiver? = null
 
+    private val navController by lazy { requireActivity().findNavController(com.hedvig.android.owldroid.R.id.rootNavigationHost) }
+
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         AndroidSupportInjection.inject(this)
@@ -91,12 +94,21 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
                 resetChatButton.show()
             }
         }
+        arguments?.getBoolean(ARGS_SHOW_CLOSE)?.let { showClose ->
+            if (showClose) {
+                closeChatButton.show()
+            }
+        }
 
         resetChatButton.setOnClickListener {
             requireContext().showRestartDialog {
                 loadingSpinner.show()
                 chatViewModel.logout { broadcastLogout() }
             }
+        }
+
+        closeChatButton.setOnClickListener {
+            navController.popBackStack()
         }
     }
 
@@ -129,5 +141,6 @@ class ChatFragment : Fragment(), DefaultHardwareBackBtnHandler {
     companion object {
         const val ARGS_INTENT = "intent"
         const val ARGS_SHOW_RESTART = "show_restart"
+        const val ARGS_SHOW_CLOSE = "show_close"
     }
 }
