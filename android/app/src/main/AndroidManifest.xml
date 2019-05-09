@@ -96,6 +96,10 @@
             android:enabled="false"
             android:exported="false"
             tools:replace="android:authorities" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_hedvig_symbol_android" />
     </application>
 
 </manifest>
