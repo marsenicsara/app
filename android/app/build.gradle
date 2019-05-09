@@ -126,6 +126,11 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
     implementation 'net.ypresto.timbertreeutils:timbertreeutils:1.0.0'
+
+    def navigation_version = '1.0.0'
+    implementation "android.arch.navigation:navigation-fragment:$navigation_version"
+    implementation "android.arch.navigation:navigation-ui:$navigation_version"
+    implementation "android.arch.navigation:navigation-runtime-ktx:$navigation_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
