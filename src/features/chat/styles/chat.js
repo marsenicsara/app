@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Animated, View, StyleSheet, Text, TextInput } from 'react-native';
+import {
+  Animated,
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Platform,
+} from 'react-native';
 
 import { colors } from '@hedviginsurance/brand';
-import { Platform } from 'react-primitives';
 
 // Regular text messages
 
