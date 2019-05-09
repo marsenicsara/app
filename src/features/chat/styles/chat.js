@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Animated, View, StyleSheet, Text, TextInput } from 'react-native';
 
 import { colors } from '@hedviginsurance/brand';
+import { Platform } from 'react-primitives';
 
 // Regular text messages
 
@@ -18,7 +19,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'CircularStd-Book',
     textAlign: 'left',
-    lineHeight: 24,
+    ...Platform.select({
+      android: {
+        lineHeight: 24,
+      },
+    }),
   },
   userMessageText: {
     color: colors.WHITE,
