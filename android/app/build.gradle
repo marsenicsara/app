@@ -30,9 +30,10 @@ apollo {
     ]
 }
 
-//licenseReport {
-//    copyHtmlReportToAssets = true
-//}
+apply plugin: 'com.jaredsburrows.license'
+licenseReport {
+    copyHtmlReportToAssets = true
+}
 
 android {
     compileSdkVersion 28
