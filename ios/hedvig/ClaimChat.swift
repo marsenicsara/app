@@ -64,6 +64,12 @@ extension ClaimChat: Presentable {
         }
 
         viewController.view = view
+        
+        Chat.didOpen()
+        
+        bag += Disposer {
+            Chat.didClose()
+        }
 
         return (viewController, Future { completion in
             bag += closeButton.onValue { _ in
