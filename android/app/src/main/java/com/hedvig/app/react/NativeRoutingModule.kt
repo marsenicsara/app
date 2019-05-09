@@ -1,4 +1,4 @@
-package com.hedvig.app
+package com.hedvig.app.react
 
 import android.content.BroadcastReceiver
 import android.content.Context

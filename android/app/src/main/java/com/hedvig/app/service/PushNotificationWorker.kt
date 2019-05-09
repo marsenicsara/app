@@ -7,10 +7,12 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.rx2.Rx2Apollo
 import com.hedvig.android.owldroid.graphql.NewSessionMutation
 import com.hedvig.android.owldroid.graphql.RegisterPushTokenMutation
+import com.hedvig.app.di.worker.ChildWorkerFactory
 import com.hedvig.app.util.react.AsyncStorageNative
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
+import javax.inject.Inject
 
 class PushNotificationWorker(
     context: Context,
@@ -77,6 +79,14 @@ class PushNotificationWorker(
                 }
                 Timber.i("Successfully registered push token")
             }, { Timber.e(it, "Failed to register push token") })
+    }
+
+    class Factory @Inject constructor(
+        private val apolloClient: ApolloClient,
+        private val asyncStorageNative: AsyncStorageNative
+    ) : ChildWorkerFactory {
+        override fun create(context: Context, params: WorkerParameters) =
+            PushNotificationWorker(context, params, apolloClient, asyncStorageNative)
     }
 
     companion object {

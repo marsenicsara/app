@@ -10,11 +10,11 @@ import android.support.v4.app.Fragment
 import android.view.View
 import androidx.navigation.findNavController
 import com.bumptech.glide.RequestBuilder
+import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import com.hedvig.app.R
-import com.hedvig.app.di.ViewModelFactory
+import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.ClaimsViewModel
-import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import com.hedvig.app.util.extensions.observe
 import com.hedvig.app.util.svg.buildRequestBuilder
 import dagger.android.support.AndroidSupportInjection

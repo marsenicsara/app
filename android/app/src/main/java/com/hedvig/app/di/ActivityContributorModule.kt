@@ -1,5 +1,6 @@
-package com.hedvig.app
+package com.hedvig.app.di
 
+import com.hedvig.app.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

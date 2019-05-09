@@ -1,5 +1,7 @@
 package com.hedvig.app.di
 
+import com.hedvig.app.feature.chat.ChatFragment
+import com.hedvig.app.feature.chat.UploadBottomSheet
 import com.hedvig.app.feature.claims.ui.ClaimsFragment
 import com.hedvig.app.feature.claims.ui.commonclaim.CommonClaimFragment
 import com.hedvig.app.feature.claims.ui.commonclaim.EmergencyFragment
@@ -7,6 +9,8 @@ import com.hedvig.app.feature.claims.ui.pledge.HonestyPledgeBottomSheet
 import com.hedvig.app.feature.dashboard.ui.DashboardFragment
 import com.hedvig.app.feature.marketing.ui.MarketingFragment
 import com.hedvig.app.feature.marketing.ui.StoryFragment
+import com.hedvig.app.feature.offer.OfferChatOverlayFragment
+import com.hedvig.app.feature.offer.OfferFragment
 import com.hedvig.app.feature.profile.ui.ProfileFragment
 import com.hedvig.app.feature.profile.ui.aboutapp.AboutAppFragment
 import com.hedvig.app.feature.profile.ui.charity.CharityFragment
@@ -72,4 +76,16 @@ abstract class FragmentContributorModule {
 
     @ContributesAndroidInjector
     abstract fun contributeChangeHomeInfoDialog(): ChangeHomeInfoDialog
+
+    @ContributesAndroidInjector
+    abstract fun contributeChatFragment(): ChatFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeOfferFragment(): OfferFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeOfferChatOverlayFragment(): OfferChatOverlayFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeUploadBottomSheet(): UploadBottomSheet
 }
