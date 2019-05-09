@@ -14,7 +14,8 @@ struct RCTApolloClient {
     static func getClient() -> Future<(ApolloClient, ApolloStore)> {
         let environment = ApolloEnvironmentConfig(
             endpointURL: URL(string: ReactNativeConfig.env(for: "GRAPHQL_URL"))!,
-            wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!
+            wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!,
+            assetsEndpointURL: URL(string: ReactNativeConfig.env(for: "ASSETS_GRAPHQL_URL"))!
         )
 
         let token = Future<String?> { completion in
@@ -46,7 +47,7 @@ struct RCTApolloClient {
         // we get a black screen flicker without the delay
         let clientFuture = token.flatMap { token -> Future<(ApolloClient, ApolloStore)> in
             guard let token = token else {
-                let initClient = ApolloContainer.shared.initClient(environment: environment)
+                let initClient = ApolloContainer.shared.initClient()
 
                 // set the new token created by initClient in React Native's async storage
                 // so that we don't create another session later on
@@ -67,8 +68,7 @@ struct RCTApolloClient {
 
             return Future { completion in
                 completion(.success(ApolloContainer.shared.createClient(
-                    token: token,
-                    environment: environment
+                    token: token
                 )))
 
                 return NilDisposer()
