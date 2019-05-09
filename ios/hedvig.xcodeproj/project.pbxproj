@@ -250,6 +250,7 @@
 		EBCAA8BC2283135C003C4833 /* Chat+LastOpened.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8BB2283135C003C4833 /* Chat+LastOpened.swift */; };
 		EBCAA8C422843E00003C4833 /* ChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8C322843E00003C4833 /* ChatButton.swift */; };
 		EBCAA8C622843E24003C4833 /* UIBarButtonItem+Viewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8C522843E24003C4833 /* UIBarButtonItem+Viewable.swift */; };
+		EBCAA8CB22846FE6003C4833 /* UIViewController+PreferredContentSizeSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAA8CA22846FE6003C4833 /* UIViewController+PreferredContentSizeSignal.swift */; };
 		EBD5C968223933D20049A78A /* ClearDirectDebitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */; };
 		EBD675FA21FF4F0F00050E86 /* LoggedInScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */; };
 		EBECC19F21B8112D00716BEA /* MarketingScreenComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */; };
@@ -518,6 +519,7 @@
 		EBCAA8BB2283135C003C4833 /* Chat+LastOpened.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chat+LastOpened.swift"; sourceTree = "<group>"; };
 		EBCAA8C322843E00003C4833 /* ChatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatButton.swift; sourceTree = "<group>"; };
 		EBCAA8C522843E24003C4833 /* UIBarButtonItem+Viewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Viewable.swift"; sourceTree = "<group>"; };
+		EBCAA8CA22846FE6003C4833 /* UIViewController+PreferredContentSizeSignal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PreferredContentSizeSignal.swift"; sourceTree = "<group>"; };
 		EBD5C967223933D20049A78A /* ClearDirectDebitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDirectDebitStatus.swift; sourceTree = "<group>"; };
 		EBD675F921FF4F0E00050E86 /* LoggedInScreenComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInScreenComponent.swift; sourceTree = "<group>"; };
 		EBECC19E21B8112D00716BEA /* MarketingScreenComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingScreenComponent.swift; sourceTree = "<group>"; };
@@ -1089,6 +1091,7 @@
 			children = (
 				EB11EB312277388C00D95365 /* DateFormatter+ISO8601.swift */,
 				EB11E9E42277047700D95365 /* UIWebView+Signal.swift */,
+				EBCAA8CA22846FE6003C4833 /* UIViewController+PreferredContentSizeSignal.swift */,
 				EB11E9E52277047700D95365 /* Callbacker+Signal.swift */,
 				EB11E9E62277047700D95365 /* Result+Success.swift */,
 				EB11E9E72277047700D95365 /* SignalProvider+LazyBindTo.swift */,
@@ -1750,6 +1753,7 @@
 				EB11EA982277047700D95365 /* BubbleLoading.swift in Sources */,
 				EB11EACF2277047700D95365 /* TableViewFormStyle.swift in Sources */,
 				EB11EA702277047700D95365 /* MyInfoState.swift in Sources */,
+				EBCAA8CB22846FE6003C4833 /* UIViewController+PreferredContentSizeSignal.swift in Sources */,
 				EB11EAA52277047700D95365 /* Spacing.swift in Sources */,
 				EB11EAB32277047700D95365 /* SignalProvider+LazyBindTo.swift in Sources */,
 				EB11EA5E2277047700D95365 /* ProfileSection.swift in Sources */,
