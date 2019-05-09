@@ -1,8 +1,8 @@
 package com.hedvig.app
 
-import com.hedvig.android.owldroid.di.FragmentContributorModule
-import com.hedvig.android.owldroid.di.OwldroidModule
-import com.hedvig.android.owldroid.di.ViewModelModule
+import com.hedvig.app.di.FragmentContributorModule
+import com.hedvig.app.di.OwldroidModule
+import com.hedvig.app.di.ViewModelModule
 import com.hedvig.app.di.AppViewModelModule
 
 import javax.inject.Singleton

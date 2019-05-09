@@ -1,10 +1,10 @@
 package com.hedvig.app.react
 
 import com.hedvig.app.MainActivity
-import com.hedvig.app.react.chat.ChatFragment
-import com.hedvig.app.react.chat.UploadBottomSheet
-import com.hedvig.app.react.offer.OfferChatOverlayFragment
-import com.hedvig.app.react.offer.OfferFragment
+import com.hedvig.app.feature.chat.ChatFragment
+import com.hedvig.app.feature.chat.UploadBottomSheet
+import com.hedvig.app.feature.offer.OfferChatOverlayFragment
+import com.hedvig.app.feature.offer.OfferFragment
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

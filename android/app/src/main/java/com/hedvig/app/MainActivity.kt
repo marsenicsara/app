@@ -16,15 +16,14 @@ import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
-import com.hedvig.android.owldroid.util.NavigationAnalytics
-import com.hedvig.android.owldroid.util.extensions.compatColor
-import com.hedvig.android.owldroid.util.extensions.isLoggedIn
-import com.hedvig.android.owldroid.util.react.AsyncStorageNative
-import com.hedvig.android.owldroid.util.whenApiVersion
+import com.hedvig.app.util.NavigationAnalytics
+import com.hedvig.app.util.extensions.compatColor
+import com.hedvig.app.util.extensions.isLoggedIn
+import com.hedvig.app.util.react.AsyncStorageNative
+import com.hedvig.app.util.whenApiVersion
 import dagger.android.AndroidInjection
 import io.branch.rnbranch.RNBranchModule
 import javax.inject.Inject
-import com.hedvig.app.common.R as CommonR
 
 class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, PermissionAwareActivity {
 
@@ -100,24 +99,24 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Exponent_Light)
         super.onCreate(savedInstanceState)
-        setContentView(CommonR.layout.root_navigation_host)
+        setContentView(R.layout.root_navigation_host)
         whenApiVersion(Build.VERSION_CODES.M) {
             window.statusBarColor = compatColor(R.color.off_white)
         }
         AndroidInjection.inject(this)
 
-        val navHost = supportFragmentManager.findFragmentById(CommonR.id.rootNavigationHost) as NavHostFragment
+        val navHost = supportFragmentManager.findFragmentById(R.id.rootNavigationHost) as NavHostFragment
         val navController = navHost.navController
 
-        val graph = navController.navInflater.inflate(CommonR.navigation.root)
+        val graph = navController.navInflater.inflate(R.navigation.root)
 
         if (applicationContext.isLoggedIn()) {
-            graph.startDestination = CommonR.id.logged_in_navigation
+            graph.startDestination = R.id.logged_in_navigation
         }
         navController.graph = graph
 
 
-        findNavController(CommonR.id.rootNavigationHost).addOnDestinationChangedListener(
+        findNavController(R.id.rootNavigationHost).addOnDestinationChangedListener(
             NavigationAnalytics(
                 firebaseAnalytics,
                 this

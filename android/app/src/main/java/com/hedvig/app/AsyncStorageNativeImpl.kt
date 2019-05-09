@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import com.facebook.react.modules.storage.ReactDatabaseSupplier
-import com.hedvig.android.owldroid.util.react.AsyncStorageNative
+import com.hedvig.app.util.react.AsyncStorageNative
 import timber.log.Timber
 import javax.inject.Inject
 
