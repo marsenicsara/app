@@ -80,8 +80,6 @@ const effects: EffectMap<State, Effects> = {
 const Messages = styled(View)({
   flex: 1,
   alignSelf: 'stretch',
-  paddingLeft: 16,
-  paddingRight: 16,
 });
 
 const BackgroundView = styled(View)({
@@ -91,7 +89,7 @@ const BackgroundView = styled(View)({
 
 const Response = styled(View)({
   alignItems: 'stretch',
-  paddingTop: 8,
+  paddingTop: 0,
 });
 
 const getNavigationOptions = (

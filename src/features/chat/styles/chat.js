@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   optionsContainerNoWrap: { flexDirection: 'column' },
   marginContainer: {
     marginRight: 16,
-    marginBottom: 40,
+    marginBottom: 20,
     marginLeft: 16,
     justifyContent: 'flex-end',
     flexWrap: 'wrap',

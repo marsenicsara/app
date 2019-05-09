@@ -8,6 +8,7 @@ import { StyledAvatarContainer } from '../styles/chat';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
 import { RichMessage } from '../components/rich-message';
+import { OptionInputComponent } from '../components/InputComponent';
 
 import { InputHeightContainer } from './InputHeight';
 
@@ -116,7 +117,13 @@ const renderMessage = (message, idx) => {
       </StyledAvatarContainer>
     ) : null;
   return (
-    <View key={message.globalId || idx}>
+    <View
+      style={{
+        paddingLeft: 16,
+        paddingRight: 16,
+      }}
+      key={message.globalId || idx}
+    >
       {avatar}
       <View
         style={
@@ -135,6 +142,11 @@ class MessageList extends React.Component {
   _keyExtractor = (item) => '' + item.globalId;
 
   render() {
+    let message = this.props.messages[0];
+    let bodyType = message.body.type;
+
+    let isTextInput = bodyType == 'text' || bodyType == 'number';
+
     return (
       <InputHeightContainer>
         {({ inputHeight }) => (
@@ -149,12 +161,18 @@ class MessageList extends React.Component {
             keyboardDismissMode="interactive"
             ListHeaderComponent={
               Platform.OS === 'ios' ? (
-                <KeyboardSpacer
-                  restSpacing={isIphoneX() ? 35 : 0}
-                  topSpacing={inputHeight}
-                />
+                <>
+                  <OptionInputComponent messages={this.props.messages} />
+                  <KeyboardSpacer
+                    restSpacing={isIphoneX() ? 35 : 0}
+                    topSpacing={isTextInput ? inputHeight : 0}
+                  />
+                </>
               ) : (
-                <View style={{ height: inputHeight }} />
+                <>
+                  <OptionInputComponent messages={this.props.messages} />
+                  <View style={{ height: inputHeight }} />
+                </>
               )
             }
           />
