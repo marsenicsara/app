@@ -18,6 +18,8 @@ struct RCTApolloClient {
             assetsEndpointURL: URL(string: ReactNativeConfig.env(for: "ASSETS_GRAPHQL_URL"))!
         )
 
+        ApolloContainer.shared.environment = environment
+
         let token = Future<String?> { completion in
             let rctSenderBlock = { response in
                 guard let response = response else { return }
@@ -78,6 +80,7 @@ struct RCTApolloClient {
         clientFuture.onValue { client, store in
             ApolloContainer.shared.client = client
             ApolloContainer.shared.store = store
+            ApolloContainer.shared.environment = environment
 
             client.fetch(query: MemberIdQuery()).onValue { response in
                 if let memberId = response.data?.member.id {
