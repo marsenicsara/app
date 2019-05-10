@@ -174,6 +174,10 @@ class ChatTextInput extends React.Component {
                                   this.setState({ scrollEnabled: false });
                                 }
                               }}
+                              secureTextEntry={
+                                this.props.message.body.textContentType ===
+                                'password'
+                              }
                               textContentType={
                                 this.props.message.body.textContentType
                               }
