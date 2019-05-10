@@ -9,9 +9,8 @@
 import Foundation
 
 struct MyHomeRouting {
-    static func openChat(viewController _: UIViewController) {
-        let bridge = ReactNativeNavigation.getBridge()
-        let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
-        nativeRouting.sendOpenFreeTextChat()
+    static func openChat(viewController: UIViewController) {
+        let chatOverlay = DraggableOverlay(presentable: Chat())
+        viewController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)])
     }
 }

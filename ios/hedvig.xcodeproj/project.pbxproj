@@ -225,6 +225,8 @@
 		EB11ED3B227B3CC200D95365 /* ClaimChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11ED3A227B3CC200D95365 /* ClaimChat.swift */; };
 		EB265B1C221ADE14009DA493 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1B221ADE14009DA493 /* Chat.swift */; };
 		EB265B1E221AF1F0009DA493 /* MyHomeRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */; };
+		EB384A14228593CD00D226D1 /* ApolloClient+InsuranceIsActiveSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB384A13228593CD00D226D1 /* ApolloClient+InsuranceIsActiveSignal.swift */; };
+		EB384A16228593D700D226D1 /* SignalProvider+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB384A15228593D700D226D1 /* SignalProvider+Loader.swift */; };
 		EB433C96221D49C1000156D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB433C95221D49C1000156D4 /* LaunchScreen.storyboard */; };
 		EB4695BE220051BF0004C75D /* Pods-Hedvig-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */; };
 		EB4695CE220083800004C75D /* RCTApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4695CD220083800004C75D /* RCTApolloClient.swift */; };
@@ -492,6 +494,8 @@
 		EB11ED3A227B3CC200D95365 /* ClaimChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimChat.swift; sourceTree = "<group>"; };
 		EB265B1B221ADE14009DA493 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		EB265B1D221AF1EF009DA493 /* MyHomeRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeRouting.swift; sourceTree = "<group>"; };
+		EB384A13228593CD00D226D1 /* ApolloClient+InsuranceIsActiveSignal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ApolloClient+InsuranceIsActiveSignal.swift"; sourceTree = "<group>"; };
+		EB384A15228593D700D226D1 /* SignalProvider+Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SignalProvider+Loader.swift"; sourceTree = "<group>"; };
 		EB3A235521A57EE4007F52B6 /* hedvig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hedvig-Bridging-Header.h"; sourceTree = "<group>"; };
 		EB433C95221D49C1000156D4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB4695BD220051940004C75D /* Pods-Hedvig-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-Hedvig-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -1089,7 +1093,9 @@
 		EB11E9E32277047700D95365 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EB384A15228593D700D226D1 /* SignalProvider+Loader.swift */,
 				EB11EB312277388C00D95365 /* DateFormatter+ISO8601.swift */,
+				EB384A13228593CD00D226D1 /* ApolloClient+InsuranceIsActiveSignal.swift */,
 				EB11E9E42277047700D95365 /* UIWebView+Signal.swift */,
 				EBCAA8CA22846FE6003C4833 /* UIViewController+PreferredContentSizeSignal.swift */,
 				EB11E9E52277047700D95365 /* Callbacker+Signal.swift */,
@@ -1667,6 +1673,7 @@
 				EB11EA4E2277047700D95365 /* StoriesIndicator.swift in Sources */,
 				EBCAA8C422843E00003C4833 /* ChatButton.swift in Sources */,
 				EB11EA852277047700D95365 /* MyHome.swift in Sources */,
+				EB384A14228593CD00D226D1 /* ApolloClient+InsuranceIsActiveSignal.swift in Sources */,
 				EB11EAFA2277047800D95365 /* HedvigColors.swift in Sources */,
 				EB11EA8B2277047700D95365 /* CharityInformation.swift in Sources */,
 				EB11EA7C2277047700D95365 /* UpdatingMessage.swift in Sources */,
@@ -1686,6 +1693,7 @@
 				EBCAA816228086BC003C4833 /* DashboardRouting.swift in Sources */,
 				EB11ED28227ADBDE00D95365 /* Claims.swift in Sources */,
 				EB11EAE02277047800D95365 /* RemoteConfigContainer.swift in Sources */,
+				EB384A16228593D700D226D1 /* SignalProvider+Loader.swift in Sources */,
 				EB11EAD62277047800D95365 /* CenterAllStackView.swift in Sources */,
 				EB11EAA72277047700D95365 /* CircleLabelSmall.swift in Sources */,
 				EB11EAAC2277047700D95365 /* Button.swift in Sources */,
