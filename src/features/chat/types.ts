@@ -28,4 +28,5 @@ export interface Message {
     imageWidth: number;
   };
   globalId: string;
+  id: string;
 }
