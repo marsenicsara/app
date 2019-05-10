@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { HEDVIG_LOGO_TITLE_COMPONENT } from '../../components/hedvigLogoTitle';
 import Chat from '../../../features/chat/Chat';
+import { colors } from '@hedviginsurance/brand';
 
 import { RESTART_BUTTON } from './buttons';
 
@@ -10,6 +11,11 @@ class ChatScreen extends React.Component {
     return {
       topBar: {
         visible: true,
+        background: {
+          color: colors.OFF_WHITE,
+          blur: true,
+        },
+        drawBehind: false,
         title: Platform.select({
           ios: {
             component: HEDVIG_LOGO_TITLE_COMPONENT,

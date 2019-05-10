@@ -12,10 +12,13 @@ import Foundation
 
 struct RCTApolloClient {
     static func getClient() -> Future<(ApolloClient, ApolloStore)> {
-        let environment = HedvigApolloEnvironmentConfig(
+        let environment = ApolloEnvironmentConfig(
             endpointURL: URL(string: ReactNativeConfig.env(for: "GRAPHQL_URL"))!,
-            wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!
+            wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!,
+            assetsEndpointURL: URL(string: ReactNativeConfig.env(for: "ASSETS_GRAPHQL_URL"))!
         )
+
+        ApolloContainer.shared.environment = environment
 
         let token = Future<String?> { completion in
             let rctSenderBlock = { response in
@@ -46,12 +49,12 @@ struct RCTApolloClient {
         // we get a black screen flicker without the delay
         let clientFuture = token.flatMap { token -> Future<(ApolloClient, ApolloStore)> in
             guard let token = token else {
-                let initClient = HedvigApolloClient.shared.initClient(environment: environment)
+                let initClient = ApolloContainer.shared.initClient()
 
                 // set the new token created by initClient in React Native's async storage
                 // so that we don't create another session later on
-                initClient.onValue({ _ in
-                    guard let token = HedvigApolloClient.shared.retreiveToken() else {
+                initClient.onValue { _ in
+                    guard let token = ApolloContainer.shared.retreiveToken() else {
                         return
                     }
 
@@ -60,22 +63,25 @@ struct RCTApolloClient {
                         [["@hedvig:token", token.token]],
                         callback: rctSenderBlock
                     )
-                })
+                }
 
                 return initClient
             }
 
-            return HedvigApolloClient.shared.createClient(
-                token: token,
-                environment: environment
-            )
+            return Future { completion in
+                completion(.success(ApolloContainer.shared.createClient(
+                    token: token
+                )))
+
+                return NilDisposer()
+            }
         }
 
         clientFuture.onValue { client, store in
-            HedvigApolloClient.shared.client = client
-            HedvigApolloClient.shared.store = store
-            
-            
+            ApolloContainer.shared.client = client
+            ApolloContainer.shared.store = store
+            ApolloContainer.shared.environment = environment
+
             client.fetch(query: MemberIdQuery()).onValue { response in
                 if let memberId = response.data?.member.id {
                     Analytics.setUserID(memberId)

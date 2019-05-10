@@ -12,5 +12,6 @@
 @interface RCT_EXTERN_MODULE(NativeRouting, RCTEventEmitter)
     RCT_EXTERN_METHOD(appHasLoaded)
     RCT_EXTERN_METHOD(userDidSign)
+    RCT_EXTERN_METHOD(openChat)
     RCT_EXTERN_METHOD(registerExternalComponentId: (NSString)componentId componentName: (NSString)componentName)
 @end

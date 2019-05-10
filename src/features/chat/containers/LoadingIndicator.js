@@ -31,6 +31,7 @@ class LoadingIndicator extends React.Component {
             height: this.props.avatar.height,
             width: this.props.avatar.width,
             opacity: this.state.fade,
+            marginBottom: 20,
           }}
         >
           <Lottie

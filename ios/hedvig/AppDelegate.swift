@@ -25,6 +25,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> BooleanLiteralType {
+        honestyPledgeOpenClaimsFlow = { viewController in
+            viewController.present(ClaimChat(), style: .default, options: [.prefersNavigationBarHidden(false)])
+        }
+
+        commonClaimEmergencyOpenFreeTextChat = { viewController in
+            let chatOverlay = DraggableOverlay(presentable: Chat())
+            viewController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)])
+        }
+
+        dashboardOpenFreeTextChat = { viewController in
+            let chatOverlay = DraggableOverlay(presentable: Chat())
+            viewController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)])
+        }
+
         viewControllerWasPresented = { viewController in
             let mirror = Mirror(reflecting: viewController)
             Analytics.setScreenName(
@@ -89,9 +103,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             options: [.unanimated, .prefersNavigationBarHidden(true)]
         )
 
-        bag += splashNavigationController.present(launchPresentation).onValue({ _ in
+        bag += splashNavigationController.present(launchPresentation).onValue { _ in
             self.splashWindow = nil
-        })
+        }
 
         DefaultStyling.installCustom()
 
@@ -120,10 +134,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
 
         RCTApolloClient.getClient().delay(by: 0.05).onValue { client, _ in
-            let remoteConfig = RemoteConfig.remoteConfig()
-
-            HedvigApolloClient.shared.remoteConfig = remoteConfig
-
             ReactNativeNavigation.bootstrapBrownField(
                 jsCodeLocation,
                 launchOptions: launchOptions,
@@ -137,20 +147,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             let nativeRouting = bridge?.module(forName: "NativeRouting") as! NativeRouting
 
-            let remoteConfigHasLoadedCallbacker = Callbacker<Void>()
-            let remoteConfigHasLoadedSignal = remoteConfigHasLoadedCallbacker.signal()
-
-            remoteConfig.fetch { _, _ in
-                remoteConfig.activateFetched()
-                remoteConfigHasLoadedCallbacker.callAll()
-            }
-
             self.bag += combineLatest(
                 nativeRouting.appHasLoadedSignal,
-                remoteConfigHasLoadedSignal
-            ).onValue({ _ in
+                RemoteConfigContainer.shared.fetched.plain()
+            ).onValue { _ in
                 hasLoadedCallbacker?.callAll()
-            })
+            }
 
             MarketingScreenComponent.register(client: client)
             LoggedInScreenComponent.register(client: client)
@@ -192,7 +194,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let incentive = queryItems?.filter({ item in item.name == "incentive" }).first?.value else {
             return false
         }
-        
+
         Analytics.logEvent("referrals_open", parameters: [
             "invitedByMemberId": invitedByMemberId,
             "incentive": incentive
