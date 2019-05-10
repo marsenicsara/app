@@ -39,6 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             viewController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)])
         }
 
+        commonClaimEmergencyOpenCallMeChat = { viewController in
+            let chatOverlay = DraggableOverlay(presentable: CallMeChat())
+            viewController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)])
+        }
+
         viewControllerWasPresented = { viewController in
             let mirror = Mirror(reflecting: viewController)
             Analytics.setScreenName(
