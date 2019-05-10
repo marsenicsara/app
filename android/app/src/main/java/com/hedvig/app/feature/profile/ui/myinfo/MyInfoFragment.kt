@@ -16,9 +16,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.hedvig.app.R
-import com.hedvig.app.di.ViewModelFactory
+import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.profile.ui.ProfileViewModel
-import com.hedvig.app.util.extensions.*
+import com.hedvig.app.util.extensions.compatColor
+import com.hedvig.app.util.extensions.compatSetTint
+import com.hedvig.app.util.extensions.hideKeyboard
+import com.hedvig.app.util.extensions.onChange
+import com.hedvig.app.util.extensions.setupLargeTitle
 import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.show
 import com.hedvig.app.util.validateEmail

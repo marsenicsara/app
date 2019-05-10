@@ -1,33 +1,32 @@
 //
-//  Chat.swift
+//  CallMeChat.swift
 //  hedvig
 //
-//  Created by Sam Pettersson on 2019-02-18.
+//  Created by Sam Pettersson on 2019-05-10.
 //  Copyright © 2019 Hedvig AB. All rights reserved.
 //
 
 import Apollo
 import Flow
 import Form
+import Foundation
 import Presentation
 import UIKit
 
-struct ClaimChat {
-    let claimTypeId: GraphQLID?
+struct CallMeChat {
     let client: ApolloClient
 
-    init(claimTypeId: GraphQLID? = nil, client: ApolloClient = ApolloContainer.shared.client) {
-        self.claimTypeId = claimTypeId
+    init(client: ApolloClient = ApolloContainer.shared.client) {
         self.client = client
     }
 }
 
-extension ClaimChat: Presentable {
+extension CallMeChat: Presentable {
     func materialize() -> (UIViewController, Future<Void>) {
         let bag = DisposeBag()
 
         let viewController = UIViewController()
-        viewController.title = String(key: .CLAIMS_CHAT_TITLE)
+        viewController.title = String(key: .CALL_ME_CHAT_TITLE)
         viewController.preferredContentSize = CGSize(width: 0, height: UIScreen.main.bounds.height - 80)
 
         let closeButton = UIBarButtonItem()
@@ -44,7 +43,7 @@ extension ClaimChat: Presentable {
         let loadingIndicator = LoadingIndicator(showAfter: 0)
         loaderBag += view.add(loadingIndicator)
 
-        bag += client.perform(mutation: TriggerClaimChatMutation(claimTypeId: claimTypeId)).valueSignal.compactMap { $0.data?.triggerClaimChat }.onValue { _ in
+        bag += client.perform(mutation: TriggerCallMeChatMutation()).valueSignal.compactMap { $0.data?.triggerCallMeChat }.onValue { _ in
             let reactView = RNNReactView(
                 bridge: ReactNativeNavigation.getBridge(),
                 moduleName: "ChatScreen",

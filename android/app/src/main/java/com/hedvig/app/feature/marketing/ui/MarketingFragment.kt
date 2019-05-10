@@ -15,23 +15,29 @@ import android.view.animation.OvershootInterpolator
 import android.widget.ProgressBar
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.hedvig.app.R
-import com.hedvig.app.di.ViewModelFactory
-import com.hedvig.app.feature.marketing.service.MarketingTracker
 import com.hedvig.android.owldroid.graphql.MarketingStoriesQuery
+import com.hedvig.app.R
+import com.hedvig.app.di.viewmodel.ViewModelFactory
+import com.hedvig.app.feature.marketing.service.MarketingTracker
 import com.hedvig.app.util.OnSwipeListener
 import com.hedvig.app.util.SimpleOnSwipeListener
+import com.hedvig.app.util.extensions.compatColor
+import com.hedvig.app.util.extensions.compatSetTint
+import com.hedvig.app.util.extensions.doOnEnd
+import com.hedvig.app.util.extensions.hideStatusBar
+import com.hedvig.app.util.extensions.setDarkNavigationBar
+import com.hedvig.app.util.extensions.setLightNavigationBar
+import com.hedvig.app.util.extensions.showStatusBar
+import com.hedvig.app.util.extensions.view.doOnLayout
+import com.hedvig.app.util.extensions.view.remove
+import com.hedvig.app.util.extensions.view.setHapticClickListener
+import com.hedvig.app.util.extensions.view.show
 import com.hedvig.app.util.percentageFade
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_marketing.*
 import kotlinx.android.synthetic.main.loading_spinner.*
 import timber.log.Timber
 import javax.inject.Inject
-import com.hedvig.app.util.extensions.*
-import com.hedvig.app.util.extensions.view.doOnLayout
-import com.hedvig.app.util.extensions.view.remove
-import com.hedvig.app.util.extensions.view.setHapticClickListener
-import com.hedvig.app.util.extensions.view.show
 
 class MarketingFragment : Fragment() {
 

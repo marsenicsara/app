@@ -12,10 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.hedvig.app.R
-import com.hedvig.app.di.ViewModelFactory
 import com.hedvig.android.owldroid.graphql.ProfileQuery
-import com.hedvig.app.viewmodel.DirectDebitViewModel
+import com.hedvig.app.R
+import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.util.extensions.localBroadcastManager
 import com.hedvig.app.util.extensions.setIsLoggedIn
 import com.hedvig.app.util.extensions.setupLargeTitle
@@ -24,6 +23,7 @@ import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.show
 import com.hedvig.app.util.interpolateTextKey
 import com.hedvig.app.util.react.AsyncStorageNative
+import com.hedvig.app.viewmodel.DirectDebitViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.loading_spinner.*

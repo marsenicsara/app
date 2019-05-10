@@ -1,4 +1,4 @@
-package com.hedvig.app
+package com.hedvig.app.react
 
 import com.apollographql.apollo.ApolloClient
 import com.facebook.react.ReactPackage

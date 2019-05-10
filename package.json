@@ -190,7 +190,7 @@
       }
     }
   },
-  "version": "2.6.2",
+  "version": "2.7.0",
   "devDependencies": {
     "get-dev-paths": "^0.1.0"
   }
