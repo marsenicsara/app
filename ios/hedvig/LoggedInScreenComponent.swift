@@ -17,7 +17,7 @@ struct LoggedInScreenComponent {
 
             var resultingViewController: UIViewController?
 
-            RCTApolloClient.getClient().onValue({ _ in
+            RCTApolloClient.getClient().onValue { _ in
                 let loggedIn = LoggedIn()
 
                 let (viewController, disposable) = loggedIn.materialize()
@@ -29,7 +29,7 @@ struct LoggedInScreenComponent {
                 (UIApplication.shared.delegate as! AppDelegate).bag += disposable
 
                 resultingViewController = viewController
-            })
+            }
 
             return resultingViewController
         }

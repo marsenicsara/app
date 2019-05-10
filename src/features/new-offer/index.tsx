@@ -19,9 +19,9 @@ import { Checkout } from 'src/features/new-offer/components/checkout';
 import { NavigationOptions } from 'src/navigation/options';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { SignButton } from 'src/features/new-offer/components/sign-button';
-import { PerilsDialog } from 'src/features/offer/containers/PerilsDialog';
 import { NEW_OFFER_OPTIONS } from 'src/navigation/screens/new-offer/options';
 import { AndroidHeader } from 'src/features/new-offer/android-header';
+import { Provider } from 'constate'
 
 import { NewOfferComponent } from 'src/graphql/components';
 
@@ -124,66 +124,68 @@ const bounceScrollView = () => {
 };
 
 export const NewOffer: React.SFC = () => (
-  <NewOfferComponent>
-    {({ data, loading, error }) =>
-      loading || error ? null : (
-        <>
-          <AnimationValueProvider initialValue={0}>
-            {({ animatedValue }) => (
-              <>
-                {Platform.OS === 'android' && (
-                  <AndroidHeader subtitle={data!.insurance.address!} />
-                )}
-                <ScrollContainer
-                  onScroll={getScrollHandler(animatedValue)}
-                  scrollEventThrottle={1}
-                  contentContainerStyle={{
-                    alignItems: 'center',
+  <Provider>
+    <NewOfferComponent>
+      {({ data, loading, error }) =>
+        loading || error ? null : (
+          <>
+            <AnimationValueProvider initialValue={0}>
+              {({ animatedValue }) => (
+                <>
+                  {Platform.OS === 'android' && (
+                    <AndroidHeader subtitle={data!.insurance.address!} />
+                  )}
+                  <ScrollContainer
+                    onScroll={getScrollHandler(animatedValue)}
+                    scrollEventThrottle={1}
+                    contentContainerStyle={{
+                      alignItems: 'center',
+                    }}
+                    innerRef={NewOfferRef}
+                  >
+                    <FixedContainer animatedValue={animatedValue}>
+                      <Spacing height={15} />
+                      <PriceBubble price={data!.insurance.monthlyCost!} />
+                      <Spacing height={15} />
+                      <FeaturesContainer animatedValue={animatedValue}>
+                        <FeaturesBubbles
+                          onPress={() => bounceScrollView()}
+                          personsInHousehold={data!.insurance.personsInHousehold!}
+                          insuredAtOtherCompany={
+                            data!.insurance.insuredAtOtherCompany!
+                          }
+                          type={data!.insurance.type!}
+                        />
+                      </FeaturesContainer>
+                    </FixedContainer>
+                    <ScrollContent
+                      insuredAtOtherCompany={
+                        data!.insurance.insuredAtOtherCompany!
+                      }
+                      scrollAnimatedValue={animatedValue}
+                    />
+                  </ScrollContainer>
+                  <SignButton scrollAnimatedValue={animatedValue} />
+                  <Checkout monthlyCost={data!.insurance.monthlyCost!} />
+                </>
+              )}
+            </AnimationValueProvider>
+            <TranslationsConsumer textKey="OFFER_TITLE">
+              {(title) => (
+                <NavigationOptions
+                  options={{
+                    ...NEW_OFFER_OPTIONS,
+                    topBar: {
+                      title: { text: title },
+                      subtitle: { text: data!.insurance.address! },
+                    },
                   }}
-                  innerRef={NewOfferRef}
-                >
-                  <FixedContainer animatedValue={animatedValue}>
-                    <Spacing height={15} />
-                    <PriceBubble price={data!.insurance.monthlyCost!} />
-                    <Spacing height={15} />
-                    <FeaturesContainer animatedValue={animatedValue}>
-                      <FeaturesBubbles
-                        onPress={() => bounceScrollView()}
-                        personsInHousehold={data!.insurance.personsInHousehold!}
-                        insuredAtOtherCompany={
-                          data!.insurance.insuredAtOtherCompany!
-                        }
-                        type={data!.insurance.type!}
-                      />
-                    </FeaturesContainer>
-                  </FixedContainer>
-                  <ScrollContent
-                    insuredAtOtherCompany={
-                      data!.insurance.insuredAtOtherCompany!
-                    }
-                    scrollAnimatedValue={animatedValue}
-                  />
-                </ScrollContainer>
-                <SignButton scrollAnimatedValue={animatedValue} />
-                <Checkout monthlyCost={data!.insurance.monthlyCost!} />
-              </>
-            )}
-          </AnimationValueProvider>
-          <TranslationsConsumer textKey="OFFER_TITLE">
-            {(title) => (
-              <NavigationOptions
-                options={{
-                  ...NEW_OFFER_OPTIONS,
-                  topBar: {
-                    title: { text: title },
-                    subtitle: { text: data!.insurance.address! },
-                  },
-                }}
-              />
-            )}
-          </TranslationsConsumer>
-        </>
-      )
-    }
-  </NewOfferComponent>
+                />
+              )}
+            </TranslationsConsumer>
+          </>
+        )
+      }
+    </NewOfferComponent>
+  </Provider>
 );

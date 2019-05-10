@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'hedvig' do
   pod 'React',
@@ -40,7 +40,6 @@ target 'hedvig' do
   pod 'RNAudio', :path => '../node_modules/react-native-audio'
   pod 'RNSound', :path => '../node_modules/react-native-sound'
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
-  pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'Firebase/RemoteConfig'
@@ -74,28 +73,30 @@ target 'hedvig' do
   pod 'react-native-document-picker', :path => '../node_modules/@hedviginsurance/react-native-document-picker'
 
   ## Pods from ugglan
-  pod 'DeviceKit', '~> 1.3'
-  pod 'lottie-ios'
+  pod 'DeviceKit', '~> 2.0'
+  pod 'lottie-ios', '~> 2.5.3'
   pod 'SwiftLint'
   pod 'DynamicColor', '~> 4.0.2'
   pod 'SwiftFormat/CLI'
   pod 'Apollo'
   pod 'Apollo/WebSocket'
-  pod 'Disk', '~> 0.4.0'
+  pod 'Disk', '~> 0.6.3'
   pod 'FlowFramework', git: 'https://github.com/hedviginsurance/flow.git'
   pod 'PresentationFramework', git: 'https://github.com/hedviginsurance/presentation.git'
   pod 'FormFramework/Presentation', git: 'https://github.com/hedviginsurance/form.git'
   pod 'FormFramework', git: 'https://github.com/hedviginsurance/form.git'
-  pod 'SnapKit', '~> 4.0.0'
+  pod 'SnapKit', '~> 5.0.0'
   pod 'UICollectionView+AnimatedScroll', git: 'https://github.com/HedvigInsurance/UICollectionView-AnimatedScroll.git'
   pod 'FlowFeedback', git: 'https://github.com/HedvigInsurance/FlowFeedback.git'
   pod 'SwiftGen'
   pod 'Firebase/Core'
   pod 'AcknowList'
+  pod 'MarkdownKit'
+  pod 'Ease', git: 'https://github.com/hedviginsurance/ease.git'
 
   post_install do |installer|
     system("cd hedvig/ugglan; ../../Pods/SwiftGen/bin/swiftgen")
-    system("cd hedvig/ugglan; sh scripts/update-translations.sh")
+    system("cd hedvig/ugglan; mkdir Src/Assets/Localization; /usr/local/bin/swiftTranslationsCodegen --swiftformat-path $PWD/../../Pods/Swiftformat/CommandLineTool/swiftformat --projects '[App, IOS]' --destination 'Src/Assets/Localization/Localization.swift'")
     system("cd hedvig/ugglan; sh scripts/update-graphql-schema.sh")
     system("CONFIGURATION=\"DEBUG\" sh Pods/Apollo/scripts/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\"  --schema=hedvig/ugglan/Src/Data/schema.json hedvig/ugglan/Src/Data/API.swift")
 

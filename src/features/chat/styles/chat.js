@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Animated, View, StyleSheet, Text, TextInput } from 'react-native';
+import {
+  Animated,
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Platform,
+} from 'react-native';
 
 import { colors } from '@hedviginsurance/brand';
 
@@ -14,10 +21,15 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   defaultMessageText: {
-    color: colors.BLACK_PURPLE,
+    color: colors.OFF_BLACK,
     fontSize: 16,
-    fontFamily: 'Merriweather-Light',
+    fontFamily: 'CircularStd-Book',
     textAlign: 'left',
+    ...Platform.select({
+      android: {
+        lineHeight: 24,
+      },
+    }),
   },
   userMessageText: {
     color: colors.WHITE,
@@ -31,9 +43,9 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     paddingBottom: 12,
     paddingLeft: 12,
-    borderRadius: 8,
+    borderRadius: 20,
     maxWidth: '88%',
-    backgroundColor: colors.OFF_WHITE,
+    backgroundColor: colors.WHITE,
     marginBottom: 8,
   },
   textInputContainer: {
@@ -70,7 +82,7 @@ const styles = StyleSheet.create({
   optionsContainerNoWrap: { flexDirection: 'column' },
   marginContainer: {
     marginRight: 16,
-    marginBottom: 40,
+    marginBottom: 20,
     marginLeft: 16,
     justifyContent: 'flex-end',
     flexWrap: 'wrap',

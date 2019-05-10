@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigation } from 'react-native-navigation';
 
 import { NavigationContext } from './context';
+import { Platform } from 'react-native';
 
 const globalEventListeners = new Map();
 
@@ -52,13 +53,14 @@ class NavigationEventsHandler extends React.Component {
   }
 }
 
-export const NavigationEvents = (props) => (
-  <NavigationContext.Consumer>
-    {({ componentId }) => (
-      <NavigationEventsHandler {...props} componentId={componentId} />
-    )}
-  </NavigationContext.Consumer>
-);
+export const NavigationEvents = (props) =>
+  Platform.OS === 'ios' ? (
+    <NavigationContext.Consumer>
+      {({ componentId }) => (
+        <NavigationEventsHandler {...props} componentId={componentId} />
+      )}
+    </NavigationContext.Consumer>
+  ) : null;
 
 NavigationEvents.defaultProps = {
   onNavigationButtonPressed: () => {},

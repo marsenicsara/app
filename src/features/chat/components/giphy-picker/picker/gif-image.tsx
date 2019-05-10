@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Image as RNImage, Platform } from 'react-native';
 import { colors } from '@hedviginsurance/brand';
 import FastImage from 'react-native-fast-image';
 
@@ -9,7 +9,7 @@ import * as Progress from 'react-native-progress';
 
 import { GiphyPoweredBy } from '../../GiphyPoweredBy';
 
-const Image = createImageProgress(FastImage);
+const Image = Platform.OS === 'ios' ? createImageProgress(FastImage) : RNImage;
 
 const Box = styled(View)({
   paddingLeft: 10,
@@ -25,6 +25,7 @@ const BorderRadius = styled(View)({
   backgroundColor: colors.WHITE,
 });
 
+// @ts-ignore
 const ImageContainer = styled(Image)({
   height: 140,
   width: '100%',

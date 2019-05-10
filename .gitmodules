@@ -1,6 +1,3 @@
 [submodule "ios/hedvig/ugglan"]
 	path = ios/hedvig/ugglan
 	url = https://github.com/hedviginsurance/ugglan
-[submodule "android/owldroid"]
-	path = android/owldroid
-	url = https://github.com/hedviginsurance/owldroid

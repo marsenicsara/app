@@ -13,6 +13,9 @@ import { NavigationEvents } from 'src/navigation/events';
 import { Delay, Timing, Sequence } from 'animated-react-native-components';
 import { Container, ActionMap } from 'constate';
 import { fonts, colors } from '@hedviginsurance/brand';
+import { AndroidOfferState } from 'src/features/new-offer/components/android-offer-state';
+import { Update } from 'react-lifecycle-components';
+import { TranslationsConsumer } from './translations/consumer';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
@@ -63,6 +66,21 @@ const actions: ActionMap<State, Actions> = {
   }),
 };
 
+const ButtonView: React.SFC<{ onClick: () => void }> = ({ onClick }) => (
+  <ButtonContainer
+    onPress={onClick}
+  >
+    <TranslationsConsumer textKey={"OFFER_BANKID_SIGN_BUTTON"}>
+      {(text) => (
+        <TextContainer>
+          {text}
+        </TextContainer>
+      )}
+    </TranslationsConsumer>
+    <BankID width={15} height={15} />
+  </ButtonContainer>
+)
+
 export const SignButton: React.SFC = () => (
   <ButtonViewContainer>
     <Container actions={actions} initialState={{ show: true }}>
@@ -79,28 +97,37 @@ export const SignButton: React.SFC = () => (
                 pointerEvents={show ? 'auto' : 'none'}
                 animatedValue={animatedValue}
               >
-                <NavigationEvents
-                  onGlobalEvent={(event: { id: string }) => {
-                    if (event.id === 'HideSignButton') {
-                      setShow(false);
-                    } else if (event.id === 'ShowSignButton') {
-                      setShow(true);
-                    }
-                  }}
-                >
-                  {(triggerEvent: (event: { id: string }) => void) => (
-                    <ButtonContainer
-                      onPress={() =>
-                        triggerEvent({
-                          id: 'SignButtonPressed',
-                        })
+                {Platform.OS === 'ios' ? (
+                  <NavigationEvents
+                    onGlobalEvent={(event: { id: string }) => {
+                      if (event.id === 'HideSignButton') {
+                        setShow(false);
+                      } else if (event.id === 'ShowSignButton') {
+                        setShow(true);
                       }
-                    >
-                      <TextContainer>Signera</TextContainer>
-                      <BankID width={15} height={15} />
-                    </ButtonContainer>
+                    }}
+                  >
+                    {(triggerEvent: (event: { id: string }) => void) => (
+                      <ButtonView onClick={() => triggerEvent({ id: 'SignButtonPressed' })} />
+                    )}
+                  </NavigationEvents>) : (
+                    <AndroidOfferState>
+                      {({ setIsCheckingOut, topSignButtonVisible }) => (
+                        <Update<boolean>
+                          was={() => {
+                            if (topSignButtonVisible) {
+                              setShow(true)
+                            } else {
+                              setShow(false)
+                            }
+                          }}
+                          watched={topSignButtonVisible}
+                        >
+                          <ButtonView onClick={() => setIsCheckingOut(true)} />
+                        </Update>
+                      )}
+                    </AndroidOfferState>
                   )}
-                </NavigationEvents>
               </FadeInView>
             )}
           </Timing>
