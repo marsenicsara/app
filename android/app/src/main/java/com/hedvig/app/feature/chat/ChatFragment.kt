@@ -11,28 +11,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
-import com.hedvig.app.di.ViewModelFactory
+import com.hedvig.app.R
+import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.marketing.ui.MarketingFragment
+import com.hedvig.app.react.ActivityStarterModule.Companion.BROADCAST_RELOAD_CHAT
+import com.hedvig.app.react.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_NAME_ACTION
+import com.hedvig.app.react.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE_RESTART_CHAT_ON_BOARDING
+import com.hedvig.app.react.NativeRoutingModule.Companion.ON_BOARDING_INTENT_FILER
 import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.localBroadcastManager
 import com.hedvig.app.util.extensions.statusBarColor
 import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.show
 import com.hedvig.app.util.newBroadcastReceiver
-import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_NAME_ACTION
-import com.hedvig.app.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE_RESTART_CHAT_ON_BOARDING
-import com.hedvig.app.NativeRoutingModule.Companion.ON_BOARDING_INTENT_FILER
-import com.hedvig.app.R
-import com.hedvig.app.react.ActivityStarterModule.Companion.BROADCAST_RELOAD_CHAT
 import com.hedvig.app.util.showRestartDialog
-
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_chat.*
 import kotlinx.android.synthetic.main.fragment_chat.view.*

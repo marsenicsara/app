@@ -133,7 +133,7 @@ dependencies {
     implementation "com.android.support:support-media-compat:$support_version"
     implementation "com.android.support:support-v4:$support_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:28.0.0'
+    implementation "com.android.support:design:$support_version"
 
     // Android lifecycle
     def lifecycle_version = "1.1.0"
@@ -159,8 +159,14 @@ dependencies {
 
     // Firebase
     implementation 'com.google.android.gms:play-services-base:16.1.0'
-    releaseImplementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
-    stagingImplementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+    releaseImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
+    stagingImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
+
+    implementation "com.google.firebase:firebase-core:16.0.8"
+    implementation "com.google.firebase:firebase-dynamic-links:16.1.8"
+    implementation "com.google.firebase:firebase-firestore:18.2.0"
+    implementation 'com.google.firebase:firebase-config:16.5.0'
+    implementation "com.google.firebase:firebase-messaging:17.5.0"
 
     // Segment
     implementation 'com.google.android.gms:play-services-ads:15.0.1'
@@ -174,7 +180,7 @@ dependencies {
     implementation 'com.facebook.fresco:animated-gif:1.11.0'
 
     // Dagger
-    def dagger_version = "2.16"
+    def dagger_version = "2.22.1"
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
@@ -192,13 +198,6 @@ dependencies {
 
     // Lottie
     implementation "com.airbnb.android:lottie:2.5.5"
-
-    // Firebase
-    implementation "com.google.firebase:firebase-core:16.0.8"
-    implementation "com.google.firebase:firebase-dynamic-links:16.1.8"
-    implementation "com.google.firebase:firebase-firestore:18.2.0"
-    implementation 'com.google.firebase:firebase-config:16.5.0'
-    implementation "com.google.firebase:firebase-messaging:17.5.0"
 
     // Exoplayer
     implementation 'com.google.android.exoplayer:exoplayer:2.7.3'

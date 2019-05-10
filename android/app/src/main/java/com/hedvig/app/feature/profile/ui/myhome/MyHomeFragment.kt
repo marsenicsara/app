@@ -9,10 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import com.hedvig.app.R
-import com.hedvig.app.di.ViewModelFactory
-import com.hedvig.app.feature.profile.ui.ProfileViewModel
 import com.hedvig.android.owldroid.type.InsuranceType
+import com.hedvig.app.R
+import com.hedvig.app.di.viewmodel.ViewModelFactory
+import com.hedvig.app.feature.profile.ui.ProfileViewModel
 import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.compatSetTint
 import com.hedvig.app.util.extensions.setupLargeTitle

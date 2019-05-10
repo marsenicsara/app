@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.hedvig.app.R
-import com.hedvig.app.di.ViewModelFactory
+import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.profile.ui.ProfileViewModel
 import com.hedvig.app.util.extensions.setupLargeTitle
 import com.hedvig.app.util.interpolateTextKey

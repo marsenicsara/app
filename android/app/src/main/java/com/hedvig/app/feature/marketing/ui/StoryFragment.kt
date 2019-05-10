@@ -25,7 +25,7 @@ import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.android.exoplayer2.util.Util
 import com.hedvig.app.BuildConfig
 import com.hedvig.app.R
-import com.hedvig.app.di.ViewModelFactory
+import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.marketing.service.MarketingTracker
 import com.hedvig.app.util.extensions.view.performOnTapHapticFeedback
 import com.hedvig.app.util.extensions.view.show
