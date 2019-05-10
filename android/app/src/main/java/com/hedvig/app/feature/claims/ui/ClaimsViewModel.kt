@@ -2,9 +2,9 @@ package com.hedvig.app.feature.claims.ui
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import com.hedvig.app.data.chat.ChatRepository
 import com.hedvig.app.feature.claims.data.ClaimsRepository
-import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
@@ -44,6 +44,12 @@ class ClaimsViewModel @Inject constructor(
     fun triggerFreeTextChat(done: () -> Unit) {
         disposables += chatRepository
             .triggerFreeTextChat()
+            .subscribe({ done() }, { Timber.e(it) })
+    }
+
+    fun triggerCallMeChat(done: () -> Unit) {
+        disposables += claimsRepository
+            .triggerCallMeChat()
             .subscribe({ done() }, { Timber.e(it) })
     }
 }

@@ -4,6 +4,7 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.rx2.Rx2Apollo
 import com.hedvig.android.owldroid.graphql.CommonClaimQuery
+import com.hedvig.android.owldroid.graphql.TriggerCallMeChatMutation
 import com.hedvig.android.owldroid.graphql.TriggerClaimChatMutation
 import com.hedvig.android.owldroid.type.TriggerClaimChatInput
 import io.reactivex.Observable
@@ -34,5 +35,7 @@ class ClaimsRepository @Inject constructor(private val apolloClient: ApolloClien
 
         return Rx2Apollo.from(apolloClient.mutate(triggerClaimsChatMutation))
     }
+
+    fun triggerCallMeChat() = Rx2Apollo.from(apolloClient.mutate(TriggerCallMeChatMutation()))
 }
 
