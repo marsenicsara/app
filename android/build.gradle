@@ -51,6 +51,9 @@ subprojects {
         if (project.hasProperty('android')) {
             android {
                 compileSdkVersion 28
+                defaultConfig {
+                    targetSdkVersion 28
+                }
                 buildTypes {
                     debug {
 

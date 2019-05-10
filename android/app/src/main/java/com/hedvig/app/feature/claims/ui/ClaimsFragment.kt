@@ -15,12 +15,12 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.bumptech.glide.RequestBuilder
+import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import com.hedvig.app.R
-import com.hedvig.app.di.ViewModelFactory
+import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.commonclaim.CommonClaimsAdapter
 import com.hedvig.app.feature.claims.ui.pledge.HonestyPledgeBottomSheet
-import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.setupLargeTitle
 import com.hedvig.app.util.extensions.view.remove

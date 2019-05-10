@@ -1,4 +1,4 @@
-package com.hedvig.app.di
+package com.hedvig.app.di.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import dagger.MapKey

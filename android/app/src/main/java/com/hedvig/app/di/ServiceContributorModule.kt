@@ -1,11 +1,11 @@
-package com.hedvig.app
+package com.hedvig.app.di
 
 import com.hedvig.app.service.PushNotificationService
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-internal abstract class ServiceContributorModule {
+abstract class ServiceContributorModule {
     @ContributesAndroidInjector
-    internal abstract fun contributePushNotificationService(): PushNotificationService
+    abstract fun contributePushNotificationService(): PushNotificationService
 }
