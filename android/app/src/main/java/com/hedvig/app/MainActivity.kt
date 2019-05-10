@@ -16,13 +16,18 @@ import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.hedvig.app.service.LoggedInService
 import com.hedvig.app.util.NavigationAnalytics
 import com.hedvig.app.util.extensions.compatColor
-import com.hedvig.app.util.extensions.isLoggedIn
 import com.hedvig.app.util.react.AsyncStorageNative
 import com.hedvig.app.util.whenApiVersion
 import dagger.android.AndroidInjection
 import io.branch.rnbranch.RNBranchModule
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, PermissionAwareActivity {
@@ -51,6 +56,11 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
 
     @Inject
     lateinit var firebaseAnalytics: FirebaseAnalytics
+
+    @Inject
+    lateinit var loggedInService: LoggedInService
+
+    private val disposables = CompositeDisposable()
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
@@ -110,10 +120,16 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
 
         val graph = navController.navInflater.inflate(R.navigation.root)
 
-        if (applicationContext.isLoggedIn()) {
-            graph.startDestination = R.id.logged_in_navigation
-        }
-        navController.graph = graph
+        disposables += loggedInService
+            .isLoggedIn()
+            .observeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe({ isLoggedIn ->
+                if (isLoggedIn) {
+                    graph.startDestination = R.id.logged_in_navigation
+                }
+                navController.graph = graph
+            }, { Timber.e(it) })
 
 
         findNavController(R.id.rootNavigationHost).addOnDestinationChangedListener(
@@ -137,6 +153,7 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
     }
 
     override fun onDestroy() {
+        disposables.clear()
         asyncStorageNative.close()
         super.onDestroy()
     }
