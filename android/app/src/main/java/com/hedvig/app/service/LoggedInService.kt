@@ -34,7 +34,10 @@ class LoggedInService @Inject constructor(
                             true
                         }
                         InsuranceStatus.PENDING,
-                        InsuranceStatus.`$UNKNOWN` -> false
+                        InsuranceStatus.`$UNKNOWN` -> {
+                            context.setIsLoggedIn(false)
+                            false
+                        }
                         else -> false
                     }
                 } ?: false
