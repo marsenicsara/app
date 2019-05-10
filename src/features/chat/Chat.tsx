@@ -234,7 +234,11 @@ const Chat: React.SFC<ChatProps> = ({
         >
           <KeyboardAvoidingOnAndroidIfModal isModal={isModal}>
             <Messages>
-              {messages.length ? <MessageList /> : <Loader />}
+              {messages.length ? (
+                <MessageList componentId={componentId} />
+              ) : (
+                <Loader />
+              )}
             </Messages>
             <Response>
               <InputComponent

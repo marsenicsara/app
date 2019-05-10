@@ -1,14 +1,23 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text, Platform } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  Platform,
+  NativeModules,
+} from 'react-native';
 import { connect } from 'react-redux';
 import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import { Navigation } from 'react-native-navigation';
 
 import { StyledAvatarContainer } from '../styles/chat';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
 import { RichMessage } from '../components/rich-message';
 import { OptionInputComponent } from '../components/InputComponent';
+import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 
 import { InputHeightContainer } from './InputHeight';
 
@@ -137,6 +146,14 @@ const renderMessage = (message, idx) => {
   );
 };
 
+const showOffer = async (componentId) => {
+  if (Platform.OS === 'android') {
+    NativeModules.ActivityStarter.navigateToOfferFromChat();
+    return;
+  }
+  Navigation.push(componentId, NEW_OFFER_SCREEN);
+};
+
 class MessageList extends React.Component {
   _renderItem = ({ item, index }) => renderMessage(item, index);
   _keyExtractor = (item) => '' + item.globalId;
@@ -162,7 +179,10 @@ class MessageList extends React.Component {
             ListHeaderComponent={
               Platform.OS === 'ios' ? (
                 <>
-                  <OptionInputComponent messages={this.props.messages} />
+                  <OptionInputComponent
+                    showOffer={() => showOffer(this.props.componentId)}
+                    messages={this.props.messages}
+                  />
                   <KeyboardSpacer
                     restSpacing={isIphoneX() ? 35 : 0}
                     topSpacing={isTextInput ? inputHeight : 0}
@@ -170,7 +190,10 @@ class MessageList extends React.Component {
                 </>
               ) : (
                 <>
-                  <OptionInputComponent messages={this.props.messages} />
+                  <OptionInputComponent
+                    showOffer={() => showOffer(this.props.scomponentId)}
+                    messages={this.props.messages}
+                  />
                   <View style={{ height: inputHeight }} />
                 </>
               )
