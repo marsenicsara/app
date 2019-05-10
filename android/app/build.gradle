@@ -39,6 +39,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
+        targetSdkVersion 28
         applicationId project.env.get('APP_ID')
         minSdkVersion 21
         multiDexEnabled true
