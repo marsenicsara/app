@@ -11,6 +11,7 @@ import android.view.View
 import androidx.navigation.findNavController
 import com.bumptech.glide.RequestBuilder
 import com.hedvig.android.owldroid.graphql.CommonClaimQuery
+import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.app.R
 import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.claims.service.ClaimsTracker
@@ -55,12 +56,14 @@ abstract class BaseCommonClaimFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         claimsViewModel.selectedSubViewData.observe(this) { commonClaim ->
-            commonClaim?.let { bindData(it) }
+            claimsViewModel.data.value?.insurance()?.status()?.let { insuranceStatus ->
+                commonClaim?.let { bindData(insuranceStatus, it) }
+            }
         }
     }
 
     @CallSuper
-    open fun bindData(data: CommonClaimQuery.CommonClaim) {
+    open fun bindData(insuranceStatus: InsuranceStatus, data: CommonClaimQuery.CommonClaim) {
         appBarLayout.setExpanded(false, false)
         requestBuilder.load(Uri.parse(baseUrl + data.icon().svgUrl())).into(commonClaimFirstMessageIcon)
     }

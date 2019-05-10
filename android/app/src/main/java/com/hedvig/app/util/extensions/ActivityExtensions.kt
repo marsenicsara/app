@@ -2,6 +2,7 @@ package com.hedvig.app.util.extensions
 
 import android.app.Activity
 import android.os.Build
+import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
 import com.hedvig.app.R
@@ -49,3 +50,10 @@ fun Activity.hideStatusBar() {
 
     window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 }
+
+val Activity.displayMetrics: DisplayMetrics
+    get() {
+        val metrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(metrics)
+        return metrics
+    }
