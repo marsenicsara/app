@@ -5,6 +5,7 @@ import { View, AppState, NativeModules, Platform } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
 import { Container, EffectMap, EffectProps } from 'constate';
+import gql from 'graphql-tag';
 
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
@@ -26,6 +27,7 @@ import { Message } from './types';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 import { PixelRatio } from 'react-native';
+import { client } from 'src/graphql/client';
 
 import { colors } from '@hedviginsurance/brand';
 
@@ -209,6 +211,30 @@ const Chat: React.SFC<ChatProps> = ({
         </Mount>
         <Update
           was={() => {
+            if (
+              messages &&
+              messages[0].id == 'message.login.with.mail.passwrod.success'
+            ) {
+              client
+                .mutate({
+                  mutation: gql`
+                    mutation EmailSign {
+                      emailSign
+                    }
+                  `,
+                })
+                .then(() => {
+                  const {
+                    setLayout,
+                  } = require('src/navigation/layouts/setLayout');
+                  const {
+                    getMainLayout,
+                  } = require('src/navigation/layouts/mainLayout');
+
+                  setLayout(getMainLayout());
+                });
+            }
+
             startPolling(getMessages, intent);
           }}
           watched={messages}
