@@ -19,18 +19,18 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.ReadableType
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.hedvig.app.feature.dashboard.ui.PerilBottomSheet
-import com.hedvig.app.feature.dashboard.ui.PerilIcon
 import com.hedvig.android.owldroid.graphql.InsuranceStatusQuery
 import com.hedvig.android.owldroid.type.InsuranceStatus
+import com.hedvig.app.R
+import com.hedvig.app.feature.chat.UploadBottomSheet
+import com.hedvig.app.feature.dashboard.ui.PerilBottomSheet
+import com.hedvig.app.feature.dashboard.ui.PerilIcon
+import com.hedvig.app.feature.offer.OfferChatOverlayFragment
 import com.hedvig.app.util.extensions.setIsLoggedIn
 import com.hedvig.app.util.extensions.triggerRestartCurrentActivity
-import com.hedvig.app.feature.chat.UploadBottomSheet
-import com.hedvig.app.feature.offer.OfferChatOverlayFragment
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
-import com.hedvig.app.R
 
 class ActivityStarterModule(reactContext: ReactApplicationContext, private val apolloClient: ApolloClient) :
     ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
@@ -95,8 +95,11 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
         val activity = reactApplicationContext.currentActivity
         if (activity != null) {
             reactApplicationContext.setIsLoggedIn(true)
-            navController
-                .navigate(R.id.action_chatFragment_to_logged_in_navigation)
+
+            when (navController.currentDestination?.id) {
+                R.id.loggedInChatFragment -> navController.popBackStack()
+                R.id.chatFragment -> navController.navigate(R.id.action_chatFragment_to_logged_in_navigation)
+            }
         }
     }
 
