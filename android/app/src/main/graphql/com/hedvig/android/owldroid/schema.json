@@ -5915,49 +5915,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "Turquoise",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "BlackPurple",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "Yellow",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "Purple",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "Pink",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "DarkPurple",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "LightGray",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "DarkGray",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
@@ -5969,7 +5927,13 @@
             "deprecationReason": null
           },
           {
-            "name": "OffWhite",
+            "name": "DarkPurple",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Turquoise",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
@@ -5981,7 +5945,43 @@
             "deprecationReason": null
           },
           {
+            "name": "OffWhite",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Yellow",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "BlackPurple",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DarkGray",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Pink",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "Black",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Purple",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
@@ -11684,6 +11684,18 @@
                 "defaultValue": null
               }
             ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "triggerCallMeChat",
+            "description": null,
+            "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",

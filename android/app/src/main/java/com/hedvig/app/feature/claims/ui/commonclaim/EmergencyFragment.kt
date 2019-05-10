@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.hedvig.app.R
 import com.hedvig.android.owldroid.graphql.CommonClaimQuery
+import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.makeACall
 import com.hedvig.app.util.extensions.setupLargeTitle
+import com.hedvig.app.util.extensions.view.disable
+import com.hedvig.app.util.extensions.view.enable
 import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.setHapticClickListener
 import com.hedvig.app.util.mapppedColor
@@ -21,8 +24,8 @@ class EmergencyFragment : BaseCommonClaimFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_emergency, container, false)
 
-    override fun bindData(data: CommonClaimQuery.CommonClaim) {
-        super.bindData(data)
+    override fun bindData(insuranceStatus: InsuranceStatus, data: CommonClaimQuery.CommonClaim) {
+        super.bindData(insuranceStatus, data)
         val layout = data.layout() as? CommonClaimQuery.AsEmergency ?: return
         val backgroundColor = requireContext().compatColor(layout.color().mapppedColor())
         setupLargeTitle(data.title(), R.font.circular_bold, R.drawable.ic_back, backgroundColor) {
@@ -32,6 +35,23 @@ class EmergencyFragment : BaseCommonClaimFragment() {
 
         commonClaimFirstMessage.text = getString(R.string.CLAIMS_EMERGENCY_FIRST_MESSAGE)
         commonClaimCreateClaimButton.remove()
+
+        when (insuranceStatus) {
+            InsuranceStatus.ACTIVE -> showInsuranceActive()
+            else -> showInsuranceInactive()
+        }
+
+        thirdEmergencyButton.setHapticClickListener {
+            tracker.emergencyChat()
+            claimsViewModel.triggerFreeTextChat {
+                navController.navigate(R.id.action_claimsEmergencyFragment_to_chatFragment)
+            }
+        }
+    }
+
+    private fun showInsuranceActive() {
+        firstEmergencyButton.enable()
+        secondEmergencyButton.enable()
 
         firstEmergencyButton.setHapticClickListener {
             tracker.emergencyClick()
@@ -43,12 +63,11 @@ class EmergencyFragment : BaseCommonClaimFragment() {
             tracker.callGlobalAssistance()
             makeACall(GLOBAL_ASSISTANCE_URI)
         }
-        thirdEmergencyButton.setHapticClickListener {
-            tracker.emergencyChat()
-            claimsViewModel.triggerFreeTextChat {
-                navController.navigate(R.id.action_claimsEmergencyFragment_to_chatFragment)
-            }
-        }
+    }
+
+    private fun showInsuranceInactive() {
+        firstEmergencyButton.disable()
+        secondEmergencyButton.disable()
     }
 
     companion object {
