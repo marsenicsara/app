@@ -22,6 +22,7 @@ import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.dashboard.service.DashboardTracker
 import com.hedvig.app.util.extensions.addViews
 import com.hedvig.app.util.extensions.compatDrawable
+import com.hedvig.app.util.extensions.displayMetrics
 import com.hedvig.app.util.extensions.observe
 import com.hedvig.app.util.extensions.setupLargeTitle
 import com.hedvig.app.util.extensions.view.animateCollapse
@@ -72,7 +73,7 @@ class DashboardFragment : Fragment() {
         var margin = tripleMargin * 2 // perilCategoryView margin
         margin += halfMargin * 2 // strange padding in perilCategoryView
         margin += doubleMargin * 2 // perilCategoryView ConstraintLayout padding
-        dashboardParent.measuredWidth - margin
+        requireActivity().displayMetrics.widthPixels - margin
     }
 
     private var isInsurancePendingExplanationExpanded = false

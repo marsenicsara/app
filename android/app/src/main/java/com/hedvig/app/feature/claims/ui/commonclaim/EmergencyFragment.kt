@@ -35,7 +35,7 @@ class EmergencyFragment : BaseCommonClaimFragment() {
 
         firstEmergencyButton.setHapticClickListener {
             tracker.emergencyClick()
-            claimsViewModel.triggerClaimsChat {
+            claimsViewModel.triggerCallMeChat {
                 navController.navigate(R.id.action_claimsEmergencyFragment_to_chatFragment)
             }
         }
