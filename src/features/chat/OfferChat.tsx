@@ -69,8 +69,6 @@ const effects: EffectMap<State, Effects> = {
 const Messages = styled(View)({
   flex: 1,
   alignSelf: 'stretch',
-  paddingLeft: 16,
-  paddingRight: 16,
 });
 
 const Response = styled(View)({
