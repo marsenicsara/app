@@ -1,6 +1,5 @@
 package com.hedvig.app.feature.claims.ui
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.graphics.Rect
@@ -16,16 +15,16 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.bumptech.glide.RequestBuilder
 import com.hedvig.android.owldroid.graphql.CommonClaimQuery
+import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.app.R
 import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.commonclaim.CommonClaimsAdapter
 import com.hedvig.app.feature.claims.ui.pledge.HonestyPledgeBottomSheet
 import com.hedvig.app.util.extensions.compatColor
+import com.hedvig.app.util.extensions.observe
 import com.hedvig.app.util.extensions.setupLargeTitle
-import com.hedvig.app.util.extensions.view.remove
-import com.hedvig.app.util.extensions.view.setHapticClickListener
-import com.hedvig.app.util.extensions.view.show
+import com.hedvig.app.util.extensions.view.*
 import com.hedvig.app.util.svg.buildRequestBuilder
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.app_bar.*
@@ -83,11 +82,12 @@ class ClaimsFragment : Fragment() {
         claimsViewModel.apply {
             loadingSpinner.show()
             fetchCommonClaims()
-            data.observe(this@ClaimsFragment, Observer { commonClaimsData ->
-                commonClaimsData?.let { setupCommonClaims(it) } ?: handleNoQuickActions()
-            })
+            data.observe(this@ClaimsFragment) { commonClaimsData ->
+                commonClaimsData?.let {
+                    bindData(commonClaimsData)
+                } ?: handleNoQuickActions()
+            }
         }
-        setupButtons()
 
         commonClaimsRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
@@ -103,17 +103,30 @@ class ClaimsFragment : Fragment() {
         })
     }
 
-    private fun setupButtons() {
-        commonClaimCreateClaimButton.setHapticClickListener {
-            tracker.createClaimClick("main_screen")
-            HonestyPledgeBottomSheet
-                .newInstance("main_screen", R.id.action_loggedInFragment_to_chatFragment)
-                .show(requireFragmentManager(), "honestyPledge")
-        }
-    }
-
-    private fun setupCommonClaims(commonClaimsData: CommonClaimQuery.Data) {
+    private fun bindData(commonClaimsData: CommonClaimQuery.Data) {
         loadingSpinner.remove()
+        claimsViewContent.show()
+
+        when (commonClaimsData.insurance().status()) {
+            InsuranceStatus.ACTIVE -> {
+                claimsIllustration.show()
+                insuranceInactiveMessage.remove()
+                commonClaimCreateClaimButton.enable()
+                commonClaimCreateClaimButton.setHapticClickListener {
+                    tracker.createClaimClick("main_screen")
+                    HonestyPledgeBottomSheet
+                        .newInstance("main_screen", R.id.action_loggedInFragment_to_chatFragment)
+                        .show(requireFragmentManager(), "honestyPledge")
+                }
+            }
+            else -> {
+                claimsIllustration.remove()
+                insuranceInactiveMessage.show()
+                commonClaimCreateClaimButton.disable()
+            }
+        }
+
+        // setup common claims
         commonClaimsRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         commonClaimsRecyclerView.adapter =
             CommonClaimsAdapter(
@@ -129,6 +142,7 @@ class ClaimsFragment : Fragment() {
                     navController.navigate(R.id.action_loggedInFragment_to_emergencyFragment)
                 }
             )
+        claimsNestedScrollView.scrollTo(0,0)
     }
 
     private fun handleNoQuickActions() {
