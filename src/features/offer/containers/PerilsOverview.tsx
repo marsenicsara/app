@@ -6,7 +6,6 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  NativeModules,
 } from 'react-native';
 
 import {
@@ -23,7 +22,6 @@ import { Navigation } from 'react-native-navigation';
 import { PERIL_COMPONENT } from 'src/navigation/components/peril';
 import styled from '@sampettersson/primitives';
 import { Peril } from './PerilsDialog';
-import { Platform } from 'react-primitives';
 
 const styles = StyleSheet.create({
   scroll: {
@@ -120,10 +118,6 @@ export const PerilsOverview: React.SFC<PerilsOverviewProps> = ({ disableScroll, 
               {perils.map((peril, index) => (
                 <TouchableOpacity
                   onPress={() => {
-                    if (Platform.OS === "android") {
-                      NativeModules.ActivityStarter.showPerilOverlay(categoryTitle, peril.id, peril.title, peril.description)
-                      return
-                    }
                     Navigation.showOverlay({
                       component: {
                         name: PERIL_COMPONENT.name,

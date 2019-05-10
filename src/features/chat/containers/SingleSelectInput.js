@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform, NativeModules } from 'react-native';
 import PropTypes from 'prop-types';
 import { Linking } from 'react-native';
 import { connect } from 'react-redux';
@@ -34,11 +33,7 @@ const showTrustly = (id) =>
   });
 
 const goToDashboard = () => {
-  if (Platform.OS === 'ios') {
-    setLayout(getMainLayout());
-  } else {
-    NativeModules.ActivityStarter.navigateToLoggedInFromChat();
-  }
+  setLayout(getMainLayout());
 };
 
 class SingleSelectInput extends React.Component {

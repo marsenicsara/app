@@ -230,7 +230,7 @@ class AudioInput extends React.Component {
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
             <AnimatedSingleSelectOptionButton
-              title="Skicka in anmälan"
+              title="Spara"
               onPress={this.upload}
             />
           </StyledRightAlignedOptions>

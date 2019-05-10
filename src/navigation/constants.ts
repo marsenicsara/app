@@ -1,5 +1,4 @@
 import { Navigation } from "react-native-navigation";
-import { Platform } from "react-primitives";
 
 interface Constants {
   statusBarHeight?: number
@@ -8,10 +7,6 @@ interface Constants {
 export let navigationConstants: Constants = {}
 
 export const getNavigationConstants = async (): Promise<void> => new Promise<void>((resolve) => {
-  if (Platform.OS === "android") {
-    resolve()
-    return
-  }
   Navigation.constants().then(constants => {
     navigationConstants = constants
     resolve()

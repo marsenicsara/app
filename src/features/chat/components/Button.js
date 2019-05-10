@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   buttonColorSelected: { backgroundColor: colors.PURPLE },
-  buttonColorNotSelected: { backgroundColor: colors.OFF_WHITE },
+  buttonColorNotSelected: { backgroundColor: colors.WHITE },
   buttonHidden: { opacity: 0 },
   buttonText: {
     fontFamily: 'CircularStd-Book',

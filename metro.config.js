@@ -13,6 +13,6 @@ module.exports = {
     new Set(getDevPaths(projectRoot).map(($) => fs.realpathSync($))),
   ),
   resolver: {
-    getBlacklistRE: /android\/.*/, // Set this regex to be whatever dependency you need to blacklist
+    // getBlacklistRE: /node_modules\/some-package/node_modules\/.*/, // Set this regex to be whatever dependency you need to blacklist
   },
 };

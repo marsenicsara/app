@@ -1,5 +1,5 @@
 import firebase from 'react-native-firebase';
-import { Platform, NativeModules } from 'react-native';
+import { Platform } from 'react-native';
 
 import { pushNotificationActions, chatActions } from '../hedvig-redux';
 import { openChat } from './sagas/apiAndNavigate';
@@ -12,20 +12,12 @@ const handleNotificationOpened = (notificationOpen) => {
 
   if (notification) {
     if (notification.data.TYPE === 'NEW_MESSAGE') {
-      if (Platform.OS == 'ios') {
-        NativeModules.NativeRouting.openChat();
-        return;
-      }
-
       setTimeout(() => openChat(), 500);
     }
   }
 };
 
 export const setupPushNotifications = () => {
-  if (Platform.OS === 'android') {
-    return;
-  }
   const handleNotification = (notification) => {
     const state = Store.getState();
     Store.dispatch(

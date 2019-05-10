@@ -1,4 +1,4 @@
-import { AppState, AsyncStorage, Platform } from 'react-native';
+import { AppState, AsyncStorage } from 'react-native';
 import { Sentry } from 'react-native-sentry';
 import createRavenMiddleware from 'raven-for-redux';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -67,7 +67,7 @@ import {
 let SentryInstance = Sentry;
 let ravenMiddleware;
 
-if (!__DEV__ && Platform.OS === 'android') {
+if (!__DEV__) {
   const environment =
     Config.ENVIRONMENT === 'production' ? 'production' : 'test';
 

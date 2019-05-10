@@ -6,10 +6,10 @@ declare module 'react-native-image-progress' {
 
   interface ImageProgressProps {
     indicator?:
-    | typeof Progress.CircleSnail
-    | typeof Progress.Bar
-    | typeof Progress.Circle
-    | typeof Progress.Pie;
+      | typeof Progress.CircleSnail
+      | typeof Progress.Bar
+      | typeof Progress.Circle
+      | typeof Progress.Pie;
     indicatorProps?: any;
   }
 

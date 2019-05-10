@@ -20,7 +20,6 @@ class NativeRouting: RCTEventEmitter {
     let appHasLoadedSignal: Signal<Void>
     var componentIds: [(componentId: String, componentName: String)] = []
     let bag = DisposeBag()
-    var hasOpenedChat = false
 
     override init() {
         appHasLoadedCallbacker = Callbacker<Void>()
@@ -68,27 +67,6 @@ class NativeRouting: RCTEventEmitter {
         appHasLoadedCallbacker.callAll()
     }
 
-    @objc func openChat() {
-        DispatchQueue.main.async {
-            guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController, !self.hasOpenedChat else {
-                return
-            }
-
-            var topController = rootViewController
-
-            while let newTopController = topController.presentedViewController {
-                topController = newTopController
-            }
-
-            self.hasOpenedChat = true
-
-            let chatOverlay = DraggableOverlay(presentable: Chat())
-            topController.present(chatOverlay, style: .default, options: [.prefersNavigationBarHidden(false)]).onResult { _ in
-                self.hasOpenedChat = false
-            }
-        }
-    }
-
     @objc func userDidSign() {
         guard let invitedByMemberId = UserDefaults.standard.string(
             forKey: "referral_invitedByMemberId"
@@ -102,7 +80,7 @@ class NativeRouting: RCTEventEmitter {
                 $0.data?.member.id
             }.onValue { memberId in
                 let db = Firestore.firestore()
-
+                
                 Analytics.logEvent("referrals_sign", parameters: [
                     "invitedByMemberId": invitedByMemberId,
                     "memberId": memberId,

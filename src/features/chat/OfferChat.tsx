@@ -16,8 +16,6 @@ import Dialog from 'src/containers/Dialog';
 import { Message } from './types';
 import { KeyboardAvoidingOnAndroid } from 'src/components/KeyboardAvoidingOnAndroid';
 
-import { colors } from '@hedviginsurance/brand';
-
 interface ChatProps {
   onboardingDone: boolean;
   intent: string;
@@ -69,16 +67,13 @@ const effects: EffectMap<State, Effects> = {
 const Messages = styled(View)({
   flex: 1,
   alignSelf: 'stretch',
+  paddingLeft: 16,
+  paddingRight: 16,
 });
 
 const Response = styled(View)({
   alignItems: 'stretch',
   paddingTop: 8,
-});
-
-const BackgroundView = styled(View)({
-  backgroundColor: colors.OFF_WHITE,
-  flex: 1,
 });
 
 const handleAppStateChange = (
@@ -96,6 +91,7 @@ const showOffer = (stopPolling: () => void, onRequestClose: () => void) => {
   onRequestClose();
 };
 
+
 const Chat: React.SFC<ChatProps> = ({
   intent,
   messages,
@@ -103,61 +99,61 @@ const Chat: React.SFC<ChatProps> = ({
   getMessages,
   onRequestClose,
 }) => (
-  <Container effects={effects} initialState={initialState}>
-    {({ startPolling, stopPolling }) => (
-      <BackgroundView>
-        <Mount
-          on={() => {
-            getMessages(intent);
-            getAvatars();
-            AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
-            });
-            startPolling(getMessages, intent);
-          }}
-        >
-          {null}
-        </Mount>
-        <Update
-          was={() => {
-            startPolling(getMessages, intent);
-          }}
-          watched={messages}
-        >
-          {null}
-        </Update>
-        <Unmount
-          on={() => {
-            AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
-            });
-            stopPolling();
-          }}
-        >
-          {null}
-        </Unmount>
-        <KeyboardAvoidingOnAndroid additionalPadding={8}>
-          <Messages>
-            {messages.length ? (
-              <MessageList
+    <Container effects={effects} initialState={initialState}>
+      {({ startPolling, stopPolling }) => (
+        <>
+          <Mount
+            on={() => {
+              getMessages(intent);
+              getAvatars();
+              AppState.addEventListener('change', (appState) => {
+                handleAppStateChange(appState, getMessages, intent);
+              });
+              startPolling(getMessages, intent);
+            }}
+          >
+            {null}
+          </Mount>
+          <Update
+            was={() => {
+              startPolling(getMessages, intent);
+            }}
+            watched={messages}
+          >
+            {null}
+          </Update>
+          <Unmount
+            on={() => {
+              AppState.addEventListener('change', (appState) => {
+                handleAppStateChange(appState, getMessages, intent);
+              });
+              stopPolling();
+            }}
+          >
+            {null}
+          </Unmount>
+          <KeyboardAvoidingOnAndroid additionalPadding={8}>
+            <Messages>
+              {messages.length ? (
+                <MessageList
+                  showOffer={() => showOffer(stopPolling, onRequestClose)}
+                />
+              ) : (
+                  <Loader />
+                )}
+            </Messages>
+            <Response>
+              <InputComponent
+                messages={messages}
                 showOffer={() => showOffer(stopPolling, onRequestClose)}
               />
-            ) : (
-              <Loader />
-            )}
-          </Messages>
-          <Response>
-            <InputComponent
-              messages={messages}
-              showOffer={() => showOffer(stopPolling, onRequestClose)}
-            />
-          </Response>
-          <Dialog />
-        </KeyboardAvoidingOnAndroid>
-      </BackgroundView>
-    )}
-  </Container>
-);
+            </Response>
+            <Dialog />
+          </KeyboardAvoidingOnAndroid>
+        </>
+      )}
+    </Container>
+  );
 
 const mapStateToProps = (state: any) => {
   return {

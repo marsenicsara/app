@@ -8,7 +8,6 @@ import {
   DEPRECATED_BANKID_COLLECT_COMPLETE,
 } from '../actions/types';
 import { getMessages } from '../actions/chat';
-import { Platform, NativeModules } from 'react-native';
 
 const COLLECT_DELAY_MS = 1000;
 
@@ -45,34 +44,30 @@ const collectHandler = function*() {
       isDone(state.deprecatedBankId.response, state.deprecatedBankId.tryCount)
     ) {
       yield put({ type: DEPRECATED_BANKID_COLLECT_COMPLETE });
-      if (Platform.OS === 'android') {
-        NativeModules.ActivityStarter.doIsLoggedInProcedure();
-      } else {
-        const { client } = require('src/graphql/client');
-        client
-          .query({
-            query: gql`
-              query insurance {
-                insurance {
-                  status
-                }
+      const { client } = require('src/graphql/client');
+      client
+        .query({
+          query: gql`
+            query insurance {
+              insurance {
+                status
               }
-            `,
-          })
-          .then(({ data }) => {
-            const {
-              shouldShowDashboard,
-            } = require('src/navigation/layouts/utils');
-            const { setLayout } = require('src/navigation/layouts/setLayout');
-            const {
-              getMainLayout,
-            } = require('src/navigation/layouts/mainLayout');
-
-            if (shouldShowDashboard(data.insurance.status)) {
-              setLayout(getMainLayout());
             }
-          });
-      }
+          `,
+        })
+        .then(({ data }) => {
+          const {
+            shouldShowDashboard,
+          } = require('src/navigation/layouts/utils');
+          const { setLayout } = require('src/navigation/layouts/setLayout');
+          const {
+            getMainLayout,
+          } = require('src/navigation/layouts/mainLayout');
+
+          if (shouldShowDashboard(data.insurance.status)) {
+            setLayout(getMainLayout());
+          }
+        });
       yield put(getMessages());
     } else {
       yield call(delay, COLLECT_DELAY_MS);

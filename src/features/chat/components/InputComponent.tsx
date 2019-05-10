@@ -29,29 +29,6 @@ const inputComponentMap: {
   audio: () => <AudioInput />,
 };
 
-export const OptionInputComponent: React.SFC<InputComponentProps> = (props) => {
-  const { messages } = props;
-
-  if (messages.length === 0) {
-    return null;
-  }
-
-  const lastMessage = messages[0];
-  const lastMessageType = lastMessage.body.type;
-
-  if (lastMessageType == 'text' || lastMessageType == 'number') {
-    return null;
-  }
-
-  const Component = inputComponentMap[lastMessageType];
-
-  if (!Component) {
-    return null;
-  }
-
-  return <Component {...props} message={lastMessage} />;
-};
-
 const InputComponent: React.SFC<InputComponentProps> = (props) => {
   const { messages } = props;
 
@@ -61,10 +38,6 @@ const InputComponent: React.SFC<InputComponentProps> = (props) => {
 
   const lastMessage = messages[0];
   const lastMessageType = lastMessage.body.type;
-
-  if (lastMessageType !== 'text' && lastMessageType !== 'number') {
-    return null;
-  }
 
   const Component = inputComponentMap[lastMessageType];
 

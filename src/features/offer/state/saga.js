@@ -1,4 +1,4 @@
-import { AsyncStorage, Platform, NativeModules } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { call, takeLatest, take, put, select } from 'redux-saga/effects';
 import { Navigation } from 'react-native-navigation';
 import firebase from 'react-native-firebase';
@@ -11,7 +11,7 @@ import { OFFER_CHECKOUT } from './actions';
 import { getChatLayout } from 'src/navigation/layouts/chatLayout';
 import { userDidSign } from 'src/navigation/native-routing';
 
-const Analytics = Platform.OS === 'ios' ? firebase.analytics() : {};
+const Analytics = firebase.analytics();
 
 const handleCheckout = function*() {
   yield put({ type: BANKID_SIGN });
@@ -21,27 +21,15 @@ const handleCheckout = function*() {
   const { intent } = conversation;
   yield put(chatActions.getMessages({ intent }));
 
-  if (Platform.OS === 'ios') {
-    Navigation.setRoot(getChatLayout());
-  } else {
-    NativeModules.ActivityStarter.navigateToChatFromOffer();
-  }
+  Navigation.setRoot(getChatLayout());
 
   userDidSign();
 
-  if (Platform.OS === 'ios') {
-    Analytics.logEvent('ecommerce_purchase', {
-      transaction_id: analytics.orderId,
-      value: insurance.currentTotalPrice,
-      currency: 'SEK',
-    });
-  } else {
-    NativeModules.ActivityStarter.logEvent('ecommerce_purchase', {
-      transaction_id: analytics.orderId,
-      value: insurance.currentTotalPrice,
-      currency: 'SEK',
-    });
-  }
+  Analytics.logEvent('ecommerce_purchase', {
+    transaction_id: analytics.orderId,
+    value: insurance.currentTotalPrice,
+    currency: 'SEK',
+  });
 
   yield put({
     type: TRACK_OFFER_SIGNED,

@@ -5,9 +5,8 @@ import {
   View,
   ViewProps,
   Animated,
-  NativeModules,
 } from 'react-native';
-import { ActionMap } from 'constate';
+import { Container, ActionMap } from 'constate';
 import styled from '@sampettersson/primitives';
 import { Sequence, Delay, Timing } from 'animated-react-native-components';
 import { Navigation } from 'react-native-navigation';
@@ -63,21 +62,16 @@ export const ChatButton: React.SFC = () => (
                   <TouchableOpacity
                     onPress={() => {
                       mutate().then(() => {
-                        if (Platform.OS === 'ios') {
-                          Navigation.showOverlay({
-                            component: {
-                              name: OFFER_CHAT_COMPONENT.name,
-                              options: {
-                                layout: {
-                                  backgroundColor: 'transparent',
-                                },
-                              }
+                        Navigation.showOverlay({
+                          component: {
+                            name: OFFER_CHAT_COMPONENT.name,
+                            options: {
+                              layout: {
+                                backgroundColor: 'transparent',
+                              },
                             }
-                          })
-                          return
-                        }
-
-                        NativeModules.ActivityStarter.showOfferChatOverlay()
+                          }
+                        })
                       });
                     }}
                   >
