@@ -58,7 +58,7 @@ class PushNotificationService : FirebaseMessagingService() {
     private fun sendChatMessageNotification() {
         val pendingIntent = NavDeepLinkBuilder(this)
             .setGraph(R.navigation.logged_in_navigation)
-            .setDestination(R.id.chatFragment)
+            .setDestination(R.id.loggedInChatFragment)
             .createPendingIntent()
 
         val notification = NotificationCompat
