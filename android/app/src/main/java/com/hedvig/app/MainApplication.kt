@@ -12,7 +12,6 @@ import androidx.work.WorkManager
 import androidx.work.WorkerFactory
 import com.airbnb.android.react.lottie.LottiePackage
 import com.apollographql.apollo.ApolloClient
-import com.brentvatne.react.ReactVideoPackage
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.shell.MainReactPackage
@@ -68,7 +67,6 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
             MainReactPackage(),
             ImagePickerPackage(),
             RNFSPackage(),
-            ReactVideoPackage(),
             RNGestureHandlerPackage(),
             RNDeviceInfo(),
             SvgPackage(),
