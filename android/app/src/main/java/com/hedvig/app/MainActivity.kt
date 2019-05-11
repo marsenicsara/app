@@ -16,13 +16,18 @@ import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.hedvig.app.service.LoggedInService
 import com.hedvig.app.util.NavigationAnalytics
 import com.hedvig.app.util.extensions.compatColor
-import com.hedvig.app.util.extensions.isLoggedIn
 import com.hedvig.app.util.react.AsyncStorageNative
 import com.hedvig.app.util.whenApiVersion
 import dagger.android.AndroidInjection
 import io.branch.rnbranch.RNBranchModule
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, PermissionAwareActivity {
@@ -51,6 +56,11 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
 
     @Inject
     lateinit var firebaseAnalytics: FirebaseAnalytics
+
+    @Inject
+    lateinit var loggedInService: LoggedInService
+
+    private val disposables = CompositeDisposable()
 
     private val reactInstanceManager: ReactInstanceManager
         get() = reactNativeHost.reactInstanceManager
@@ -99,22 +109,29 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Exponent_Light)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.root_navigation_host)
         whenApiVersion(Build.VERSION_CODES.M) {
             window.statusBarColor = compatColor(R.color.off_white)
         }
         AndroidInjection.inject(this)
 
+
+        disposables += loggedInService
+            .isLoggedIn()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ setupNavGraph(it) }, { Timber.e(it) })
+    }
+
+    fun setupNavGraph(isLoggedIn: Boolean) {
+        setContentView(R.layout.root_navigation_host)
         val navHost = supportFragmentManager.findFragmentById(R.id.rootNavigationHost) as NavHostFragment
         val navController = navHost.navController
 
         val graph = navController.navInflater.inflate(R.navigation.root)
-
-        if (applicationContext.isLoggedIn()) {
+        if (isLoggedIn) {
             graph.startDestination = R.id.logged_in_navigation
         }
         navController.graph = graph
-
 
         findNavController(R.id.rootNavigationHost).addOnDestinationChangedListener(
             NavigationAnalytics(
@@ -137,6 +154,7 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
     }
 
     override fun onDestroy() {
+        disposables.clear()
         asyncStorageNative.close()
         super.onDestroy()
     }
