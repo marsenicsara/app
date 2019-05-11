@@ -26,6 +26,7 @@ import com.hedvig.app.feature.chat.UploadBottomSheet
 import com.hedvig.app.feature.dashboard.ui.PerilBottomSheet
 import com.hedvig.app.feature.dashboard.ui.PerilIcon
 import com.hedvig.app.feature.offer.OfferChatOverlayFragment
+import com.hedvig.app.util.extensions.setIsLoggedIn
 import com.hedvig.app.util.extensions.triggerRestartCurrentActivity
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -94,8 +95,11 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
         val activity = reactApplicationContext.currentActivity
         if (activity != null) {
             reactApplicationContext.setIsLoggedIn(true)
-            navController
-                .navigate(R.id.action_chatFragment_to_logged_in_navigation)
+
+            when (navController.currentDestination?.id) {
+                R.id.loggedInChatFragment -> navController.popBackStack()
+                R.id.chatFragment -> navController.navigate(R.id.action_chatFragment_to_logged_in_navigation)
+            }
         }
     }
 
