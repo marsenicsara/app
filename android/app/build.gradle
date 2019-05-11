@@ -107,7 +107,6 @@ dependencies {
     implementation project(':react-native-config')
     implementation project(':react-native-sound')
     implementation project(':react-native-sentry')
-    implementation project(':react-native-firebase')
     implementation project(':react-native-branch')
     implementation project(':react-native-audio')
     implementation project(':react-native-analytics-segment-io')
