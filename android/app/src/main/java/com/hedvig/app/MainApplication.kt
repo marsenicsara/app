@@ -22,7 +22,6 @@ import com.hedvig.app.react.NativeRoutingPackage
 import com.horcrux.svg.SvgPackage
 import com.imagepicker.ImagePickerPackage
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.learnium.RNDeviceInfo.RNDeviceInfo
 import com.leo_pharma.analytics.AnalyticsPackage
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage
 import com.rnfs.RNFSPackage
@@ -68,7 +67,6 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
             ImagePickerPackage(),
             RNFSPackage(),
             RNGestureHandlerPackage(),
-            RNDeviceInfo(),
             SvgPackage(),
             ReactNativeConfigPackage(),
             RNSoundPackage(),
