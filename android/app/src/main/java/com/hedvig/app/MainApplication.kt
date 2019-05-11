@@ -26,7 +26,6 @@ import com.leo_pharma.analytics.AnalyticsPackage
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage
 import com.rnfs.RNFSPackage
 import com.rnim.rn.audio.ReactNativeAudioPackage
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 import com.zmxv.RNSound.RNSoundPackage
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -65,7 +64,6 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
             MainReactPackage(),
             ImagePickerPackage(),
             RNFSPackage(),
-            RNGestureHandlerPackage(),
             SvgPackage(),
             ReactNativeConfigPackage(),
             RNSoundPackage(),
