@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatDelegate
 import androidx.work.Configuration
 import androidx.work.WorkManager
 import androidx.work.WorkerFactory
-import com.RNFetchBlob.RNFetchBlobPackage
 import com.airbnb.android.react.lottie.LottiePackage
 import com.apollographql.apollo.ApolloClient
 import com.brentvatne.react.ReactVideoPackage
@@ -74,7 +73,6 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
             RNDeviceInfo(),
             SvgPackage(),
             ReactNativeConfigPackage(),
-            RNFetchBlobPackage(),
             RNSoundPackage(),
             RNSentryPackage(),
             RNBranchPackage(),
