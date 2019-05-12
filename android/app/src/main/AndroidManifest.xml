@@ -73,11 +73,6 @@
             </intent-filter>
         </service>
 
-
-        <activity
-            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-            android:theme="@style/Theme.Exponent.Splash" />
-
         <receiver
             android:name="io.branch.referral.InstallListener"
             android:exported="true">
