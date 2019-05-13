@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.hedvig.app.R
 import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.profile.ui.ProfileViewModel
+import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.whenApiVersion
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.dialog_change_home_info.*
@@ -54,7 +55,7 @@ class ChangeHomeInfoDialog : DialogFragment() {
         dialogConfirm.setOnClickListener {
             profileViewModel.triggerFreeTextChat {
                 dismiss()
-                navController.navigate(R.id.action_myHomeFragment_to_chatFragment)
+                navController.proxyNavigate(R.id.action_myHomeFragment_to_chatFragment)
             }
         }
     }
