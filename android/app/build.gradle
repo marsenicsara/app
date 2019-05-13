@@ -174,7 +174,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     // compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
 
-    implementation 'io.branch.sdk.android:library:3.1.2'
+    implementation 'io.branch.sdk.android:library:3.2.0'
 
     // Animated GIF support
     implementation 'com.facebook.fresco:animated-gif:1.11.0'

@@ -12,6 +12,10 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
+import com.hedvig.app.R
+import com.hedvig.app.util.extensions.compatColor
+import com.hedvig.app.util.extensions.setDarkNavigationBar
+import com.hedvig.app.util.extensions.statusBarColor
 
 class OfferFragment : Fragment(), DefaultHardwareBackBtnHandler {
 
@@ -28,6 +32,13 @@ class OfferFragment : Fragment(), DefaultHardwareBackBtnHandler {
         mReactRootView = reactRootView
         reactRootView.startReactApplication(reactInstanceManager, "Offer", arguments)
         return reactRootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        statusBarColor = requireContext().compatColor(R.color.dark_purple)
+        requireActivity().setDarkNavigationBar()
     }
 
     override fun onDestroy() {
