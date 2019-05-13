@@ -10,8 +10,10 @@ import android.support.v7.app.AppCompatDelegate
 import androidx.work.Configuration
 import androidx.work.WorkManager
 import androidx.work.WorkerFactory
+import com.RNFetchBlob.RNFetchBlobPackage
 import com.airbnb.android.react.lottie.LottiePackage
 import com.apollographql.apollo.ApolloClient
+import com.brentvatne.react.ReactVideoPackage
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.shell.MainReactPackage
@@ -23,10 +25,12 @@ import com.hedvig.app.util.react.AsyncStorageNative
 import com.horcrux.svg.SvgPackage
 import com.imagepicker.ImagePickerPackage
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.learnium.RNDeviceInfo.RNDeviceInfo
 import com.leo_pharma.analytics.AnalyticsPackage
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage
 import com.rnfs.RNFSPackage
 import com.rnim.rn.audio.ReactNativeAudioPackage
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 import com.zmxv.RNSound.RNSoundPackage
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -34,6 +38,7 @@ import dagger.android.HasServiceInjector
 import dagger.android.support.HasSupportFragmentInjector
 import io.branch.referral.Branch
 import io.branch.rnbranch.RNBranchPackage
+import io.invertase.firebase.RNFirebasePackage
 import io.sentry.RNSentryPackage
 import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree
 import timber.log.Timber
@@ -68,11 +73,16 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
             MainReactPackage(),
             ImagePickerPackage(),
             RNFSPackage(),
+            ReactVideoPackage(),
+            RNGestureHandlerPackage(),
+            RNDeviceInfo(),
             SvgPackage(),
             ReactNativeConfigPackage(),
+            RNFetchBlobPackage(),
             RNSoundPackage(),
             RNSentryPackage(),
             RNBranchPackage(),
+            RNFirebasePackage(),
             ReactNativeAudioPackage(),
             AnalyticsPackage(),
             LottiePackage(),
