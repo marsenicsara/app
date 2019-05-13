@@ -15,7 +15,8 @@ import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
-import com.hedvig.app.service.LoggedInService
+import com.hedvig.app.service.LoginStatus
+import com.hedvig.app.service.LoginStatusService
 import com.hedvig.app.util.NavigationAnalytics
 import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.proxyNavigate
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
     lateinit var firebaseAnalytics: FirebaseAnalytics
 
     @Inject
-    lateinit var loggedInService: LoggedInService
+    lateinit var loggedInService: LoginStatusService
 
     private val disposables = CompositeDisposable()
 
@@ -118,19 +119,19 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
 
 
         disposables += loggedInService
-            .isLoggedIn()
+            .getLoginStatus()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ setupNavGraph(it) }, { Timber.e(it) })
     }
 
-    fun setupNavGraph(isLoggedIn: Boolean) {
+    fun setupNavGraph(loginStatus: LoginStatus) {
         setContentView(R.layout.root_navigation_host)
 
-        if (isLoggedIn) {
-            navController.proxyNavigate(R.id.action_dummyFragment_to_logged_in_navigation)
-        } else {
-            navController.proxyNavigate(R.id.action_dummyFragment_to_marketingFragment)
+        when (loginStatus) {
+            LoginStatus.LOGGED_IN -> navController.proxyNavigate(R.id.action_dummyFragment_to_logged_in_navigation)
+            LoginStatus.IN_OFFER -> navController.proxyNavigate(R.id.action_dummyFragment_to_offerFragment)
+            LoginStatus.ONBOARDING -> navController.proxyNavigate(R.id.action_dummyFragment_to_marketingFragment)
         }
 
         navController.addOnDestinationChangedListener(

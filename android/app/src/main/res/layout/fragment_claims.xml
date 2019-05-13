@@ -44,6 +44,7 @@
                     android:paddingEnd="@dimen/base_margin_double"
                     android:paddingBottom="@dimen/base_margin_triple"
                     android:visibility="gone"
+                    android:gravity="center"
                     android:text="@string/CLAIMS_INACTIVE_INSURANCE_MESSAGE" />
 
                 <ImageView

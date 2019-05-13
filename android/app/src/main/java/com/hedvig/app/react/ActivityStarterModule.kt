@@ -29,12 +29,16 @@ import com.hedvig.app.feature.offer.OfferChatOverlayFragment
 import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.setIsLoggedIn
 import com.hedvig.app.util.extensions.triggerRestartCurrentActivity
+import com.hedvig.app.util.react.AsyncStorageNative
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
 
-class ActivityStarterModule(reactContext: ReactApplicationContext, private val apolloClient: ApolloClient) :
-    ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
+class ActivityStarterModule(
+    reactContext: ReactApplicationContext,
+    private val apolloClient: ApolloClient,
+    private val asyncStorageNative: AsyncStorageNative
+) : ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
 
     private val disposables = CompositeDisposable()
 
@@ -77,6 +81,7 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
     fun navigateToOfferFromChat() {
         val activity = reactApplicationContext.currentActivity
         if (activity != null) {
+            asyncStorageNative.setKey("@hedvig:isViewingOffer", "true")
             navController
                 .proxyNavigate(R.id.action_chatFragment_to_offerFragment)
         }
