@@ -175,7 +175,7 @@
         <item name="android:paddingStart">8dp</item>
         <item name="android:paddingEnd">8dp</item>
         <item name="android:background">@drawable/button_small</item>
-        <item name="android:fontFamily">@font/circular_book</item>
+        <item name="android:textAppearance">@style/Body.Small</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
