@@ -99,6 +99,11 @@ class MarketingFragment : Fragment() {
         topHideAnimation?.cancel()
     }
 
+    override fun onDestroyView() {
+        cleanupSystemDecoration()
+        super.onDestroyView()
+    }
+
     private fun observeMarketingStories() {
         marketingStoriesViewModel
             .marketingStories
@@ -311,7 +316,6 @@ class MarketingFragment : Fragment() {
                 marketingStoriesViewModel.page.value,
                 marketingStoriesViewModel.blurred.value
             )
-            cleanupSystemDecoration()
             val args = Bundle()
             args.putString("intent", "login")
             args.putBoolean("show_restart", true)
@@ -323,7 +327,6 @@ class MarketingFragment : Fragment() {
                 marketingStoriesViewModel.page.value,
                 marketingStoriesViewModel.blurred.value
             )
-            cleanupSystemDecoration()
             val args = Bundle()
             args.putString("intent", "onboarding")
             args.putBoolean("show_restart", true)
