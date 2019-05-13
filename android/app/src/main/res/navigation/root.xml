@@ -16,6 +16,13 @@
             app:popUpToInclusive="true" />
 
         <action
+            android:id="@+id/action_dummyFragment_to_offerFragment"
+            app:destination="@id/offerFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/root"
+            app:popUpToInclusive="true" />
+
+        <action
             android:id="@+id/action_dummyFragment_to_logged_in_navigation"
             app:destination="@id/logged_in_navigation"
             app:launchSingleTop="true"

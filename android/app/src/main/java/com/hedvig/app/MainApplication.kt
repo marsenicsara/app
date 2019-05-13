@@ -21,6 +21,7 @@ import com.facebook.soloader.SoLoader
 import com.hedvig.app.di.DaggerApplicationComponent
 import com.hedvig.app.react.ActivityStarterReactPackage
 import com.hedvig.app.react.NativeRoutingPackage
+import com.hedvig.app.util.react.AsyncStorageNative
 import com.horcrux.svg.SvgPackage
 import com.imagepicker.ImagePickerPackage
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -61,11 +62,14 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
     @Inject
     lateinit var workerFactory: WorkerFactory
 
+    @Inject
+    lateinit var asyncStorageNative: AsyncStorageNative
+
     private val mReactNativeHost = object : ReactNativeHost(this) {
         override fun getUseDeveloperSupport() = BuildConfig.DEBUG
 
         override fun getPackages() = listOf(
-            ActivityStarterReactPackage(apolloClient),
+            ActivityStarterReactPackage(apolloClient, asyncStorageNative),
             MainReactPackage(),
             ImagePickerPackage(),
             RNFSPackage(),
