@@ -103,61 +103,61 @@ const Chat: React.SFC<ChatProps> = ({
   getMessages,
   onRequestClose,
 }) => (
-  <Container effects={effects} initialState={initialState}>
-    {({ startPolling, stopPolling }) => (
-      <BackgroundView>
-        <Mount
-          on={() => {
-            getMessages(intent);
-            getAvatars();
-            AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
-            });
-            startPolling(getMessages, intent);
-          }}
-        >
-          {null}
-        </Mount>
-        <Update
-          was={() => {
-            startPolling(getMessages, intent);
-          }}
-          watched={messages}
-        >
-          {null}
-        </Update>
-        <Unmount
-          on={() => {
-            AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
-            });
-            stopPolling();
-          }}
-        >
-          {null}
-        </Unmount>
-        <KeyboardAvoidingOnAndroid additionalPadding={8}>
-          <Messages>
-            {messages.length ? (
-              <MessageList
+    <Container effects={effects} initialState={initialState}>
+      {({ startPolling, stopPolling }) => (
+        <BackgroundView>
+          <Mount
+            on={() => {
+              getMessages(intent);
+              getAvatars();
+              AppState.addEventListener('change', (appState) => {
+                handleAppStateChange(appState, getMessages, intent);
+              });
+              startPolling(getMessages, intent);
+            }}
+          >
+            {null}
+          </Mount>
+          <Update
+            was={() => {
+              startPolling(getMessages, intent);
+            }}
+            watched={messages}
+          >
+            {null}
+          </Update>
+          <Unmount
+            on={() => {
+              AppState.addEventListener('change', (appState) => {
+                handleAppStateChange(appState, getMessages, intent);
+              });
+              stopPolling();
+            }}
+          >
+            {null}
+          </Unmount>
+          <KeyboardAvoidingOnAndroid>
+            <Messages>
+              {messages.length ? (
+                <MessageList
+                  showOffer={() => showOffer(stopPolling, onRequestClose)}
+                />
+              ) : (
+                  <Loader />
+                )}
+            </Messages>
+            <Response>
+              <InputComponent
+                messages={messages}
                 showOffer={() => showOffer(stopPolling, onRequestClose)}
               />
-            ) : (
-              <Loader />
-            )}
-          </Messages>
-          <Response>
-            <InputComponent
-              messages={messages}
-              showOffer={() => showOffer(stopPolling, onRequestClose)}
-            />
-          </Response>
-          <Dialog />
-        </KeyboardAvoidingOnAndroid>
-      </BackgroundView>
-    )}
-  </Container>
-);
+            </Response>
+            <Dialog />
+          </KeyboardAvoidingOnAndroid>
+        </BackgroundView>
+      )}
+    </Container>
+  );
 
 const mapStateToProps = (state: any) => {
   return {

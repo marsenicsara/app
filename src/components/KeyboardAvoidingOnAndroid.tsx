@@ -6,9 +6,9 @@ const ExpandingKeyboardAvoidingView = styled(KeyboardAvoidingView)({
   flex: 1
 })
 
-export const KeyboardAvoidingOnAndroid: React.SFC<{ additionalPadding: number }> = ({ children, additionalPadding }) => (
+export const KeyboardAvoidingOnAndroid: React.SFC = ({ children }) => (
   Platform.OS === 'android' ? (
-    <ExpandingKeyboardAvoidingView behavior="padding" keyboardVerticalOffset={additionalPadding - 170}>
+    <ExpandingKeyboardAvoidingView behavior="padding" keyboardVerticalOffset={NaN}>
       {children}
     </ExpandingKeyboardAvoidingView>
   ) : <>{children}</>
