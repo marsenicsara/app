@@ -1,4 +1,7 @@
 query CommonClaim {
+  insurance {
+    status
+  }
   commonClaims(locale: sv_SE) {
     title
     icon {

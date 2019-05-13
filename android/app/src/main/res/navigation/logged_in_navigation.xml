@@ -19,7 +19,7 @@
 
         <action
             android:id="@+id/action_loggedInFragment_to_chatFragment"
-            app:destination="@id/chatFragment"
+            app:destination="@id/loggedInChatFragment"
             app:enterAnim="@anim/slide_in_up"
             app:exitAnim="@anim/slide_in_down"
             app:popExitAnim="@anim/slide_in_down"
@@ -121,7 +121,7 @@
         android:label="TrustlyFragment" />
 
     <fragment
-        android:id="@+id/chatFragment"
+        android:id="@+id/loggedInChatFragment"
         android:name="com.hedvig.app.feature.chat.ChatFragment"
         android:label="ChatFragment" />
 

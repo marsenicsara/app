@@ -30,6 +30,16 @@ fun View.remove(): View {
     return this
 }
 
+fun View.disable() {
+    isEnabled = false
+    alpha = 0.2f
+}
+
+fun View.enable() {
+    isEnabled = true
+    alpha = 1f
+}
+
 fun View.increaseTouchableArea(additionalArea: Int): View {
     val parent = (this.parent as View)
     parent.post {
@@ -74,4 +84,3 @@ fun View.updatePadding(
     bottom ?: paddingBottom
 
 )
-
