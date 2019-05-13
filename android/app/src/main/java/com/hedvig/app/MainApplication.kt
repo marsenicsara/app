@@ -22,7 +22,6 @@ import com.hedvig.app.react.NativeRoutingPackage
 import com.horcrux.svg.SvgPackage
 import com.imagepicker.ImagePickerPackage
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.learnium.RNDeviceInfo.RNDeviceInfo
 import com.leo_pharma.analytics.AnalyticsPackage
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage
 import com.rnfs.RNFSPackage
@@ -35,7 +34,6 @@ import dagger.android.HasServiceInjector
 import dagger.android.support.HasSupportFragmentInjector
 import io.branch.referral.Branch
 import io.branch.rnbranch.RNBranchPackage
-import io.invertase.firebase.RNFirebasePackage
 import io.sentry.RNSentryPackage
 import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree
 import timber.log.Timber
@@ -68,13 +66,11 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
             ImagePickerPackage(),
             RNFSPackage(),
             RNGestureHandlerPackage(),
-            RNDeviceInfo(),
             SvgPackage(),
             ReactNativeConfigPackage(),
             RNSoundPackage(),
             RNSentryPackage(),
             RNBranchPackage(),
-            RNFirebasePackage(),
             ReactNativeAudioPackage(),
             AnalyticsPackage(),
             LottiePackage(),
