@@ -18,6 +18,7 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.app.service.LoggedInService
 import com.hedvig.app.util.NavigationAnalytics
 import com.hedvig.app.util.extensions.compatColor
+import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.react.AsyncStorageNative
 import com.hedvig.app.util.whenApiVersion
 import dagger.android.AndroidInjection
@@ -127,9 +128,9 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
         setContentView(R.layout.root_navigation_host)
 
         if (isLoggedIn) {
-            navController.navigate(R.id.action_dummyFragment_to_logged_in_navigation)
+            navController.proxyNavigate(R.id.action_dummyFragment_to_logged_in_navigation)
         } else {
-            navController.navigate(R.id.action_dummyFragment_to_marketingFragment)
+            navController.proxyNavigate(R.id.action_dummyFragment_to_marketingFragment)
         }
 
         navController.addOnDestinationChangedListener(
