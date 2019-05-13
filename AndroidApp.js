@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { Provider as ConstateProvider } from 'constate';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { ApolloProvider } from 'react-apollo';
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
 import { ErrorBoundary } from './src/components/ErrorBoundary';
 import { Loader } from './src/components/Loader';
@@ -35,5 +36,5 @@ export const HOC = (Component) => {
     }
   }
 
-  return Screen;
+  return gestureHandlerRootHOC(Screen);
 };
