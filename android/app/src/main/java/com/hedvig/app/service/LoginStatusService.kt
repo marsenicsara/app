@@ -11,17 +11,23 @@ import com.hedvig.app.util.react.AsyncStorageNative
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class LoggedInService @Inject constructor(
+class LoginStatusService @Inject constructor(
     private val apolloClient: ApolloClient,
     private val asyncStorageNative: AsyncStorageNative,
     private val context: Context
 ) {
-    fun isLoggedIn(): Observable<Boolean> {
+    fun getLoginStatus(): Observable<LoginStatus> {
         if (context.isLoggedIn()) {
-            return Observable.just(true)
+            return Observable.just(LoginStatus.LOGGED_IN)
         }
 
-        asyncStorageNative.getKey("@hedvig:token") ?: return Observable.just(false)
+        val isViewingOffer = asyncStorageNative.getKey("@hedvig:isViewingOffer")
+
+        if (isViewingOffer == "true") {
+            return Observable.just(LoginStatus.IN_OFFER)
+        }
+
+        asyncStorageNative.getKey("@hedvig:token") ?: return Observable.just(LoginStatus.ONBOARDING)
 
         return Rx2Apollo.from(apolloClient.query(InsuranceStatusQuery()))
             .map { response ->
@@ -31,16 +37,16 @@ class LoggedInService @Inject constructor(
                         InsuranceStatus.INACTIVE,
                         InsuranceStatus.INACTIVE_WITH_START_DATE -> {
                             context.setIsLoggedIn(true)
-                            true
+                            LoginStatus.LOGGED_IN
                         }
                         InsuranceStatus.PENDING,
                         InsuranceStatus.`$UNKNOWN` -> {
                             context.setIsLoggedIn(false)
-                            false
+                            LoginStatus.ONBOARDING
                         }
-                        else -> false
+                        else -> LoginStatus.ONBOARDING
                     }
-                } ?: false
+                } ?: LoginStatus.ONBOARDING
             }
     }
 }
