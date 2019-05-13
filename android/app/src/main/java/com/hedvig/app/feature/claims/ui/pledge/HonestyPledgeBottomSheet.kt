@@ -12,6 +12,7 @@ import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.ClaimsViewModel
 import com.hedvig.app.ui.fragment.RoundedBottomSheetDialogFragment
+import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.view.setHapticClickListener
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.bottom_sheet_honesty_pledge.*
@@ -51,7 +52,7 @@ class HonestyPledgeBottomSheet : RoundedBottomSheetDialogFragment() {
             tracker.pledgeHonesty(arguments?.getString(ARGS_CLAIM_KEY))
             claimsViewModel.triggerClaimsChat {
                 dismiss()
-                arguments?.getInt(ARGS_NAVIGATION_ACTION)?.let { navController.navigate(it) }
+                arguments?.getInt(ARGS_NAVIGATION_ACTION)?.let { navController.proxyNavigate(it) }
             }
         }
     }

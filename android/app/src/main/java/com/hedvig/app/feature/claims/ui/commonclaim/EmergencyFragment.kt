@@ -10,6 +10,7 @@ import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.makeACall
+import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.setupLargeTitle
 import com.hedvig.app.util.extensions.view.disable
 import com.hedvig.app.util.extensions.view.enable
@@ -44,7 +45,7 @@ class EmergencyFragment : BaseCommonClaimFragment() {
         thirdEmergencyButton.setHapticClickListener {
             tracker.emergencyChat()
             claimsViewModel.triggerFreeTextChat {
-                navController.navigate(R.id.action_claimsEmergencyFragment_to_chatFragment)
+                navController.proxyNavigate(R.id.action_claimsEmergencyFragment_to_chatFragment)
             }
         }
     }
@@ -56,7 +57,7 @@ class EmergencyFragment : BaseCommonClaimFragment() {
         firstEmergencyButton.setHapticClickListener {
             tracker.emergencyClick()
             claimsViewModel.triggerCallMeChat {
-                navController.navigate(R.id.action_claimsEmergencyFragment_to_chatFragment)
+                navController.proxyNavigate(R.id.action_claimsEmergencyFragment_to_chatFragment)
             }
         }
         secondEmergencyButton.setHapticClickListener {

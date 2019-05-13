@@ -6,7 +6,8 @@
 
     <fragment
         android:id="@+id/loggedInFragment"
-        android:name="com.hedvig.app.feature.loggedin.LoggedInFragment">
+        android:name="com.hedvig.app.feature.loggedin.LoggedInFragment"
+        android:label="LoggedInFragment">
 
         <action
             android:id="@+id/action_dashboardFragment_to_trustlyFragment"
@@ -128,7 +129,7 @@
     <fragment
         android:id="@+id/claimsCommonClaimFragment"
         android:name="com.hedvig.app.feature.claims.ui.commonclaim.CommonClaimFragment"
-        android:label="QuickActionFragment">
+        android:label="CommonClaimFragment">
 
         <action
             android:id="@+id/action_claimsCommonClaimFragment_to_chatFragment"
@@ -144,7 +145,7 @@
     <fragment
         android:id="@+id/claimsEmergencyFragment"
         android:name="com.hedvig.app.feature.claims.ui.commonclaim.EmergencyFragment"
-        android:label="QuickActionFragment">
+        android:label="EmergencyFragment">
 
         <action
             android:id="@+id/action_claimsEmergencyFragment_to_chatFragment"

@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
@@ -19,6 +18,7 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.hedvig.app.service.LoggedInService
 import com.hedvig.app.util.NavigationAnalytics
 import com.hedvig.app.util.extensions.compatColor
+import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.react.AsyncStorageNative
 import com.hedvig.app.util.whenApiVersion
 import dagger.android.AndroidInjection
@@ -67,6 +67,8 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
 
     private val reactNativeHost: ReactNativeHost
         get() = (application as ReactApplication).reactNativeHost
+
+    private val navController by lazy { findNavController(R.id.rootNavigationHost) }
 
     override fun onStart() {
         super.onStart()
@@ -124,16 +126,14 @@ class MainActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler, Permiss
 
     fun setupNavGraph(isLoggedIn: Boolean) {
         setContentView(R.layout.root_navigation_host)
-        val navHost = supportFragmentManager.findFragmentById(R.id.rootNavigationHost) as NavHostFragment
-        val navController = navHost.navController
 
-        val graph = navController.navInflater.inflate(R.navigation.root)
         if (isLoggedIn) {
-            graph.startDestination = R.id.logged_in_navigation
+            navController.proxyNavigate(R.id.action_dummyFragment_to_logged_in_navigation)
+        } else {
+            navController.proxyNavigate(R.id.action_dummyFragment_to_marketingFragment)
         }
-        navController.graph = graph
 
-        findNavController(R.id.rootNavigationHost).addOnDestinationChangedListener(
+        navController.addOnDestinationChangedListener(
             NavigationAnalytics(
                 firebaseAnalytics,
                 this
