@@ -34,7 +34,6 @@ import dagger.android.HasServiceInjector
 import dagger.android.support.HasSupportFragmentInjector
 import io.branch.referral.Branch
 import io.branch.rnbranch.RNBranchPackage
-import io.invertase.firebase.RNFirebasePackage
 import io.sentry.RNSentryPackage
 import net.ypresto.timbertreeutils.CrashlyticsLogExceptionTree
 import timber.log.Timber
@@ -72,7 +71,6 @@ class MainApplication : Application(), ReactApplication, HasActivityInjector, Ha
             RNSoundPackage(),
             RNSentryPackage(),
             RNBranchPackage(),
-            RNFirebasePackage(),
             ReactNativeAudioPackage(),
             AnalyticsPackage(),
             LottiePackage(),

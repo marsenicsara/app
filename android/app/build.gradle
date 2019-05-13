@@ -107,7 +107,6 @@ dependencies {
     implementation project(':react-native-config')
     implementation project(':react-native-sound')
     implementation project(':react-native-sentry')
-    implementation project(':react-native-firebase')
     implementation project(':react-native-branch')
     implementation project(':react-native-audio')
     implementation project(':react-native-analytics-segment-io')
@@ -158,11 +157,11 @@ dependencies {
     releaseImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
     stagingImplementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
 
-    implementation "com.google.firebase:firebase-core:16.0.8"
-    implementation "com.google.firebase:firebase-dynamic-links:16.1.8"
-    implementation "com.google.firebase:firebase-firestore:18.2.0"
-    implementation 'com.google.firebase:firebase-config:16.5.0'
-    implementation "com.google.firebase:firebase-messaging:17.5.0"
+    implementation "com.google.firebase:firebase-core:16.0.9"
+    implementation "com.google.firebase:firebase-dynamic-links:17.0.0"
+    implementation "com.google.firebase:firebase-firestore:19.0.0"
+    implementation 'com.google.firebase:firebase-config:17.0.0'
+    implementation "com.google.firebase:firebase-messaging:18.0.0"
 
     // Segment
     implementation 'com.google.android.gms:play-services-ads:15.0.1'
