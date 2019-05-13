@@ -220,9 +220,9 @@
 
                 <TextView
                     android:id="@+id/insurancePendingExplanation"
+                    style="@style/Body.Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Body.Small"
                     android:gravity="center"
                     android:paddingTop="@dimen/base_margin"
                     android:paddingBottom="@dimen/base_margin"
@@ -235,8 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/base_margin"
                     android:gravity="center"
-                    android:text="@string/DASHBOARD_DIRECT_DEBIT_STATUS_PENDING_BUTTON_LABEL"
-                    android:textSize="@dimen/text_medium" />
+                    android:text="@string/DASHBOARD_DIRECT_DEBIT_STATUS_PENDING_BUTTON_LABEL" />
 
             </LinearLayout>
 
