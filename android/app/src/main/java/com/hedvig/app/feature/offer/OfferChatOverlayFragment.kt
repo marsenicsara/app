@@ -8,13 +8,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
 import com.facebook.react.ReactApplication
@@ -40,7 +38,7 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
     lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var chatViewModel: ChatViewModel
-    lateinit var dialogView: ViewGroup
+    private lateinit var dialogView: ViewGroup
 
     private var mReactRootView: ReactRootView? = null
 
@@ -78,14 +76,9 @@ class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler
     override fun onStart() {
         super.onStart()
 
-        val metrics = DisplayMetrics()
-        val wm = requireActivity().getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        wm.defaultDisplay.getMetrics(metrics)
-        val heightPixels = metrics.heightPixels.toFloat()
-
         dialog?.window?.apply {
             setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL)
-            setLayout(ViewGroup.LayoutParams.MATCH_PARENT, (heightPixels * 0.9f).toInt())
+            setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
             setBackgroundDrawable(ColorDrawable(Color.WHITE))
         }
     }
