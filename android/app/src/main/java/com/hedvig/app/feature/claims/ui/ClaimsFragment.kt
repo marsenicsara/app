@@ -1,12 +1,8 @@
 package com.hedvig.app.feature.claims.ui
 
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.graphics.Rect
 import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
-import android.support.annotation.IdRes
-import android.support.annotation.Nullable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,13 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.bumptech.glide.RequestBuilder
 import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import com.hedvig.android.owldroid.type.InsuranceStatus
+import com.hedvig.app.BuildConfig
 import com.hedvig.app.R
-import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.commonclaim.CommonClaimsAdapter
 import com.hedvig.app.feature.claims.ui.pledge.HonestyPledgeBottomSheet
@@ -28,46 +23,26 @@ import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.observe
 import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.setupLargeTitle
-import com.hedvig.app.util.extensions.view.*
+import com.hedvig.app.util.extensions.view.disable
+import com.hedvig.app.util.extensions.view.enable
+import com.hedvig.app.util.extensions.view.remove
+import com.hedvig.app.util.extensions.view.setHapticClickListener
+import com.hedvig.app.util.extensions.view.show
 import com.hedvig.app.util.svg.buildRequestBuilder
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.fragment_claims.*
 import kotlinx.android.synthetic.main.loading_spinner.*
+import org.koin.android.ext.android.inject
 import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Named
 
 class ClaimsFragment : Fragment() {
+    val tracker: ClaimsTracker by inject()
+    val claimsViewModel: ClaimsViewModel by inject()
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    @Inject
-    lateinit var tracker: ClaimsTracker
-
-    @Inject
-    @field:Named("BASE_URL")
-    lateinit var baseUrl: String
     private val requestBuilder: RequestBuilder<PictureDrawable> by lazy { buildRequestBuilder() }
-
-    private lateinit var claimsViewModel: ClaimsViewModel
     private val baseMargin: Int by lazy { resources.getDimensionPixelSize(R.dimen.base_margin) }
-
     private val navController: NavController by lazy {
         requireActivity().findNavController(R.id.rootNavigationHost)
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        claimsViewModel = requireActivity().run {
-            ViewModelProviders.of(this, viewModelFactory).get(ClaimsViewModel::class.java)
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -135,7 +110,7 @@ class ClaimsFragment : Fragment() {
         commonClaimsRecyclerView.adapter =
             CommonClaimsAdapter(
                 commonClaims = commonClaimsData.commonClaims(),
-                baseUrl = baseUrl,
+                baseUrl = BuildConfig.BASE_URL,
                 requestBuilder = requestBuilder,
                 navigateToCommonClaimFragment = { commonClaim ->
                     claimsViewModel.setSelectedSubViewData(commonClaim)
@@ -146,7 +121,7 @@ class ClaimsFragment : Fragment() {
                     navController.proxyNavigate(R.id.action_loggedInFragment_to_emergencyFragment)
                 }
             )
-        claimsNestedScrollView.scrollTo(0,0)
+        claimsNestedScrollView.scrollTo(0, 0)
     }
 
     private fun handleNoQuickActions() {
