@@ -30,10 +30,4 @@ class DashboardViewModel @Inject constructor(
                 response.data()?.let { data.postValue(it) }
             }, { Timber.e(it) })
     }
-
-    fun triggerFreeTextChat(done: () -> Unit) {
-        disposables += chatRepository
-            .triggerFreeTextChat()
-            .subscribe({ done() }, { Timber.e(it) })
-    }
 }

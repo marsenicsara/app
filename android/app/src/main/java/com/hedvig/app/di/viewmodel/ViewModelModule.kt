@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider
 import com.hedvig.app.feature.chat.ChatViewModel
 import com.hedvig.app.feature.claims.ui.ClaimsViewModel
 import com.hedvig.app.feature.dashboard.ui.DashboardViewModel
+import com.hedvig.app.feature.loggedin.BaseTabViewModel
 import com.hedvig.app.feature.marketing.ui.MarketingStoriesViewModel
 import com.hedvig.app.feature.profile.ui.ProfileViewModel
 import com.hedvig.app.viewmodel.DirectDebitViewModel
@@ -46,4 +47,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ChatViewModel::class)
     abstract fun chatViewModel(viewModel: ChatViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BaseTabViewModel::class)
+    abstract fun baseTabViewModel(viewModel: BaseTabViewModel): ViewModel
+
 }

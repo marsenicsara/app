@@ -15,6 +15,7 @@ import androidx.navigation.findNavController
 import com.hedvig.android.owldroid.graphql.ProfileQuery
 import com.hedvig.app.R
 import com.hedvig.app.di.viewmodel.ViewModelFactory
+import com.hedvig.app.feature.loggedin.BaseTabFragment
 import com.hedvig.app.util.extensions.*
 import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.show
@@ -26,20 +27,13 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.loading_spinner.*
 import javax.inject.Inject
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseTabFragment() {
 
     @Inject
     lateinit var asyncStorageNative: AsyncStorageNative
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var directDebitViewModel: DirectDebitViewModel
-
-    private val navController: NavController by lazy {
-        requireActivity().findNavController(R.id.rootNavigationHost)
-    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)

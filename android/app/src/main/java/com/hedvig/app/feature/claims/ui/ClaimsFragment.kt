@@ -24,6 +24,7 @@ import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.commonclaim.CommonClaimsAdapter
 import com.hedvig.app.feature.claims.ui.pledge.HonestyPledgeBottomSheet
+import com.hedvig.app.feature.loggedin.BaseTabFragment
 import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.observe
 import com.hedvig.app.util.extensions.proxyNavigate
@@ -38,10 +39,7 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
-class ClaimsFragment : Fragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+class ClaimsFragment : BaseTabFragment() {
 
     @Inject
     lateinit var tracker: ClaimsTracker
@@ -53,15 +51,6 @@ class ClaimsFragment : Fragment() {
 
     private lateinit var claimsViewModel: ClaimsViewModel
     private val baseMargin: Int by lazy { resources.getDimensionPixelSize(R.dimen.base_margin) }
-
-    private val navController: NavController by lazy {
-        requireActivity().findNavController(R.id.rootNavigationHost)
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,7 +135,7 @@ class ClaimsFragment : Fragment() {
                     navController.proxyNavigate(R.id.action_loggedInFragment_to_emergencyFragment)
                 }
             )
-        claimsNestedScrollView.scrollTo(0,0)
+        claimsNestedScrollView.scrollTo(0, 0)
     }
 
     private fun handleNoQuickActions() {

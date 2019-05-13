@@ -1,25 +1,21 @@
 package com.hedvig.app.feature.dashboard.ui
 
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.navigation.findNavController
 import com.hedvig.android.owldroid.graphql.DashboardQuery
 import com.hedvig.android.owldroid.type.DirectDebitStatus
 import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.android.owldroid.type.InsuranceType
 import com.hedvig.app.R
-import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.dashboard.service.DashboardTracker
+import com.hedvig.app.feature.loggedin.BaseTabFragment
 import com.hedvig.app.util.extensions.*
 import com.hedvig.app.util.extensions.view.animateCollapse
 import com.hedvig.app.util.extensions.view.animateExpand
@@ -31,7 +27,6 @@ import com.hedvig.app.util.interpolateTextKey
 import com.hedvig.app.util.isApartmentOwner
 import com.hedvig.app.util.isStudentInsurance
 import com.hedvig.app.viewmodel.DirectDebitViewModel
-import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -50,9 +45,7 @@ import java.util.GregorianCalendar
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class DashboardFragment : Fragment() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+class DashboardFragment : BaseTabFragment() {
 
     @Inject
     lateinit var tracker: DashboardTracker
@@ -76,13 +69,6 @@ class DashboardFragment : Fragment() {
 
     private var setActivationFiguresInterval: Disposable? = null
     private val compositeDisposable = CompositeDisposable()
-
-    private val navController by lazy { requireActivity().findNavController(R.id.rootNavigationHost) }
-
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,23 +98,7 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toolbar.updatePadding(end = doubleMargin)
-
         loadData()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.dashboard_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        dashboardViewModel.triggerFreeTextChat {
-            navController.proxyNavigate(R.id.action_loggedInFragment_to_chatFragment, Bundle().apply {
-                putBoolean("show_close", true)
-            })
-        }
-        return true
     }
 
     private fun loadData() {
@@ -145,7 +115,6 @@ class DashboardFragment : Fragment() {
             "NAME" to dashboardData.member().firstName()
         )
         setupLargeTitle(title, R.font.circular_bold)
-        setHasOptionsMenu(true)
         setupInsuranceStatusStatus(dashboardData.insurance())
 
         perilCategoryContainer.removeAllViews()
