@@ -15,10 +15,7 @@ import androidx.navigation.findNavController
 import com.hedvig.android.owldroid.graphql.ProfileQuery
 import com.hedvig.app.R
 import com.hedvig.app.di.viewmodel.ViewModelFactory
-import com.hedvig.app.util.extensions.localBroadcastManager
-import com.hedvig.app.util.extensions.setIsLoggedIn
-import com.hedvig.app.util.extensions.setupLargeTitle
-import com.hedvig.app.util.extensions.triggerRestartCurrentActivity
+import com.hedvig.app.util.extensions.*
 import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.show
 import com.hedvig.app.util.interpolateTextKey
@@ -83,7 +80,7 @@ class ProfileFragment : Fragment() {
                     "INCENTIVE" to "${rcd.referralsIncentiveAmount}"
                 )
                 profileReferralRow.setOnClickListener {
-                    navController.navigate(R.id.action_loggedInFragment_to_referralFragment)
+                    navController.proxyNavigate(R.id.action_loggedInFragment_to_referralFragment)
                 }
                 profileReferralRow.show()
             }
@@ -106,10 +103,10 @@ class ProfileFragment : Fragment() {
             }
 
             feedbackRow.setOnClickListener {
-                navController.navigate(R.id.action_loggedInFragment_to_feedbackFragment)
+                navController.proxyNavigate(R.id.action_loggedInFragment_to_feedbackFragment)
             }
             aboutAppRow.setOnClickListener {
-                navController.navigate(R.id.action_loggedInFragment_to_aboutAppFragment)
+                navController.proxyNavigate(R.id.action_loggedInFragment_to_aboutAppFragment)
             }
             logout.setOnClickListener {
                 profileViewModel.logout {
@@ -129,14 +126,14 @@ class ProfileFragment : Fragment() {
         val lastName = profileData.member().lastName() ?: ""
         myInfoRow.description = "$firstName $lastName"
         myInfoRow.setOnClickListener {
-            navController.navigate(R.id.action_loggedInFragment_to_myInfoFragment)
+            navController.proxyNavigate(R.id.action_loggedInFragment_to_myInfoFragment)
         }
     }
 
     private fun setupMyHomeRow(profileData: ProfileQuery.Data) {
         myHomeRow.description = profileData.insurance().address()
         myHomeRow.setOnClickListener {
-            navController.navigate(R.id.action_loggedInFragment_to_myHomeFragment)
+            navController.proxyNavigate(R.id.action_loggedInFragment_to_myHomeFragment)
         }
     }
 
@@ -147,14 +144,14 @@ class ProfileFragment : Fragment() {
             "NUMBER" to "$personsInHousehold"
         )
         coinsuredRow.setOnClickListener {
-            navController.navigate(R.id.action_loggedInFragment_to_coinsuredFragment)
+            navController.proxyNavigate(R.id.action_loggedInFragment_to_coinsuredFragment)
         }
     }
 
     private fun setupCharity(profileData: ProfileQuery.Data) {
         charityRow.description = profileData.cashback()?.name()
         charityRow.setOnClickListener {
-            navController.navigate(R.id.action_loggedInFragment_to_charityFragment)
+            navController.proxyNavigate(R.id.action_loggedInFragment_to_charityFragment)
         }
     }
 
@@ -164,7 +161,7 @@ class ProfileFragment : Fragment() {
             "COST" to profileData.insurance().monthlyCost()?.toString()
         )
         paymentRow.setOnClickListener {
-            navController.navigate(R.id.action_loggedInFragment_to_paymentFragment)
+            navController.proxyNavigate(R.id.action_loggedInFragment_to_paymentFragment)
         }
     }
 

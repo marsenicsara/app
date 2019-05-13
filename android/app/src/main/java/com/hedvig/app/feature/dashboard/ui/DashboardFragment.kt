@@ -20,11 +20,7 @@ import com.hedvig.android.owldroid.type.InsuranceType
 import com.hedvig.app.R
 import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.dashboard.service.DashboardTracker
-import com.hedvig.app.util.extensions.addViews
-import com.hedvig.app.util.extensions.compatDrawable
-import com.hedvig.app.util.extensions.displayMetrics
-import com.hedvig.app.util.extensions.observe
-import com.hedvig.app.util.extensions.setupLargeTitle
+import com.hedvig.app.util.extensions.*
 import com.hedvig.app.util.extensions.view.animateCollapse
 import com.hedvig.app.util.extensions.view.animateExpand
 import com.hedvig.app.util.extensions.view.remove
@@ -128,7 +124,7 @@ class DashboardFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         dashboardViewModel.triggerFreeTextChat {
-            navController.navigate(R.id.action_loggedInFragment_to_chatFragment, Bundle().apply {
+            navController.proxyNavigate(R.id.action_loggedInFragment_to_chatFragment, Bundle().apply {
                 putBoolean("show_close", true)
             })
         }
@@ -279,7 +275,7 @@ class DashboardFragment : Fragment() {
                 directDebitNeedsSetup.show()
                 directDebitConnectButton.setHapticClickListener {
                     tracker.setupDirectDebit()
-                    navController.navigate(R.id.action_dashboardFragment_to_trustlyFragment)
+                    navController.proxyNavigate(R.id.action_dashboardFragment_to_trustlyFragment)
                 }
             }
         }

@@ -21,13 +21,7 @@ import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.marketing.service.MarketingTracker
 import com.hedvig.app.util.OnSwipeListener
 import com.hedvig.app.util.SimpleOnSwipeListener
-import com.hedvig.app.util.extensions.compatColor
-import com.hedvig.app.util.extensions.compatSetTint
-import com.hedvig.app.util.extensions.doOnEnd
-import com.hedvig.app.util.extensions.hideStatusBar
-import com.hedvig.app.util.extensions.setDarkNavigationBar
-import com.hedvig.app.util.extensions.setLightNavigationBar
-import com.hedvig.app.util.extensions.showStatusBar
+import com.hedvig.app.util.extensions.*
 import com.hedvig.app.util.extensions.view.doOnLayout
 import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.setHapticClickListener
@@ -315,7 +309,7 @@ class MarketingFragment : Fragment() {
             val args = Bundle()
             args.putString("intent", "login")
             args.putBoolean("show_restart", true)
-            navController.navigate(R.id.action_marketingFragment_to_chatFragment, args)
+            navController.proxyNavigate(R.id.action_marketingFragment_to_chatFragment, args)
         }
 
         getHedvig.setHapticClickListener {
@@ -327,7 +321,7 @@ class MarketingFragment : Fragment() {
             val args = Bundle()
             args.putString("intent", "onboarding")
             args.putBoolean("show_restart", true)
-            navController.navigate(R.id.action_marketingFragment_to_chatFragment, args)
+            navController.proxyNavigate(R.id.action_marketingFragment_to_chatFragment, args)
         }
     }
 
