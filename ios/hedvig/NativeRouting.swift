@@ -97,8 +97,8 @@ class NativeRouting: RCTEventEmitter {
             forKey: "referral_incentive"
         ) else { return }
 
-        RCTApolloClient.getClient().onValue { client, _ in
-            self.bag += client.fetch(query: MemberIdQuery()).valueSignal.compactMap {
+        RCTApolloClient.getClient().onValue { _ in
+            self.bag += ApolloContainer.shared.client.fetch(query: MemberIdQuery()).valueSignal.compactMap {
                 $0.data?.member.id
             }.onValue { memberId in
                 let db = Firestore.firestore()

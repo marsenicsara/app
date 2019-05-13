@@ -138,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             jsCodeLocation = CodePush.bundleURL()
         #endif
 
-        RCTApolloClient.getClient().delay(by: 0.05).onValue { client, _ in
+        RCTApolloClient.getClient().delay(by: 0.05).onValue { _ in
             ReactNativeNavigation.bootstrapBrownField(
                 jsCodeLocation,
                 launchOptions: launchOptions,
@@ -159,8 +159,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 hasLoadedCallbacker?.callAll()
             }
 
-            MarketingScreenComponent.register(client: client)
-            LoggedInScreenComponent.register(client: client)
+            MarketingScreenComponent.register()
+            LoggedInScreenComponent.register()
         }
     }
 
