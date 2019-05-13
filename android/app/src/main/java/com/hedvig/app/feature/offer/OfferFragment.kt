@@ -15,6 +15,7 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.hedvig.app.R
 import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.setDarkNavigationBar
+import com.hedvig.app.util.extensions.setLightStatusBarText
 import com.hedvig.app.util.extensions.statusBarColor
 
 class OfferFragment : Fragment(), DefaultHardwareBackBtnHandler {
@@ -38,6 +39,7 @@ class OfferFragment : Fragment(), DefaultHardwareBackBtnHandler {
         super.onViewCreated(view, savedInstanceState)
 
         statusBarColor = requireContext().compatColor(R.color.dark_purple)
+        requireActivity().setLightStatusBarText()
         requireActivity().setDarkNavigationBar()
     }
 
