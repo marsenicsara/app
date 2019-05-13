@@ -222,10 +222,11 @@
                     android:id="@+id/insurancePendingExplanation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/Body.Small"
                     android:gravity="center"
                     android:paddingTop="@dimen/base_margin"
                     android:paddingBottom="@dimen/base_margin"
-                    android:textSize="@dimen/text_medium" />
+                    tools:text="Du är " />
 
                 <TextView
                     android:id="@+id/insurancePendingMoreInfo"
