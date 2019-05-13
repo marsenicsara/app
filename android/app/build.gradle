@@ -19,8 +19,6 @@ apply from: '../../node_modules/react-native/react.gradle'
 apply from: "../../node_modules/react-native-sentry/sentry.gradle"
 
 def enableSeparateBuildPerCPUArchitecture = false
-def enableProguardInReleaseBuilds = false
-
 
 apollo {
     generateModelBuilder = true
@@ -69,7 +67,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled enableProguardInReleaseBuilds
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
