@@ -26,6 +26,7 @@ import com.hedvig.app.feature.chat.UploadBottomSheet
 import com.hedvig.app.feature.dashboard.ui.PerilBottomSheet
 import com.hedvig.app.feature.dashboard.ui.PerilIcon
 import com.hedvig.app.feature.offer.OfferChatOverlayFragment
+import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.setIsLoggedIn
 import com.hedvig.app.util.extensions.triggerRestartCurrentActivity
 import io.reactivex.disposables.CompositeDisposable
@@ -77,7 +78,7 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
         val activity = reactApplicationContext.currentActivity
         if (activity != null) {
             navController
-                .navigate(R.id.action_chatFragment_to_offerFragment)
+                .proxyNavigate(R.id.action_chatFragment_to_offerFragment)
         }
     }
 
@@ -86,7 +87,7 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
         val activity = reactApplicationContext.currentActivity
         if (activity != null) {
             navController
-                .navigate(R.id.action_offerFragment_to_chatFragment)
+                .proxyNavigate(R.id.action_offerFragment_to_chatFragment)
         }
     }
 
@@ -98,7 +99,7 @@ class ActivityStarterModule(reactContext: ReactApplicationContext, private val a
 
             when (navController.currentDestination?.id) {
                 R.id.loggedInChatFragment -> navController.popBackStack()
-                R.id.chatFragment -> navController.navigate(R.id.action_chatFragment_to_logged_in_navigation)
+                R.id.chatFragment -> navController.proxyNavigate(R.id.action_chatFragment_to_logged_in_navigation)
             }
         }
     }

@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import com.hedvig.app.R
 import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.profile.ui.ProfileViewModel
+import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.setupLargeTitle
 import com.hedvig.app.util.interpolateTextKey
 import dagger.android.support.AndroidSupportInjection
@@ -59,7 +60,7 @@ class AboutAppFragment : Fragment() {
         }
 
         licenseAttributions.setOnClickListener {
-            navController.navigate(R.id.action_aboutAppFragment_to_licensesFragment)
+            navController.proxyNavigate(R.id.action_aboutAppFragment_to_licensesFragment)
         }
 
         versionNumber.text = interpolateTextKey(
