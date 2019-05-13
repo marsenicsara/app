@@ -11,7 +11,7 @@ import Flow
 import Foundation
 
 struct RCTApolloClient {
-    static func getClient() -> Future<(ApolloClient, ApolloStore)> {
+    static func getClient() -> Future<Void> {
         let environment = ApolloEnvironmentConfig(
             endpointURL: URL(string: ReactNativeConfig.env(for: "GRAPHQL_URL"))!,
             wsEndpointURL: URL(string: ReactNativeConfig.env(for: "WS_GRAPHQL_URL"))!,
@@ -47,7 +47,7 @@ struct RCTApolloClient {
         }
 
         // we get a black screen flicker without the delay
-        let clientFuture = token.flatMap { token -> Future<(ApolloClient, ApolloStore)> in
+        let clientFuture = token.flatMap { token -> Future<Void> in
             guard let token = token else {
                 let initClient = ApolloContainer.shared.initClient()
 
@@ -69,20 +69,16 @@ struct RCTApolloClient {
             }
 
             return Future { completion in
-                completion(.success(ApolloContainer.shared.createClient(
+                ApolloContainer.shared.createClient(
                     token: token
-                )))
-
+                )
+                completion(.success)
                 return NilDisposer()
             }
         }
 
-        clientFuture.onValue { client, store in
-            ApolloContainer.shared.client = client
-            ApolloContainer.shared.store = store
-            ApolloContainer.shared.environment = environment
-
-            client.fetch(query: MemberIdQuery()).onValue { response in
+        clientFuture.onValue { _ in
+            ApolloContainer.shared.client.fetch(query: MemberIdQuery()).onValue { response in
                 if let memberId = response.data?.member.id {
                     Analytics.setUserID(memberId)
                 }

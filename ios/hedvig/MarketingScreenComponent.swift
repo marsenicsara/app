@@ -12,13 +12,11 @@ import Foundation
 import Presentation
 
 struct MarketingScreenComponent {
-    static func register(client: ApolloClient) {
+    static func register() {
         ReactNativeNavigation.registerExternalComponent("marketingScreen") { (_, bridge) -> UIViewController? in
             let navigationController = UINavigationController()
 
-            let marketing = Marketing(
-                client: client
-            )
+            let marketing = Marketing()
 
             let marketingPresentation = Presentation<Marketing>(
                 marketing,

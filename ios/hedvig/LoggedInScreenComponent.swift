@@ -12,7 +12,7 @@ import Foundation
 import Presentation
 
 struct LoggedInScreenComponent {
-    static func register(client _: ApolloClient) {
+    static func register() {
         ReactNativeNavigation.registerExternalComponent("loggedInScreen") { (_, _) -> UIViewController? in
 
             var resultingViewController: UIViewController?
