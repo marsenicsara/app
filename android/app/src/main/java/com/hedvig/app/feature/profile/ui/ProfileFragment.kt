@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.hedvig.android.owldroid.graphql.ProfileQuery
 import com.hedvig.app.R
+import com.hedvig.app.feature.loggedin.BaseTabFragment
 import com.hedvig.app.util.extensions.localBroadcastManager
 import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.setIsLoggedIn
@@ -27,15 +28,11 @@ import kotlinx.android.synthetic.main.loading_spinner.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseTabFragment() {
     val asyncStorageNative: AsyncStorageNative by inject()
 
     val profileViewModel: ProfileViewModel by sharedViewModel()
     val directDebitViewModel: DirectDebitViewModel by sharedViewModel()
-
-    private val navController: NavController by lazy {
-        requireActivity().findNavController(R.id.rootNavigationHost)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_profile, container, false)
@@ -43,7 +40,6 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupLargeTitle(R.string.PROFILE_TITLE, R.font.circular_bold)
 
         populateData()
         loadReferralFeature()
@@ -73,6 +69,8 @@ class ProfileFragment : Fragment() {
             loadingSpinner.remove()
             rowContainer.show()
             logout.show()
+
+            setupLargeTitle(R.string.PROFILE_TITLE, R.font.circular_bold)
 
             profileData?.let { data ->
                 setupMyInfoRow(data)
