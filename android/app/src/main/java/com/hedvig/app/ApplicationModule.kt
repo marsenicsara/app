@@ -1,4 +1,4 @@
-package com.hedvig.app.di
+package com.hedvig.app
 
 import android.content.Context
 import com.apollographql.apollo.ApolloClient
@@ -11,7 +11,6 @@ import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvicto
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.hedvig.android.owldroid.type.CustomType
-import com.hedvig.app.BuildConfig
 import com.hedvig.app.data.debit.DirectDebitRepository
 import com.hedvig.app.feature.chat.ChatRepository
 import com.hedvig.app.feature.chat.ChatViewModel

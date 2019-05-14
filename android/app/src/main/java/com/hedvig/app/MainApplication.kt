@@ -10,11 +10,6 @@ import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
-import com.hedvig.app.di.applicationModule
-import com.hedvig.app.di.repositoriesModule
-import com.hedvig.app.di.serviceModule
-import com.hedvig.app.di.trackerModule
-import com.hedvig.app.di.viewModelModule
 import com.hedvig.app.react.ActivityStarterReactPackage
 import com.hedvig.app.react.NativeRoutingPackage
 import com.hedvig.app.util.react.AsyncStorageNative
@@ -78,7 +73,13 @@ class MainApplication : Application(), ReactApplication {
         startKoin {
             androidLogger()
             androidContext(this@MainApplication)
-            modules(applicationModule, viewModelModule, serviceModule, repositoriesModule, trackerModule)
+            modules(
+                applicationModule,
+                viewModelModule,
+                serviceModule,
+                repositoriesModule,
+                trackerModule
+            )
         }
 
         Branch.getAutoInstance(this)
