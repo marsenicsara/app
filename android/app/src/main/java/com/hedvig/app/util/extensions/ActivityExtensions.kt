@@ -51,6 +51,11 @@ fun Activity.hideStatusBar() {
     window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 }
 
+fun Activity.setLightStatusBarText() {
+    val flags = window.decorView.systemUiVisibility
+    window.decorView.systemUiVisibility = flags xor View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+}
+
 val Activity.displayMetrics: DisplayMetrics
     get() {
         val metrics = DisplayMetrics()

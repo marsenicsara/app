@@ -4,8 +4,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -16,13 +14,17 @@ import com.hedvig.android.owldroid.type.InsuranceType
 import com.hedvig.app.R
 import com.hedvig.app.feature.dashboard.service.DashboardTracker
 import com.hedvig.app.feature.loggedin.BaseTabFragment
-import com.hedvig.app.util.extensions.*
+import com.hedvig.app.util.extensions.addViews
+import com.hedvig.app.util.extensions.compatDrawable
+import com.hedvig.app.util.extensions.displayMetrics
+import com.hedvig.app.util.extensions.observe
+import com.hedvig.app.util.extensions.proxyNavigate
+import com.hedvig.app.util.extensions.setupLargeTitle
 import com.hedvig.app.util.extensions.view.animateCollapse
 import com.hedvig.app.util.extensions.view.animateExpand
 import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.setHapticClickListener
 import com.hedvig.app.util.extensions.view.show
-import com.hedvig.app.util.extensions.view.updatePadding
 import com.hedvig.app.util.interpolateTextKey
 import com.hedvig.app.util.isApartmentOwner
 import com.hedvig.app.util.isStudentInsurance
@@ -296,9 +298,13 @@ class DashboardFragment : BaseTabFragment() {
             if (isInsurancePendingExplanationExpanded) {
                 tracker.expandInsurancePendingInfo()
                 insurancePendingExplanation.animateCollapse()
+                insurancePendingMoreInfo.text =
+                    resources.getString(R.string.DASHBOARD_DIRECT_DEBIT_STATUS_PENDING_BUTTON_LABEL)
             } else {
                 tracker.collapseInsurancePendingInfo()
                 insurancePendingExplanation.animateExpand()
+                insurancePendingMoreInfo.text =
+                    resources.getString(R.string.DASHBOARD_INSURANCE_STATUS_PENDING_BUTTON_CLOSE)
             }
             isInsurancePendingExplanationExpanded = !isInsurancePendingExplanationExpanded
         }
