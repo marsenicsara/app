@@ -1,6 +1,5 @@
 package com.hedvig.app.feature.dashboard.ui
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -39,21 +38,20 @@ import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.dashboard_footnotes.view.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.loading_spinner.*
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import timber.log.Timber
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 class DashboardFragment : BaseTabFragment() {
+    val tracker: DashboardTracker by inject()
 
-    @Inject
-    lateinit var tracker: DashboardTracker
-
-    lateinit var dashboardViewModel: DashboardViewModel
-    lateinit var directDebitViewModel: DirectDebitViewModel
+    val dashboardViewModel: DashboardViewModel by sharedViewModel()
+    val directDebitViewModel: DirectDebitViewModel by sharedViewModel()
 
     private val bottomNavigationHeight: Int by lazy { resources.getDimensionPixelSize(R.dimen.bottom_navigation_height) }
     private val halfMargin: Int by lazy { resources.getDimensionPixelSize(R.dimen.base_margin_half) }
@@ -71,16 +69,6 @@ class DashboardFragment : BaseTabFragment() {
 
     private var setActivationFiguresInterval: Disposable? = null
     private val compositeDisposable = CompositeDisposable()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dashboardViewModel = requireActivity().run {
-            ViewModelProviders.of(this, viewModelFactory).get(DashboardViewModel::class.java)
-        }
-        directDebitViewModel = requireActivity().run {
-            ViewModelProviders.of(this, viewModelFactory).get(DirectDebitViewModel::class.java)
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_dashboard, container, false)

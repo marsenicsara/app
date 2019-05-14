@@ -1,7 +1,5 @@
 package com.hedvig.app.feature.loggedin
 
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.Menu
@@ -10,33 +8,21 @@ import android.view.MenuItem
 import android.view.View
 import androidx.navigation.findNavController
 import com.hedvig.app.R
-import com.hedvig.app.di.viewmodel.ViewModelFactory
+import com.hedvig.app.feature.claims.ui.ClaimsViewModel
 import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.view.updatePadding
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.app_bar.*
-import javax.inject.Inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 abstract class BaseTabFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    lateinit var baseTabViewModel: BaseTabViewModel
+    val baseTabViewModel: ClaimsViewModel by sharedViewModel()
 
     val navController by lazy { requireActivity().findNavController(R.id.rootNavigationHost) }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        baseTabViewModel = requireActivity().run {
-            ViewModelProviders.of(this, viewModelFactory).get(BaseTabViewModel::class.java)
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

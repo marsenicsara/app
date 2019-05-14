@@ -1,7 +1,5 @@
 package com.hedvig.app.feature.claims.ui
 
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.graphics.Rect
 import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
@@ -13,6 +11,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.RequestBuilder
 import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import com.hedvig.android.owldroid.type.InsuranceStatus
+import com.hedvig.app.BuildConfig
 import com.hedvig.app.R
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.commonclaim.CommonClaimsAdapter
@@ -22,33 +21,26 @@ import com.hedvig.app.util.extensions.compatColor
 import com.hedvig.app.util.extensions.observe
 import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.setupLargeTitle
-import com.hedvig.app.util.extensions.view.*
+import com.hedvig.app.util.extensions.view.disable
+import com.hedvig.app.util.extensions.view.enable
+import com.hedvig.app.util.extensions.view.remove
+import com.hedvig.app.util.extensions.view.setHapticClickListener
+import com.hedvig.app.util.extensions.view.show
 import com.hedvig.app.util.svg.buildRequestBuilder
+import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.fragment_claims.*
 import kotlinx.android.synthetic.main.loading_spinner.*
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Named
 
 class ClaimsFragment : BaseTabFragment() {
 
-    @Inject
-    lateinit var tracker: ClaimsTracker
+    val tracker: ClaimsTracker by inject()
+    val claimsViewModel: ClaimsViewModel by sharedViewModel()
 
-    @Inject
-    @field:Named("BASE_URL")
-    lateinit var baseUrl: String
     private val requestBuilder: RequestBuilder<PictureDrawable> by lazy { buildRequestBuilder() }
-
-    private lateinit var claimsViewModel: ClaimsViewModel
     private val baseMargin: Int by lazy { resources.getDimensionPixelSize(R.dimen.base_margin) }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        claimsViewModel = requireActivity().run {
-            ViewModelProviders.of(this, viewModelFactory).get(ClaimsViewModel::class.java)
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_claims, container, false)
@@ -115,7 +107,7 @@ class ClaimsFragment : BaseTabFragment() {
         commonClaimsRecyclerView.adapter =
             CommonClaimsAdapter(
                 commonClaims = commonClaimsData.commonClaims(),
-                baseUrl = baseUrl,
+                baseUrl = BuildConfig.BASE_URL,
                 requestBuilder = requestBuilder,
                 navigateToCommonClaimFragment = { commonClaim ->
                     claimsViewModel.setSelectedSubViewData(commonClaim)
