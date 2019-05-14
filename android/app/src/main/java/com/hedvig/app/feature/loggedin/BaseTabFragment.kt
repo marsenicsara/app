@@ -27,21 +27,20 @@ abstract class BaseTabFragment : Fragment() {
     val navController by lazy { requireActivity().findNavController(R.id.rootNavigationHost) }
 
     override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
         super.onAttach(context)
+        AndroidSupportInjection.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         baseTabViewModel = requireActivity().run {
             ViewModelProviders.of(this, viewModelFactory).get(BaseTabViewModel::class.java)
         }
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         toolbar.updatePadding(end = resources.getDimensionPixelSize(R.dimen.base_margin_double))
     }
 
@@ -57,10 +56,5 @@ abstract class BaseTabFragment : Fragment() {
             })
         }
         return true
-    }
-
-    override fun onResume() {
-        super.onResume()
-        setHasOptionsMenu(true)
     }
 }

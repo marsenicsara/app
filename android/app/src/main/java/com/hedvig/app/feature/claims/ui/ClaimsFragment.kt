@@ -5,22 +5,15 @@ import android.content.Context
 import android.graphics.Rect
 import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
-import android.support.annotation.IdRes
-import android.support.annotation.Nullable
-import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavController
-import androidx.navigation.NavOptions
-import androidx.navigation.findNavController
 import com.bumptech.glide.RequestBuilder
 import com.hedvig.android.owldroid.graphql.CommonClaimQuery
 import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.app.R
-import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.commonclaim.CommonClaimsAdapter
 import com.hedvig.app.feature.claims.ui.pledge.HonestyPledgeBottomSheet
@@ -31,8 +24,6 @@ import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.setupLargeTitle
 import com.hedvig.app.util.extensions.view.*
 import com.hedvig.app.util.svg.buildRequestBuilder
-import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.fragment_claims.*
 import kotlinx.android.synthetic.main.loading_spinner.*
 import timber.log.Timber
@@ -65,12 +56,6 @@ class ClaimsFragment : BaseTabFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupLargeTitle(
-            R.string.CLAIMS_TITLE,
-            R.font.circular_bold,
-            backgroundColor = requireContext().compatColor(R.color.off_white)
-        )
-        appBarLayout.setExpanded(true)
 
         claimsViewModel.apply {
             loadingSpinner.show()
@@ -100,6 +85,12 @@ class ClaimsFragment : BaseTabFragment() {
         loadingSpinner.remove()
         claimsViewContent.show()
 
+        setupLargeTitle(
+            R.string.CLAIMS_TITLE,
+            R.font.circular_bold,
+            backgroundColor = requireContext().compatColor(R.color.off_white)
+        )
+
         when (commonClaimsData.insurance().status()) {
             InsuranceStatus.ACTIVE -> {
                 claimsIllustration.show()
@@ -109,7 +100,7 @@ class ClaimsFragment : BaseTabFragment() {
                     tracker.createClaimClick("main_screen")
                     HonestyPledgeBottomSheet
                         .newInstance("main_screen", R.id.action_loggedInFragment_to_chatFragment)
-                        .show(requireFragmentManager(), "honestyPledge")
+                        .show(childFragmentManager, "honestyPledge")
                 }
             }
             else -> {

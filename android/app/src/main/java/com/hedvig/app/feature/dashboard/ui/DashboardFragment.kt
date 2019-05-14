@@ -194,7 +194,7 @@ class DashboardFragment : BaseTabFragment() {
                     PerilIcon.from(id),
                     title,
                     description
-                ).show(requireFragmentManager(), "perilSheet")
+                ).show(childFragmentManager, "perilSheet")
             }
         }
 

@@ -35,11 +35,6 @@ class ProfileFragment : BaseTabFragment() {
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var directDebitViewModel: DirectDebitViewModel
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         profileViewModel = requireActivity().run {
@@ -56,7 +51,6 @@ class ProfileFragment : BaseTabFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupLargeTitle(R.string.PROFILE_TITLE, R.font.circular_bold)
 
         populateData()
         loadReferralFeature()
@@ -86,6 +80,8 @@ class ProfileFragment : BaseTabFragment() {
             loadingSpinner.remove()
             rowContainer.show()
             logout.show()
+
+            setupLargeTitle(R.string.PROFILE_TITLE, R.font.circular_bold)
 
             profileData?.let { data ->
                 setupMyInfoRow(data)
