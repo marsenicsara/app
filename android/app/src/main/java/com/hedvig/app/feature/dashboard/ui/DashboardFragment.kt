@@ -1,7 +1,5 @@
 package com.hedvig.app.feature.dashboard.ui
 
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -18,7 +16,6 @@ import com.hedvig.android.owldroid.type.DirectDebitStatus
 import com.hedvig.android.owldroid.type.InsuranceStatus
 import com.hedvig.android.owldroid.type.InsuranceType
 import com.hedvig.app.R
-import com.hedvig.app.di.viewmodel.ViewModelFactory
 import com.hedvig.app.feature.dashboard.service.DashboardTracker
 import com.hedvig.app.util.extensions.addViews
 import com.hedvig.app.util.extensions.compatDrawable
@@ -36,7 +33,6 @@ import com.hedvig.app.util.interpolateTextKey
 import com.hedvig.app.util.isApartmentOwner
 import com.hedvig.app.util.isStudentInsurance
 import com.hedvig.app.viewmodel.DirectDebitViewModel
-import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -47,23 +43,20 @@ import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.dashboard_footnotes.view.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.loading_spinner.*
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import timber.log.Timber
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 class DashboardFragment : Fragment() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    val tracker: DashboardTracker by inject()
 
-    @Inject
-    lateinit var tracker: DashboardTracker
-
-    lateinit var dashboardViewModel: DashboardViewModel
-    lateinit var directDebitViewModel: DirectDebitViewModel
+    val dashboardViewModel: DashboardViewModel by sharedViewModel()
+    val directDebitViewModel: DirectDebitViewModel by sharedViewModel()
 
     private val bottomNavigationHeight: Int by lazy { resources.getDimensionPixelSize(R.dimen.bottom_navigation_height) }
     private val halfMargin: Int by lazy { resources.getDimensionPixelSize(R.dimen.base_margin_half) }
@@ -83,21 +76,6 @@ class DashboardFragment : Fragment() {
     private val compositeDisposable = CompositeDisposable()
 
     private val navController by lazy { requireActivity().findNavController(R.id.rootNavigationHost) }
-
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dashboardViewModel = requireActivity().run {
-            ViewModelProviders.of(this, viewModelFactory).get(DashboardViewModel::class.java)
-        }
-        directDebitViewModel = requireActivity().run {
-            ViewModelProviders.of(this, viewModelFactory).get(DirectDebitViewModel::class.java)
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_dashboard, container, false)
