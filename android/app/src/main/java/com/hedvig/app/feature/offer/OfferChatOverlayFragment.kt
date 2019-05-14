@@ -26,10 +26,10 @@ import com.hedvig.app.react.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA
 import com.hedvig.app.react.NativeRoutingModule.Companion.NAVIGATE_ROUTING_EXTRA_VALUE_LOGOUT_AND_RESTART_APPLICATION
 import com.hedvig.app.util.extensions.localBroadcastManager
 import com.hedvig.app.util.showRestartDialog
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class OfferChatOverlayFragment : DialogFragment(), DefaultHardwareBackBtnHandler {
-    val chatViewModel: ChatViewModel by inject()
+    val chatViewModel: ChatViewModel by sharedViewModel()
     private lateinit var dialogView: ViewGroup
 
     private var mReactRootView: ReactRootView? = null

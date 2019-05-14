@@ -13,11 +13,12 @@ import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.view.setHapticClickListener
 import kotlinx.android.synthetic.main.bottom_sheet_honesty_pledge.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class HonestyPledgeBottomSheet : RoundedBottomSheetDialogFragment() {
     val tracker: ClaimsTracker by inject()
 
-    val claimsViewModel: ClaimsViewModel by inject()
+    val claimsViewModel: ClaimsViewModel by sharedViewModel()
 
     val navController by lazy { requireActivity().findNavController(R.id.rootNavigationHost) }
 

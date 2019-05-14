@@ -22,11 +22,11 @@ import com.hedvig.app.util.extensions.view.remove
 import com.hedvig.app.util.extensions.view.show
 import kotlinx.android.synthetic.main.fragment_coinsured.*
 import kotlinx.android.synthetic.main.loading_spinner.*
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class CoinsuredFragment : Fragment() {
 
-    val profileViewModel: ProfileViewModel by inject()
+    val profileViewModel: ProfileViewModel by sharedViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_coinsured, container, false)

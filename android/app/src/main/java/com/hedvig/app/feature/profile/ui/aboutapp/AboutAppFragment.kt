@@ -15,11 +15,11 @@ import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.extensions.setupLargeTitle
 import com.hedvig.app.util.interpolateTextKey
 import kotlinx.android.synthetic.main.fragment_about_app.*
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class AboutAppFragment : Fragment() {
 
-    val profileViewModel: ProfileViewModel by inject()
+    val profileViewModel: ProfileViewModel by sharedViewModel()
 
     private val navController: NavController by lazy {
         requireActivity().findNavController(R.id.rootNavigationHost)

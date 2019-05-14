@@ -19,10 +19,11 @@ import com.hedvig.app.util.svg.buildRequestBuilder
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.common_claim_first_message.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 abstract class BaseCommonClaimFragment : Fragment() {
     val tracker: ClaimsTracker by inject()
-    val claimsViewModel: ClaimsViewModel by inject()
+    val claimsViewModel: ClaimsViewModel by sharedViewModel()
 
     val requestBuilder: RequestBuilder<PictureDrawable> by lazy { buildRequestBuilder() }
 

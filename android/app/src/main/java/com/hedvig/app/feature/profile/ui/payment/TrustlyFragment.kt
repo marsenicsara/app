@@ -23,11 +23,12 @@ import com.hedvig.app.viewmodel.DirectDebitViewModel
 import kotlinx.android.synthetic.main.fragment_trustly.*
 import kotlinx.android.synthetic.main.loading_spinner.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class TrustlyFragment : Fragment() {
 
-    val profileViewModel: ProfileViewModel by inject()
-    val directDebitViewModel: DirectDebitViewModel by inject()
+    val profileViewModel: ProfileViewModel by sharedViewModel()
+    val directDebitViewModel: DirectDebitViewModel by sharedViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_trustly, container, false)

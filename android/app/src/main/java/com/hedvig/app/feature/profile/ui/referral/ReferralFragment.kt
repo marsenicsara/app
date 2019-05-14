@@ -24,12 +24,13 @@ import com.hedvig.app.util.extensions.view.show
 import com.hedvig.app.util.interpolateTextKey
 import kotlinx.android.synthetic.main.fragment_referral.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class ReferralFragment : Fragment() {
 
     val tracker: ProfileTracker by inject()
 
-    val profileViewModel: ProfileViewModel by inject()
+    val profileViewModel: ProfileViewModel by sharedViewModel()
 
     private var buttonAnimator: ValueAnimator? = null
 

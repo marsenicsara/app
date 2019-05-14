@@ -15,6 +15,7 @@ import com.hedvig.app.BuildConfig
 import com.hedvig.app.data.debit.DirectDebitRepository
 import com.hedvig.app.feature.chat.ChatRepository
 import com.hedvig.app.feature.chat.ChatViewModel
+import com.hedvig.app.feature.chat.UserRepository
 import com.hedvig.app.feature.claims.data.ClaimsRepository
 import com.hedvig.app.feature.claims.service.ClaimsTracker
 import com.hedvig.app.feature.claims.ui.ClaimsViewModel
@@ -128,6 +129,7 @@ val repositoriesModule = module {
     single { DashboardRepository(get()) }
     single { MarketingStoriesRepository(get(), get(), get()) }
     single { ProfileRepository(get()) }
+    single { UserRepository(get()) }
 }
 
 val trackerModule = module {

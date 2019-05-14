@@ -13,9 +13,10 @@ import com.hedvig.app.util.extensions.proxyNavigate
 import com.hedvig.app.util.whenApiVersion
 import kotlinx.android.synthetic.main.dialog_change_home_info.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class ChangeHomeInfoDialog : DialogFragment() {
-    val profileViewModel: ProfileViewModel by inject()
+    val profileViewModel: ProfileViewModel by sharedViewModel()
     val navController by lazy { requireActivity().findNavController(R.id.rootNavigationHost) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =

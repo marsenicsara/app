@@ -33,11 +33,12 @@ import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.fragment_claims.*
 import kotlinx.android.synthetic.main.loading_spinner.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
 class ClaimsFragment : Fragment() {
     val tracker: ClaimsTracker by inject()
-    val claimsViewModel: ClaimsViewModel by inject()
+    val claimsViewModel: ClaimsViewModel by sharedViewModel()
 
     private val requestBuilder: RequestBuilder<PictureDrawable> by lazy { buildRequestBuilder() }
     private val baseMargin: Int by lazy { resources.getDimensionPixelSize(R.dimen.base_margin) }

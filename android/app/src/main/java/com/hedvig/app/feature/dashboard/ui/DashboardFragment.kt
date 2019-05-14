@@ -44,6 +44,7 @@ import kotlinx.android.synthetic.main.dashboard_footnotes.view.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.loading_spinner.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import timber.log.Timber
@@ -54,8 +55,8 @@ import java.util.concurrent.TimeUnit
 class DashboardFragment : Fragment() {
     val tracker: DashboardTracker by inject()
 
-    val dashboardViewModel: DashboardViewModel by inject()
-    val directDebitViewModel: DirectDebitViewModel by inject()
+    val dashboardViewModel: DashboardViewModel by sharedViewModel()
+    val directDebitViewModel: DirectDebitViewModel by sharedViewModel()
 
     private val bottomNavigationHeight: Int by lazy { resources.getDimensionPixelSize(R.dimen.bottom_navigation_height) }
     private val halfMargin: Int by lazy { resources.getDimensionPixelSize(R.dimen.base_margin_half) }

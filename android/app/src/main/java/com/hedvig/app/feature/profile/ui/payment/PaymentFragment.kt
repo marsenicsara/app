@@ -28,13 +28,14 @@ import com.hedvig.app.viewmodel.DirectDebitViewModel
 import kotlinx.android.synthetic.main.fragment_payment.*
 import kotlinx.android.synthetic.main.loading_spinner.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 import java.util.Calendar
 
 class PaymentFragment : Fragment() {
 
-    val profileViewModel: ProfileViewModel by inject()
-    val directDebitViewModel: DirectDebitViewModel by inject()
+    val profileViewModel: ProfileViewModel by sharedViewModel()
+    val directDebitViewModel: DirectDebitViewModel by sharedViewModel()
 
     private val navController: NavController by lazy {
         requireActivity().findNavController(R.id.rootNavigationHost)

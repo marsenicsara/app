@@ -27,6 +27,7 @@ import com.hedvig.app.feature.marketing.service.MarketingTracker
 import com.hedvig.app.util.extensions.view.performOnTapHapticFeedback
 import com.hedvig.app.util.extensions.view.show
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class StoryFragment : Fragment() {
 
@@ -34,7 +35,7 @@ class StoryFragment : Fragment() {
 
     val tracker: MarketingTracker by inject()
 
-    val marketingStoriesViewModel: MarketingStoriesViewModel by inject()
+    val marketingStoriesViewModel: MarketingStoriesViewModel by sharedViewModel()
     private var player: SimpleExoPlayer? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

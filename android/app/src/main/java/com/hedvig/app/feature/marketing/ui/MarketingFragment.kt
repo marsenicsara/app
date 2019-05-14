@@ -34,6 +34,7 @@ import com.hedvig.app.util.percentageFade
 import kotlinx.android.synthetic.main.fragment_marketing.*
 import kotlinx.android.synthetic.main.loading_spinner.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
 class MarketingFragment : Fragment() {
@@ -52,7 +53,7 @@ class MarketingFragment : Fragment() {
 
     val tracker: MarketingTracker by inject()
 
-    val marketingStoriesViewModel: MarketingStoriesViewModel by inject()
+    val marketingStoriesViewModel: MarketingStoriesViewModel by sharedViewModel()
 
     private var buttonsAnimator: ValueAnimator? = null
     private var blurDismissAnimator: ValueAnimator? = null

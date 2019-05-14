@@ -28,9 +28,10 @@ import kotlinx.android.synthetic.main.fragment_my_info.*
 import kotlinx.android.synthetic.main.loading_spinner.*
 import kotlinx.android.synthetic.main.sphere_container.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class MyInfoFragment : Fragment() {
-    val profileViewModel: ProfileViewModel by inject()
+    val profileViewModel: ProfileViewModel by sharedViewModel()
 
     private var emailTextWatcher: TextWatcher? = null
     private var phoneNumberTextWatcher: TextWatcher? = null
